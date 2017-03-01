@@ -1,0 +1,52 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Semestre</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ semestre.id }}</td>
+            </tr>
+            <tr>
+                <th>Semestre</th>
+                <td>{{ semestre.semestre }}</td>
+            </tr>
+            <tr>
+                <th>Fechainicio</th>
+                <td>{% if semestre.fechaInicio %}{{ semestre.fechaInicio|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Fechafin</th>
+                <td>{% if semestre.fechaFin %}{{ semestre.fechaFin|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Slug</th>
+                <td>{{ semestre.slug }}</td>
+            </tr>
+            <tr>
+                <th>Createdat</th>
+                <td>{% if semestre.createdAt %}{{ semestre.createdAt|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Modifiedat</th>
+                <td>{% if semestre.modifiedAt %}{{ semestre.modifiedAt|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('semestre_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('semestre_edit', { 'id': semestre.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

@@ -1,0 +1,49 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Semestres list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Semestre</th>
+                <th>Fechainicio</th>
+                <th>Fechafin</th>
+                <th>Slug</th>
+                <th>Createdat</th>
+                <th>Modifiedat</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for semestre in semestres %}
+            <tr>
+                <td><a href="{{ path('semestre_show', { 'id': semestre.id }) }}">{{ semestre.id }}</a></td>
+                <td>{{ semestre.semestre }}</td>
+                <td>{% if semestre.fechaInicio %}{{ semestre.fechaInicio|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{% if semestre.fechaFin %}{{ semestre.fechaFin|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{{ semestre.slug }}</td>
+                <td>{% if semestre.createdAt %}{{ semestre.createdAt|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{% if semestre.modifiedAt %}{{ semestre.modifiedAt|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('semestre_show', { 'id': semestre.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('semestre_edit', { 'id': semestre.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('semestre_new') }}">Create a new semestre</a>
+        </li>
+    </ul>
+{% endblock %}
