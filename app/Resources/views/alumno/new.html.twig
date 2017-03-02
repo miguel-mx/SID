@@ -1,12 +1,13 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-
+    {{ form_start(form) }}
     <div class="content-wrapper">
         <div class="panel-body">
             <div class="page-header">
                 <h2>Nuevo Alumno</h2>
             </div>
+            <div class="alert-danger">{{ form_errors(form) }}</div>
             <div class="panel panel-info">
                 <div class="panel-heading"><strong>Datos personales</strong></div>
                 <div class="row">
@@ -43,11 +44,21 @@
                     </div>
                     <div class="col-md-4">
                         <div class="form-group">
-                            <label>Correo</label>
-                            {{ form_widget(form.correo, {'attr': {'class': 'form-control'}}) }}
-                            <span class="text-danger">{{ form_errors(form.correo) }}</span>
+                            <label>Correo Personal</label>
+                            {{ form_widget(form.correoPersonal, {'attr': {'class': 'form-control'}}) }}
+                            <span class="text-danger">{{ form_errors(form.correoPersonal) }}</span>
                         </div>
                     </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label>Correo Institucional</label>
+                            {{ form_widget(form.correoInstitucional, {'attr': {'class': 'form-control'}}) }}
+                            <span class="text-danger">{{ form_errors(form.correoInstitucional) }}</span>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="row">
                     <div class="col-md-4">
                         <div class="form-group">
                             <label>País</label>
@@ -95,24 +106,26 @@
                             <span class="text-danger">{{ form_errors(form.cvu) }}</span>
                         </div>
                     </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <div class="checkbox">
+                                <label>
+                                    {{ form_widget(form.condicionado) }}
+                                    <strong>Condicionado</strong>
+                                </label>
+                            </div>
+                            <span class="text-danger">{{ form_errors(form.condicionado) }}</span>
+                        </div>
+                    </div>
                 </div>
             </div>
-
-
-        {{ form_start(form) }}
-              {{ form_widget(form) }}
-              <input class="btn btn-primary" type="submit" value="Crear" />
-           {{ form_end(form) }}
-
+            <input class="btn btn-primary" type="submit" value="Crear" />
+            {{ form_end(form) }}
         </div>
-
-            <ul>
-                <li>
-                    <a href="{{ path('alumno_index') }}">Back to the list</a>
-                </li>
-            </ul>
-
-
-
+        <ul>
+            <li>
+                <a href="{{ path('alumno_index') }}">Back to the list</a>
+            </li>
+        </ul>
     </div>
 {% endblock %}

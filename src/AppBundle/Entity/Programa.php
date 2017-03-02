@@ -52,14 +52,14 @@ class Programa
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="fechaGradoUNAM", type="datetime")
+     * @ORM\Column(name="fechaGradoUNAM", type="datetime", nullable=true)
      */
     private $fechaGradoUNAM;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="opcionTitulacion", type="string", length=15)
+     * @ORM\Column(name="opcionTitulacion", type="string", length=15, nullable=true)
      */
     private $opcionTitulacion;
 

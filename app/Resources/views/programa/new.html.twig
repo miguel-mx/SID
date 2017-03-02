@@ -1,16 +1,79 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Programa creation</h1>
 
     {{ form_start(form) }}
-        {{ form_widget(form) }}
-        <input type="submit" value="Create" />
-    {{ form_end(form) }}
 
-    <ul>
-        <li>
-            <a href="{{ path('programa_index') }}">Back to the list</a>
-        </li>
-    </ul>
+    <div class="content-wrapper">
+        <div class="panel-body">
+            <div class="page-header">
+                <h2>Nuevo Programa</h2>
+            </div>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label>Programa</label>
+                        {{ form_widget(form.programa, {'attr': {'class': 'form-control'}}) }}
+                        <span class="text-danger">{{ form_errors(form.programa) }}</span>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label>Ingreso</label>
+                        {{ form_widget(form.ingreso, {'attr': {'class': 'form-control'}}) }}
+                        <span class="text-danger">{{ form_errors(form.ingreso) }}</span>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label>Término</label>
+                        {{ form_widget(form.termino, {'attr': {'class': 'form-control'}}) }}
+                        <span class="text-danger">{{ form_errors(form.termino) }}</span>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label>Fecha grado UMSNH</label>
+                        {{ form_widget(form.fechaGradoUMSNH, {'attr': {'class': 'form-control'}}) }}
+                        <span class="text-danger">{{ form_errors(form.fechaGradoUMSNH) }}</span>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label>Fecha grado UNAM</label>
+                        {{ form_widget(form.fechaGradoUNAM, {'attr': {'class': 'form-control'}}) }}
+                        <span>{{ form_errors(form.fechaGradoUNAM) }}</span>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label>Opción de Titulación</label>
+                        {{ form_widget(form.opcionTitulacion, {'attr': {'class': 'form-control'}}) }}
+                        <span class="text-danger">{{ form_errors(form.opcionTitulacion) }}</span>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label>Título Tesis</label>
+                        {{ form_widget(form.tituloTesis, {'attr': {'class': 'form-control'}}) }}
+                        <span class="text-danger">{{ form_errors(form.tituloTesis) }}</span>
+                    </div>
+                </div>
+            </div>
+
+            <input class="btn btn-primary" type="submit" value="Create" />
+            {{ form_end(form) }}
+
+            <ul>
+                <li>
+                    <a href="{{ path('programa_index') }}">Back to the list</a>
+                </li>
+            </ul>
+        </div>
+    </div>
 {% endblock %}
+

@@ -5,6 +5,7 @@ namespace AppBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
 
 class ProgramaType extends AbstractType
 {
@@ -13,7 +14,18 @@ class ProgramaType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('programa')->add('ingreso')->add('termino')->add('fechaGradoUMSNH')->add('fechaGradoUNAM')->add('opcionTitulacion')->add('tituloTesis')        ;
+        $builder->add('programa')
+            ->add('ingreso')
+            ->add('termino')
+            ->add('fechaGradoUMSNH', DateType::class, array(
+                'widget' => 'choice',
+                'html5' => false,
+                'attr' => ['class' => 'js-datepicker']
+            ))
+            ->add('fechaGradoUNAM', DateType::class, array(
+                'widget' => 'choice'))
+            ->add('opcionTitulacion')
+            ->add('tituloTesis')        ;
     }
     
     /**

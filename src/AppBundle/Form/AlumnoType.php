@@ -17,7 +17,10 @@ class AlumnoType extends AbstractType
             ->add('materno')
             ->add('nombre')
             ->add('telefono')
-            ->add('correo')
+            ->add('correoInstitucional', 'Symfony\Component\Form\Extension\Core\Type\TextType',array(
+                    'required'    => false,
+            ))
+            ->add('correoPersonal')
             ->add('escuelaProcedencia')
             ->add('programa', 'Symfony\Component\Form\Extension\Core\Type\ChoiceType', array(
                 'choices' => array(
@@ -28,7 +31,9 @@ class AlumnoType extends AbstractType
             ))
             ->add('pais')
             ->add('numeroCuenta')
-            ->add('cvu')            ;
+            ->add('cvu')
+            ->add('condicionado')
+        ;
     }
     
     /**

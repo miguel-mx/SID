@@ -26,12 +26,13 @@
                 <tr>
                     <th>Nombre</th>
                     <th>Teléfono</th>
-                    <th>correo</th>
+                    <th>correo Institucional</th>
                     <th>Escuela de procedencia</th>
                     <th>Programa</th>
                     <th>pais</th>
                     <th>Numero de cuenta</th>
                     <th>Cvu</th>
+                    <th>Condicionado</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -45,6 +46,7 @@
                         <td class="text-center">{{ alumno.pais }}</td>
                         <td class="text-center">{{ alumno.numeroCuenta }}</td>
                         <td class="text-center">{{ alumno.cvu }}</td>
+                        <td class="text-center">{{ alumno.condicionado ? '<i class="fa fa-check-square-o icon-success"></i> Si' : '<i class="fa fa-times-circle icon-danger"></i> No' }}</td>
                     </tr>
                 {% endfor %}
                 </tbody>

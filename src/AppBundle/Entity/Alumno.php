@@ -4,6 +4,7 @@ namespace AppBundle\Entity;
 
 use Gedmo\Mapping\Annotation as Gedmo;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Alumno
@@ -26,6 +27,8 @@ class Alumno
      * @var string
      *
      * @ORM\Column(name="paterno", type="string", length=60)
+     * @Assert\NotBlank()
+     *
      */
     private $paterno;
 
@@ -33,13 +36,17 @@ class Alumno
      * @var string
      *
      * @ORM\Column(name="materno", type="string", length=60)
+     * @Assert\NotBlank()
+     *
      */
     private $materno;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="nombre", type="string", length=60)
+     * @ORM\Column(name="nombre", type="string", length=60, nullable=true)
+     * @Assert\NotBlank()
+     *
      */
     private $nombre;
 
@@ -53,9 +60,16 @@ class Alumno
     /**
      * @var string
      *
-     * @ORM\Column(name="correo", type="string", length=30)
+     * @ORM\Column(name="correo_institucional", type="string", length=30, nullable=true)
      */
-    private $correo;
+    private $correo_institucional;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="correo_personal", type="string", length=30, nullable=true)
+     */
+    private $correo_personal;
 
     /**
      * @var string
@@ -93,8 +107,15 @@ class Alumno
     private $cvu;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="condicionado", type="boolean", nullable=true)
+     */
+    private $condicionado;
+
+    /**
      * @Gedmo\Slug(fields={"nombre", "paterno"})
-     * @ORM\Column(length=30, unique=true)
+     * @ORM\Column(length=30, unique=true )
      */
     private $slug;
 
@@ -113,6 +134,11 @@ class Alumno
     private $modifiedAt;
 
 
+    public function setCreatedAtValue()
+    {
+        $this->createdAt = new \DateTime();
+        $this->modifiedAt = new \DateTime();
+    }
     /**
      * Get id
      *
@@ -216,26 +242,42 @@ class Alumno
     }
 
     /**
-     * Set correo
+     * Set correo_institucional
      *
-     * @param string $correo
+     * @param string $correo_institucional
      * @return Alumno
      */
-    public function setCorreo($correo)
+    public function setCorreoInstitucional($correo_institucional)
     {
-        $this->correo = $correo;
+        $this->correo_institucional = $correo_institucional;
 
         return $this;
     }
 
     /**
-     * Get correo
+     * Get correo_institucional
      *
      * @return string 
      */
-    public function getCorreo()
+    public function getCorreoInstitucional()
     {
-        return $this->correo;
+        return $this->correo_institucional;
+    }
+
+    /**
+     * @return string
+     */
+    public function getCorreoPersonal()
+    {
+        return $this->correo_personal;
+    }
+
+    /**
+     * @param string $correo_personal
+     */
+    public function setCorreoPersonal($correo_personal)
+    {
+        $this->correo_personal = $correo_personal;
     }
 
     /**
@@ -269,7 +311,7 @@ class Alumno
      */
     public function setPrograma($programa)
     {
-        $this->correo = $programa;
+        $this->programa = $programa;
 
         return $this;
     }
@@ -352,6 +394,22 @@ class Alumno
     public function getCvu()
     {
         return $this->cvu;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getCondicionado()
+    {
+        return $this->condicionado;
+    }
+
+    /**
+     * @param mixed $condicionado
+     */
+    public function setCondicionado($condicionado)
+    {
+        $this->condicionado = $condicionado;
     }
 
     /**

@@ -1,12 +1,75 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
+ {{ form_start(form) }}
     <div class="content-wrapper">
-        <h1>Curso creation</h1>
-
-        {{ form_start(form) }}
-        {{ form_widget(form) }}
-        <input type="submit" value="Create" />
+        <div class="panel-body">
+            <div class="page-header">
+                <h2>Nuevo Curso</h2>
+            </div>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label>Tipo</label>
+                        {{ form_widget(form.tipo, {'attr': {'class': 'form-control'}}) }}
+                        <span class="text-danger">{{ form_errors(form.tipo) }}</span>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label>Curso</label>
+                        {{ form_widget(form.curso, {'attr': {'class': 'form-control'}}) }}
+                        <span>{{ form_errors(form.curso) }}</span>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label>Tema</label>
+                        {{ form_widget(form.tema, {'attr': {'class': 'form-control'}}) }}
+                        <span class="text-danger">{{ form_errors(form.tema) }}</span>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label>Horas por semana</label>
+                        {{ form_widget(form.horasSemana, {'attr': {'class': 'form-control'}}) }}
+                        <span class="text-danger">{{ form_errors(form.horasSemana) }}</span>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label>Creditos</label>
+                        {{ form_widget(form.creditos, {'attr': {'class': 'form-control'}}) }}
+                        <span>{{ form_errors(form.creditos) }}</span>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label>Asignatura</label>
+                        {{ form_widget(form.asignatura, {'attr': {'class': 'form-control'}}) }}
+                        <span class="text-danger">{{ form_errors(form.asignatura) }}</span>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label>clave de grupo</label>
+                        {{ form_widget(form.claveGrupo, {'attr': {'class': 'form-control'}}) }}
+                        <span class="text-danger">{{ form_errors(form.claveGrupo) }}</span>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label>Lugar</label>
+                        {{ form_widget(form.lugar, {'attr': {'class': 'form-control'}}) }}
+                        <span>{{ form_errors(form.lugar) }}</span>
+                    </div>
+                </div>
+            </div>
+        <input class="btn btn-primary" type="submit" value="Crear" />
         {{ form_end(form) }}
 
         <ul>
@@ -14,5 +77,6 @@
                 <a href="{{ path('curso_index') }}">Back to the list</a>
             </li>
         </ul>
+    </div>
     </div>
 {% endblock %}
