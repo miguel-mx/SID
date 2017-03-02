@@ -6,16 +6,14 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class SemestreType extends AbstractType
+class ProgramaType extends AbstractType
 {
     /**
      * {@inheritdoc}
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('semestre')
-            ->add('fechaInicio')
-            ->add('fechaFin')        ;
+        $builder->add('programa')->add('ingreso')->add('termino')->add('fechaGradoUMSNH')->add('fechaGradoUNAM')->add('opcionTitulacion')->add('tituloTesis')        ;
     }
     
     /**
@@ -24,7 +22,7 @@ class SemestreType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'AppBundle\Entity\Semestre'
+            'data_class' => 'AppBundle\Entity\Programa'
         ));
     }
 
@@ -33,7 +31,7 @@ class SemestreType extends AbstractType
      */
     public function getBlockPrefix()
     {
-        return 'appbundle_semestre';
+        return 'appbundle_programa';
     }
 
 

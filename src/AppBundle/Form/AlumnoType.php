@@ -13,7 +13,22 @@ class AlumnoType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('paterno')->add('materno')->add('nombre')->add('telefono')->add('correo')->add('escuelaProcedencia')->add('programa')->add('pais')->add('numeroCuenta')->add('cvu')->add('createdAt')->add('modifiedAt')        ;
+        $builder->add('paterno')
+            ->add('materno')
+            ->add('nombre')
+            ->add('telefono')
+            ->add('correo')
+            ->add('escuelaProcedencia')
+            ->add('programa', 'Symfony\Component\Form\Extension\Core\Type\ChoiceType', array(
+                'choices' => array(
+                    'Maestría' => 'Maestría',
+                    'Doctorado' => 'Doctorado',
+                ),
+                'choices_as_values' => true,
+            ))
+            ->add('pais')
+            ->add('numeroCuenta')
+            ->add('cvu')            ;
     }
     
     /**

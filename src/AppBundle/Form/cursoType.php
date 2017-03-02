@@ -13,7 +13,21 @@ class cursoType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('tipo')->add('curso')->add('tema')->add('horasSemana')->add('creditos')->add('asignatura')->add('claveGrupo')->add('lugar')        ;
+        $builder->add('tipo', 'Symfony\Component\Form\Extension\Core\Type\ChoiceType', array(
+            'choices'  => array(
+                'Básico' => 'Básico',
+                'Avanzado' => 'Avanzado',
+                'Seminario' => 'Seminario',
+            ),
+            'choices_as_values' => true,
+        ))
+            ->add('curso')
+            ->add('tema')
+            ->add('horasSemana')
+            ->add('creditos')
+            ->add('asignatura')
+            ->add('claveGrupo')
+            ->add('lugar')        ;
     }
     
     /**

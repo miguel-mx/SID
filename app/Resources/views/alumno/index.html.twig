@@ -1,61 +1,77 @@
 {% extends 'base.html.twig' %}
 
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs/jqc-1.12.4/dt-1.10.13/b-1.2.4/datatables.min.css"/>
+{% endblock %}
+
 {% block body %}
-    <h1>Alumnos list</h1>
+    <div class="content-wrapper">
+        <div class="panel-body">
+            <div class="page-header">
+                <h1> Lista de Alumnos </h1>
+            </div>
 
-    <table>
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Paterno</th>
-                <th>Materno</th>
-                <th>Nombre</th>
-                <th>Telefono</th>
-                <th>Correo</th>
-                <th>Escuelaprocedencia</th>
-                <th>Programa</th>
-                <th>Pais</th>
-                <th>Numerocuenta</th>
-                <th>Cvu</th>
-                <th>Createdat</th>
-                <th>Modifiedat</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for alumno in alumnos %}
-            <tr>
-                <td><a href="{{ path('alumno_show', { 'id': alumno.id }) }}">{{ alumno.id }}</a></td>
-                <td>{{ alumno.paterno }}</td>
-                <td>{{ alumno.materno }}</td>
-                <td>{{ alumno.nombre }}</td>
-                <td>{{ alumno.telefono }}</td>
-                <td>{{ alumno.correo }}</td>
-                <td>{{ alumno.escuelaProcedencia }}</td>
-                <td>{{ alumno.programa }}</td>
-                <td>{{ alumno.pais }}</td>
-                <td>{{ alumno.numeroCuenta }}</td>
-                <td>{{ alumno.cvu }}</td>
-                <td>{% if alumno.createdAt %}{{ alumno.createdAt|date('Y-m-d H:i:s') }}{% endif %}</td>
-                <td>{% if alumno.modifiedAt %}{{ alumno.modifiedAt|date('Y-m-d H:i:s') }}{% endif %}</td>
-                <td>
-                    <ul>
-                        <li>
-                            <a href="{{ path('alumno_show', { 'id': alumno.id }) }}">show</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('alumno_edit', { 'id': alumno.id }) }}">edit</a>
-                        </li>
-                    </ul>
-                </td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+            <div class="row">
+                <div class="col col-md-2">
+                    <div class="metric-container">
+                        <h3 class="metric-header">{{ alumnos|length }}</h3>
+                        <span class="metric-label">Alumnos</span>
+                    </div>
+                </div>
+            </div>
 
-    <ul>
-        <li>
-            <a href="{{ path('alumno_new') }}">Create a new alumno</a>
-        </li>
-    </ul>
+            <table class="table table-bordered" id="alumno_table">
+                <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Teléfono</th>
+                    <th>correo</th>
+                    <th>Escuela de procedencia</th>
+                    <th>Programa</th>
+                    <th>pais</th>
+                    <th>Numero de cuenta</th>
+                    <th>Cvu</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for alumno in alumnos %}
+                    <tr>
+                        {#<td><a href="{{ path('alumno', { 'slug': alumno.slug }) }}">{{ alumno.id }}</a></td>#}
+                        <td><a href="{{ path('alumno_show', { 'slug': alumno.slug }) }}">{{ solicitud.paterno }} {{ solicitud.materno }} {{ solicitud.nombre }}</a></td>
+                        <td>{{ alumno.correo }}</td>
+                        <td>{{ alumno.escuelaProcedencia }}</td>
+                        <td class="text-center">{{ alumno.programa  }}</td>
+                        <td class="text-center">{{ alumno.pais }}</td>
+                        <td class="text-center">{{ alumno.numeroCuenta }}</td>
+                        <td class="text-center">{{ alumno.cvu }}</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+
+            <ul>
+                <li>
+                    <a href="{{ path('alumno_new') }}">Create a new alumno</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+
+    {{ parent() }}
+    <script type="text/javascript" src="https://cdn.datatables.net/v/bs/jqc-1.12.4/dt-1.10.13/b-1.2.4/datatables.min.js"></script>
+    <script type="text/javascript" charset="utf-8">
+        $(document).ready(function() {
+            $('#solicitud_table').DataTable( {
+                dom: 'Bfrtip',
+                buttons: [
+                    'copy', 'excel', 'pdf'
+                ]
+            } );
+        } );
+    </script>
+
 {% endblock %}

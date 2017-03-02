@@ -2,6 +2,7 @@
 
 namespace AppBundle\Entity;
 
+use Gedmo\Mapping\Annotation as Gedmo;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -90,6 +91,12 @@ class Alumno
      * @ORM\Column(name="cvu", type="string", length=20)
      */
     private $cvu;
+
+    /**
+     * @Gedmo\Slug(fields={"nombre", "paterno"})
+     * @ORM\Column(length=30, unique=true)
+     */
+    private $slug;
 
     /**
      * @var \DateTime
@@ -347,6 +354,15 @@ class Alumno
         return $this->cvu;
     }
 
+    /**
+     * Get slug
+     *
+     * @return string
+     */
+    public function getSlug()
+    {
+        return $this->slug;
+    }
     /**
      * Set createdAt
      *

@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Programas list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Programa</th>
+                <th>Ingreso</th>
+                <th>Termino</th>
+                <th>Fechagradoumsnh</th>
+                <th>Fechagradounam</th>
+                <th>Opciontitulacion</th>
+                <th>Titulotesis</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for programa in programas %}
+            <tr>
+                <td><a href="{{ path('programa_show', { 'id': programa.id }) }}">{{ programa.id }}</a></td>
+                <td>{{ programa.programa }}</td>
+                <td>{{ programa.ingreso }}</td>
+                <td>{{ programa.termino }}</td>
+                <td>{% if programa.fechaGradoUMSNH %}{{ programa.fechaGradoUMSNH|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{% if programa.fechaGradoUNAM %}{{ programa.fechaGradoUNAM|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{{ programa.opcionTitulacion }}</td>
+                <td>{{ programa.tituloTesis }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('programa_show', { 'id': programa.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('programa_edit', { 'id': programa.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('programa_new') }}">Create a new programa</a>
+        </li>
+    </ul>
+{% endblock %}
