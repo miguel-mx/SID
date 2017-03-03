@@ -4,12 +4,14 @@ namespace AppBundle\Entity;
 
 use Gedmo\Mapping\Annotation as Gedmo;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Semestre
  *
  * @ORM\Table(name="semestre")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\SemestreRepository")
+ * @ORM\HasLifecycleCallbacks()
  */
 class Semestre
 {
@@ -67,7 +69,7 @@ class Semestre
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -90,7 +92,7 @@ class Semestre
     /**
      * Get semestre
      *
-     * @return string 
+     * @return string
      */
     public function getSemestre()
     {
@@ -113,7 +115,7 @@ class Semestre
     /**
      * Get fechaInicio
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getFechaInicio()
     {
@@ -136,7 +138,7 @@ class Semestre
     /**
      * Get fechaFin
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getFechaFin()
     {
@@ -145,7 +147,7 @@ class Semestre
     /**
      * Get slug
      *
-     * @return string 
+     * @return string
      */
     public function getSlug()
     {
@@ -168,7 +170,7 @@ class Semestre
     /**
      * Get createdAt
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getCreatedAt()
     {
@@ -191,10 +193,20 @@ class Semestre
     /**
      * Get modifiedAt
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getModifiedAt()
     {
         return $this->modifiedAt;
     }
+
+    /**
+     * @ORM\PrePersist
+     */
+    public function setCreatedAtValue()
+    {
+        $this->createdAt = new \DateTime();
+        $this->modifiedAt = new \DateTime();
+    }
 }
+

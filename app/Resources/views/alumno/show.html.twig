@@ -1,80 +1,62 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Alumno</h1>
+    <div class="content-wrapper">
+        <div class="panel-body">
+            <div class="page-header">
+                <h1> Alumno {{ alumno.nombre}} {{ alumno.paterno}} {{ alumno.materno}}</h1>
+            </div>
 
-    <table>
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ alumno.id }}</td>
-            </tr>
-            <tr>
-                <th>Paterno</th>
-                <td>{{ alumno.paterno }}</td>
-            </tr>
-            <tr>
-                <th>Materno</th>
-                <td>{{ alumno.materno }}</td>
-            </tr>
-            <tr>
-                <th>Nombre</th>
-                <td>{{ alumno.nombre }}</td>
-            </tr>
-            <tr>
-                <th>Telefono</th>
-                <td>{{ alumno.telefono }}</td>
-            </tr>
-            <tr>
-                <th>Correo</th>
-                <td>{{ alumno.correoPersonal }}</td>
-            </tr>
-            <tr>
-                <th>Correo</th>
-                <td>{{ alumno.correoInstitucional }}</td>
-            </tr>
-            <tr>
-                <th>Escuelaprocedencia</th>
-                <td>{{ alumno.escuelaProcedencia }}</td>
-            </tr>
-            <tr>
-                <th>Programa</th>
-                <td>{{ alumno.programa }}</td>
-            </tr>
-            <tr>
-                <th>Pais</th>
-                <td>{{ alumno.pais }}</td>
-            </tr>
-            <tr>
-                <th>Numerocuenta</th>
-                <td>{{ alumno.numeroCuenta }}</td>
-            </tr>
-            <tr>
-                <th>Cvu</th>
-                <td>{{ alumno.cvu }}</td>
-            </tr>
-            <tr>
-                <th>Createdat</th>
-                <td>{% if alumno.createdAt %}{{ alumno.createdAt|date('Y-m-d H:i:s') }}{% endif %}</td>
-            </tr>
-            <tr>
-                <th>Modifiedat</th>
-                <td>{% if alumno.modifiedAt %}{{ alumno.modifiedAt|date('Y-m-d H:i:s') }}{% endif %}</td>
-            </tr>
-        </tbody>
-    </table>
+            <table class="table table-bordered">
+                <thead>
+                <tr>
+                    <th>Apellido Paterno</th>
+                    <th>Apellido Materno</th>
+                    <th>Nombre</th>
+                    <th>Teléfono</th>
+                    <th>Correo Personal</th>
+                    <th>Correo Institucional</th>
+                    <th>Escuela de procedencia</th>
+                    <th>Programa</th>
+                    <th>País</th>
+                    <th>Numero de cuenta</th>
+                    <th>Cvu</th>
+                    <th>Createdat</th>
+                    <th>Modifiedat</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>{{ alumno.paterno }}</td>
+                    <td>{{ alumno.materno }}</td>
+                    <td>{{ alumno.nombre }}</td>
+                    <td>{{ alumno.telefono }}</td>
+                    <td>{{ alumno.correoPersonal }}</td>
+                    <td>{{ alumno.correoInstitucional }}</td>
+                    <td>{{ alumno.escuelaProcedencia }}</td>
+                    <td>{{ alumno.programa }}</td>
+                    <td>{{ alumno.pais }}</td>
+                    <td>{{ alumno.numeroCuenta }}</td>
+                    <td>{{ alumno.cvu }}</td>
+                    <td>{% if alumno.createdAt %}{{ alumno.createdAt|date('Y-m-d H:i:s') }}{% endif %}</td>
+                    <td>{% if alumno.modifiedAt %}{{ alumno.modifiedAt|date('Y-m-d H:i:s') }}{% endif %}</td>
+                </tr>
+                </tbody>
+            </table>
 
-    <ul>
-        <li>
-            <a href="{{ path('alumno_index') }}">Back to the list</a>
-        </li>
-        <li>
-            <a href="{{ path('alumno_edit', { 'id': alumno.id }) }}">Edit</a>
-        </li>
-        <li>
-            {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
-            {{ form_end(delete_form) }}
-        </li>
-    </ul>
+            <ul>
+                <li>
+                    <a href="{{ path('alumno_index') }}">Back to the list</a>
+                </li>
+                <li>
+                    <a href="{{ path('alumno_edit', { 'id': alumno.id }) }}">Edit</a>
+                </li>
+                <li>
+                    {{ form_start(delete_form) }}
+                    <input type="submit" value="Delete">
+                    {{ form_end(delete_form) }}
+                </li>
+            </ul>
+        </div>
+    </div>
 {% endblock %}

@@ -1,52 +1,51 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-<div class="content-wrapper">
-    <div class="panel-body">
-        <div class="page-header">
-            <h1> Lista de Semestres </h1>
-        </div>
+    <div class="content-wrapper">
+        <div class="panel-body">
+            <div class="page-header">
+                <h1> Lista de Semestres </h1>
+            </div>
 
-        <div class="row">
-            <div class="col col-md-2">
-                <div class="metric-container">
-                    <h3 class="metric-header">{{ semestres|length }}</h3>
-                    <span class="metric-label">Semestres</span>
+            <div class="row">
+                <div class="col col-md-2">
+                    <div class="metric-container">
+                        <h3 class="metric-header">{{ semestres|length }}</h3>
+                    </div>
                 </div>
             </div>
+
+            <table class="table table-bordered" id="semestre_table">
+                <thead>
+                <tr>
+                    <th>Semestre</th>
+                    <th>Fecha de inicio</th>
+                    <th>Fecha fin</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for semestre in semestres %}
+                    <tr>
+                        <td>{{ semestre.semestre }}</td>
+                        <td>{% if semestre.fechaInicio %}{{ semestre.fechaInicio|date('d-m-Y') }}{% endif %}</td>
+                        <td>{% if semestre.fechaFin %}{{ semestre.fechaFin|date('d-m-Y') }}{% endif %}</td>
+
+                        <td>
+                            <ul>
+                                <li>
+                                    <a href="{{ path('semestre_show', { 'id': semestre.id }) }}">show</a>
+                                </li>
+                                <li>
+                                    <a href="{{ path('semestre_edit', { 'id': semestre.id }) }}">edit</a>
+                                </li>
+                            </ul>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
         </div>
-
-        <table class="table table-bordered" id="semestre_table">
-        <thead>
-            <tr>
-                <th>Semestre</th>
-                <th>Fechainicio</th>
-                <th>Fechafin</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for semestre in semestres %}
-            <tr>
-                <td>{{ semestre.semestre }}</td>
-                <td>{% if semestre.fechaInicio %}{{ semestre.fechaInicio|date('Y-m-d H:i:s') }}{% endif %}</td>
-                <td>{% if semestre.fechaFin %}{{ semestre.fechaFin|date('Y-m-d H:i:s') }}{% endif %}</td>
-
-                <td>
-                    <ul>
-                        <li>
-                            <a href="{{ path('semestre_show', { 'id': semestre.id }) }}">show</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('semestre_edit', { 'id': semestre.id }) }}">edit</a>
-                        </li>
-                    </ul>
-                </td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
     </div>
-</div>
 
     <ul>
         <li>

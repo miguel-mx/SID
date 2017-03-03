@@ -503,3 +503,4 @@ class Alumno
         return $this->slug;
     }
 }
+

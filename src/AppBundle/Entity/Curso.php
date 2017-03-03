@@ -4,6 +4,7 @@ namespace AppBundle\Entity;
 
 use Gedmo\Mapping\Annotation as Gedmo;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Curso
@@ -40,7 +41,7 @@ class Curso
     /**
      * @var string
      *
-     * @ORM\Column(name="tema", type="string", length=60)
+     * @ORM\Column(name="tema", type="string", length=60, nullable=true)
      */
     private $tema;
 

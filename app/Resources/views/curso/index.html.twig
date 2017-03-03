@@ -1,7 +1,11 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Cursos list</h1>
+<div class="content-wrapper">
+    <div class="panel-body">
+        <div class="page-header">
+            <h1> Lista de Cursos </h1>
+        </div>
 
     <table>
         <thead>
@@ -50,4 +54,6 @@
             <a href="{{ path('curso_new') }}">Create a new curso</a>
         </li>
     </ul>
+    </div>
+</div>
 {% endblock %}
