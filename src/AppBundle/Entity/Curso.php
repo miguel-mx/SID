@@ -69,6 +69,49 @@ class Curso
     /**
      * @var string
      *
+     * @ORM\Column(name="objetivo", type="string", length=100)
+     */
+    private $objetivo;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="temario", type="string", length=1000)
+     */
+    private $temario;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="bibliografia", type="string", length=1000)
+     */
+    private $bibliografia;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="requisitos", type="string", length=1000)
+     */
+    private $requisitos;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="comentarios", type="string", length=100)
+     */
+    private $comentarios;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="status", type="string", length=30)
+     */
+    private $status;
+
+
+    /**
+     * @var string
+     *
      * @ORM\Column(name="clave_grupo", type="string", length=25)
      */
     private $claveGrupo;
@@ -260,6 +303,103 @@ class Curso
     {
         return $this->asignatura;
     }
+
+    /**
+     * @return string
+     */
+    public function getObjetivo()
+    {
+        return $this->objetivo;
+    }
+
+    /**
+     * @param string $objetivo
+     */
+    public function setObjetivo($objetivo)
+    {
+        $this->objetivo = $objetivo;
+    }
+
+    /**
+     * @return string
+     */
+    public function getTemario()
+    {
+        return $this->temario;
+    }
+
+    /**
+     * @param string $temario
+     */
+    public function setTemario($temario)
+    {
+        $this->temario = $temario;
+    }
+
+    /**
+     * @return string
+     */
+    public function getBibliografia()
+    {
+        return $this->bibliografia;
+    }
+
+    /**
+     * @param string $bibliografia
+     */
+    public function setBibliografia($bibliografia)
+    {
+        $this->bibliografia = $bibliografia;
+    }
+
+    /**
+     * @return string
+     */
+    public function getRequisitos()
+    {
+        return $this->requisitos;
+    }
+
+    /**
+     * @param string $requisitos
+     */
+    public function setRequisitos($requisitos)
+    {
+        $this->requisitos = $requisitos;
+    }
+
+    /**
+     * @return string
+     */
+    public function getComentarios()
+    {
+        return $this->comentarios;
+    }
+
+    /**
+     * @param string $comentarios
+     */
+    public function setComentarios($comentarios)
+    {
+        $this->comentarios = $comentarios;
+    }
+
+    /**
+     * @return string
+     */
+    public function getStatus()
+    {
+        return $this->status;
+    }
+
+    /**
+     * @param string $status
+     */
+    public function setStatus($status)
+    {
+        $this->status = $status;
+    }
+
 
     /**
      * Set claveGrupo
