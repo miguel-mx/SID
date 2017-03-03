@@ -6,7 +6,7 @@
     <div class="content-wrapper">
         <div class="panel-body">
             <div class="page-header">
-                <h2>Nuevo Semestre</h2>
+                <h2>Semestre</h2>
             </div>
 
             <div class="row">
@@ -20,26 +20,25 @@
                 <div class="col-md-4">
                     <div class="form-group">
                         <label>Fecha de inicio</label>
-                        {{ form_widget(form.fechaInicio, {'attr': {'class': 'form-control'}}) }}
+                        {{ form_widget(form.fechaInicio) }}
                         <span>{{ form_errors(form.fechaInicio) }}</span>
                     </div>
                 </div>
                 <div class="col-md-4">
                     <div class="form-group">
                         <label>Fecha de terminacion</label>
-                        {{ form_widget(form.fechaFin, {'attr': {'class': 'form-control'}}) }}
+                        {{ form_widget(form.fechaFin) }}
                         <span class="text-danger">{{ form_errors(form.fechaFin) }}</span>
                     </div>
                 </div>
             </div>
             <input class="btn btn-primary" type="submit" value="Crear" />
             {{ form_end(form) }}
-
-            <ul>
+          {#  <ul>
                 <li>
                     <a href="{{ path('semestre_index') }}">Back to the list</a>
                 </li>
-            </ul>
+            </ul>#}
         </div>
     </div>
 {% endblock %}

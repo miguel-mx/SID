@@ -30,16 +30,16 @@ class Semestre
     private $semestre;
 
     /**
-     * @var \DateTime
+     * @var \Date
      *
-     * @ORM\Column(name="fechaInicio", type="datetime")
+     * @ORM\Column(name="fechaInicio", type="date")
      */
     private $fechaInicio;
 
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="fechaFin", type="datetime")
+     * @ORM\Column(name="fechaFin", type="date")
      */
     private $fechaFin;
 

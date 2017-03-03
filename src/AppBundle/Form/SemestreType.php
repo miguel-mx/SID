@@ -15,7 +15,8 @@ class SemestreType extends AbstractType
     {
         $builder->add('semestre')
             ->add('fechaInicio')
-            ->add('fechaFin')        ;
+            ->add('fechaFin')
+        ;
     }
     
     /**
