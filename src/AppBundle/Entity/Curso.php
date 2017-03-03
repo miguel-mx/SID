@@ -6,12 +6,13 @@ use Gedmo\Mapping\Annotation as Gedmo;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * curso
+ * Curso
  *
  * @ORM\Table(name="curso")
- * @ORM\Entity(repositoryClass="AppBundle\Repository\cursoRepository")
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\CursoRepository")
+ * @ORM\HasLifecycleCallbacks()
  */
-class curso
+class Curso
 {
     /**
      * @var int
@@ -79,6 +80,12 @@ class curso
     private $lugar;
 
     /**
+     * Many Cursos have Many Alumnos.
+     * @ORM\ManyToMany(targetEntity="Alumno", mappedBy="cursos")
+     */
+    private $alumnos;
+
+    /**
      * @Gedmo\Slug(fields={"curso"})
      * @ORM\Column(length=30, unique=true)
      */
@@ -98,6 +105,12 @@ class curso
      */
     private $modifiedAt;
 
+    /**
+     * curso constructor.
+     */
+    public function __construct() {
+        $this->alumnos = new \Doctrine\Common\Collections\ArrayCollection();
+    }
 
     /**
      * Get id
@@ -113,7 +126,7 @@ class curso
      * Set tipo
      *
      * @param string $tipo
-     * @return curso
+     * @return Curso
      */
     public function setTipo($tipo)
     {
@@ -136,7 +149,7 @@ class curso
      * Set curso
      *
      * @param string $curso
-     * @return curso
+     * @return Curso
      */
     public function setCurso($curso)
     {
@@ -159,7 +172,7 @@ class curso
      * Set tema
      *
      * @param string $tema
-     * @return curso
+     * @return Curso
      */
     public function setTema($tema)
     {
@@ -182,7 +195,7 @@ class curso
      * Set horasSemana
      *
      * @param string $horasSemana
-     * @return curso
+     * @return Curso
      */
     public function setHorasSemana($horasSemana)
     {
@@ -205,7 +218,7 @@ class curso
      * Set creditos
      *
      * @param string $creditos
-     * @return curso
+     * @return Curso
      */
     public function setCreditos($creditos)
     {
@@ -228,7 +241,7 @@ class curso
      * Set asignatura
      *
      * @param string $asignatura
-     * @return curso
+     * @return Curso
      */
     public function setAsignatura($asignatura)
     {
@@ -251,7 +264,7 @@ class curso
      * Set claveGrupo
      *
      * @param string $claveGrupo
-     * @return curso
+     * @return Curso
      */
     public function setClaveGrupo($claveGrupo)
     {
@@ -274,7 +287,7 @@ class curso
      * Set lugar
      *
      * @param string $lugar
-     * @return curso
+     * @return Curso
      */
     public function setLugar($lugar)
     {
@@ -306,7 +319,7 @@ class curso
      * Set createdAt
      *
      * @param \DateTime $createdAt
-     * @return curso
+     * @return Curso
      */
     public function setCreatedAt($createdAt)
     {
@@ -329,7 +342,7 @@ class curso
      * Set modifiedAt
      *
      * @param \DateTime $modifiedAt
-     * @return curso
+     * @return Curso
      */
     public function setModifiedAt($modifiedAt)
     {
@@ -346,5 +359,28 @@ class curso
     public function getModifiedAt()
     {
         return $this->modifiedAt;
+    }
+
+    /**
+     * @ORM\PrePersist
+     */
+    public function setCreatedAtValue()
+    {
+        $this->createdAt = new \DateTime();
+        $this->modifiedAt = new \DateTime();
+    }
+
+    public function addAlumno(Alumno $alumno)
+    {
+        $this->alumnos[] = $alumno;
+    }
+
+    public function getAlumnos()
+    {
+        return $this->alumnos;
+    }
+
+    public function __toString() {
+        return $this->curso;
     }
 }

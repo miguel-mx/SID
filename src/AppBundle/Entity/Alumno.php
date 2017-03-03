@@ -11,6 +11,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  *
  * @ORM\Table(name="alumno")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\AlumnoRepository")
+ * @ORM\HasLifecycleCallbacks()
  */
 class Alumno
 {
@@ -114,8 +115,15 @@ class Alumno
     private $condicionado;
 
     /**
-     * @Gedmo\Slug(fields={"nombre", "paterno"})
-     * @ORM\Column(length=30, unique=true )
+     * Many Alumnos have Many Cursos.
+     * @ORM\ManyToMany(targetEntity="Curso", inversedBy="alumnos")
+     * @ORM\JoinTable(name="alumnos_cursos")
+     */
+    private $cursos;
+
+    /**
+     * @Gedmo\Slug(fields={"paterno", "materno", "nombre"})
+     * @ORM\Column(length=50, unique=true )
      */
     private $slug;
 
@@ -133,16 +141,18 @@ class Alumno
      */
     private $modifiedAt;
 
-
-    public function setCreatedAtValue()
+    /**
+     * Constructor de la clase
+     */
+    public function __construct()
     {
-        $this->createdAt = new \DateTime();
-        $this->modifiedAt = new \DateTime();
+        $this->cursos = new \Doctrine\Common\Collections\ArrayCollection();
     }
+
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -165,7 +175,7 @@ class Alumno
     /**
      * Get paterno
      *
-     * @return string 
+     * @return string
      */
     public function getPaterno()
     {
@@ -188,7 +198,7 @@ class Alumno
     /**
      * Get materno
      *
-     * @return string 
+     * @return string
      */
     public function getMaterno()
     {
@@ -211,7 +221,7 @@ class Alumno
     /**
      * Get nombre
      *
-     * @return string 
+     * @return string
      */
     public function getNombre()
     {
@@ -234,7 +244,7 @@ class Alumno
     /**
      * Get telefono
      *
-     * @return string 
+     * @return string
      */
     public function getTelefono()
     {
@@ -257,11 +267,19 @@ class Alumno
     /**
      * Get correo_institucional
      *
-     * @return string 
+     * @return string
      */
     public function getCorreoInstitucional()
     {
         return $this->correo_institucional;
+    }
+
+    /**
+     * @param string $correo_personal
+     */
+    public function setCorreoPersonal($correo_personal)
+    {
+        $this->correo_personal = $correo_personal;
     }
 
     /**
@@ -272,13 +290,6 @@ class Alumno
         return $this->correo_personal;
     }
 
-    /**
-     * @param string $correo_personal
-     */
-    public function setCorreoPersonal($correo_personal)
-    {
-        $this->correo_personal = $correo_personal;
-    }
 
     /**
      * Set escuelaProcedencia
@@ -296,7 +307,7 @@ class Alumno
     /**
      * Get escuelaProcedencia
      *
-     * @return string 
+     * @return string
      */
     public function getEscuelaProcedencia()
     {
@@ -343,7 +354,7 @@ class Alumno
     /**
      * Get pais
      *
-     * @return string 
+     * @return string
      */
     public function getPais()
     {
@@ -366,7 +377,7 @@ class Alumno
     /**
      * Get numeroCuenta
      *
-     * @return string 
+     * @return string
      */
     public function getNumeroCuenta()
     {
@@ -389,7 +400,7 @@ class Alumno
     /**
      * Get cvu
      *
-     * @return string 
+     * @return string
      */
     public function getCvu()
     {
@@ -421,6 +432,7 @@ class Alumno
     {
         return $this->slug;
     }
+
     /**
      * Set createdAt
      *
@@ -437,7 +449,7 @@ class Alumno
     /**
      * Get createdAt
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getCreatedAt()
     {
@@ -460,10 +472,34 @@ class Alumno
     /**
      * Get modifiedAt
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getModifiedAt()
     {
         return $this->modifiedAt;
+    }
+
+    /**
+     * @ORM\PrePersist
+     */
+    public function setCreatedAtValue()
+    {
+        $this->createdAt = new \DateTime();
+        $this->modifiedAt = new \DateTime();
+    }
+
+    public function addCurso(Curso $curso)
+    {
+        $curso->addAlumno($this); // synchronously updating inverse side
+        $this->cursos[] = $curso;
+    }
+
+    public function getCursos()
+    {
+        return $this->cursos;
+    }
+
+    public function __toString() {
+        return $this->slug;
     }
 }

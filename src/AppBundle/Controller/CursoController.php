@@ -2,7 +2,7 @@
 
 namespace AppBundle\Controller;
 
-use AppBundle\Entity\curso;
+use AppBundle\Entity\Curso;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component\HttpFoundation\Request;
@@ -12,7 +12,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component
  *
  * @Route("curso")
  */
-class cursoController extends Controller
+class CursoController extends Controller
 {
     /**
      * Lists all curso entities.
@@ -40,7 +40,7 @@ class cursoController extends Controller
     public function newAction(Request $request)
     {
         $curso = new Curso();
-        $form = $this->createForm('AppBundle\Form\cursoType', $curso);
+        $form = $this->createForm('AppBundle\Form\CursoType', $curso);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -63,7 +63,7 @@ class cursoController extends Controller
      * @Route("/{id}", name="curso_show")
      * @Method("GET")
      */
-    public function showAction(curso $curso)
+    public function showAction(Curso $curso)
     {
         $deleteForm = $this->createDeleteForm($curso);
 
@@ -79,10 +79,10 @@ class cursoController extends Controller
      * @Route("/{id}/edit", name="curso_edit")
      * @Method({"GET", "POST"})
      */
-    public function editAction(Request $request, curso $curso)
+    public function editAction(Request $request, Curso $curso)
     {
         $deleteForm = $this->createDeleteForm($curso);
-        $editForm = $this->createForm('AppBundle\Form\cursoType', $curso);
+        $editForm = $this->createForm('AppBundle\Form\CursoType', $curso);
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
@@ -104,7 +104,7 @@ class cursoController extends Controller
      * @Route("/{id}", name="curso_delete")
      * @Method("DELETE")
      */
-    public function deleteAction(Request $request, curso $curso)
+    public function deleteAction(Request $request, Curso $curso)
     {
         $form = $this->createDeleteForm($curso);
         $form->handleRequest($request);
@@ -121,11 +121,11 @@ class cursoController extends Controller
     /**
      * Creates a form to delete a curso entity.
      *
-     * @param curso $curso The curso entity
+     * @param Curso $curso The Curso entity
      *
      * @return \Symfony\Component\Form\Form The form
      */
-    private function createDeleteForm(curso $curso)
+    private function createDeleteForm(Curso $curso)
     {
         return $this->createFormBuilder()
             ->setAction($this->generateUrl('curso_delete', array('id' => $curso->getId())))

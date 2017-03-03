@@ -6,7 +6,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class cursoType extends AbstractType
+class CursoType extends AbstractType
 {
     /**
      * {@inheritdoc}
@@ -27,7 +27,9 @@ class cursoType extends AbstractType
             ->add('creditos')
             ->add('asignatura')
             ->add('claveGrupo')
-            ->add('lugar')        ;
+            ->add('lugar')
+            ->add('alumnos')
+        ;
     }
     
     /**
@@ -36,7 +38,7 @@ class cursoType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'AppBundle\Entity\curso'
+            'data_class' => 'AppBundle\Entity\Curso'
         ));
     }
 
