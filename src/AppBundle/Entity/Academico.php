@@ -2,13 +2,16 @@
 
 namespace AppBundle\Entity;
 
+use Gedmo\Mapping\Annotation as Gedmo;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Academico
  *
  * @ORM\Table(name="academico")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\AcademicoRepository")
+ * @ORM\HasLifecycleCallbacks()
  */
 class Academico
 {
@@ -100,7 +103,7 @@ class Academico
 
     /**
      * @var string
-     *
+     *@Gedmo\Slug(fields={"paterno", "materno", "nombre"})
      * @ORM\Column(name="slug", type="string", length=60, unique=true)
      */
     private $slug;
@@ -450,5 +453,14 @@ class Academico
     public function getModifiedAt()
     {
         return $this->modifiedAt;
+    }
+
+    /**
+     * @ORM\PrePersist
+     */
+    public function setCreatedAtValue()
+    {
+        $this->createdAt = new \DateTime();
+        $this->modifiedAt = new \DateTime();
     }
 }

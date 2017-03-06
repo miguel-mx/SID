@@ -13,7 +13,18 @@ class AcademicoType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('paterno')->add('materno')->add('nombre')->add('rfc')->add('curp')->add('adscripcion')->add('correo')->add('telefono')->add('extension')->add('cvu')->add('acreditacion')->add('slug')->add('createdAt')->add('modifiedAt')        ;
+        $builder->add('paterno')
+            ->add('materno')
+            ->add('nombre')
+            ->add('rfc')
+            ->add('curp')
+            ->add('adscripcion')
+            ->add('correo')
+            ->add('telefono')
+            ->add('extension')
+            ->add('cvu')
+            ->add('acreditacion')
+        ;
     }
     
     /**
