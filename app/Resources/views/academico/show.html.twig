@@ -1,0 +1,84 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Academico</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ academico.id }}</td>
+            </tr>
+            <tr>
+                <th>Paterno</th>
+                <td>{{ academico.paterno }}</td>
+            </tr>
+            <tr>
+                <th>Materno</th>
+                <td>{{ academico.materno }}</td>
+            </tr>
+            <tr>
+                <th>Nombre</th>
+                <td>{{ academico.nombre }}</td>
+            </tr>
+            <tr>
+                <th>Rfc</th>
+                <td>{{ academico.rfc }}</td>
+            </tr>
+            <tr>
+                <th>Curp</th>
+                <td>{{ academico.curp }}</td>
+            </tr>
+            <tr>
+                <th>Adscripcion</th>
+                <td>{{ academico.adscripcion }}</td>
+            </tr>
+            <tr>
+                <th>Correo</th>
+                <td>{{ academico.correo }}</td>
+            </tr>
+            <tr>
+                <th>Telefono</th>
+                <td>{{ academico.telefono }}</td>
+            </tr>
+            <tr>
+                <th>Extension</th>
+                <td>{{ academico.extension }}</td>
+            </tr>
+            <tr>
+                <th>Cvu</th>
+                <td>{{ academico.cvu }}</td>
+            </tr>
+            <tr>
+                <th>Acreditacion</th>
+                <td>{{ academico.acreditacion }}</td>
+            </tr>
+            <tr>
+                <th>Slug</th>
+                <td>{{ academico.slug }}</td>
+            </tr>
+            <tr>
+                <th>Createdat</th>
+                <td>{% if academico.createdAt %}{{ academico.createdAt|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Modifiedat</th>
+                <td>{% if academico.modifiedAt %}{{ academico.modifiedAt|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('academico_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('academico_edit', { 'id': academico.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

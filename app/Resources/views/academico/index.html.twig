@@ -1,0 +1,65 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Academicos list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Paterno</th>
+                <th>Materno</th>
+                <th>Nombre</th>
+                <th>Rfc</th>
+                <th>Curp</th>
+                <th>Adscripcion</th>
+                <th>Correo</th>
+                <th>Telefono</th>
+                <th>Extension</th>
+                <th>Cvu</th>
+                <th>Acreditacion</th>
+                <th>Slug</th>
+                <th>Createdat</th>
+                <th>Modifiedat</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for academico in academicos %}
+            <tr>
+                <td><a href="{{ path('academico_show', { 'id': academico.id }) }}">{{ academico.id }}</a></td>
+                <td>{{ academico.paterno }}</td>
+                <td>{{ academico.materno }}</td>
+                <td>{{ academico.nombre }}</td>
+                <td>{{ academico.rfc }}</td>
+                <td>{{ academico.curp }}</td>
+                <td>{{ academico.adscripcion }}</td>
+                <td>{{ academico.correo }}</td>
+                <td>{{ academico.telefono }}</td>
+                <td>{{ academico.extension }}</td>
+                <td>{{ academico.cvu }}</td>
+                <td>{{ academico.acreditacion }}</td>
+                <td>{{ academico.slug }}</td>
+                <td>{% if academico.createdAt %}{{ academico.createdAt|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{% if academico.modifiedAt %}{{ academico.modifiedAt|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('academico_show', { 'id': academico.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('academico_edit', { 'id': academico.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('academico_new') }}">Create a new academico</a>
+        </li>
+    </ul>
+{% endblock %}

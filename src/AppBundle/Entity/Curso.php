@@ -297,7 +297,7 @@ class Curso
     /**
      * Get asignatura
      *
-     * @return string 
+     * @return string
      */
     public function getAsignatura()
     {
