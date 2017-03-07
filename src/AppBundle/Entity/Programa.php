@@ -45,14 +45,14 @@ class Programa
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="fechaGradoUMSNH", type="datetime", nullable=true)
+     * @ORM\Column(name="fechaGradoUMSNH", type="date", nullable=true)
      */
     private $fechaGradoUMSNH;
 
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="fechaGradoUNAM", type="datetime", nullable=true)
+     * @ORM\Column(name="fechaGradoUNAM", type="date", nullable=true)
      */
     private $fechaGradoUNAM;
 
