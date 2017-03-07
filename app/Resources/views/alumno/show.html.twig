@@ -41,7 +41,7 @@
                     <table class="table">
                     {% for curso in alumno.cursos %}
                         <tr>
-                            <td>{{ curso.tipo }}</td><td>{{ curso.curso }}</td><td>{{ curso.tema }}</td><td>{{ curso.creditos }}</td>
+                            <td>{{ curso.tipo }}</td><td><a href="{{ path('curso_show', { 'id': curso.id }) }}">{{ curso.curso }}</a></td><td>{{ curso.tema }}</td><td>{{ curso.creditos }}</td>
                         </tr>
                     {% endfor %}
                     </table>

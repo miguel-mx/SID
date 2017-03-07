@@ -146,7 +146,7 @@ class Alumno
     public function __construct()
     {
         $this->cursos = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->programas = new ArrayCollection();
+        $this->programas = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**
