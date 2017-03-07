@@ -8,7 +8,7 @@
         <div class="panel-body">
             <div class="page-header">
                 <h2>Nuevo Programa</h2>
-                <h3>{{ alumno.nombre }} {{ alumno.paterno }} {{ alumno.materno }}</h3>
+                <h3><a href="{{ path('alumno_show', { 'slug': programa.alumno.slug }) }}">{{ programa.alumno.nombre }} {{ programa.alumno.paterno }} {{ programa.alumno.materno }}</a></h3>
             </div>
             <div class="row">
                 <div class="col-md-4">

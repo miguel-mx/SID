@@ -24,7 +24,7 @@ class CursoController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $cursos = $em->getRepository('AppBundle:curso')->findAll();
+        $cursos = $em->getRepository('AppBundle:Curso')->findAll();
 
         return $this->render('curso/index.html.twig', array(
             'cursos' => $cursos,

@@ -2,40 +2,49 @@
 
 {% block body %}
     <div class="content-wrapper">
-        <div class="panel-body">
+        <section class="content-header">
+            <h1>Curso</h1>
+        </section>
+        <section class="content">
             <div class="page-header">
                 <h1> Curso </h1>
             </div>
+            <div class="row">
+                <div class="col-md-8">
+                    <table class="table table-bordered">
 
+                        <thead>
+                        <tr>
+                            <th>Tipo</th>
+                            <th>Curso</th>
+                            <th>Tema</th>
+                            <th>Horas por semana</th>
+                            <th>Créditos</th>
+                            <th>Asignatura</th>
+                            <th>Clave de grupo</th>
+                            <th>Lugar</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td>{{ curso.tipo }}</td>
+                            <td>{{ curso.curso }}</td>
+                            <td>{{ curso.tema }}</td>
+                            <td>{{ curso.horasSemana }}</td>
+                            <td>{{ curso.creditos }}</td>
+                            <td>{{ curso.asignatura }}</td>
+                            <td>{{ curso.claveGrupo }}</td>
+                            <td>{{ curso.lugar }}</td>
+                        </tr>
+                        </tbody>
+                    </table>
 
+                    {% for alumno in curso.alumnos %}
+                        <p><h4><a href="{{ path('alumno_show', { 'slug': alumno.slug }) }}">{{ alumno.paterno }} {{ alumno.materno }} {{ alumno.nombre }}</h4></a></p>
+                    {% endfor %}
 
-            <table class="table table-bordered">
-
-                <thead>
-                <tr>
-                    <th>Tipo</th>
-                    <th>Curso</th>
-                    <th>Tema</th>
-                    <th>Horas por semana</th>
-                    <th>Créditos</th>
-                    <th>Asignatura</th>
-                    <th>Clave de grupo</th>
-                    <th>Lugar</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr>
-                    <td>{{ curso.tipo }}</td>
-                    <td>{{ curso.curso }}</td>
-                    <td>{{ curso.tema }}</td>
-                    <td>{{ curso.horasSemana }}</td>
-                    <td>{{ curso.creditos }}</td>
-                    <td>{{ curso.asignatura }}</td>
-                    <td>{{ curso.claveGrupo }}</td>
-                    <td>{{ curso.lugar }}</td>
-                </tr>
-                </tbody>
-            </table>
+                </div>
+            </div>
 
             <ul>
                 <li>
@@ -50,6 +59,6 @@
                     {{ form_end(delete_form) }}
                 </li>
             </ul>
-        </div>
+        </section>
     </div>
 {% endblock %}

@@ -56,7 +56,6 @@ class ProgramaController extends Controller
 
         return $this->render('programa/new.html.twig', array(
             'programa' => $programa,
-            'alumno' => $alumno,
             'form' => $form->createView(),
         ));
     }
@@ -89,8 +88,6 @@ class ProgramaController extends Controller
         $editForm = $this->createForm('AppBundle\Form\ProgramaType', $programa);
         $editForm->handleRequest($request);
 
-        $alumno = $programa->getAlumno();
-
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
@@ -98,7 +95,6 @@ class ProgramaController extends Controller
         }
 
         return $this->render('programa/edit.html.twig', array(
-            'alumno' => $alumno,
             'programa' => $programa,
             'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
