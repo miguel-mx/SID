@@ -5,6 +5,11 @@
     <div class="content-wrapper">
         <div class="panel-body">
             <h2>Editar Programa</h2>
+            {% for flash_message in app.session.flashBag.get('notice') %}
+                <div class="alert alert-success">
+                    {{ flash_message }}
+                </div>
+            {% endfor %}
             <h3><a href="{{ path('alumno_show', { 'slug': programa.alumno.slug }) }}">{{ programa.alumno.nombre }} {{ programa.alumno.paterno }} {{ programa.alumno.materno }}</a></h3>
             <div class="row">
                 <div class="col-md-4">

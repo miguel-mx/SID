@@ -1,12 +1,17 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    {{ form_start(edit_form) }}
+
     <div class="content-wrapper">
         <div class="panel-body">
             <h1>Editar Curso {{ curso.curso }}</h1>
 
-
+            {{ form_start(edit_form) }}
+            {% for flash_message in app.session.flashBag.get('notice') %}
+                <div class="alert alert-success">
+                    {{ flash_message }}
+                </div>
+            {% endfor %}
             <div class="row">
                 <div class="col-md-4">
                     <div class="form-group">

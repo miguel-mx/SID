@@ -51,6 +51,7 @@ class ProgramaController extends Controller
             $em->persist($programa);
             $em->flush($programa);
 
+
             return $this->redirectToRoute('programa_show', array('id' => $programa->getId()));
         }
 
@@ -90,6 +91,11 @@ class ProgramaController extends Controller
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
+
+            $this->addFlash(
+                'notice',
+                'Editado correctamente'
+            );
 
             return $this->redirectToRoute('programa_edit', array('id' => $programa->getId()));
         }

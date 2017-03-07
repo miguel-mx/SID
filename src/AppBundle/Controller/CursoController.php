@@ -88,6 +88,11 @@ class CursoController extends Controller
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
+            $this->addFlash(
+                'notice',
+                'Editado correctamente'
+            );
+
             return $this->redirectToRoute('curso_edit', array('id' => $curso->getId()));
         }
 
