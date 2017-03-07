@@ -48,7 +48,7 @@ class AlumnoController extends Controller
             $em->persist($alumno);
             $em->flush($alumno);
 
-            return $this->redirectToRoute('alumno_show', array('id' => $alumno->getId()));
+            return $this->redirectToRoute('alumno_show', array('slug' => $alumno->getSlug()));
         }
 
         return $this->render('alumno/new.html.twig', array(
@@ -88,14 +88,22 @@ class AlumnoController extends Controller
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('alumno_edit', array('id' => $alumno->getId()));
+            $this->addFlash(
+                'notice',
+                'Editado correctamente'
+            );
+
+            return $this->redirectToRoute('alumno_edit', array('slug' => $alumno->getSlug()));
         }
 
         return $this->render('alumno/edit.html.twig', array(
             'alumno' => $alumno,
             'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
+
+
         ));
+
     }
 
     /**

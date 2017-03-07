@@ -88,6 +88,11 @@ class SemestreController extends Controller
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
+            $this->addFlash(
+                'notice',
+                'Editado correctamente'
+            );
+
             return $this->redirectToRoute('semestre_edit', array('id' => $semestre->getId()));
         }
 

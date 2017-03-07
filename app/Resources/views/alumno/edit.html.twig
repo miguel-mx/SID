@@ -6,7 +6,12 @@
             <h1>Editar Alumno</h1>
 
             {{ form_start(edit_form) }}
-            <div class="alert-danger">{{ form_errors(edit_form) }}</div>
+
+            {% for flash_message in app.session.flashBag.get('notice') %}
+                <div class="alert alert-success">
+                    {{ flash_message }}
+                </div>
+            {% endfor %}
             <div class="panel panel-info">
                 <div class="panel-heading"><strong>Datos personales</strong></div>
                 <div class="row">
@@ -87,9 +92,6 @@
                             <span class="text-danger">{{ form_errors(edit_form.numeroCuenta) }}</span>
                         </div>
                     </div>
-                </div>
-
-                <div class="row">
                     <div class="col-md-4">
                         <div class="form-group">
                             <label>CVU</label>
@@ -97,6 +99,9 @@
                             <span class="text-danger">{{ form_errors(edit_form.cvu) }}</span>
                         </div>
                     </div>
+                </div>
+
+                <div class="row">
                     <div class="col-md-4">
                         <div class="form-group">
                             <div class="checkbox">
@@ -108,12 +113,18 @@
                             <span class="text-danger">{{ form_errors(edit_form.condicionado) }}</span>
                         </div>
                     </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label>CVU</label>
+                            {{ form_widget(edit_form.cursos, {'attr': {'class': 'form-control'}}) }}
+                            <span class="text-danger">{{ form_errors(edit_form.cursos) }}</span>
+                        </div>
+                    </div>
                 </div>
-
-                {{ form_widget(edit_form) }}
-                <input type="submit" value="Editar" />
-                {{ form_end(edit_form) }}
             </div>
+            {{ form_widget(edit_form) }}
+            <input type="submit" value="Editar" />
+            {{ form_end(edit_form) }}
             <ul>
                 <li>
                     <a href="{{ path('alumno_index') }}">Back to the list</a>
