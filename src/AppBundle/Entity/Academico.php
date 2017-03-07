@@ -62,7 +62,7 @@ class Academico
     /**
      * @var string
      *
-     * @ORM\Column(name="adscripcion", type="string", length=25)
+     * @ORM\Column(name="adscripcion", type="string", length=50)
      */
     private $adscripcion;
 

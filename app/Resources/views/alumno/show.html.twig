@@ -34,7 +34,6 @@
                     <td>{{ alumno.correoPersonal }}</td>
                     <td>{{ alumno.correoInstitucional }}</td>
                     <td>{{ alumno.escuelaProcedencia }}</td>
-                    <td>{{ alumno.programa }}</td>
                     <td>{{ alumno.pais }}</td>
                     <td>{{ alumno.numeroCuenta }}</td>
                     <td>{{ alumno.cvu }}</td>
@@ -44,12 +43,24 @@
                 </tbody>
             </table>
 
+            <div class="row">
+                {% for programa in alumno.programas %}
+                <div class="col-md-6">
+                    <h3>{{ programa.programa }}</h3>
+                    <p>{{ programa.ingreso }} - {{ programa.termino }}</p>
+                </div>
+                {% endfor %}
+            </div>
+
             <ul>
                 <li>
                     <a href="{{ path('alumno_index') }}">Back to the list</a>
                 </li>
                 <li>
-                    <a href="{{ path('alumno_edit', { 'id': alumno.id }) }}">Edit</a>
+                    <a href="{{ path('programa_new', { 'slug': alumno.slug }) }}">Crear programa</a>
+                </li>
+                <li>
+                    <a href="{{ path('alumno_edit', { 'slug': alumno.slug }) }}">Edit</a>
                 </li>
                 <li>
                     {{ form_start(delete_form) }}

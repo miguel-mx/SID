@@ -22,13 +22,6 @@ class AlumnoType extends AbstractType
             ))
             ->add('correoPersonal')
             ->add('escuelaProcedencia')
-            ->add('programa', 'Symfony\Component\Form\Extension\Core\Type\ChoiceType', array(
-                'choices' => array(
-                    'Maestría' => 'Maestría',
-                    'Doctorado' => 'Doctorado',
-                ),
-                'choices_as_values' => true,
-            ))
             ->add('pais')
             ->add('numeroCuenta')
             ->add('cvu')

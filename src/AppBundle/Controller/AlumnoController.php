@@ -60,7 +60,7 @@ class AlumnoController extends Controller
     /**
      * Finds and displays a alumno entity.
      *
-     * @Route("/{id}", name="alumno_show")
+     * @Route("/{slug}", name="alumno_show")
      * @Method("GET")
      */
     public function showAction(Alumno $alumno)
@@ -76,7 +76,7 @@ class AlumnoController extends Controller
     /**
      * Displays a form to edit an existing alumno entity.
      *
-     * @Route("/{id}/edit", name="alumno_edit")
+     * @Route("/{slug}/edit", name="alumno_edit")
      * @Method({"GET", "POST"})
      */
     public function editAction(Request $request, Alumno $alumno)

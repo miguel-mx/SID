@@ -82,13 +82,6 @@ class Alumno
     /**
      * @var string
      *
-     * @ORM\Column(name="programa", type="string", length=10)
-     */
-    private $programa;
-
-    /**
-     * @var string
-     *
      * @ORM\Column(name="pais", type="string", length=30)
      */
     private $pais;
@@ -122,6 +115,12 @@ class Alumno
     private $cursos;
 
     /**
+     * One Alumno has Many Programas.
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Programa", mappedBy="alumno")
+     */
+    private $programas;
+
+    /**
      * @Gedmo\Slug(fields={"paterno", "materno", "nombre"})
      * @ORM\Column(length=50, unique=true )
      */
@@ -147,6 +146,7 @@ class Alumno
     public function __construct()
     {
         $this->cursos = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->programas = new ArrayCollection();
     }
 
     /**
@@ -315,29 +315,6 @@ class Alumno
     }
 
     /**
-     * Set programa
-     *
-     * @param string $programa
-     * @return Alumno
-     */
-    public function setPrograma($programa)
-    {
-        $this->programa = $programa;
-
-        return $this;
-    }
-
-    /**
-     * Get programa
-     *
-     * @return string
-     */
-    public function getPrograma()
-    {
-        return $this->programa;
-    }
-
-    /**
      * Set pais
      *
      * @param string $pais
@@ -502,5 +479,20 @@ class Alumno
     public function __toString() {
         return $this->slug;
     }
-}
 
+    /**
+     * @return mixed
+     */
+    public function getProgramas()
+    {
+        return $this->programas;
+    }
+
+    /**
+     * @param mixed $programas
+     */
+    public function setProgramas($programas)
+    {
+        $this->programas = $programas;
+    }
+}

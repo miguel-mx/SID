@@ -14,18 +14,21 @@ class ProgramaType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('programa')
+        $builder
+            ->add('programa', 'Symfony\Component\Form\Extension\Core\Type\ChoiceType', array(
+                'choices' => array(
+                    'Maestría' => 'Maestría',
+                    'Doctorado' => 'Doctorado',
+                ),
+                'choices_as_values' => true,
+            ))
             ->add('ingreso')
             ->add('termino')
-            ->add('fechaGradoUMSNH', DateType::class, array(
-                'widget' => 'choice',
-                'html5' => false,
-                'attr' => ['class' => 'js-datepicker']
-            ))
-            ->add('fechaGradoUNAM', DateType::class, array(
-                'widget' => 'choice'))
+            ->add('fechaGradoUMSNH')
+            ->add('fechaGradoUNAM')
             ->add('opcionTitulacion')
-            ->add('tituloTesis')        ;
+            ->add('tituloTesis')
+        ;
     }
     
     /**

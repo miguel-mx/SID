@@ -25,10 +25,8 @@
                 <thead>
                 <tr>
                     <th>Nombre</th>
-                    <th>Teléfono</th>
                     <th>correo Institucional</th>
                     <th>Escuela de procedencia</th>
-                    <th>Programa</th>
                     <th>pais</th>
                     <th>Numero de cuenta</th>
                     <th>Cvu</th>
@@ -39,10 +37,9 @@
                 {% for alumno in alumnos %}
                     <tr>
                         {#<td><a href="{{ path('alumno', { 'slug': alumno.slug }) }}">{{ alumno.id }}</a></td>#}
-                        <td><a href="{{ path('alumno_show', { 'slug': alumno.slug }) }}">{{ solicitud.paterno }} {{ solicitud.materno }} {{ solicitud.nombre }}</a></td>
-                        <td>{{ alumno.correo }}</td>
+                        <td><a href="{{ path('alumno_show', { 'slug': alumno.slug }) }}">{{ alumno.paterno }} {{ alumno.materno }} {{ alumno.nombre }}</a></td>
+                        <td>{{ alumno.correoInstitucional }}</td>
                         <td>{{ alumno.escuelaProcedencia }}</td>
-                        <td class="text-center">{{ alumno.programa  }}</td>
                         <td class="text-center">{{ alumno.pais }}</td>
                         <td class="text-center">{{ alumno.numeroCuenta }}</td>
                         <td class="text-center">{{ alumno.cvu }}</td>

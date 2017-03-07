@@ -45,7 +45,7 @@ class Programa
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="fechaGradoUMSNH", type="datetime")
+     * @ORM\Column(name="fechaGradoUMSNH", type="datetime", nullable=true)
      */
     private $fechaGradoUMSNH;
 
@@ -66,10 +66,16 @@ class Programa
     /**
      * @var string
      *
-     * @ORM\Column(name="tituloTesis", type="string", length=80)
+     * @ORM\Column(name="tituloTesis", type="string", length=80, nullable=true)
      */
     private $tituloTesis;
 
+    /**
+     * Many Programas have One Alumno.
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Alumno", inversedBy="programas")
+     * @ORM\JoinColumn(name="alumno_id", referencedColumnName="id")
+     */
+    private $alumno;
 
     /**
      * Get id
@@ -240,5 +246,21 @@ class Programa
     public function getTituloTesis()
     {
         return $this->tituloTesis;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getAlumno()
+    {
+        return $this->alumno;
+    }
+
+    /**
+     * @param mixed $alumno
+     */
+    public function setAlumno($alumno)
+    {
+        $this->alumno = $alumno;
     }
 }

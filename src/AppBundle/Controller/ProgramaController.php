@@ -2,6 +2,7 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\Entity\Alumno;
 use AppBundle\Entity\Programa;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
@@ -34,14 +35,16 @@ class ProgramaController extends Controller
     /**
      * Creates a new programa entity.
      *
-     * @Route("/new", name="programa_new")
+     * @Route("/{slug}/new", name="programa_new")
      * @Method({"GET", "POST"})
      */
-    public function newAction(Request $request)
+    public function newAction(Request $request, Alumno $alumno)
     {
         $programa = new Programa();
         $form = $this->createForm('AppBundle\Form\ProgramaType', $programa);
         $form->handleRequest($request);
+
+        $programa->setAlumno($alumno);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
@@ -53,6 +56,7 @@ class ProgramaController extends Controller
 
         return $this->render('programa/new.html.twig', array(
             'programa' => $programa,
+            'alumno' => $alumno,
             'form' => $form->createView(),
         ));
     }
