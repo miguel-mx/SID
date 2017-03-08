@@ -7,34 +7,32 @@
         </section>
         <section class="content">
             <div class="page-header">
-                <h1> Curso </h1>
+                <h1>{{ curso.curso }}<small> {{ curso.tipo }}</small></h1>
+                <h3><a href="{{ path('semestre_show', { 'slug': curso.semestre }) }}">{{ curso.semestre }}</a></h3>
             </div>
             <div class="row">
                 <div class="col-md-8">
                     <table class="table table-bordered">
-
                         <thead>
                         <tr>
-                            <th>Tipo</th>
-                            <th>Curso</th>
                             <th>Tema</th>
                             <th>Horas por semana</th>
                             <th>Créditos</th>
                             <th>Asignatura</th>
                             <th>Clave de grupo</th>
                             <th>Lugar</th>
+                            <th>Semestre</th>
                         </tr>
                         </thead>
                         <tbody>
                         <tr>
-                            <td>{{ curso.tipo }}</td>
-                            <td>{{ curso.curso }}</td>
                             <td>{{ curso.tema }}</td>
                             <td>{{ curso.horasSemana }}</td>
                             <td>{{ curso.creditos }}</td>
                             <td>{{ curso.asignatura }}</td>
                             <td>{{ curso.claveGrupo }}</td>
                             <td>{{ curso.lugar }}</td>
+                            <td><a href="{{ path('semestre_show', { 'slug': curso.semestre }) }}">{{ curso.semestre }}</a></td>
                         </tr>
                         </tbody>
                     </table>

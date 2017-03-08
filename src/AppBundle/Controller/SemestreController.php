@@ -60,7 +60,7 @@ class SemestreController extends Controller
     /**
      * Finds and displays a semestre entity.
      *
-     * @Route("/{id}", name="semestre_show")
+     * @Route("/{slug}", name="semestre_show")
      * @Method("GET")
      */
     public function showAction(Semestre $semestre)
@@ -76,7 +76,7 @@ class SemestreController extends Controller
     /**
      * Displays a form to edit an existing semestre entity.
      *
-     * @Route("/{id}/edit", name="semestre_edit")
+     * @Route("/{slug}/edit", name="semestre_edit")
      * @Method({"GET", "POST"})
      */
     public function editAction(Request $request, Semestre $semestre)
@@ -93,7 +93,7 @@ class SemestreController extends Controller
                 'Editado correctamente'
             );
 
-            return $this->redirectToRoute('semestre_edit', array('id' => $semestre->getId()));
+            return $this->redirectToRoute('semestre_edit', array('slug' => $semestre->getSlug()));
         }
 
         return $this->render('semestre/edit.html.twig', array(
@@ -106,7 +106,7 @@ class SemestreController extends Controller
     /**
      * Deletes a semestre entity.
      *
-     * @Route("/{id}", name="semestre_delete")
+     * @Route("/{slug}", name="semestre_delete")
      * @Method("DELETE")
      */
     public function deleteAction(Request $request, Semestre $semestre)
@@ -133,7 +133,7 @@ class SemestreController extends Controller
     private function createDeleteForm(Semestre $semestre)
     {
         return $this->createFormBuilder()
-            ->setAction($this->generateUrl('semestre_delete', array('id' => $semestre->getId())))
+            ->setAction($this->generateUrl('semestre_delete', array('slug' => $semestre->getslug())))
             ->setMethod('DELETE')
             ->getForm()
         ;

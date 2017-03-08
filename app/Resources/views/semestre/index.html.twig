@@ -21,6 +21,7 @@
                     <th>Semestre</th>
                     <th>Fecha de inicio</th>
                     <th>Fecha fin</th>
+                    <th>Operaciones</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -33,10 +34,10 @@
                         <td>
                             <ul>
                                 <li>
-                                    <a href="{{ path('semestre_show', { 'id': semestre.id }) }}">show</a>
+                                    <a href="{{ path('semestre_show', { 'slug': semestre.slug }) }}">show</a>
                                 </li>
                                 <li>
-                                    <a href="{{ path('semestre_edit', { 'id': semestre.id }) }}">edit</a>
+                                    <a href="{{ path('semestre_edit', { 'slug': semestre.slug }) }}">edit</a>
                                 </li>
                             </ul>
                         </td>

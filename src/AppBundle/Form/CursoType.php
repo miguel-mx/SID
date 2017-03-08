@@ -29,6 +29,7 @@ class CursoType extends AbstractType
             ->add('claveGrupo')
             ->add('lugar')
             ->add('alumnos')
+            ->add('semestre')
         ;
     }
     

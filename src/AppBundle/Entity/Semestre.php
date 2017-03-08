@@ -2,6 +2,7 @@
 
 namespace AppBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -46,6 +47,12 @@ class Semestre
     private $fechaFin;
 
     /**
+     * One Semestre has Many Cursos.
+     * @ORM\OneToMany(targetEntity="Curso", mappedBy="semestre")
+     */
+    private $cursos;
+
+    /**
      * @Gedmo\Slug(fields={"semestre"})
      * @ORM\Column(length=10, unique=true)
      */
@@ -65,6 +72,9 @@ class Semestre
      */
     private $modifiedAt;
 
+    public function __construct() {
+        $this->cursos = new \Doctrine\Common\Collections\ArrayCollection();
+    }
 
     /**
      * Get id
@@ -207,6 +217,26 @@ class Semestre
     {
         $this->createdAt = new \DateTime();
         $this->modifiedAt = new \DateTime();
+    }
+
+    /**
+     * @return Curso
+     */
+    public function getCursos()
+    {
+        return $this->cursos;
+    }
+
+    /**
+     * @param Curso $cursos
+     */
+    public function setCursos(Curso $cursos)
+    {
+        $this->cursos = $cursos;
+    }
+
+    public function __toString() {
+        return $this->semestre;
     }
 }
 

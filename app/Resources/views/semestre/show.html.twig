@@ -4,23 +4,39 @@
     <div class="content-wrapper">
         <div class="panel-body">
             <div class="page-header">
-                <h1> Semestre  {{ semestre.semestre }}</h1>
+                <h1>{{ semestre.semestre }}</h1>
             </div>
-            <table class="table table-bordered">
+            <p>Fecha de inicio: {{ semestre.fechaInicio|date('d-m-Y') }}</p>
+            <p>Fecha de término: {{ semestre.fechaFin|date('d-m-Y') }}</p>
+
+            <table class="table">
                 <thead>
                 <tr>
-                    <th>Semestre</th>
-                    <th>Fecha de inicio</th>
-                    <th>Fecha fin</th>
+                    <th>Tipo</th>
+                    <th>Curso</th>
+                    <th>Tema</th>
+                    <th>Horas por semana</th>
+                    <th>Créditos</th>
+                    <th>Asignatura</th>
+                    <th>Clave de grupo</th>
+                    <th>Lugar</th>
                 </tr>
                 </thead>
-                <tbody>
-                <tr>
-                    <td>{{ semestre.semestre }}</td>
-                    <td>{% if semestre.fechaInicio %}{{ semestre.fechaInicio|date('d-m-Y') }}{% endif %}</td>
-                    <td>{% if semestre.fechaFin %}{{ semestre.fechaFin|date('d-m-Y') }}{% endif %}</td>
-                </tr>
-                </tbody>
+                {% for curso in semestre.cursos %}
+
+                    <tbody>
+                    <tr>
+                        <td>{{ curso.tipo }}</td>
+                        <td><a href="{{ path('curso_show', { 'id': curso.id }) }}">{{ curso.curso }}</td>
+                        <td>{{ curso.tema }}</td>
+                        <td>{{ curso.horasSemana }}</td>
+                        <td>{{ curso.creditos }}</td>
+                        <td>{{ curso.asignatura }}</td>
+                        <td>{{ curso.claveGrupo }}</td>
+                        <td>{{ curso.lugar }}</td>
+                    </tr>
+                    </tbody>
+                {% endfor %}
             </table>
 
             <ul>
@@ -28,7 +44,7 @@
                     <a href="{{ path('semestre_index') }}">Back to the list</a>
                 </li>
                 <li>
-                    <a href="{{ path('semestre_edit', { 'id': semestre.id }) }}">Edit</a>
+                    <a href="{{ path('semestre_edit', { 'slug': semestre.slug }) }}">Edit</a>
                 </li>
                 <li>
                     {{ form_start(delete_form) }}

@@ -2,6 +2,7 @@
 
 namespace AppBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -128,6 +129,13 @@ class Curso
      * @ORM\ManyToMany(targetEntity="Alumno", mappedBy="cursos")
      */
     private $alumnos;
+
+   /**
+    * Many Cursos have One Semestre.
+    * @ORM\ManyToOne(targetEntity="Semestre", inversedBy="cursos")
+    * @ORM\JoinColumn(name="semestre_id", referencedColumnName="id")
+    */
+    private $semestre;
 
     /**
      * @Gedmo\Slug(fields={"curso"})
@@ -523,5 +531,21 @@ class Curso
 
     public function __toString() {
         return $this->curso;
+    }
+
+    /**
+     * @return Semestre
+     */
+    public function getSemestre()
+    {
+        return $this->semestre;
+    }
+
+    /**
+     * @param Semestre $semestre
+     */
+    public function setSemestre(Semestre $semestre)
+    {
+        $this->semestre = $semestre;
     }
 }
