@@ -77,6 +77,17 @@ class Programa
      */
     private $alumno;
 
+   /**
+    * Many Programas have Many Semestres.
+    * @ORM\ManyToMany(targetEntity="Semestre", inversedBy="programas")
+    * @ORM\JoinTable(name="programas_semestres")
+    */
+    private $semestres;
+
+    public function __construct() {
+        $this->semestres = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
     /**
      * Get id
      *
@@ -262,5 +273,22 @@ class Programa
     public function setAlumno($alumno)
     {
         $this->alumno = $alumno;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getSemestres()
+    {
+        return $this->semestres;
+    }
+
+    /**
+     * @param Semestre $semestre
+     */
+    public function addSemestre(Semestre $semestre)
+    {
+        $semestre->addPrograma($this);
+        $this->semestres[] = $semestre;
     }
 }

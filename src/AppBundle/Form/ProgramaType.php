@@ -28,6 +28,7 @@ class ProgramaType extends AbstractType
             ->add('fechaGradoUNAM')
             ->add('opcionTitulacion')
             ->add('tituloTesis')
+            ->add('semestres')
         ;
     }
     

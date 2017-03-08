@@ -52,6 +52,12 @@ class Semestre
      */
     private $cursos;
 
+   /**
+    * Many Semestres have Many Programas.
+    * @ORM\ManyToMany(targetEntity="Programa", mappedBy="semestres")
+    */
+    private $programas;
+
     /**
      * @Gedmo\Slug(fields={"semestre"})
      * @ORM\Column(length=10, unique=true)
@@ -74,6 +80,7 @@ class Semestre
 
     public function __construct() {
         $this->cursos = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->programas = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**
@@ -235,8 +242,24 @@ class Semestre
         $this->cursos = $cursos;
     }
 
+
     public function __toString() {
         return $this->semestre;
     }
-}
 
+    /**
+     * @return mixed
+     */
+    public function getProgramas()
+    {
+        return $this->programas;
+    }
+
+    /**
+     * @param Programa $programa
+     */
+    public function addPrograma(Programa $programa)
+    {
+        $this->programas[] = $programa;
+    }
+}

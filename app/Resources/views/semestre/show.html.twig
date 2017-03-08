@@ -39,6 +39,11 @@
                 {% endfor %}
             </table>
 
+            {% for programa in semestre.programas %}
+                <p class="lead"> <a href="{{ path('programa_show', { 'id': programa.id }) }}">{{ programa.programa }}</a> |
+                    <a href="{{ path('alumno_show', { 'slug': programa.alumno.slug }) }}">{{ programa.alumno.paterno }} {{ programa.alumno.materno }} {{ programa.alumno.nombre }}</a></p>
+            {% endfor %}
+
             <ul>
                 <li>
                     <a href="{{ path('semestre_index') }}">Back to the list</a>
