@@ -4,46 +4,31 @@
 <div class="content-wrapper">
     <div class="panel-body">
         <div class="page-header">
-            <h1>Cursos </h1>
+            <h1>Cursos <small><span class="badge">{{ cursos|length }}</span></small></h1>
         </div>
 
-    <table>
+    <table class="table">
         <thead>
             <tr>
-                <th>Id</th>
                 <th>Tipo</th>
                 <th>Curso</th>
                 <th>Tema</th>
-                <th>Horassemana</th>
+                <th>Horas</th>
                 <th>Creditos</th>
                 <th>Asignatura</th>
-                <th>Clavegrupo</th>
-                <th>Lugar</th>
-                <th>Actions</th>
+                <th>Clave</th>
             </tr>
         </thead>
         <tbody>
         {% for curso in cursos %}
             <tr>
-                <td><a href="{{ path('curso_show', { 'id': curso.id }) }}">{{ curso.id }}</a></td>
                 <td>{{ curso.tipo }}</td>
-                <td>{{ curso.curso }}</td>
+                <td><a href="{{ path('curso_show', { 'id': curso.id }) }}">{{ curso.curso }}</a></td>
                 <td>{{ curso.tema }}</td>
                 <td>{{ curso.horasSemana }}</td>
                 <td>{{ curso.creditos }}</td>
                 <td>{{ curso.asignatura }}</td>
                 <td>{{ curso.claveGrupo }}</td>
-                <td>{{ curso.lugar }}</td>
-                <td>
-                    <ul>
-                        <li>
-                            <a href="{{ path('curso_show', { 'id': curso.id }) }}">show</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('curso_edit', { 'id': curso.id }) }}">edit</a>
-                        </li>
-                    </ul>
-                </td>
             </tr>
         {% endfor %}
         </tbody>

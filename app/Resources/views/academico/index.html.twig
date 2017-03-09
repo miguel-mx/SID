@@ -14,44 +14,21 @@
             <table class="table table-bordered" id="academico_table">
                 <thead>
                 <tr>
-                    <th>Paterno</th>
-                    <th>Materno</th>
                     <th>Nombre</th>
-                    <th>Rfc</th>
-                    <th>Curp</th>
                     <th>Adscripcion</th>
                     <th>Correo</th>
                     <th>Telefono</th>
                     <th>Extension</th>
-                    <th>Cvu</th>
-                    <th>Acreditacion</th>
-                    <th>Actions</th>
                 </tr>
                 </thead>
                 <tbody>
                 {% for academico in academicos %}
                     <tr>
-                        <td>{{ academico.paterno }}</td>
-                        <td>{{ academico.materno }}</td>
-                        <td>{{ academico.nombre }}</td>
-                        <td>{{ academico.rfc }}</td>
-                        <td>{{ academico.curp }}</td>
+                        <td><a href="{{ path('academico_show', { 'id': academico.id }) }}">{{ academico.paterno }} {{ academico.materno }} {{ academico.nombre }}</a></td>
                         <td>{{ academico.adscripcion }}</td>
                         <td>{{ academico.correo }}</td>
                         <td>{{ academico.telefono }}</td>
                         <td>{{ academico.extension }}</td>
-                        <td>{{ academico.cvu }}</td>
-                        <td>{{ academico.acreditacion }}</td>
-                        <td>
-                            <ul>
-                                <li>
-                                    <a href="{{ path('academico_show', { 'id': academico.id }) }}">show</a>
-                                </li>
-                                <li>
-                                    <a href="{{ path('academico_edit', { 'id': academico.id }) }}">edit</a>
-                                </li>
-                            </ul>
-                        </td>
                     </tr>
                 {% endfor %}
                 </tbody>

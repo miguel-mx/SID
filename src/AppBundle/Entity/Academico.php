@@ -34,7 +34,7 @@ class Academico
     /**
      * @var string
      *
-     * @ORM\Column(name="materno", type="string", length=60)
+     * @ORM\Column(name="materno", type="string", length=60, nullable=true)
      */
     private $materno;
 
@@ -62,7 +62,7 @@ class Academico
     /**
      * @var string
      *
-     * @ORM\Column(name="adscripcion", type="string", length=50)
+     * @ORM\Column(name="adscripcion", type="string", length=80)
      */
     private $adscripcion;
 
@@ -90,7 +90,7 @@ class Academico
     /**
      * @var string
      *
-     * @ORM\Column(name="cvu", type="string", length=20)
+     * @ORM\Column(name="cvu", type="string", length=20, nullable=true)
      */
     private $cvu;
 
@@ -103,7 +103,7 @@ class Academico
 
     /**
      * @var string
-     *@Gedmo\Slug(fields={"paterno", "materno", "nombre"})
+     * @Gedmo\Slug(fields={"paterno", "materno", "nombre"})
      * @ORM\Column(name="slug", type="string", length=60, unique=true)
      */
     private $slug;

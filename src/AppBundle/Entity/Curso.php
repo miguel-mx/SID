@@ -35,14 +35,14 @@ class Curso
     /**
      * @var string
      *
-     * @ORM\Column(name="curso", type="string", length=60)
+     * @ORM\Column(name="curso", type="string", length=80)
      */
     private $curso;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="tema", type="string", length=60, nullable=true)
+     * @ORM\Column(name="tema", type="string", length=120, nullable=true)
      */
     private $tema;
 
@@ -56,7 +56,7 @@ class Curso
     /**
      * @var string
      *
-     * @ORM\Column(name="creditos", type="string", length=4)
+     * @ORM\Column(name="creditos", type="integer")
      */
     private $creditos;
 
@@ -109,7 +109,6 @@ class Curso
      */
     private $status;
 
-
     /**
      * @var string
      *
@@ -120,7 +119,7 @@ class Curso
     /**
      * @var string
      *
-     * @ORM\Column(name="lugar", type="string", length=50)
+     * @ORM\Column(name="lugar", type="string", length=50, nullable=true)
      */
     private $lugar;
 
@@ -139,7 +138,7 @@ class Curso
 
     /**
      * @Gedmo\Slug(fields={"curso"})
-     * @ORM\Column(length=30, unique=true)
+     * @ORM\Column(length=90, unique=true)
      */
     private $slug;
 
