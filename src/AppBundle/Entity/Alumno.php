@@ -37,7 +37,7 @@ class Alumno
     /**
      * @var string
      *
-     * @ORM\Column(name="materno", type="string", length=60)
+     * @ORM\Column(name="materno", type="string", length=60, nullable=true)
      * @Assert\NotBlank()
      *
      */
@@ -46,7 +46,7 @@ class Alumno
     /**
      * @var string
      *
-     * @ORM\Column(name="nombre", type="string", length=60, nullable=true)
+     * @ORM\Column(name="nombre", type="string", length=60)
      * @Assert\NotBlank()
      *
      */

@@ -8,37 +8,51 @@
 {% block body %}
     <div class="content-wrapper">
         <div class="panel-body">
-            <div class="page-header">
-                <h1> Lista de Profesores </h1>
+            <div class="row">
+                <div class="col-md-3 col-sm-6 col-xs-12">
+                    <div class="info-box">
+                    <span class="info-box-icon bg-aqua">
+                        <i class="fa fa-university"></i>
+                    </span>
+                        <div class="info-box-content">
+                            <span class="info-box-text">Académicos</span>
+                            <span class="info-box-number">{{ academicos|length }}</span>
+                        </div>
+                        <!-- /.info-box-content -->
+                    </div>
+                    <!-- /.info-box -->
+                </div>
             </div>
-            <table class="table table-bordered" id="academico_table">
-                <thead>
-                <tr>
-                    <th>Nombre</th>
-                    <th>Adscripcion</th>
-                    <th>Correo</th>
-                    <th>Telefono</th>
-                    <th>Extension</th>
-                </tr>
-                </thead>
-                <tbody>
-                {% for academico in academicos %}
-                    <tr>
-                        <td><a href="{{ path('academico_show', { 'id': academico.id }) }}">{{ academico.paterno }} {{ academico.materno }} {{ academico.nombre }}</a></td>
-                        <td>{{ academico.adscripcion }}</td>
-                        <td>{{ academico.correo }}</td>
-                        <td>{{ academico.telefono }}</td>
-                        <td>{{ academico.extension }}</td>
-                    </tr>
-                {% endfor %}
-                </tbody>
-            </table>
-
-            <ul>
-                <li>
-                    <a href="{{ path('academico_new') }}">Create a new academico</a>
-                </li>
-            </ul>
+            <div class="box box-primary">
+                <div class="box-header text-right">
+                    <a class="btn btn-primary btn-sm" href="{{ path('academico_new') }}" role="button">
+                        <i class="fa fa-plus" aria-hidden="true"></i> Nuevo académico</a>
+                </div>
+                <div class="box-body">
+                    <table class="table table-bordered" id="academico_table">
+                        <thead>
+                        <tr>
+                            <th>Nombre</th>
+                            <th>Adscripcion</th>
+                            <th>Correo</th>
+                            <th>Telefono</th>
+                            <th>Extension</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for academico in academicos %}
+                            <tr>
+                                <td><a href="{{ path('academico_show', { 'id': academico.id }) }}">{{ academico.paterno }} {{ academico.materno }} {{ academico.nombre }}</a></td>
+                                <td>{{ academico.adscripcion }}</td>
+                                <td>{{ academico.correo }}</td>
+                                <td>{{ academico.telefono }}</td>
+                                <td>{{ academico.extension }}</td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
         </div>
     </div>
 {% endblock %}
