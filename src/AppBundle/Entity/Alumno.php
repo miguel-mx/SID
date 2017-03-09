@@ -62,14 +62,14 @@ class Alumno
     /**
      * @var string
      *
-     * @ORM\Column(name="correo_institucional", type="string", length=30, nullable=true)
+     * @ORM\Column(name="correo_institucional", type="string", length=40, nullable=true)
      */
     private $correo_institucional;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="correo_personal", type="string", length=30, nullable=true)
+     * @ORM\Column(name="correo_personal", type="string", length=40, nullable=true)
      */
     private $correo_personal;
 
