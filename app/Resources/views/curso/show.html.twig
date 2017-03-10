@@ -37,8 +37,8 @@
                         </tbody>
                     </table>
 
-                    {% for alumno in curso.alumnos %}
-                        <p><h4><a href="{{ path('alumno_show', { 'slug': alumno.slug }) }}">{{ alumno.paterno }} {{ alumno.materno }} {{ alumno.nombre }}</h4></a></p>
+                    {% for programa in curso.programas %}
+                        <p><h4><a href="{{ path('alumno_show', { 'slug': programa.alumno.slug }) }}">{{ programa.alumno.paterno }} {{ programa.alumno.materno }} {{ programa.alumno.nombre }}</h4></a></p>
                     {% endfor %}
 
                 </div>

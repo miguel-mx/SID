@@ -71,6 +71,14 @@ class Programa
     private $tituloTesis;
 
     /**
+     * Many Programas have Many Cursos.
+     * @ORM\ManyToMany(targetEntity="Curso", inversedBy="programas")
+     * @ORM\JoinTable(name="programas_cursos")
+     */
+    private $cursos;
+
+
+    /**
      * Many Programas have One Alumno.
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Alumno", inversedBy="programas")
      * @ORM\JoinColumn(name="alumno_id", referencedColumnName="id")
@@ -86,6 +94,7 @@ class Programa
 
     public function __construct() {
         $this->semestres = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->cursos = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**
@@ -291,4 +300,16 @@ class Programa
         $semestre->addPrograma($this);
         $this->semestres[] = $semestre;
     }
+
+    public function addCurso(Curso $curso)
+    {
+        $curso->addPrograma($this); // synchronously updating inverse side
+        $this->cursos[] = $curso;
+    }
+
+    public function getCursos()
+    {
+        return $this->cursos;
+    }
+
 }

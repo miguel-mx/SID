@@ -29,6 +29,8 @@ class ProgramaType extends AbstractType
             ->add('opcionTitulacion')
             ->add('tituloTesis')
             ->add('semestres')
+            ->add('cursos')
+
         ;
     }
     

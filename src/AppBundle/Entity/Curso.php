@@ -124,10 +124,10 @@ class Curso
     private $lugar;
 
     /**
-     * Many Cursos have Many Alumnos.
-     * @ORM\ManyToMany(targetEntity="Alumno", mappedBy="cursos")
+     * Many Cursos have Many Programas.
+     * @ORM\ManyToMany(targetEntity="Programa", mappedBy="cursos")
      */
-    private $alumnos;
+    private $programas;
 
    /**
     * Many Cursos have One Semestre.
@@ -160,7 +160,7 @@ class Curso
      * curso constructor.
      */
     public function __construct() {
-        $this->alumnos = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->programas = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**
@@ -518,14 +518,14 @@ class Curso
         $this->modifiedAt = new \DateTime();
     }
 
-    public function addAlumno(Alumno $alumno)
+    public function addPrograma(Programa $programa)
     {
-        $this->alumnos[] = $alumno;
+        $this->programas[] = $programa;
     }
 
-    public function getAlumnos()
+    public function getProgramas()
     {
-        return $this->alumnos;
+        return $this->programas;
     }
 
     public function __toString() {

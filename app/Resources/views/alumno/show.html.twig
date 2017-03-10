@@ -36,18 +36,6 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-md-6">
-                    <h2>Cursos</h2>
-                    <table class="table">
-                    {% for curso in alumno.cursos %}
-                        <tr>
-                            <td>{{ curso.tipo }}</td><td><a href="{{ path('curso_show', { 'id': curso.id }) }}">{{ curso.curso }}</a></td><td>{{ curso.tema }}</td><td>{{ curso.creditos }}</td>
-                        </tr>
-                    {% endfor %}
-                    </table>
-                </div>
-            </div>
-            <div class="row">
                 {% for programa in alumno.programas %}
                 <div class="col-md-6">
                     <h2>{{ programa.programa }} <small><a href="{{ path('programa_edit', { 'id': programa.id }) }}">

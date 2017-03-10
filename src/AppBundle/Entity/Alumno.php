@@ -109,13 +109,6 @@ class Alumno
     private $condicionado;
 
     /**
-     * Many Alumnos have Many Cursos.
-     * @ORM\ManyToMany(targetEntity="Curso", inversedBy="alumnos")
-     * @ORM\JoinTable(name="alumnos_cursos")
-     */
-    private $cursos;
-
-    /**
      * One Alumno has Many Programas.
      * @ORM\OneToMany(targetEntity="AppBundle\Entity\Programa", mappedBy="alumno")
      */
@@ -146,7 +139,6 @@ class Alumno
      */
     public function __construct()
     {
-        $this->cursos = new \Doctrine\Common\Collections\ArrayCollection();
         $this->programas = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
@@ -464,17 +456,6 @@ class Alumno
     {
         $this->createdAt = new \DateTime();
         $this->modifiedAt = new \DateTime();
-    }
-
-    public function addCurso(Curso $curso)
-    {
-        $curso->addAlumno($this); // synchronously updating inverse side
-        $this->cursos[] = $curso;
-    }
-
-    public function getCursos()
-    {
-        return $this->cursos;
     }
 
     public function __toString() {
