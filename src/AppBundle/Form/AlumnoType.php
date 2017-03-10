@@ -26,7 +26,6 @@ class AlumnoType extends AbstractType
             ->add('numeroCuenta')
             ->add('cvu')
             ->add('condicionado')
-            ->add('cursos')
         ;
     }
     
