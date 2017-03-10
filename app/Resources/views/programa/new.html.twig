@@ -51,7 +51,7 @@
                 <div class="col-md-4">
                     <div class="form-group">
                         <label>Opción de Titulación</label>
-                        {{ form_widget(form.opcionTitulacion)}}
+                        {{ form_widget(form.opcionTitulacion, {'attr': {'class': 'form-control'}}) }}
                         <span class="text-danger">{{ form_errors(form.opcionTitulacion) }}</span>
                     </div>
                 </div>
