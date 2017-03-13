@@ -27,6 +27,7 @@ class AlumnoRepository extends EntityRepository
                     JOIN a.programas p
                     JOIN p.semestres s
                     WHERE s.semestre = '2017-2'
+                    AND p.programa = 'Maestría'
                     ORDER BY a.paterno ASC"
             )
 //            ->setParameter('semestre', $semestre)

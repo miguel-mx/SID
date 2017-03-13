@@ -42,7 +42,7 @@
                         <tbody>
                         {% for academico in academicos %}
                             <tr>
-                                <td><a href="{{ path('academico_show', { 'id': academico.id }) }}">{{ academico.paterno }} {{ academico.materno }} {{ academico.nombre }}</a></td>
+                                <td><a href="{{ path('academico_show', { 'slug': academico.slug }) }}">{{ academico.paterno }} {{ academico.materno }} {{ academico.nombre }}</a></td>
                                 <td>{{ academico.adscripcion }}</td>
                                 <td>{{ academico.correo }}</td>
                                 <td>{{ academico.telefono }}</td>

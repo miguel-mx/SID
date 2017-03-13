@@ -48,7 +48,7 @@ class AcademicoController extends Controller
             $em->persist($academico);
             $em->flush($academico);
 
-            return $this->redirectToRoute('academico_show', array('id' => $academico->getId()));
+            return $this->redirectToRoute('academico_show', array('slug' => $academico->getSlug()));
         }
 
         return $this->render('academico/new.html.twig', array(
@@ -93,7 +93,7 @@ class AcademicoController extends Controller
                 'Editado correctamente'
             );
 
-            return $this->redirectToRoute('academico_edit', array('id' => $academico->getId()));
+            return $this->redirectToRoute('academico_edit', array('slug' => $academico->getSlug()));
         }
 
         return $this->render('academico/edit.html.twig', array(
