@@ -6,11 +6,13 @@ use AppBundle\Entity\Alumno;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component\HttpFoundation\Request;
+use Doctrine\ORM\Mapping as ORM;
 
 /**
  * Alumno controller.
  *
  * @Route("alumno")
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\AlumnoRepository")
  */
 class AlumnoController extends Controller
 {
@@ -24,7 +26,26 @@ class AlumnoController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $alumnos = $em->getRepository('AppBundle:Alumno')->findAll();
+        // get value of a parameter
+        //$semestre = $container->getParameter('semestre');
+        $alumnos = $em->getRepository('AppBundle:Alumno')->findAllBySemestre();
+
+        return $this->render('alumno/index.html.twig', array(
+            'alumnos' => $alumnos,
+        ));
+    }
+
+    /**
+     * Lists all alumno entities.
+     *
+     * @Route("/all", name="alumno_all")
+     * @Method("GET")
+     */
+    public function allAction()
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $alumnos = $em->getRepository('AppBundle:Alumno')->findAllOrderedByPaterno();
 
         return $this->render('alumno/index.html.twig', array(
             'alumnos' => $alumnos,
