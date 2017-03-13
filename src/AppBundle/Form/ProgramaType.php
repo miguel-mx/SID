@@ -30,7 +30,8 @@ class ProgramaType extends AbstractType
             ->add('tituloTesis')
             ->add('semestres')
             ->add('cursos')
-
+            ->add('tutor')
+            ->add('comite_tutorial')
         ;
     }
     

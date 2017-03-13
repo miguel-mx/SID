@@ -92,9 +92,25 @@ class Programa
     */
     private $semestres;
 
+    /**
+     * Many Programas have One Tutor.
+     * @ORM\ManyToOne(targetEntity="Academico")
+     * @ORM\JoinColumn(name="tutor_id", referencedColumnName="id", nullable=true)
+     */
+    private $tutor;
+
+   /**
+    * Many Programas have Many Tutores.
+    * @ORM\ManyToMany(targetEntity="Academico", inversedBy="tutorias")
+    * @ORM\JoinTable(name="programas_tutores")
+    */
+    private $comite_tutorial;
+
+
     public function __construct() {
         $this->semestres = new \Doctrine\Common\Collections\ArrayCollection();
         $this->cursos = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->comite_tutorial = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**
@@ -311,5 +327,39 @@ class Programa
     {
         return $this->cursos;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getTutor()
+    {
+        return $this->tutor;
+    }
+
+    /**
+     * @param Academico $tutor
+     */
+    public function setTutor(Academico $tutor)
+    {
+        $this->tutor = $tutor;
+    }
+
+    /**
+     * @return Academico
+     */
+    public function getComiteTutorial()
+    {
+        return $this->comite_tutorial;
+    }
+
+    /**
+     * @param Academico $tutor
+     */
+    public function addComiteTutorial(Academico $tutor)
+    {
+        $tutor->addTutoria($this);
+        $this->comite_tutorial[] = $tutor;
+    }
+
 
 }

@@ -101,6 +101,12 @@ class Academico
      */
     private $acreditacion;
 
+   /**
+    * Many Academicos have Many Tutorias.
+    * @ORM\ManyToMany(targetEntity="Programa", mappedBy="comite_tutorial")
+    */
+    private $tutorias;
+
     /**
      * @var string
      * @Gedmo\Slug(fields={"paterno", "materno", "nombre"})
@@ -122,6 +128,9 @@ class Academico
      */
     private $modifiedAt;
 
+    public function __construct() {
+        $this->tutorias = new \Doctrine\Common\Collections\ArrayCollection();
+    }
 
     /**
      * Get id
@@ -462,5 +471,25 @@ class Academico
     {
         $this->createdAt = new \DateTime();
         $this->modifiedAt = new \DateTime();
+    }
+
+    public function __toString() {
+        return $this->paterno . " " . $this->materno . " " . $this->nombre;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getTutorias()
+    {
+        return $this->tutorias;
+    }
+
+    /**
+     * @param Academico $tutor
+     */
+    public function addTutoria($tutor)
+    {
+        $this->tutorias[] = $tutor;
     }
 }

@@ -136,6 +136,13 @@ class Curso
     */
     private $semestre;
 
+   /**
+    * Many Cursos have One Profesor.
+    * @ORM\ManyToOne(targetEntity="Academico")
+    * @ORM\JoinColumn(name="profesor_id", referencedColumnName="id", nullable=true)
+    */
+    private $profesor;
+
     /**
      * @Gedmo\Slug(fields={"curso"})
      * @ORM\Column(length=90, unique=true)
@@ -546,5 +553,21 @@ class Curso
     public function setSemestre(Semestre $semestre)
     {
         $this->semestre = $semestre;
+    }
+
+    /**
+     * @return Academico
+     */
+    public function getProfesor()
+    {
+        return $this->profesor;
+    }
+
+    /**
+     * @param Academico $profesor
+     */
+    public function setProfesor(Academico $profesor)
+    {
+        $this->profesor = $profesor;
     }
 }

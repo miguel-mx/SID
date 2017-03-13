@@ -28,8 +28,8 @@ class CursoType extends AbstractType
             ->add('asignatura')
             ->add('claveGrupo')
             ->add('lugar')
-            ->add('alumnos')
             ->add('semestre')
+            ->add('profesor')
         ;
     }
     

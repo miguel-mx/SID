@@ -60,7 +60,7 @@ class AcademicoController extends Controller
     /**
      * Finds and displays a academico entity.
      *
-     * @Route("/{id}", name="academico_show")
+     * @Route("/{slug}", name="academico_show")
      * @Method("GET")
      */
     public function showAction(Academico $academico)
@@ -76,7 +76,7 @@ class AcademicoController extends Controller
     /**
      * Displays a form to edit an existing academico entity.
      *
-     * @Route("/{id}/edit", name="academico_edit")
+     * @Route("/{slug}/edit", name="academico_edit")
      * @Method({"GET", "POST"})
      */
     public function editAction(Request $request, Academico $academico)
