@@ -76,7 +76,7 @@ class AlumnoController extends Controller
     /**
      * Displays a form to edit an existing alumno entity.
      *
-     * @Route("/{id}/edit", name="alumno_edit")
+     * @Route("/{slug}/edit", name="alumno_edit")
      * @Method({"GET", "POST"})
      */
     public function editAction(Request $request, Alumno $alumno)
@@ -93,7 +93,7 @@ class AlumnoController extends Controller
                 'Editado correctamente'
             );
 
-            return $this->redirectToRoute('alumno_edit', array('id' => $alumno->getId()));
+            return $this->redirectToRoute('alumno_edit', array('slug' => $alumno->getSlug()));
         }
 
         return $this->render('alumno/edit.html.twig', array(
