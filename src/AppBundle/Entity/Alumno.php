@@ -477,4 +477,28 @@ class Alumno
     {
         $this->programas = $programas;
     }
+
+
+    /**
+     * Add programas
+     *
+     * @param \AppBundle\Entity\Programa $programas
+     * @return Alumno
+     */
+    public function addPrograma(\AppBundle\Entity\Programa $programas)
+    {
+        $this->programas[] = $programas;
+
+        return $this;
+    }
+
+    /**
+     * Remove programas
+     *
+     * @param \AppBundle\Entity\Programa $programas
+     */
+    public function removePrograma(\AppBundle\Entity\Programa $programas)
+    {
+        $this->programas->removeElement($programas);
+    }
 }
