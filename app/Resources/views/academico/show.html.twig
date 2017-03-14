@@ -43,6 +43,12 @@
                 </tbody>
             </table>
 
+
+            <div class="page-header"><h3>Parte de comité tutorial</h3></div>
+            {% for tutoria in academico.tutorias %}
+                <p><a href="{{ path('alumno_show', {'slug': tutoria.alumno.slug }) }}">{{ tutoria.alumno.paterno }} {{ tutoria.alumno.materno }} {{ tutoria.alumno.nombre }}</a></p>
+            {% endfor %}
+            <div class="page-header"></div>
             <ul>
                 <li>
                     <a href="{{ path('academico_index') }}">Back to the list</a>
