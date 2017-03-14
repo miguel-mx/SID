@@ -19,18 +19,19 @@ class AlumnoRepository extends EntityRepository
             ->getResult();
     }
 
-    public function findAllBySemestre()
+    public function findAllBySemestre($semestre, $programa)
     {
         return $this->getEntityManager()
             ->createQuery(
                 "SELECT a FROM AppBundle:Alumno a
                     JOIN a.programas p
                     JOIN p.semestres s
-                    WHERE s.semestre = '2017-2'
-                    AND p.programa = 'Maestría'
+                    WHERE s.semestre = :semestre
+                    AND p.programa = :programa
                     ORDER BY a.paterno ASC"
             )
-//            ->setParameter('semestre', $semestre)
+            ->setParameter('semestre', $semestre)
+            ->setParameter('programa', $programa)
         ->getResult();
     }
 

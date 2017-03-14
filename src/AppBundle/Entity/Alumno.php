@@ -501,4 +501,15 @@ class Alumno
     {
         $this->programas->removeElement($programas);
     }
+
+   /**
+    * Programa actual del alumno
+    *
+    * @return string
+    */
+    public function programaActual()
+    {
+        // Recorrer los programas y revisar en cual está inscrito
+
+    }
 }

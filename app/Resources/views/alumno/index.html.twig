@@ -15,39 +15,58 @@
             <div class="row">
                 <div class="col col-md-2">
                     <div class="metric-container">
-                        <h3 class="metric-header">{{ alumnos|length }}</h3>
+                        <h3 class="metric-header">{{ alumnos_maestria|length + alumnos_doctorado|length }}</h3>
                         <span class="metric-label">Alumnos</span>
                     </div>
                 </div>
             </div>
 
+            <div class="page-header"><h2>Doctorado <span class="badge">{{ alumnos_doctorado|length }}</span></h2></div>
             <table class="table table-bordered" id="alumno_table">
                 <thead>
                 <tr>
                     <th>Nombre</th>
-                    <th>correo Institucional</th>
-                    <th>Escuela de procedencia</th>
-                    <th>pais</th>
+                    <th>Correo Institucional</th>
+                    <th>País</th>
                     <th>Numero de cuenta</th>
-                    <th>Cvu</th>
-                    <th>Condicionado</th>
                 </tr>
                 </thead>
                 <tbody>
-                {% for alumno in alumnos %}
+                {% for alumno in alumnos_doctorado %}
                     <tr>
                         {#<td><a href="{{ path('alumno', { 'slug': alumno.slug }) }}">{{ alumno.id }}</a></td>#}
                         <td><a href="{{ path('alumno_show', { 'slug': alumno.slug }) }}">{{ alumno.paterno }} {{ alumno.materno }} {{ alumno.nombre }}</a></td>
                         <td>{{ alumno.correoInstitucional }}</td>
-                        <td>{{ alumno.escuelaProcedencia }}</td>
                         <td class="text-center">{{ alumno.pais }}</td>
                         <td class="text-center">{{ alumno.numeroCuenta }}</td>
-                        <td class="text-center">{{ alumno.cvu }}</td>
-                        <td class="text-center">{{ alumno.condicionado ? '<i class="fa fa-check-square-o icon-success"></i> Si' : '<i class="fa fa-times-circle icon-danger"></i> No' }}</td>
                     </tr>
                 {% endfor %}
                 </tbody>
             </table>
+
+            <div class="page-header"><h2>Maestría <span class="badge">{{ alumnos_maestria|length }}</span></h2></div>
+            <table class="table table-bordered" id="alumno_table">
+                <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Correo Institucional</th>
+                    <th>País</th>
+                    <th>Numero de cuenta</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for alumno in alumnos_maestria %}
+                    <tr>
+                        {#<td><a href="{{ path('alumno', { 'slug': alumno.slug }) }}">{{ alumno.id }}</a></td>#}
+                        <td><a href="{{ path('alumno_show', { 'slug': alumno.slug }) }}">{{ alumno.paterno }} {{ alumno.materno }} {{ alumno.nombre }}</a></td>
+                        <td>{{ alumno.correoInstitucional }}</td>
+                        <td class="text-center">{{ alumno.pais }}</td>
+                        <td class="text-center">{{ alumno.numeroCuenta }}</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+
 
             <ul>
                 <li>

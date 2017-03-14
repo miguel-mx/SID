@@ -41,6 +41,14 @@
                     <h2>{{ programa.programa }} <small><a href="{{ path('programa_edit', { 'id': programa.id }) }}">
                             <i class="fa fa-pencil-square-o" aria-hidden="true"></i></a></small></h2>
                     <p>{{ programa.ingreso }} - {{ programa.termino }}</p>
+                    {% for curso in programa.cursos %}
+                        <table class="table">
+                            <tr>
+                                <td><a href="{{ path('curso_show', { 'id': curso.id }) }}">{{ curso.curso }}</a></td>
+                                <td><a href="{{ path('academico_show', { 'slug': curso.profesor.slug }) }}">{{ curso.profesor.paterno }} {{ curso.profesor.materno }} {{ curso.profesor.nombre }}</a></td>
+                            </tr>
+                        </table>
+                    {% endfor %}
                 </div>
                 {% endfor %}
             </div>

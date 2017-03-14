@@ -28,10 +28,13 @@ class AlumnoController extends Controller
 
         // get value of a parameter
         //$semestre = $container->getParameter('semestre');
-        $alumnos = $em->getRepository('AppBundle:Alumno')->findAllBySemestre();
+        $semestre_actual = $this->getParameter('semestre');
+        $alumnos_maestria = $em->getRepository('AppBundle:Alumno')->findAllBySemestre($semestre_actual, 'Maestría');
+        $alumnos_doctorado = $em->getRepository('AppBundle:Alumno')->findAllBySemestre($semestre_actual, 'Doctorado');
 
         return $this->render('alumno/index.html.twig', array(
-            'alumnos' => $alumnos,
+            'alumnos_maestria' => $alumnos_maestria,
+            'alumnos_doctorado' => $alumnos_doctorado,
         ));
     }
 

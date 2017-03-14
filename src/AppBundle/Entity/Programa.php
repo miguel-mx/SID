@@ -66,7 +66,7 @@ class Programa
     /**
      * @var string
      *
-     * @ORM\Column(name="tituloTesis", type="string", length=80, nullable=true)
+     * @ORM\Column(name="tituloTesis", type="string", length=200, nullable=true)
      */
     private $tituloTesis;
 
