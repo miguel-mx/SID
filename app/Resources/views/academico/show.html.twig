@@ -2,53 +2,70 @@
 
 {% block body %}
     <div class="content-wrapper">
-        <div class="panel-body">
-            <div class="page-header">
-                <h1> {{ academico.nombre }} {{ academico.paterno }}  </h1>
+        <section class="content-header">
+            <h1>{{ academico.paterno }} {{ academico.materno }} {{ academico.nombre }} <small>{{ academico.correo }}</small></h1>
+        </section>
+        <section class="content">
+            <div class="row">
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                    <div class="box box-primary">
+                        {#<div class="box-header">
+                            <h3>Información</h3>
+                        </div>#}
+                        <div class="box-body">
+                            <div class="row">
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <table class="table table-condensed table-hover text-muted">
+                                        <tr><td>Correo</td><td>{{ academico.correo }}</td></tr>
+                                        <tr><td>Acreditación</td><td>{{ academico.acreditacion }}</td></tr>
+                                        <tr><td>Teléfono</td><td>{{ academico.telefono }}  Ext. {{ academico.extension }}</td></tr>
+                                        <tr><td>Adscripcion</td><td>{{ academico.adscripcion }}</td></tr>
+                                    </table>
+                                </div>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <table class="table table-condensed table-hover text-muted">
+                                        <tr><td>CVU</td><td>{{ academico.cvu }}</td></tr>
+                                        <tr><td>RFC</td><td>{{ academico.rfc }}</td></tr>
+                                        <tr><td>CURP</td><td>{{ academico.curp }}</td></tr>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="box-footer">
+
+                        </div>
+                    </div>
+                </div>
             </div>
 
-            <table class="table table-bordered">
-                <thead>
-                <tr>
-                    <th>Id</th>
-                    <th>Paterno</th>
-                    <th>Materno</th>
-                    <th>Nombre</th>
-                    <th>Rfc</th>
-                    <th>Curp</th>
-                    <th>Adscripcion</th>
-                    <th>Correo</th>
-                    <th>Telefono</th>
-                    <th>Extension</th>
-                    <th>Cvu</th>
-                    <th>Acreditacion</th>
-                </tr>
-                </thead>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="box box-primary">
+                        <div class="box-header">
+                            <h4>Alumnos</h4>
+                        </div>
+                        <div class="box-body">
+                            {% for alumno in alumnos %}
+                                <p><a href="{{ path('alumno_show', {'slug': alumno.slug }) }}">{{ alumno.paterno }} {{ alumno.materno }} {{ alumno.nombre }}</a></p>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
 
-                <tbody>
-                <tr>
-                    <td>{{ academico.id }}</td>
-                    <td>{{ academico.paterno }}</td>
-                    <td>{{ academico.materno }}</td>
-                    <td>{{ academico.nombre }}</td>
-                    <td>{{ academico.rfc }}</td>
-                    <td>{{ academico.curp }}</td>
-                    <td>{{ academico.adscripcion }}</td>
-                    <td>{{ academico.correo }}</td>
-                    <td>{{ academico.telefono }}</td>
-                    <td>{{ academico.extension }}</td>
-                    <td>{{ academico.cvu }}</td>
-                    <td>{{ academico.acreditacion }}</td>
-                </tr>
-                </tbody>
-            </table>
+                <div class="col-md-6">
+                    <div class="box box-primary">
+                        <div class="box-header">
+                            <h4>Comité tutorial de:</h4>
+                        </div>
+                        <div class="box-body">
+                            {% for tutoria in academico.tutorias %}
+                                <p><a href="{{ path('alumno_show', {'slug': tutoria.alumno.slug }) }}">{{ tutoria.alumno.paterno }} {{ tutoria.alumno.materno }} {{ tutoria.alumno.nombre }}</a></p>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-
-            <div class="page-header"><h3>Parte de comité tutorial</h3></div>
-            {% for tutoria in academico.tutorias %}
-                <p><a href="{{ path('alumno_show', {'slug': tutoria.alumno.slug }) }}">{{ tutoria.alumno.paterno }} {{ tutoria.alumno.materno }} {{ tutoria.alumno.nombre }}</a></p>
-            {% endfor %}
-            <div class="page-header"></div>
             <ul>
                 <li>
                     <a href="{{ path('academico_index') }}">Back to the list</a>
@@ -62,6 +79,6 @@
                     {{ form_end(delete_form) }}
                 </li>
             </ul>
-        </div>
+        </section>
     </div>
 {% endblock %}

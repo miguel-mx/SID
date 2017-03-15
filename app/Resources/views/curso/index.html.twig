@@ -1,44 +1,60 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-<div class="content-wrapper">
-    <div class="panel-body">
-        <div class="page-header">
-            <h1>Cursos <small><span class="badge">{{ cursos|length }}</span></small></h1>
+<section class="content-wrapper">
+    <section class="content-header">
+        <h1>Cursos <small>Semestre {{ semestre }}</small></h1>
+    </section>
+    <section class="content">
+        <div class="row">
+            <div class="col-md-3 col-sm-6 col-xs-12">
+                <div class="info-box">
+                    <span class="info-box-icon bg-aqua-active">
+                        </i><i class="fa fa-book" aria-hidden="true"></i>
+                    </span>
+                    <div class="info-box-content">
+                        <span class="info-box-text">Cursos</span>
+                            <span class="info-box-number">
+                                <h2>{{ cursos |length }}</h2>
+                            </span>
+                    </div>
+                </div>
+            </div>
         </div>
-
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Tipo</th>
-                <th>Curso</th>
-                <th>Tema</th>
-                <th>Horas</th>
-                <th>Creditos</th>
-                <th>Asignatura</th>
-                <th>Clave</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for curso in cursos %}
-            <tr>
-                <td>{{ curso.tipo }}</td>
-                <td><a href="{{ path('curso_show', { 'id': curso.id }) }}">{{ curso.curso }}</a></td>
-                <td>{{ curso.tema }}</td>
-                <td>{{ curso.horasSemana }}</td>
-                <td>{{ curso.creditos }}</td>
-                <td>{{ curso.asignatura }}</td>
-                <td>{{ curso.claveGrupo }}</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-
-    <ul>
-        <li>
-            <a href="{{ path('curso_new') }}">Create a new curso</a>
-        </li>
-    </ul>
-    </div>
-</div>
+        <div class="box box-primary">
+            <div class="box-header text-right">
+                <a class="btn btn-primary btn-sm" href="{{ path('curso_new') }}" role="button">
+                    <i class="fa fa-plus" aria-hidden="true"></i> Agregar curso</a>
+            </div>
+            <div class="box-body">
+                <table class="table table-condensed table-hover">
+                    <thead>
+                    <tr>
+                        <th>Curso</th>
+                        <th>Tema</th>
+                        <th>Tipo</th>
+                        <th>Horas</th>
+                        <th>Creditos</th>
+                        <th>Asignatura</th>
+                        <th>Clave</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for curso in cursos %}
+                        <tr>
+                            <td><a href="{{ path('curso_show', { 'id': curso.id }) }}">{{ curso.curso }}</a></td>
+                            <td>{{ curso.tema }}</td>
+                            <td>{{ curso.tipo }}</td>
+                            <td class="text-center">{{ curso.horasSemana }}</td>
+                            <td class="text-center">{{ curso.creditos }}</td>
+                            <td class="text-center">{{ curso.asignatura }}</td>
+                            <td class="text-center">{{ curso.claveGrupo }}</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+</section>
 {% endblock %}

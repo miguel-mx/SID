@@ -6,17 +6,21 @@
 {% endblock %}
 
 {% block body %}
-    <div class="content-wrapper">
-        <div class="panel-body">
+    <section class="content-wrapper">
+        <section class="content-header">
+            <h1>Académicos <small>Núcleo académico básico</small></h1>
+        </section>
+
+        <section class="content">
             <div class="row">
                 <div class="col-md-3 col-sm-6 col-xs-12">
                     <div class="info-box">
-                    <span class="info-box-icon bg-aqua">
+                    <span class="info-box-icon bg-aqua-active">
                         <i class="fa fa-university"></i>
                     </span>
                         <div class="info-box-content">
                             <span class="info-box-text">Académicos</span>
-                            <span class="info-box-number">{{ academicos|length }}</span>
+                            <span class="info-box-number"><h2>{{ academicos|length }}</h2></span>
                         </div>
                         <!-- /.info-box-content -->
                     </div>
@@ -29,7 +33,7 @@
                         <i class="fa fa-plus" aria-hidden="true"></i> Nuevo académico</a>
                 </div>
                 <div class="box-body">
-                    <table class="table table-bordered" id="academico_table">
+                    <table class="table table-condensed table-hover" id="academico_table">
                         <thead>
                         <tr>
                             <th>Nombre</th>
@@ -53,7 +57,7 @@
                     </table>
                 </div>
             </div>
-        </div>
+        </section>
     </div>
 {% endblock %}
 

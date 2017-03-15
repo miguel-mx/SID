@@ -67,8 +67,13 @@ class AcademicoController extends Controller
     {
         $deleteForm = $this->createDeleteForm($academico);
 
+        $semestre_actual = $this->getParameter('semestre');
+        $em = $this->getDoctrine()->getManager();
+        $alumnos = $em->getRepository('AppBundle:Academico')->findAllAlumnos($semestre_actual, $academico->getId());
+
         return $this->render('academico/show.html.twig', array(
             'academico' => $academico,
+            'alumnos' => $alumnos,
             'delete_form' => $deleteForm->createView(),
         ));
     }

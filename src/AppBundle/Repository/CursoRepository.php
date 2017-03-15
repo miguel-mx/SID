@@ -12,4 +12,12 @@ use Doctrine\ORM\EntityRepository;
  */
 class CursoRepository extends EntityRepository
 {
+    public function findAllOrderByCurso()
+    {
+        return $this->getEntityManager()
+            ->createQuery(
+                "SELECT c FROM AppBundle:Curso c ORDER BY c.curso ASC"
+            )
+            ->getResult();
+    }
 }

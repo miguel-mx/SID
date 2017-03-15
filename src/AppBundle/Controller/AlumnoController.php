@@ -26,8 +26,6 @@ class AlumnoController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        // get value of a parameter
-        //$semestre = $container->getParameter('semestre');
         $semestre_actual = $this->getParameter('semestre');
         $alumnos_maestria = $em->getRepository('AppBundle:Alumno')->findAllBySemestre($semestre_actual, 'Maestría');
         $alumnos_doctorado = $em->getRepository('AppBundle:Alumno')->findAllBySemestre($semestre_actual, 'Doctorado');

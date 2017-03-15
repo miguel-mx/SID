@@ -12,4 +12,20 @@ use Doctrine\ORM\EntityRepository;
  */
 class AcademicoRepository extends EntityRepository
 {
+    public function findAllAlumnos($semestre, $tutor_id)
+    {
+        return $this->getEntityManager()
+            ->createQuery(
+                "SELECT a FROM AppBundle:Alumno a
+                    JOIN a.programas p
+                    JOIN p.semestres s
+                    WHERE p.tutor = :tutor
+                    AND s.semestre = :semestre
+                    ORDER BY a.paterno ASC"
+            )
+            ->setParameter('semestre', $semestre)
+            ->setParameter('tutor', $tutor_id)
+        ->getResult();
+    }
+
 }
