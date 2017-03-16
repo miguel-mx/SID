@@ -75,6 +75,7 @@
                             <div class="box-body">
                                 <p>Periodo: {{ programa.ingreso }} - {{ programa.termino }}</p>
                                 <p><span class="lead text-muted">Tutor: <a href="{{ path('academico_show', { 'slug': programa.tutor.slug }) }}">{{ programa.tutor.paterno }} {{ programa.tutor.materno }} {{ programa.tutor.nombre }}</a></span></p>
+                                <p>{{ programa.tituloTesis }}</p>
                                 <div class="page-header text-muted"><h3>Cursos</h3></div>
                                 <table class="table table-condensed table-hover">
                                     {% for curso in programa.cursos %}

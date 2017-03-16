@@ -4,6 +4,8 @@
 
     {{ parent() }}
     <link rel="stylesheet" href="{{ asset('css/bootstrap-datepicker3.css') }}">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2-bootstrap-theme/0.1.0-beta.6/select2-bootstrap.css" rel="stylesheet" />
 
 {% endblock %}
 
@@ -49,7 +51,7 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-md-4">
+                        <div class="col-md-2">
                             <div class="form-group">
                                 <label>Fecha grado UMSNH</label>
                                 <div class="input-group date">
@@ -61,7 +63,7 @@
                                 <span class="text-danger">{{ form_errors(edit_form.fechaGradoUMSNH) }}</span>
                             </div>
                         </div>
-                        <div class="col-md-4">
+                        <div class="col-md-2">
                             <div class="form-group">
                                 <label>Fecha grado UNAM</label>
                                 {{ form_widget(edit_form.fechaGradoUNAM) }}
@@ -84,6 +86,38 @@
                                 <span class="text-danger">{{ form_errors(edit_form.tituloTesis) }}</span>
                             </div>
                         </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label>Tutor</label>
+                                {{ form_widget(edit_form.tutor, {'attr': {'class': 'form-control'}}) }}
+                                <span class="text-danger">{{ form_errors(edit_form.tutor) }}</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label>Semestres</label>
+                                    {{ form_widget(edit_form.semestres, {'attr': {'class': 'form-control semestres-multiple select2-bootstrap-append', 'multiple': '',  'style': 'width=100%', 'tabindex': '-1', 'aria-hidden': 'true'}}) }}
+                                <span class="text-danger">{{ form_errors(edit_form.semestres) }}</span>
+                            </div>
+                        </div>
+                        <div class="col-md-8">
+                            <div class="form-group">
+                                <label>Cursos</label>
+                                {{ form_widget(edit_form.cursos, {'attr': {'class': 'form-control cursos-multiple', 'multiple': '',  'style': 'width=100%', 'tabindex': '-1', 'aria-hidden': 'true'}}) }}
+                                <span class="text-danger">{{ form_errors(edit_form.cursos) }}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-8">
+                            <div class="form-group">
+                                <label>Comité tutorial</label>
+                                {{ form_widget(edit_form.comite_tutorial, {'attr': {'class': 'form-control comite-multiple', 'multiple': 'multiple'}}) }}
+                                <span class="text-danger">{{ form_errors(edit_form.comite_tutorial) }}</span>
+                            </div>
                     </div>
                 </div>
                 <div class="box-footer">
@@ -112,13 +146,34 @@
     {{ parent() }}
     <script src="{{ asset('js/bootstrap-datepicker.js') }}"></script>
     <script src="{{ asset('js/bootstrap-datepicker.es.min.js') }}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
+    <script src=""></script>
 
     <script>
         $(document).ready(function() {
             $('.js-datepicker').datepicker({
-                format: 'yyyy-mm-dd'
+                format: 'yyyy-mm-dd',
+                language: 'en',
+                orientation: "auto bottom"
             });
         });
     </script>
+
+    <script type="text/javascript">
+        $(".semestres-multiple").select2({
+            theme: "bootstrap"
+        });
+    </script>
+    <script type="text/javascript">
+        $(".cursos-multiple").select2({
+            theme: "bootstrap"
+        });
+    </script>
+    <script type="text/javascript">
+        $(".comite-multiple").select2({
+            theme: "bootstrap"
+        });
+    </script>
+
 
 {% endblock %}
