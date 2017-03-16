@@ -28,7 +28,10 @@ class ProgramaType extends AbstractType
                 'widget' => 'single_text',
                 'html5' => false,
                 'required' => false,))
-            ->add('fechaGradoUNAM')
+            ->add('fechaGradoUNAM' , 'Symfony\Component\Form\Extension\Core\Type\DateType', array(
+                'widget' => 'single_text',
+                'html5' => false,
+                'required' => false,))
             ->add('opcionTitulacion')
             ->add('tituloTesis')
             ->add('semestres')
