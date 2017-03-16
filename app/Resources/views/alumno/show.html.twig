@@ -55,10 +55,10 @@
                             </div>
                         </div>
                         <div class="box-footer">
-                            {#<a class="btn btn-primary" href="{{ path('programa_new', { 'slug': alumno.slug }) }}" role="button">
-                                <i class="fa fa-plus" aria-hidden="true"></i> Crear programa</a>#}
-                            <a class="btn btn-primary btn-xs" href="{{ path('alumno_edit', { 'slug': alumno.slug }) }}" role="button">
+                            <a class="btn btn-primary btn-sm" href="{{ path('alumno_edit', { 'slug': alumno.slug }) }}" role="button">
                                 <i class="fa fa-pencil" aria-hidden="true"></i> Editar</a>
+                            <a class="btn btn-warning btn-sm" href="{{ path('programa_new', { 'slug': alumno.slug }) }}" role="button">
+                                <i class="fa fa-plus" aria-hidden="true"></i> Crear programa</a>
                         </div>
                     </div>
                 </div>
