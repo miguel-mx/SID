@@ -64,8 +64,13 @@
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label>Fecha grado UNAM</label>
-                                {{ form_widget(edit_form.fechaGradoUNAM) }}
-                                <span>{{ form_errors(edit_form.fechaGradoUNAM) }}</span>
+                                <div class="input-group date">
+                                    {{ form_widget(edit_form.fechaGradoUNAM, {'attr': {'class': 'form-control js-datepickerUNAM'}})  }}
+                                    <div class="input-group-addon">
+                                        <i class="fa fa-calendar" aria-hidden="true"></i>
+                                    </div>
+                                </div>
+                                <span class="text-danger">{{ form_errors(edit_form.fechaGradoUNAM) }}</span>
                             </div>
                         </div>
                         <div class="col-md-4">
@@ -117,6 +122,15 @@
         $(document).ready(function() {
             $('.js-datepicker').datepicker({
                 format: 'yyyy-mm-dd'
+            });
+        });
+    </script>
+    <script>
+        $(document).ready(function() {
+            $('.js-datepickerUNAM').datepicker({
+                format: 'yyyy-mm-dd',
+                orientation: 'auto bottom',
+                language: 'es'
             });
         });
     </script>
