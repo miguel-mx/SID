@@ -14,8 +14,14 @@ class SemestreType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder->add('semestre')
-            ->add('fechaInicio')
-            ->add('fechaFin')
+            ->add('fechaInicio', 'Symfony\Component\Form\Extension\Core\Type\DateType', array(
+                'widget' => 'single_text',
+                'html5' => false,
+                'required' => false,))
+            ->add('fechaFin', 'Symfony\Component\Form\Extension\Core\Type\DateType', array(
+                'widget' => 'single_text',
+                'html5' => false,
+                'required' => false,))
         ;
     }
     

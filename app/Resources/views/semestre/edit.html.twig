@@ -1,37 +1,59 @@
 {% extends 'base.html.twig' %}
 
+{% block css %}
+
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('css/bootstrap-datepicker3.css') }}">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2-bootstrap-theme/0.1.0-beta.6/select2-bootstrap.css" rel="stylesheet" />
+
+{% endblock %}
+
 {% block body %}
-    <div class="content-wrapper">
-        <div class="panel-body">
+    <section class="content-wrapper">
+        <section class="content-header">
             <h1>Editar Semestre</h1>
+        </section>
 
-            {{ form_start(edit_form) }}
-            {% for flash_message in app.session.flashBag.get('notice') %}
-                <div class="alert alert-success">
-                    {{ flash_message }}
-                </div>
-            {% endfor %}
-
-            <div class="row">
-                <div class="col-md-4">
-                    <div class="form-group">
-                        <label>semestre</label>
-                        {{ form_widget(edit_form.semestre, {'attr': {'class': 'form-control'}}) }}
-                        <span class="text-danger">{{ form_errors(edit_form.semestre) }}</span>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="form-group">
-                        <label>Fecha de inicio</label>
-                        {{ form_widget(edit_form.fechaInicio) }}
-                        <span>{{ form_errors(edit_form.fechaInicio) }}</span>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="form-group">
-                        <label>Fecha de terminacion</label>
-                        {{ form_widget(edit_form.fechaFin) }}
-                        <span class="text-danger">{{ form_errors(edit_form.fechaFin) }}</span>
+        {{ form_start(edit_form) }}
+        {% for flash_message in app.session.flashBag.get('notice') %}
+            <div class="alert alert-success">
+                {{ flash_message }}
+            </div>
+        {% endfor %}
+        <section class="content">
+            <div class="box box-primary">
+                <div class="box-body">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label>semestre</label>
+                                {{ form_widget(edit_form.semestre, {'attr': {'class': 'form-control'}}) }}
+                                <span class="text-danger">{{ form_errors(edit_form.semestre) }}</span>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label>Fecha de inicio</label>
+                                <div class="input-group date">
+                                    {{ form_widget(edit_form.fechaInicio, {'attr': {'class': 'form-control js-datepickerFechaInicio'}}) }}
+                                    <div class="input-group-addon">
+                                        <i class="fa fa-calendar" aria-hidden="true"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label>Fecha de terminacion</label>
+                                <div class="input-group date">
+                                    {{ form_widget(edit_form.fechaFin, {'attr': {'class': 'form-control js-datepickerFechaFin'}}) }}
+                                    <div class="input-group-addon">
+                                        <i class="fa fa-calendar" aria-hidden="true"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -39,7 +61,7 @@
             <input class="btn btn-primary" type="submit" value="Editar" />
             {{ form_end(edit_form) }}
 
-            <ul>
+           {# <ul>
                 <li>
                     <a href="{{ path('semestre_index') }}">Back to the list</a>
                 </li>
@@ -48,7 +70,35 @@
                     <input  type="submit" value="Delete">
                     {{ form_end(delete_form) }}
                 </li>
-            </ul>
-        </div>
-    </div>
+            </ul>#}
+        </section>
+    </section>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('js/bootstrap-datepicker.js') }}"></script>
+    <script src="{{ asset('js/bootstrap-datepicker.es.min.js') }}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
+    <script src=""></script>
+
+    <script>
+        $(document).ready(function() {
+            $('.js-datepickerFechaInicio').datepicker({
+                format: 'yyyy-mm-dd',
+                language: 'en',
+                orientation: "auto bottom"
+            });
+        });
+    </script>
+    <script>
+        $(document).ready(function() {
+            $('.js-datepickerFechaFin').datepicker({
+                format: 'yyyy-mm-dd',
+                orientation: 'auto bottom',
+                language: 'es'
+            });
+        });
+    </script>
+
 {% endblock %}
