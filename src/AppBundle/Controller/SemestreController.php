@@ -26,6 +26,8 @@ class SemestreController extends Controller
 
         $semestres = $em->getRepository('AppBundle:Semestre')->findAll();
 
+
+
         return $this->render('semestre/index.html.twig', array(
             'semestres' => $semestres,
         ));
@@ -65,11 +67,15 @@ class SemestreController extends Controller
      */
     public function showAction(Semestre $semestre)
     {
-        $deleteForm = $this->createDeleteForm($semestre);
+
+        $em = $this->getDoctrine()->getManager();
+        $alumnos_maestria = $em->getRepository('AppBundle:Alumno')->findAllBySemestre($semestre->getSemestre(), 'Maestría');
+        $alumnos_doctorado = $em->getRepository('AppBundle:Alumno')->findAllBySemestre($semestre->getSemestre(), 'Doctorado');
 
         return $this->render('semestre/show.html.twig', array(
             'semestre' => $semestre,
-            'delete_form' => $deleteForm->createView(),
+            'alumnos_maestria' => $alumnos_maestria,
+            'alumnos_doctorado' => $alumnos_doctorado,
         ));
     }
 

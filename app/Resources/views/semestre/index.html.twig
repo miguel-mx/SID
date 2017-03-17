@@ -1,56 +1,63 @@
 {% extends 'base.html.twig' %}
 
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs/jqc-1.12.4/dt-1.10.13/b-1.2.4/datatables.min.css"/>
+{% endblock %}
+
 {% block body %}
     <div class="content-wrapper">
-        <div class="panel-body">
-            <div class="page-header">
-                <h1> Lista de Semestres </h1>
-            </div>
-
+        <section class="content-header">
+            <h1>Semestres</h1>
+        </section>
+        <section class="content">
             <div class="row">
-                <div class="col col-md-2">
-                    <div class="metric-container">
-                        <h3 class="metric-header">{{ semestres|length }}</h3>
+                <div class="col-md-3 col-sm-6 col-xs-12">
+                    <div class="info-box">
+                    <span class="info-box-icon bg-aqua-active">
+                        <i class="fa fa-calendar" aria-hidden="true"></i>
+                    </span>
+                        <div class="info-box-content">
+                            <span class="info-box-text">Semestres</span>
+                            <span class="info-box-number">
+                                <h2>{{ semestre|length }}</h2>
+                            </span>
+                        </div>
                     </div>
                 </div>
             </div>
+            <div class="box-body">
+                <div class="box box-primary">
+                    <table class="table table-bordered" id="semestre_table">
+                        <thead>
+                        <tr>
+                            <th>Semestre</th>
+                            <th>Fecha de inicio</th>
+                            <th>Fecha fin</th>
+                            <th>Operaciones</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for semestre in semestres %}
+                            <tr>
+                                <td><a href="{{ path('semestre_show', { 'slug': semestre.slug }) }}">{{ semestre.semestre }}</td>
+                                <td>{% if semestre.fechaInicio %}{{ semestre.fechaInicio|date('d-m-Y') }}{% endif %}</td>
+                                <td>{% if semestre.fechaFin %}{{ semestre.fechaFin|date('d-m-Y') }}{% endif %}</td>
+                                <td>
+                                <a href="{{ path('semestre_edit', { 'slug': semestre.slug }) }}"><i class="fa fa-pencil-square-o" aria-hidden="true" ></i></a>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="box-footer">
+                <a href="{{ path('semestre_new') }}" class="btn btn-primary">Crear un nuevo semestre</a>
+            </div>
 
-            <table class="table table-bordered" id="semestre_table">
-                <thead>
-                <tr>
-                    <th>Semestre</th>
-                    <th>Fecha de inicio</th>
-                    <th>Fecha fin</th>
-                    <th>Operaciones</th>
-                </tr>
-                </thead>
-                <tbody>
-                {% for semestre in semestres %}
-                    <tr>
-                        <td>{{ semestre.semestre }}</td>
-                        <td>{% if semestre.fechaInicio %}{{ semestre.fechaInicio|date('d-m-Y') }}{% endif %}</td>
-                        <td>{% if semestre.fechaFin %}{{ semestre.fechaFin|date('d-m-Y') }}{% endif %}</td>
+        </section>
 
-                        <td>
-                            <ul>
-                                <li>
-                                    <a href="{{ path('semestre_show', { 'slug': semestre.slug }) }}">show</a>
-                                </li>
-                                <li>
-                                    <a href="{{ path('semestre_edit', { 'slug': semestre.slug }) }}">edit</a>
-                                </li>
-                            </ul>
-                        </td>
-                    </tr>
-                {% endfor %}
-                </tbody>
-            </table>
-        </div>
     </div>
 
-    <ul>
-        <li>
-            <a href="{{ path('semestre_new') }}">Create a new semestre</a>
-        </li>
-    </ul>
 {% endblock %}
