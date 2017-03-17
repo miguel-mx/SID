@@ -1,14 +1,11 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-<div class="content-wrapper">
-    <section class="content-header">
-        <h1>Editar </h1>
-    </section>
-
-    {{ form_start(edit_form) }}
-
-    <div class="content">
+    <div class="content-wrapper">
+        <div class="content-header">
+            <h1>Editar </h1>
+        </div>
+        {{ form_start(edit_form) }}
         {% for flash_message in app.session.flashBag.get('notice') %}
             <div class="alert alert-success">
                 {{ flash_message }}
@@ -16,9 +13,9 @@
         {% endfor %}
         <div class="content">
             <div class="alert-danger">{{ form_errors(edit_form) }}</div>
-            <div class="box box-body">
-                <div class="col-md-6 col-sm-6 col-xs-12">
-                    <div class="box box-primary">
+            <div class="box box-primary">
+                <div class="box-body">
+                    <div class="col-md-6 col-sm-6 col-xs-12">
                         <div class="box-header">
                             <h3>Datos personales</h3>
                         </div>
@@ -80,9 +77,7 @@
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-md-6 col-sm-6 col-xs-12">
-                    <div class="box box-primary">
+                    <div class="col-md-6 col-sm-6 col-xs-12">
                         <div class="box-header">
                             <h3> Datos académicos</h3>
                         </div>
@@ -115,23 +110,23 @@
                         </div>
                     </div>
                 </div>
+                <div class="box-footer">
+                    <input class="btn btn-primary btn-sm" type="submit" value="Guardar cambios">
+                </div>
             </div>
-            <div class="box-footer">
-                {{ form_widget(edit_form) }}
-                <input class="btn btn-primary btn-sm" type="submit" value="Guardar cambios">
-            </div>
-            {{ form_end(edit_form) }}
-            {# <ul>
-                 <li>
-                     <a href="{{ path('alumno_index') }}">Back to the list</a>
-                 </li>
-                 <li>
-                     {{ form_start(delete_form) }}
-                     <input type="submit" value="Delete">
-                     {{ form_end(delete_form) }}
-                 </li>
-             </ul>#}
         </div>
+
     </div>
-</div>
-    {% endblock %}
+    {{ form_end(edit_form) }}
+    {# <ul>
+         <li>
+             <a href="{{ path('alumno_index') }}">Back to the list</a>
+         </li>
+         <li>
+             {{ form_start(delete_form) }}
+             <input type="submit" value="Delete">
+             {{ form_end(delete_form) }}
+         </li>
+     </ul>#}
+
+{% endblock %}
