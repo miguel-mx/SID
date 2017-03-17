@@ -16,23 +16,27 @@
                             <div class="row">
                                 <div class="col-md-6 col-sm-6 col-xs-12">
                                     <table class="table table-condensed table-hover text-muted">
-                                        <tr><td>Correo</td><td>{{ academico.correo }}</td></tr>
-                                        <tr><td>Acreditación</td><td>{{ academico.acreditacion }}</td></tr>
-                                        <tr><td>Teléfono</td><td>{{ academico.telefono }}  Ext. {{ academico.extension }}</td></tr>
-                                        <tr><td>Adscripcion</td><td>{{ academico.adscripcion }}</td></tr>
+                                        <tr><td><strong>Correo</strong></td><td>{{ academico.correo }}</td></tr>
+                                        <tr><td><strong>Acreditación</strong></td><td>{{ academico.acreditacion }}</td></tr>
+                                        <tr><td><strong>Teléfono</strong></td><td>{{ academico.telefono }}  Ext. {{ academico.extension }}</td></tr>
+                                        <tr><td><strong>Adscripcion</strong></td><td>{{ academico.adscripcion }}</td></tr>
                                     </table>
                                 </div>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
                                     <table class="table table-condensed table-hover text-muted">
-                                        <tr><td>CVU</td><td>{{ academico.cvu }}</td></tr>
-                                        <tr><td>RFC</td><td>{{ academico.rfc }}</td></tr>
-                                        <tr><td>CURP</td><td>{{ academico.curp }}</td></tr>
+                                        <tr><td><strong>CVU</strong></td><td>{{ academico.cvu }}</td></tr>
+                                        <tr><td><strong>RFC</strong></td><td>{{ academico.rfc }}</td></tr>
+                                        <tr><td><strong>CURP</strong></td><td>{{ academico.curp }}</td></tr>
                                     </table>
                                 </div>
                             </div>
                         </div>
                         <div class="box-footer">
 
+                        </div>
+                        <div class="box-footer">
+                            <a class="btn btn-primary btn-sm" href="{{ path('academico_edit', { 'slug': academico.slug }) }}" role="button">
+                                <i class="fa fa-pencil" aria-hidden="true"></i> Editar</a>
                         </div>
                     </div>
                 </div>
@@ -65,20 +69,20 @@
                     </div>
                 </div>
             </div>
-
-            <ul>
+            <a href="{{ path('academico_edit', { 'slug': academico.slug }) }}">Edit</a>
+            {#<ul>
                 <li>
                     <a href="{{ path('academico_index') }}">Back to the list</a>
                 </li>
                 <li>
-                    <a href="{{ path('academico_edit', { 'slug': academico.slug }) }}">Edit</a>
+
                 </li>
                 <li>
                     {{ form_start(delete_form) }}
                     <input type="submit" value="Delete">
                     {{ form_end(delete_form) }}
                 </li>
-            </ul>
+            </ul>#}
         </section>
     </div>
 {% endblock %}
