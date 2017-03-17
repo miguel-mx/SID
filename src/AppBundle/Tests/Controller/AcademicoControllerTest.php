@@ -12,9 +12,19 @@ class AcademicoControllerTest extends WebTestCase
         // Create a new client to browse the application
         $client = static::createClient();
 
-        // Create a new entry in the database
+
         $crawler = $client->request('GET', '/academico/');
         $this->assertEquals(200, $client->getResponse()->getStatusCode(), "Unexpected HTTP status code for GET /academico/");
+
+        $crawler = $client->request('GET', '/academico/new');
+        $this->assertEquals(200, $client->getResponse()->getStatusCode(), "Unexpected HTTP status code for GET /academico/");
+
+        $crawler = $client->request('GET', '/academico/balanzario-gutierrez-eugenio-pacelli');
+        $this->assertEquals(200, $client->getResponse()->getStatusCode(), "Unexpected HTTP status code for GET /academico/");
+
+        $crawler = $client->request('GET', '/academico/balanzario-gutierrez-eugenio-pacelli/edit');
+        $this->assertEquals(200, $client->getResponse()->getStatusCode(), "Unexpected HTTP status code for GET /academico/");
+
     }
         /*
             $crawler = $client->click($crawler->selectLink('Create a new entry')->link());

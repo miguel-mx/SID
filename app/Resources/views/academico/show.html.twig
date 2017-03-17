@@ -7,7 +7,7 @@
         </section>
         <section class="content">
             <div class="row">
-                <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="col-md-8 col-sm-8 col-xs-12">
                     <div class="box box-primary">
                         {#<div class="box-header">
                             <h3>Información</h3>
@@ -15,12 +15,13 @@
                         <div class="box-body">
                             <div class="row">
                                 <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <p class="text-muted lead">{{ academico.acreditacion }}</p><p class="text-muted">{{ academico.adscripcion }}</p>
+                                    <hr>
                                     <table class="table table-condensed table-hover text-muted">
-                                        <tr><td><strong>Correo</strong></td><td>{{ academico.correo }}</td></tr>
-                                        <tr><td><strong>Acreditación</strong></td><td>{{ academico.acreditacion }}</td></tr>
-                                        <tr><td><strong>Teléfono</strong></td><td>{{ academico.telefono }}  Ext. {{ academico.extension }}</td></tr>
-                                        <tr><td><strong>Adscripcion</strong></td><td>{{ academico.adscripcion }}</td></tr>
+                                        <tr><td>Correo</td><td>{{ academico.correo }}</td></tr>
+                                        <tr><td>Teléfono</td><td>{{ academico.telefono }}  Ext. {{ academico.extension }}</td></tr>
                                     </table>
+
                                 </div>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
                                     <table class="table table-condensed table-hover text-muted">
@@ -43,7 +44,7 @@
             </div>
 
             <div class="row">
-                <div class="col-md-6">
+                <div class="col-md-4">
                     <div class="box box-primary">
                         <div class="box-header">
                             <h4>Alumnos</h4>
@@ -56,7 +57,7 @@
                     </div>
                 </div>
 
-                <div class="col-md-6">
+                <div class="col-md-4">
                     <div class="box box-primary">
                         <div class="box-header">
                             <h4>Comité tutorial de:</h4>

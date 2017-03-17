@@ -39,7 +39,7 @@
 
                                     <table class="table table-condensed table-hover text-muted">
                                         <tr>
-                                            <td><strong>País de origen</strong></td><td><span class="flag-icon flag-icon-mx"></span> {{ alumno.pais }}</td>
+                                            <td><strong>País de origen</strong></td><td><span class="flag-icon flag-icon-{{ alumno.pais|country }}"></span> {{ alumno.pais }}</td>
                                         </tr>
                                         <tr>
                                             <td><strong>Universidad de procedencia</strong></td><td>{{ alumno.escuelaProcedencia }}</td>
@@ -81,6 +81,7 @@
                                     {% for curso in programa.cursos %}
                                         <tr>
                                             <td><strong><a href="{{ path('curso_show', { 'id': curso.id }) }}">{{ curso.curso }}</a></strong></td>
+                                            <td class="text-muted">{{ curso.semestre.semestre }}</td>
                                             <td><a href="{{ path('academico_show', { 'slug': curso.profesor.slug }) }}">{{ curso.profesor.paterno }} {{ curso.profesor.materno }} {{ curso.profesor.nombre }}</a></td>
                                         </tr>
                                     {% endfor %}

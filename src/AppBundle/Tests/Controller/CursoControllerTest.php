@@ -15,6 +15,16 @@ class CursoControllerTest extends WebTestCase
         // Create a new entry in the database
         $crawler = $client->request('GET', '/curso/');
         $this->assertEquals(200, $client->getResponse()->getStatusCode(), "Unexpected HTTP status code for GET /curso/");
+
+        $crawler = $client->request('GET', '/curso/new');
+        $this->assertEquals(200, $client->getResponse()->getStatusCode(), "Unexpected HTTP status code for GET /curso/");
+
+        $crawler = $client->request('GET', '/curso/3');
+        $this->assertEquals(200, $client->getResponse()->getStatusCode(), "Unexpected HTTP status code for GET /curso/");
+
+        $crawler = $client->request('GET', '/curso/3/edit');
+        $this->assertEquals(200, $client->getResponse()->getStatusCode(), "Unexpected HTTP status code for GET /curso/");
+
     }
 
         /*

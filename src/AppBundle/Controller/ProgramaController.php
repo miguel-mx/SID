@@ -52,7 +52,7 @@ class ProgramaController extends Controller
             $em->flush($programa);
 
 
-            return $this->redirectToRoute('programa_show', array('id' => $programa->getId()));
+            return $this->redirectToRoute('alumno_show', array('slug' => $programa->getAlumno()->getSlug()));
         }
 
         return $this->render('programa/new.html.twig', array(
