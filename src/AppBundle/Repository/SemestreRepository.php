@@ -12,4 +12,20 @@ use Doctrine\ORM\EntityRepository;
  */
 class SemestreRepository extends EntityRepository
 {
+
+    public function findAllBySemestre($semestre, $programa)
+    {
+        return $this->getEntityManager()
+            ->createQuery(
+                "SELECT a FROM AppBundle:Alumno a
+                    JOIN a.programas p
+                    JOIN p.semestres s
+                    WHERE s.semestre = :semestre
+                    AND p.programa = :programa
+                    ORDER BY a.paterno ASC"
+            )
+            ->setParameter('semestre', $semestre)
+            ->setParameter('programa', $programa)
+            ->getResult();
+    }
 }
