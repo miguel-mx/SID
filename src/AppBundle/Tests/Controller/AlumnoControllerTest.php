@@ -15,6 +15,18 @@ class AlumnoControllerTest extends WebTestCase
         $crawler = $client->request('GET', '/alumno/');
         $this->assertEquals(200, $client->getResponse()->getStatusCode(), "Unexpected HTTP status code for GET /alumno/");
 
+        $crawler = $client->request('GET', '/alumno/new');
+        $this->assertEquals(200, $client->getResponse()->getStatusCode(), "Unexpected HTTP status code for GET /alumno/");
+
+        $crawler = $client->request('GET', '/alumno/all');
+        $this->assertEquals(200, $client->getResponse()->getStatusCode(), "Unexpected HTTP status code for GET /alumno/");
+
+        $crawler = $client->request('GET', '/alumno/espinosa-garcia-manuel-alejandro');
+        $this->assertEquals(200, $client->getResponse()->getStatusCode(), "Unexpected HTTP status code for GET /alumno/");
+
+        $crawler = $client->request('GET', '/alumno/espinosa-garcia-manuel-alejandro/edit');
+        $this->assertEquals(200, $client->getResponse()->getStatusCode(), "Unexpected HTTP status code for GET /alumno/");
+
     }
         /*
             $crawler = $client->click($crawler->selectLink('Create a new entry')->link());

@@ -46,9 +46,10 @@ class AlumnoController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
+
         $alumnos = $em->getRepository('AppBundle:Alumno')->findAllOrderedByPaterno();
 
-        return $this->render('alumno/index.html.twig', array(
+        return $this->render(':alumno:todos.html.twig', array(
             'alumnos' => $alumnos,
         ));
     }

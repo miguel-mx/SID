@@ -35,14 +35,14 @@
                                 <span class="text-danger">{{ form_errors(edit_form.programa) }}</span>
                             </div>
                         </div>
-                        <div class="col-md-4">
+                        <div class="col-md-2">
                             <div class="form-group">
                                 <label>Semestre de ingreso</label>
                                 {{ form_widget(edit_form.ingreso, {'attr': {'class': 'form-control'}}) }}
                                 <span class="text-danger">{{ form_errors(edit_form.ingreso) }}</span>
                             </div>
                         </div>
-                        <div class="col-md-4">
+                        <div class="col-md-2">
                             <div class="form-group">
                                 <label class="text-muted">Semestre de término</label>
                                 {{ form_widget(edit_form.termino, {'attr': {'class': 'form-control'}}) }}
@@ -117,19 +117,19 @@
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-8">
+                    <div class="row">
+                        <div class="col-md-8">
                             <div class="form-group">
                                 <label>Comité tutorial</label>
                                 {{ form_widget(edit_form.comite_tutorial, {'attr': {'class': 'form-control comite-multiple', 'multiple': 'multiple'}}) }}
                                 <span class="text-danger">{{ form_errors(edit_form.comite_tutorial) }}</span>
                             </div>
+                        </div>
                     </div>
                 </div>
                 <div class="box-footer">
                     {{ form_widget(edit_form) }}
-                    <input  class="btn btn-primary btn-sm" type="submit" value="Guardar cambios" />
+                    <input  class="btn btn-success btn-sm" type="submit" value="Guardar cambios">
                 </div>
             </div>
 
