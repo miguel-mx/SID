@@ -83,3 +83,9 @@ services:
         class: Twig_Extensions_Extension_Intl
         tags:
             - { name: twig.extension }
+
+ivory_ck_editor:
+    configs:
+        sid_config:
+            toolbar: standard
+            language: es

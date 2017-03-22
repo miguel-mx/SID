@@ -8,7 +8,7 @@
         </section>
         <div class="content">
             <div class="alert-danger">{{ form_errors(edit_form) }}</div>
-            <div class="col-md-6 col-sm-6 col-xs-6">
+            <div class="col-md-8 col-sm-8 col-xs-8">
                 <div class="box box-primary">
                     <div class="box-body">
                         {% for flash_message in app.session.flashBag.get('notice') %}
@@ -30,19 +30,9 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label>Asignatura</label>
-                                        {{ form_widget(edit_form.asignatura, {'attr': {'class': 'form-control'}}) }}
-                                        <span class="text-danger">{{ form_errors(edit_form.asignatura) }}</span>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <label>Tema</label>
-                                        {{ form_widget(edit_form.tema, {'attr': {'class': 'form-control'}}) }}
-                                        <span class="text-danger">{{ form_errors(edit_form.tema) }}</span>
+                                        <label>Profesor</label>
+                                        {{ form_widget(edit_form.profesor, {'attr': {'class': 'form-control'}}) }}
+                                        <span>{{ form_errors(edit_form.profesor) }}</span>
                                     </div>
                                 </div>
                             </div>
@@ -97,21 +87,79 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label>Profesor</label>
-                                        {{ form_widget(edit_form.profesor, {'attr': {'class': 'form-control'}}) }}
-                                        <span>{{ form_errors(edit_form.profesor) }}</span>
+                                        <label>Asignatura</label>
+                                        {{ form_widget(edit_form.asignatura, {'attr': {'class': 'form-control'}}) }}
+                                        <span class="text-danger">{{ form_errors(edit_form.asignatura) }}</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label>Tema</label>
+                                        {{ form_widget(edit_form.tema, {'attr': {'class': 'form-control'}}) }}
+                                        <span class="text-danger">{{ form_errors(edit_form.tema) }}</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label>Objetivo</label>
+                                        {{ form_widget(edit_form.objetivo, {'attr': {'class': 'form-control'}}) }}
+                                        <span>{{ form_errors(edit_form.objetivo) }}</span>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label>Temario</label>
+                                        {{ form_widget(edit_form.temario, {'attr': {'class': 'form-control'}}) }}
+                                        <span>{{ form_errors(edit_form.temario) }}</span>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label>Bibliografía</label>
+                                        {{ form_widget(edit_form.bibliografia, {'attr': {'class': 'form-control'}}) }}
+                                        <span>{{ form_errors(edit_form.bibliografia) }}</span>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label>Requisitos</label>
+                                        {{ form_widget(edit_form.requisitos, {'attr': {'class': 'form-control'}}) }}
+                                        <span>{{ form_errors(edit_form.bibliografia) }}</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label>Comentarios</label>
+                                        {{ form_widget(edit_form.comentarios, {'attr': {'class': 'form-control'}}) }}
+                                        <span>{{ form_errors(edit_form.comentarios) }}</span>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="box-footer">
-                            <input class="btn btn-primary btn-sm" type="submit" value="Editar">
-                        </div>
+                    </div>
+                    <div class="box-footer">
+                        <input class="btn btn-primary btn-sm" type="submit" value="Editar">
                     </div>
                 </div>
             </div>
         </div>
-        {{ form_end(form) }}
+    </div>
+    {{ form_end(edit_form) }}
 
     </div>
 {% endblock %}

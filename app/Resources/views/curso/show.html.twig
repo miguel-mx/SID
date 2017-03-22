@@ -45,19 +45,11 @@
                 </div>
             </div>
 
-            <ul>
-                <li>
-                    <a href="{{ path('curso_index') }}">Back to the list</a>
-                </li>
-                <li>
-                    <a href="{{ path('curso_edit', { 'id': curso.id }) }}">Edit</a>
-                </li>
-                <li>
-                    {{ form_start(delete_form) }}
-                    <input type="submit" value="Delete">
-                    {{ form_end(delete_form) }}
-                </li>
-            </ul>
+            <a class="btn btn-primary btn-sm" href="{{ path('curso_edit', { 'id': curso.id }) }}" role="button">
+                <i class="fa fa-pencil" aria-hidden="true"></i> Editar</a>
+
+
+
         </section>
     </div>
 {% endblock %}

@@ -23,13 +23,23 @@ class CursoType extends AbstractType
         ))
             ->add('curso')
             ->add('tema')
-            ->add('horasSemana')
-            ->add('creditos')
-            ->add('asignatura')
-            ->add('claveGrupo')
-            ->add('lugar')
-            ->add('semestre')
+
             ->add('profesor')
+            ->add('objetivo', 'Ivory\CKEditorBundle\Form\Type\CKEditorType', array(
+                'config_name' => 'sid_config',
+            ))
+            ->add('temario', 'Ivory\CKEditorBundle\Form\Type\CKEditorType', array(
+                'config_name' => 'sid_config',
+            ))
+            ->add('bibliografia', 'Ivory\CKEditorBundle\Form\Type\CKEditorType', array(
+                'config_name' => 'sid_config',
+            ))
+            ->add('requisitos', 'Ivory\CKEditorBundle\Form\Type\CKEditorType', array(
+                'config_name' => 'sid_config',
+            ))
+            ->add('comentarios', 'Ivory\CKEditorBundle\Form\Type\CKEditorType', array(
+                'config_name' => 'sid_config',
+            ))
         ;
     }
     

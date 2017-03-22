@@ -5,7 +5,8 @@ namespace AppBundle\Controller;
 use AppBundle\Entity\Curso;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component\HttpFoundation\Request;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Curso controller.
@@ -83,8 +84,18 @@ class CursoController extends Controller
     public function editAction(Request $request, Curso $curso)
     {
         $deleteForm = $this->createDeleteForm($curso);
-        $editForm = $this->createForm('AppBundle\Form\CursoType', $curso);
+        $editForm = $this->createForm('AppBundle\Form\CursoType', $curso)
+            ->add('horasSemana')
+            ->add('creditos')
+            ->add('asignatura')
+            ->add('claveGrupo')
+            ->add('lugar')
+            ->add('semestre')
+        ;
         $editForm->handleRequest($request);
+
+
+
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
@@ -96,7 +107,6 @@ class CursoController extends Controller
 
             return $this->redirectToRoute('curso_edit', array('id' => $curso->getId()));
         }
-
         return $this->render('curso/edit.html.twig', array(
             'curso' => $curso,
             'edit_form' => $editForm->createView(),
