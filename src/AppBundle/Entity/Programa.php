@@ -57,6 +57,13 @@ class Programa
     private $fechaGradoUNAM;
 
     /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="fechaCandidatura", type="date", nullable=true)
+     */
+    private $fechaCandidatura;
+
+    /**
      * @var string
      *
      * @ORM\Column(name="opcionTitulacion", type="string", length=15, nullable=true)
@@ -236,6 +243,22 @@ class Programa
     public function getFechaGradoUNAM()
     {
         return $this->fechaGradoUNAM;
+    }
+
+    /**
+     * @return \DateTime
+     */
+    public function getFechaCandidatura()
+    {
+        return $this->fechaCandidatura;
+    }
+
+    /**
+     * @param \DateTime $fechaCandidatura
+     */
+    public function setFechaCandidatura($fechaCandidatura)
+    {
+        $this->fechaCandidatura = $fechaCandidatura;
     }
 
     /**

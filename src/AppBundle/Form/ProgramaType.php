@@ -38,6 +38,10 @@ class ProgramaType extends AbstractType
             ->add('cursos')
             ->add('tutor')
             ->add('comite_tutorial')
+            ->add('fechaCandidatura', 'Symfony\Component\Form\Extension\Core\Type\DateType', array(
+                'widget' => 'single_text',
+                'html5' => false,
+                'required' => false,))
         ;
     }
     
