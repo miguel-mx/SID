@@ -9,9 +9,10 @@
     <div class="content-wrapper" xmlns="http://www.w3.org/1999/html">
         <section class="content-header">
             <h1>{{ semestre.semestre }}</h1>
+            <p>Fecha de inicio: {{ semestre.fechaInicio|localizeddate('long', 'none', 'es') }}</p>
+            <p>Fecha de término: {{ semestre.fechaFin|localizeddate('long', 'none', 'es') }}</p>
         </section>
-        <p>Fecha de inicio: {{ semestre.fechaInicio|localizeddate('long', 'none', 'es') }}</p>
-        <p>Fecha de término: {{ semestre.fechaFin|localizeddate('long', 'none', 'es') }}</p>
+
         <div class="box-body">
             <div class="box box-primary">
                 <section class="content">

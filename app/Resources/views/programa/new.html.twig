@@ -34,16 +34,28 @@
                         </div>
                         <div class="col-md-2">
                             <div class="form-group">
-                                <label>Fecha de ingreso</label>
+                                <label>Semestre de ingreso</label>
                                 {{ form_widget(form.ingreso, {'attr': {'class': 'form-control'}}) }}
                                 <span class="text-danger">{{ form_errors(form.ingreso) }}</span>
                             </div>
                         </div>
                         <div class="col-md-2">
                             <div class="form-group">
-                                <label>Fecha de Término</label>
+                                <label>Semestre de Término</label>
                                 {{ form_widget(form.termino, {'attr': {'class': 'form-control'}}) }}
                                 <span class="text-danger">{{ form_errors(form.termino) }}</span>
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <div class="form-group">
+                                <label>Fecha exámen de Candidatura</label>
+                                <div class="input-group date">
+                                    {{ form_widget(form.fechaCandidatura, {'attr': {'class': 'form-control js-datepickerCandidatura'}})  }}
+                                    <div class="input-group-addon">
+                                        <i class="fa fa-calendar" aria-hidden="true"></i>
+                                    </div>
+                                </div>
+                                <span class="text-danger">{{ form_errors(form.fechaCandidatura) }}</span>
                             </div>
                         </div>
                     </div>
@@ -154,6 +166,15 @@
     <script>
         $(document).ready(function() {
             $('.js-datepickerUNAM').datepicker({
+                format: 'yyyy-mm-dd',
+                orientation: 'auto bottom',
+                language: 'es'
+            });
+        });
+    </script>
+    <script>
+        $(document).ready(function() {
+            $('.js-datepickerCandidatura').datepicker({
                 format: 'yyyy-mm-dd',
                 orientation: 'auto bottom',
                 language: 'es'

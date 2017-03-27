@@ -22,7 +22,15 @@ class AlumnoType extends AbstractType
             ))
             ->add('correoPersonal')
             ->add('escuelaProcedencia')
-            ->add('pais')
+            ->add('pais', 'Symfony\Component\Form\Extension\Core\Type\ChoiceType', array(
+                'choices'  => array(
+                    'México' => 'México',
+                    'Colombia' => 'Colombia',
+                    'Venezuela' => 'Venezuela',
+                    'Alemania' => 'Alemania',
+                ),
+                'choices_as_values' => true,
+                ))
             ->add('numeroCuenta')
             ->add('cvu')
             ->add('condicionado')
