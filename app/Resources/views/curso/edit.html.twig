@@ -8,7 +8,6 @@
         </section>
         <div class="content">
             <div class="alert-danger">{{ form_errors(edit_form) }}</div>
-            <div class="col-md-8 col-sm-8 col-xs-8">
                 <div class="box box-primary">
                     <div class="box-body">
                         {% for flash_message in app.session.flashBag.get('notice') %}
@@ -156,7 +155,6 @@
                         <input class="btn btn-primary btn-sm" type="submit" value="Editar">
                     </div>
                 </div>
-            </div>
         </div>
     </div>
     {{ form_end(edit_form) }}

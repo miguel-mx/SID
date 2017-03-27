@@ -33,6 +33,7 @@
                                     </div>
                                 </div>
                             </div>
+                            {% if form.curso is defined %}
                             <div class="row">
                                 <div class="col-md-8">
                                     <div class="form-group">
@@ -42,10 +43,13 @@
                                     </div>
                                 </div>
                             </div>
+                            {% endif %}
                         </div>
                     </div>
                 </div>
+                {% if form.tema is defined %}
                 <div class="box-body">
+
                     <div class="box-header">
                         <h3>La siguiente información es solo para cursos avanzados (* campos obligatorios) </h3>
                     </div>
@@ -104,7 +108,7 @@
                         </div>
                     </div>
                 </div>
-
+                {% endif %}
                 <div class="box-footer">
                     <input class="btn btn-primary btn-sm" type="submit" value="Crear">
                 </div>
@@ -113,4 +117,33 @@
     </div>
 
     {{ form_end(form) }}
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+
+    <script>
+        var $tipo = $('#appbundle_curso_tipo');
+
+        $tipo.change(function() {
+            // ... retrieve the corresponding form.
+            var $form = $(this).closest('form');
+            // Simulate form data, but only include the selected sport value.
+            var data = {};
+            data[$tipo.attr('name')] = $tipo.val();
+            // Submit data via AJAX to the form's action path.
+            $.ajax({
+                url : $form.attr('action'),
+                type: $form.attr('method'),
+                data : data,
+                success: function(html) {
+                    // Replace la lista de cursos
+                    $('#appbundle_curso_curso').replaceWith(
+                        $(html).find('#appbundle_curso_curso')
+                    );
+                    // Position field now displays the appropriate positions.
+                }
+            });
+        });
+    </script>
 {% endblock %}

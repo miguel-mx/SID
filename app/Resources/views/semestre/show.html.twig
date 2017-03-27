@@ -10,8 +10,8 @@
         <section class="content-header">
             <h1>{{ semestre.semestre }}</h1>
         </section>
-        <p>Fecha de inicio: {{ semestre.fechaInicio|date('d-m-Y') }}</p>
-        <p>Fecha de término: {{ semestre.fechaFin|date('d-m-Y') }}</p>
+        <p>Fecha de inicio: {{ semestre.fechaInicio|localizeddate('long', 'none', 'es') }}</p>
+        <p>Fecha de término: {{ semestre.fechaFin|localizeddate('long', 'none', 'es') }}</p>
         <div class="box-body">
             <div class="box box-primary">
                 <section class="content">
