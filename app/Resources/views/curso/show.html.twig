@@ -3,52 +3,68 @@
 {% block body %}
     <div class="content-wrapper">
         <section class="content-header">
-            <h1>Curso</h1>
+            <h1>{{ curso.curso }}<small> {{ curso.tipo }}</small></h1>
         </section>
         <section class="content">
-            <div class="page-header">
-                <h1>{{ curso.curso }}<small> {{ curso.tipo }}</small></h1>
-                <h2 class="text-muted"><a href="{{ path('academico_show', { 'slug': curso.profesor.slug }) }}">{{ curso.profesor }}</a></h2>
-                <h3><a href="{{ path('semestre_show', { 'slug': curso.semestre }) }}">{{ curso.semestre }}</a></h3>
-            </div>
             <div class="row">
-                <div class="col-md-8">
-                    <table class="table table-bordered">
-                        <thead>
-                        <tr>
-                            <th>Tema</th>
-                            <th>Horas por semana</th>
-                            <th>Créditos</th>
-                            <th>Asignatura</th>
-                            <th>Clave de grupo</th>
-                            <th>Lugar</th>
-                            <th>Semestre</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr>
-                            <td>{{ curso.tema }}</td>
-                            <td>{{ curso.horasSemana }}</td>
-                            <td>{{ curso.creditos }}</td>
-                            <td>{{ curso.asignatura }}</td>
-                            <td>{{ curso.claveGrupo }}</td>
-                            <td>{{ curso.lugar }}</td>
-                            <td><a href="{{ path('semestre_show', { 'slug': curso.semestre }) }}">{{ curso.semestre }}</a></td>
-                        </tr>
-                        </tbody>
-                    </table>
-
-                    {% for programa in curso.programas %}
-                        <p><h4><a href="{{ path('alumno_show', { 'slug': programa.alumno.slug }) }}">{{ programa.alumno.paterno }} {{ programa.alumno.materno }} {{ programa.alumno.nombre }}</h4></a></p>
-                    {% endfor %}
-
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                    <div class="box box-primary">
+                        <div class="page-header">
+                            <h2 class="text-muted"><a href="{{ path('academico_show', { 'slug': curso.profesor.slug }) }}">{{ curso.profesor }}</a></h2>
+                            <h3><a href="{{ path('semestre_show', { 'slug': curso.semestre }) }}">{{ curso.semestre }}</a></h3>
+                        </div>
+                        <div class="box-body">
+                            <div class="col-md-12 col-sm-12 col-xs-12">
+                                <table class="table table-condensed table-hover text-muted">
+                                    <thead>
+                                    <tr>
+                                        <th>Tema</th>
+                                        <th>Horas por semana</th>
+                                        <th>Créditos</th>
+                                        <th>Asignatura</th>
+                                        <th>Clave de grupo</th>
+                                        <th>Lugar</th>
+                                        <th>Semestre</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr>
+                                        <td>{{ curso.tema }}</td>
+                                        <td>{{ curso.horasSemana }}</td>
+                                        <td>{{ curso.creditos }}</td>
+                                        <td>{{ curso.asignatura }}</td>
+                                        <td>{{ curso.claveGrupo }}</td>
+                                        <td>{{ curso.lugar }}</td>
+                                        <td><a href="{{ path('semestre_show', { 'slug': curso.semestre }) }}">{{ curso.semestre }}</a></td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="box-footer">
+                        <a class="btn btn-primary btn-sm" href="{{ path('curso_edit', { 'id': curso.id }) }}" role="button">
+                            <i class="fa fa-pencil" aria-hidden="true"></i> Editar</a>
+                        </div>
+                    </div>
                 </div>
             </div>
+            <div class="row">
+                <div class="col-md-4 col-sm-4 col-xs-12">
+                    <div class="box box-success">
+                        <div class="col-md-12 col-sm-12 col-xs-12">
+                            <div class="box-header">
+                                <h3>Alumnos</h3>
+                            </div>
+                            <div class="box-body">
 
-            <a class="btn btn-primary btn-sm" href="{{ path('curso_edit', { 'id': curso.id }) }}" role="button">
-                <i class="fa fa-pencil" aria-hidden="true"></i> Editar</a>
-
-
+                                {% for programa in curso.programas %}
+                                    <p><h4><a href="{{ path('alumno_show', { 'slug': programa.alumno.slug }) }}">{{ programa.alumno.paterno }} {{ programa.alumno.materno }} {{ programa.alumno.nombre }}</h4></a></p>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
         </section>
     </div>

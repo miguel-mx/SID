@@ -41,8 +41,8 @@
                         {% for semestre in semestres %}
                             <tr>
                                 <td><a href="{{ path('semestre_show', { 'slug': semestre.slug }) }}">{{ semestre.semestre }}</td>
-                                <td>{% if semestre.fechaInicio %}{{ semestre.fechaInicio|date('d-m-Y') }}{% endif %}</td>
-                                <td>{% if semestre.fechaFin %}{{ semestre.fechaFin|date('d-m-Y') }}{% endif %}</td>
+                                <td>{% if semestre.fechaInicio %}{{ semestre.fechaInicio|localizeddate('long', 'none', 'es') }}{% endif %}</td>
+                                <td>{% if semestre.fechaFin %}{{ semestre.fechaFin|localizeddate('long', 'none', 'es') }}{% endif %}</td>
                                 <td>
                                 <a href="{{ path('semestre_edit', { 'slug': semestre.slug }) }}"><i class="fa fa-pencil-square-o" aria-hidden="true" ></i></a>
                                 </td>
