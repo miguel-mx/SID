@@ -6,6 +6,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
+
 class AlumnoType extends AbstractType
 {
     /**
@@ -33,7 +34,12 @@ class AlumnoType extends AbstractType
                 ))
             ->add('numeroCuenta')
             ->add('cvu')
-            ->add('condicionado')
+           /* ->add('estado')
+            ->add('comentarios')
+            ->add('estatus')*/
+            ->add('tesisLicenciaturaFile','file', array(
+                'required' => false,
+            ))
         ;
     }
     

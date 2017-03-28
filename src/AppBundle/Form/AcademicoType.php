@@ -24,6 +24,10 @@ class AcademicoType extends AbstractType
             ->add('extension')
             ->add('cvu')
             ->add('acreditacion')
+            ->add('areaInvestigacion')
+            ->add('resumen')
+            ->add('ubicacion')
+            ->add('pagina')
         ;
     }
     

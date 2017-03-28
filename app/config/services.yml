@@ -12,3 +12,7 @@ services:
         public: false
         tags:
             - { name: twig.extension }
+
+    alumno.directory_namer:
+            class: 'AppBundle\Service\DirectoryNamer'
+            arguments: ['%kernel.root_dir%']

@@ -2,10 +2,11 @@
 
 namespace AppBundle\Entity;
 
-use Doctrine\Common\Collections\ArrayCollection;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
+use Symfony\Component\HttpFoundation\File\File;
 
 /**
  * Alumno
@@ -13,6 +14,8 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @ORM\Table(name="alumno")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\AlumnoRepository")
  * @ORM\HasLifecycleCallbacks()
+ * @Vich\Uploadable
+ *
  */
 class Alumno
 {
@@ -90,6 +93,14 @@ class Alumno
     /**
      * @var string
      *
+     * @ORM\Column(name="estado", type="string", length=30, nullable=true)
+     */
+    private $estado;
+
+
+    /**
+     * @var string
+     *
      * @ORM\Column(name="numero_cuenta", type="string", length=20)
      */
     private $numeroCuenta;
@@ -104,9 +115,37 @@ class Alumno
     /**
      * @var string
      *
+     * @ORM\Column(name="comentarios", type="text", nullable=true)
+     */
+    private $comentarios;
+
+    /**
+     * @var string
+     *
      * @ORM\Column(name="condicionado", type="boolean", nullable=true)
      */
     private $condicionado;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="estatus", type="string", length=25, nullable=true)
+     */
+    private $estatus;
+
+    /**
+     * @Vich\UploadableField(mapping="documento", fileNameProperty="tesisLicenciaturaName")
+     *
+     * @var File
+     */
+    private $tesisLicenciaturaFile;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     *
+     * @var string
+     */
+    private $tesisLicenciaturaName;
 
     /**
      * One Alumno has Many Programas.
@@ -332,6 +371,22 @@ class Alumno
     }
 
     /**
+     * @return string
+     */
+    public function getEstado()
+    {
+        return $this->estado;
+    }
+
+    /**
+     * @param string $estado
+     */
+    public function setEstado($estado)
+    {
+        $this->estado = $estado;
+    }
+
+    /**
      * Set numeroCuenta
      *
      * @param string $numeroCuenta
@@ -378,6 +433,23 @@ class Alumno
     }
 
     /**
+     * @return string
+     */
+    public function getComentarios()
+    {
+        return $this->comentarios;
+    }
+
+    /**
+     * @param string $comentarios
+     */
+    public function setComentarios($comentarios)
+    {
+        $this->comentarios = $comentarios;
+    }
+
+
+    /**
      * @return mixed
      */
     public function getCondicionado()
@@ -391,6 +463,22 @@ class Alumno
     public function setCondicionado($condicionado)
     {
         $this->condicionado = $condicionado;
+    }
+
+    /**
+     * @return string
+     */
+    public function getEstatus()
+    {
+        return $this->estatus;
+    }
+
+    /**
+     * @param string $estatus
+     */
+    public function setEstatus($estatus)
+    {
+        $this->estatus = $estatus;
     }
 
     /**
@@ -512,4 +600,50 @@ class Alumno
         // Recorrer los programas y revisar en cual está inscrito
 
     }
+
+    /**
+     *
+     * @param File|\Symfony\Component\HttpFoundation\File\UploadedFile $file
+     *
+     * @return Alumno
+     */
+    public function setTesisLicenciaturaFile(File $file = null)
+    {
+        $this->tesisLicenciaturaFile = $file;
+
+        if ($file) {
+            // It is required that at least one field changes if you are using doctrine
+            // otherwise the event listeners won't be called and the file is lost
+            $this->updatedAt = new \DateTimeImmutable();
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return File|null
+     */
+    public function getTesisLicenciaturaFile()
+    {
+        return $this->tesisLicenciaturaFile;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getTesisLicenciaturaName()
+    {
+        return $this->tesisLicenciaturaName;
+    }
+
+    /**
+     * @param string $tesisLicenciaturaName
+     * @return Alumno
+     */
+    public function setTesisLicenciaturaName($tesisLicenciaturaName)
+    {
+        $this->tesisLicenciaturaName = $tesisLicenciaturaName;
+    }
+
+
 }
