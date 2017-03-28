@@ -89,3 +89,12 @@ ivory_ck_editor:
         sid_config:
             toolbar: standard
             language: es
+
+vich_uploader:
+    db_driver: orm
+    mappings:
+        documento:
+            uri_prefix:         ../../documentos
+            upload_destination: '%kernel.root_dir%/../web/documentos/'
+            namer: vich_uploader.namer_uniqid
+            directory_namer: alumno.directory_namer

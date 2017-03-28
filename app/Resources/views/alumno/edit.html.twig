@@ -83,11 +83,18 @@
                         </div>
                         <div class="box-body">
                             <div class="row">
-                                <div class="col-md-10">
+                                <div class="col-md-8">
                                     <div class="form-group">
                                         <label>Escuela de procedencia</label>
                                         {{ form_widget(edit_form.escuelaProcedencia, {'attr': {'class': 'form-control'}}) }}
                                         <span class="text-danger">{{ form_errors(edit_form.escuelaProcedencia) }}</span>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label>tésis de licenciatura</label>
+                                        {{ form_widget(edit_form.tesisLicenciaturaFile) }}
+                                        <span class="text-danger">{{ form_errors(edit_form.tesisLicenciaturaFile) }}</span>
                                     </div>
                                 </div>
                             </div>

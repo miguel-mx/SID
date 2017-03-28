@@ -101,7 +101,35 @@ class Academico
      */
     private $acreditacion;
 
-   /**
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="area_investigacion", type="string", length=500, nullable=true)
+     */
+    private $areaInvestigacion;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="resumen", type="text", nullable=true)
+     */
+    private $resumen;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="ubicacion", type="string", length=120, nullable=true)
+     */
+    private $ubicacion;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="pagina", type="string", length=90, nullable=true)
+     */
+    private $pagina;
+
+    /**
     * Many Academicos have Many Tutorias.
     * @ORM\ManyToMany(targetEntity="Programa", mappedBy="comite_tutorial")
     */
@@ -393,6 +421,70 @@ class Academico
     public function getAcreditacion()
     {
         return $this->acreditacion;
+    }
+
+    /**
+     * @return string
+     */
+    public function getAreaInvestigacion()
+    {
+        return $this->areaInvestigacion;
+    }
+
+    /**
+     * @param string $areaInvestigacion
+     */
+    public function setAreaInvestigacion($areaInvestigacion)
+    {
+        $this->areaInvestigacion = $areaInvestigacion;
+    }
+
+    /**
+     * @return string
+     */
+    public function getResumen()
+    {
+        return $this->resumen;
+    }
+
+    /**
+     * @param string $resumen
+     */
+    public function setResumen($resumen)
+    {
+        $this->resumen = $resumen;
+    }
+
+    /**
+     * @return string
+     */
+    public function getUbicacion()
+    {
+        return $this->ubicacion;
+    }
+
+    /**
+     * @param string $ubicacion
+     */
+    public function setUbicacion($ubicacion)
+    {
+        $this->ubicacion = $ubicacion;
+    }
+
+    /**
+     * @return string
+     */
+    public function getPagina()
+    {
+        return $this->pagina;
+    }
+
+    /**
+     * @param string $pagina
+     */
+    public function setPagina($pagina)
+    {
+        $this->pagina = $pagina;
     }
 
     /**
