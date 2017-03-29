@@ -8,6 +8,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 use Symfony\Component\HttpFoundation\File\File;
 
+
 /**
  * Alumno
  *
@@ -134,7 +135,13 @@ class Alumno
     private $estatus;
 
     /**
-     * @Vich\UploadableField(mapping="documento", fileNameProperty="tesisLicenciaturaName")
+     * @Vich\UploadableField(mapping="alumno_documento", fileNameProperty="tesisLicenciaturaName")
+     *
+     * @Assert\File(
+     *     maxSize = "2048k",
+     *     mimeTypes = {"application/pdf", "application/x-pdf"},
+     *     mimeTypesMessage = "Favor de subir el archivo en formato PDF"
+     * )
      *
      * @var File
      */
@@ -602,6 +609,14 @@ class Alumno
     }
 
     /**
+     * @return File|null
+     */
+    public function getTesisLicenciaturaFile()
+    {
+        return $this->tesisLicenciaturaFile;
+    }
+
+    /**
      *
      * @param File|\Symfony\Component\HttpFoundation\File\UploadedFile $file
      *
@@ -614,18 +629,10 @@ class Alumno
         if ($file) {
             // It is required that at least one field changes if you are using doctrine
             // otherwise the event listeners won't be called and the file is lost
-            $this->updatedAt = new \DateTimeImmutable();
+            $this->modifiedAt = new \DateTimeImmutable();
         }
 
         return $this;
-    }
-
-    /**
-     * @return File|null
-     */
-    public function getTesisLicenciaturaFile()
-    {
-        return $this->tesisLicenciaturaFile;
     }
 
     /**
@@ -643,6 +650,8 @@ class Alumno
     public function setTesisLicenciaturaName($tesisLicenciaturaName)
     {
         $this->tesisLicenciaturaName = $tesisLicenciaturaName;
+
+        return $this;
     }
 
 

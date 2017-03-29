@@ -5,6 +5,9 @@ namespace AppBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 
 
 class AlumnoType extends AbstractType
@@ -18,7 +21,7 @@ class AlumnoType extends AbstractType
             ->add('materno')
             ->add('nombre')
             ->add('telefono')
-            ->add('correoInstitucional', 'Symfony\Component\Form\Extension\Core\Type\TextType',array(
+            ->add('correoInstitucional', 'Symfony\Component\Form\Extension\Core\Type\TextType', array(
                     'required'    => false,
             ))
             ->add('correoPersonal')
@@ -37,7 +40,7 @@ class AlumnoType extends AbstractType
            /* ->add('estado')
             ->add('comentarios')
             ->add('estatus')*/
-            ->add('tesisLicenciaturaFile','file', array(
+            ->add('tesisLicenciaturaFile', 'Symfony\Component\Form\Extension\Core\Type\FileType', array(
                 'required' => false,
             ))
         ;
