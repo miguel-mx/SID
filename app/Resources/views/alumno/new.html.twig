@@ -8,91 +8,97 @@
         </section>
         <div class="content">
             <div class="alert-danger">{{ form_errors(form) }}</div>
-            <div class="box box-primary">
-                <div class="box-body">
-                    <div class="col-md-6 col-sm-6 col-xs-12">
-                        <div class="box-header">
-                            <h3>Datos personales</h3>
-                        </div>
+            <div class="row">
+                <div class="col-md-8 col-sm-6 col-xs-12">
+                    <div class="box box-primary">
                         <div class="box-body">
-                            <div class="row">
-                                <div class="col-md-4">
-                                    <div class="form-group">
-                                        <label>Nombre(s)</label>
-                                        {{ form_widget(form.nombre, {'attr': {'class': 'form-control'}}) }}
-                                        <span class="text-dange">{{ form_errors(form.nombre) }}</span>
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="form-group">
-                                        <label>Apellido Paterno</label>
-                                        {{ form_widget(form.paterno, {'attr': {'class': 'form-control'}}) }}
-                                        <span class="text-danger">{{ form_errors(form.paterno) }}</span>
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="form-group">
-                                        <label>Apellido Materno</label>
-                                        {{ form_widget(form.materno, {'attr': {'class': 'form-control'}}) }}
-                                        <span class="text-danger">{{ form_errors(form.materno) }}</span>
-                                    </div>
-                                </div>
+                            <div class="box-header">
+                                <h3>Datos personales</h3>
                             </div>
-                            <div class="row">
-                                <div class="col-md-4">
-                                    <div class="form-group">
-                                        <label>Teléfono</label>
-                                        {{ form_widget(form.telefono, {'attr': {'class': 'form-control'}}) }}
-                                        <span  data-inputmask='"mask": "(999) 999-9999"' data-mask="">{{ form_errors(form.telefono) }}</span>
+                            <div class="box-body">
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label>Nombre(s)</label>
+                                            {{ form_widget(form.nombre, {'attr': {'class': 'form-control'}}) }}
+                                            <span class="text-dange">{{ form_errors(form.nombre) }}</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label>Apellido Paterno</label>
+                                            {{ form_widget(form.paterno, {'attr': {'class': 'form-control'}}) }}
+                                            <span class="text-danger">{{ form_errors(form.paterno) }}</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label>Apellido Materno</label>
+                                            {{ form_widget(form.materno, {'attr': {'class': 'form-control'}}) }}
+                                            <span class="text-danger">{{ form_errors(form.materno) }}</span>
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="col-md-4">
-                                    <div class="form-group">
-                                        <label>Correo Personal</label>
-                                        {{ form_widget(form.correoPersonal, {'attr': {'class': 'form-control'}}) }}
-                                        <span class="text-danger">{{ form_errors(form.correoPersonal) }}</span>
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label>Teléfono</label>
+                                            {{ form_widget(form.telefono, {'attr': {'class': 'form-control'}}) }}
+                                            <span  data-inputmask='"mask": "(999) 999-9999"' data-mask="">{{ form_errors(form.telefono) }}</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label>Correo Personal</label>
+                                            {{ form_widget(form.correoPersonal, {'attr': {'class': 'form-control'}}) }}
+                                            <span class="text-danger">{{ form_errors(form.correoPersonal) }}</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label>Correo Institucional</label>
+                                            {{ form_widget(form.correoInstitucional, {'attr': {'class': 'form-control'}}) }}
+                                            <span class="text-danger">{{ form_errors(form.correoInstitucional) }}</span>
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="col-md-4">
-                                    <div class="form-group">
-                                        <label>Correo Institucional</label>
-                                        {{ form_widget(form.correoInstitucional, {'attr': {'class': 'form-control'}}) }}
-                                        <span class="text-danger">{{ form_errors(form.correoInstitucional) }}</span>
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <label>País</label>
+                                            {{ form_widget(form.pais, {'attr': {'class': 'form-control'}}) }}
+                                            <span class="text-danger">{{ form_errors(form.pais) }}</span>
+                                        </div>
                                     </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-3">
-                                    <div class="form-group">
-                                        <label>País</label>
-                                        {{ form_widget(form.pais, {'attr': {'class': 'form-control'}}) }}
-                                        <span class="text-danger">{{ form_errors(form.pais) }}</span>
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <label>Estado</label>
+                                            {{ form_widget(form.estado, {'attr': {'class': 'form-control'}}) }}
+                                            <span class="text-danger">{{ form_errors(form.estado) }}</span>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="col-md-3">
-                                    <div class="form-group">
-                                        <label>Estado</label>
-                                        {{ form_widget(form.estado, {'attr': {'class': 'form-control'}}) }}
-                                        <span class="text-danger">{{ form_errors(form.estado) }}</span>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label>tésis de licenciatura</label>
-                                        {{ form_widget(form.tesisLicenciaturaFile) }}
-                                        <span class="text-danger">{{ form_errors(form.tesisLicenciaturaFile) }}</span>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label>tésis de licenciatura</label>
+                                            {{ form_widget(form.tesisLicenciaturaFile) }}
+                                            <span class="text-danger">{{ form_errors(form.tesisLicenciaturaFile) }}</span>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-6 col-sm-6 col-xs-12">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-8 col-sm-6 col-xs-12">
+                    <div class="box box-primary">
                         <div class="box-header">
                             <h3> Datos académicos</h3>
                         </div>
                         <div class="box-body">
                             <div class="row">
-                                <div class="col-md-10">
+                                <div class="col-md-8">
                                     <div class="form-group">
                                         <label>Escuela de procedencia</label>
                                         {{ form_widget(form.escuelaProcedencia, {'attr': {'class': 'form-control'}}) }}
@@ -136,9 +142,10 @@
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="box-footer">
-                    <input class="btn btn-primary btn-sm" type="submit" value="Crear Alumno">
+
+                    <div class="box-footer">
+                        <input class="btn btn-primary btn-sm" type="submit" value="Guardar cambios">
+                    </div>
                 </div>
             </div>
         </div>

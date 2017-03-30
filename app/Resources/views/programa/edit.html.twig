@@ -49,6 +49,18 @@
                                 <span class="text-danger">{{ form_errors(edit_form.termino) }}</span>
                             </div>
                         </div>
+                        <div class="col-md-2">
+                            <div class="form-group">
+                                <label>Fecha Examen de Candidatura</label>
+                                <div class="input-group date">
+                                    {{ form_widget(edit_form.fechaCandidatura, {'attr': {'class': 'form-control js-datepicker'}}) }}
+                                    <div class="input-group-addon">
+                                        <i class="fa fa-calendar" aria-hidden="true"></i>
+                                    </div>
+                                </div>
+                                <span class="text-danger">{{ form_errors(edit_form.fechaCandidatura) }}</span>
+                            </div>
+                        </div>
                     </div>
                     <div class="row">
                         <div class="col-md-2">

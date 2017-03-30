@@ -77,7 +77,17 @@ class AlumnoType extends AbstractType
                 ),
             ))
             ->add('comentarios')
-            ->add('estatus')
+            ->add('estatus', 'Symfony\Component\Form\Extension\Core\Type\ChoiceType', array(
+                'choices'  => array(
+                    '' => '',
+                    'Inscrito' => 'Inscrito',
+                    'Baja temporal' => 'Baja temporal',
+                    'Baja definitiva' => 'Baja definitiva',
+                    'Intercambio' => 'Intercambio',
+                    'Egresado' => 'Egresado',
+                    'Graduado' => 'Graduado',
+                ),
+            ))
             ->add('tesisLicenciaturaFile', 'Symfony\Component\Form\Extension\Core\Type\FileType', array(
                 'required' => false,
             ))

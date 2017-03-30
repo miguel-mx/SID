@@ -32,7 +32,13 @@ class ProgramaType extends AbstractType
                 'widget' => 'single_text',
                 'html5' => false,
                 'required' => false,))
-            ->add('opcionTitulacion')
+            ->add('opcionTitulacion', 'Symfony\Component\Form\Extension\Core\Type\ChoiceType', array(
+                'choices' => array(
+                    '' => '',
+                    'Tésis' => 'Tésis',
+                ),
+                'choices_as_values' => true,
+            ))
             ->add('tituloTesis')
             ->add('semestres')
             ->add('cursos')
