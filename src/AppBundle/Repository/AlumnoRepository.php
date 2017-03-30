@@ -35,4 +35,26 @@ class AlumnoRepository extends EntityRepository
         ->getResult();
     }
 
+    public function findAllByExamenCandidatura($semestre_actual)
+    {
+        // Calcula el semestre de ingreso
+        // Semestre actual - 4 semestres
+        $expr = explode("-", $semestre_actual);
+
+        $ingreso_num = (int) $expr[0] - 2;
+        $sem_ingreso = (string) $ingreso_num . '-' . $expr[1];
+
+        return $this->getEntityManager()
+            ->createQuery(
+                "SELECT a FROM AppBundle:Alumno a
+                    JOIN a.programas p
+                    WHERE p.ingreso = :sem_ingreso
+                    AND p.programa = :programa
+                    ORDER BY a.paterno ASC"
+            )
+            ->setParameter('sem_ingreso', $sem_ingreso)
+            ->setParameter('programa', 'Doctorado')
+            ->getResult();
+    }
+
 }

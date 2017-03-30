@@ -17,6 +17,40 @@
             <div class="box box-primary">
                 <section class="content">
                     <div class="row">
+
+                        {% if programas_egresan %}
+                        <div class="col-md-4 col-sm-6 col-xs-12">
+                            <div class="box box-success">
+
+                                <div class="box-header">
+                                    <h3>Alumnos que egresarán</h3>
+                                </div>
+                                <div class="box-body">
+                                    {% for programa in programas_egresan %}
+                                        <p>{{ programa.alumno.nombre }} {{ programa.programa }}</p>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                        </div>
+                        {% endif %}
+
+                       
+                        <div class="col-md-4 col-sm-6 col-xs-12">
+                            <div class="box box-success">
+
+                                <div class="box-header">
+                                    <h3>Alumnos que harán examen de candidatura</h3>
+                                </div>
+                                <div class="box-body">
+                                    {% for alumno in examenes_candidatura %}
+                                        <p>{{ alumno.nombre }}</p>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="row">
                         <div class="col-md-6 col-sm-6 col-xs-12">
                             <div class="box-header">
                                 <h3>Doctorado<span class="badge bg-aqua-active">{{ alumnos_doctorado|length  }}</span></h3>

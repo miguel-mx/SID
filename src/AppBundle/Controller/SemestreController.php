@@ -69,13 +69,18 @@ class SemestreController extends Controller
     {
 
         $em = $this->getDoctrine()->getManager();
+
         $alumnos_maestria = $em->getRepository('AppBundle:Alumno')->findAllBySemestre($semestre->getSemestre(), 'Maestría');
         $alumnos_doctorado = $em->getRepository('AppBundle:Alumno')->findAllBySemestre($semestre->getSemestre(), 'Doctorado');
+        $programas_egresan = $em->getRepository('AppBundle:Programa')->findByTermino($semestre->getSemestre());
+        $examenes_candidatura = $em->getRepository('AppBundle:Alumno')->findAllByExamenCandidatura($semestre->getSemestre());
 
         return $this->render('semestre/show.html.twig', array(
             'semestre' => $semestre,
             'alumnos_maestria' => $alumnos_maestria,
             'alumnos_doctorado' => $alumnos_doctorado,
+            'programas_egresan' => $programas_egresan,
+            'examenes_candidatura' => $examenes_candidatura,
         ));
     }
 
