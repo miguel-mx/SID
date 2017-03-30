@@ -66,14 +66,17 @@ class AcademicoController extends Controller
     public function showAction(Academico $academico)
     {
         $deleteForm = $this->createDeleteForm($academico);
-
         $semestre_actual = $this->getParameter('semestre');
+
         $em = $this->getDoctrine()->getManager();
+
+        $cursos = $em->getRepository('AppBundle:Academico')->findAllCursos($semestre_actual, $academico->getId());
         $alumnos = $em->getRepository('AppBundle:Academico')->findAllAlumnos($semestre_actual, $academico->getId());
 
         return $this->render('academico/show.html.twig', array(
             'academico' => $academico,
             'alumnos' => $alumnos,
+            'cursos' => $cursos,
             'delete_form' => $deleteForm->createView(),
         ));
     }

@@ -28,4 +28,20 @@ class AcademicoRepository extends EntityRepository
         ->getResult();
     }
 
+    public function findAllCursos($semestre, $profesor_id)
+    {
+        return $this->getEntityManager()
+            ->createQuery(
+                "SELECT c FROM AppBundle:Curso c
+                    JOIN c.profesor p
+                    JOIN c.semestre s
+                    WHERE p.id = :profesor_id
+                    AND s.semestre = :semestre
+                    ORDER BY c.curso ASC"
+            )
+            ->setParameter('semestre', $semestre)
+            ->setParameter('profesor_id', $profesor_id)
+            ->getResult();
+    }
+
 }
