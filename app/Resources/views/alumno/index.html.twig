@@ -1,8 +1,9 @@
 {% extends 'base.html.twig' %}
 
-{% block stylesheets %}
+{% block css %}
     {{ parent() }}
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs/jqc-1.12.4/dt-1.10.13/b-1.2.4/datatables.min.css"/>
+
 {% endblock %}
 
 {% block body %}
@@ -33,7 +34,7 @@
                             <h3>Doctorado <span class="badge bg-aqua-active">{{ alumnos_doctorado|length  }}</span></h3>
                         </div>
                         <div class="box-body">
-                            <table class="table table-condensed table-hover" id="alumno_table">
+                            <table class="table table-bordered" id="alumno_table">
                                 <tbody>
                                 {% for alumno in alumnos_doctorado %}
                                     <tr>
@@ -57,7 +58,7 @@
                             <h3>Maestría <span class="badge bg-aqua-active">{{ alumnos_maestria|length }}</span></h3>
                         </div>
                         <div class="box-body">
-                            <table class="table table-bordered table-hover" id="alumno_table">
+                            <table class="table table-bordered table-hover" id="maestria_table">
                                 <tbody>
                                 {% for alumno in alumnos_maestria %}
                                     <tr>

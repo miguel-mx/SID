@@ -51,7 +51,7 @@
                                             <td><strong>Certificado de calificaciones</strong></td>
                                         </tr>
                                         <tr>
-                                            <td><strong>Tésis de licenciatura</strong></td><td>{{ alumno.tesisLicenciaturaFile}}</td>
+                                            <td><strong>Tésis de licenciatura</strong></td><td><a href="{{ vich_uploader_asset(alumno, 'tesisLicenciaturaFile') }}">{{ alumno.tesisLicenciaturaName}}</a></td>
                                         </tr>
                                     </table>
                                 </div>

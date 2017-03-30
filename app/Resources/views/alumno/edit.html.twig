@@ -67,11 +67,25 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-md-4">
+                                <div class="col-md-3">
                                     <div class="form-group">
                                         <label>País</label>
                                         {{ form_widget(edit_form.pais, {'attr': {'class': 'form-control'}}) }}
                                         <span class="text-danger">{{ form_errors(edit_form.pais) }}</span>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label>Estado</label>
+                                        {{ form_widget(edit_form.estado, {'attr': {'class': 'form-control'}}) }}
+                                        <span class="text-danger">{{ form_errors(edit_form.estado) }}</span>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>tésis de licenciatura</label>
+                                        {{ form_widget(edit_form.tesisLicenciaturaFile) }}
+                                        <span class="text-danger">{{ form_errors(edit_form.tesisLicenciaturaFile) }}</span>
                                     </div>
                                 </div>
                             </div>
@@ -111,6 +125,24 @@
                                         <label>CVU</label>
                                         {{ form_widget(edit_form.cvu, {'attr': {'class': 'form-control'}}) }}
                                         <span class="text-danger">{{ form_errors(edit_form.cvu) }}</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label>Comentarios</label>
+                                        {{ form_widget(edit_form.comentarios, {'attr': {'class': 'form-control'}}) }}
+                                        <span class="text-danger">{{ form_errors(edit_form.comentarios) }}</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Estatus</label>
+                                        {{ form_widget(edit_form.estatus, {'attr': {'class': 'form-control'}}) }}
+                                        <span class="text-danger">{{ form_errors(edit_form.estatus) }}</span>
                                     </div>
                                 </div>
                             </div>

@@ -94,7 +94,7 @@ class Alumno
     /**
      * @var string
      *
-     * @ORM\Column(name="estado", type="string", length=30, nullable=true)
+     * @ORM\Column(name="estado", type="string", length=60, nullable=true)
      */
     private $estado;
 
@@ -133,6 +133,10 @@ class Alumno
      * @ORM\Column(name="estatus", type="string", length=25, nullable=true)
      */
     private $estatus;
+
+    /*
+    *
+    */
 
     /**
      * @Vich\UploadableField(mapping="alumno_documento", fileNameProperty="tesisLicenciaturaName")
