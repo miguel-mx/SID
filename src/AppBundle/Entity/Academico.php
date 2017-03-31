@@ -76,7 +76,7 @@ class Academico
     /**
      * @var string
      *
-     * @ORM\Column(name="telefono", type="string", length=10)
+     * @ORM\Column(name="telefono", type="string", length=15)
      */
     private $telefono;
 
