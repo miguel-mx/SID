@@ -11,39 +11,43 @@
             <h1>Semestre {{ semestre.semestre }} <small>Del {{ semestre.fechaInicio|localizeddate('none', 'none', 'es', null, "d 'de' MMMM") }} {{ semestre.fechaFin|localizeddate('none', 'none', 'es', null, "' al 'd 'de' MMMM Y") }}</small></h1>
         </section>
         <section class="content">
-            {% if programas_egresan %}
             <div class="row">
-                <div class="col-md-4 col-sm-6 col-xs-12">
-                    <div class="box box-success">
-                        <div class="box-header">
-                            <h3>Alumnos que egresarán</h3>
+                {% if programas_egresan|length > 0 %}
+                    <div class="col-md-4 col-sm-6 col-xs-12">
+                        <div class="box box-success">
+                            <div class="box-header">
+                                <h3>Alumnos que egresarán</h3>
+                            </div>
+                            <div class="box-body">
+                                <ul class="list-group">
+                                {% for programa in programas_egresan %}
+                                    <li class="list-group-item"><a href="{{ path('alumno_show', { 'slug': programa.alumno.slug }) }}">{{ programa.alumno.paterno }} {{ programa.alumno.materno }} {{ programa.alumno.nombre }}</a></li>
+                                {% endfor %}
+                                </ul>
+                            </div>
                         </div>
-                        <div class="box-body">
-                            {% for programa in programas_egresan %}
-                                <a href="{{ path('alumno_show', { 'slug': programa.alumno.slug }) }}">{{ programa.alumno.paterno }} {{ programa.alumno.materno }} {{ programa.alumno.nombre }}</a>
-                            {% endfor %}
+
+                    </div>
+                {% endif %}
+                {% if examenes_candidatura|length > 0 %}
+                    <div class="col-md-4 col-sm-6 col-xs-12">
+                        <div class="box box-success">
+                            <div class="box-header">
+                                <h3 class="text-muted">Examenes de Candidatura</h3>
+                            </div>
+                            <div class="box-body">
+                                <ul class="list-group">
+                                {% for alumno in examenes_candidatura %}
+                                    <li class="list-group-item"><a href="{{ path('alumno_show', { 'slug': alumno.slug }) }}">{{ alumno.paterno }} {{ alumno.materno }} {{ alumno.nombre }}</a></li>
+                                {% endfor %}
+                                </ul>
+                            </div>
                         </div>
                     </div>
-                    {% endif %}
-                </div>
-            {% if examenes_candidatura %}
-                <div class="col-md-4 col-sm-6 col-xs-12">
-                    <div class="box box-success">
-                        <div class="box-header">
-                            <h3 class="text-muted">Examenes de Candidatura</h3>
-                        </div>
-                        <div class="box-body">
-                            {% for alumno in examenes_candidatura %}
-                                <a href="{{ path('alumno_show', { 'slug': alumno.slug }) }}">{{ alumno.paterno }} {{ alumno.materno }} {{ alumno.nombre }}</a>
-                            {% endfor %}
-                        </div>
-                    </div>
-                </div>
+                {% endif %}
             </div>
-            {% endif %}
             <div class="box box-primary">
                 <div class="row">
-                    {% if alumnos_doctorado %}
                     <div class="col-md-6 col-sm-6 col-xs-12">
                         <div class="box-header">
                             <h3>Doctorado<span class="badge bg-aqua-active">{{ alumnos_doctorado|length  }}</span></h3>
@@ -61,8 +65,6 @@
                             </table>
                         </div>
                     </div>
-                    {% endif %}
-                    {% if alumnos_maestria %}
                     <div class="col-md-6 col-sm-6 col-xs-12">
                         <div class="box-header">
                             <h3>Maestría <span class="badge bg-aqua-active">{{ alumnos_maestria|length  }}</span></h3>
@@ -80,10 +82,8 @@
                             </table>
                         </div>
                     </div>
-                    {% endif %}
                 </div>
             </div>
-            {% if semestre.cursos %}
             <div class="box box-primary">
                 <div class="box-header">
                     <h3>Cursos </h3>
@@ -121,7 +121,6 @@
                     </div>
                 </div>
             </div>
-            {% endif %}
         </section>
     </div>
     {#
