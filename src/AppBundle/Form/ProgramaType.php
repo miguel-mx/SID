@@ -34,10 +34,11 @@ class ProgramaType extends AbstractType
                 'required' => false,))
             ->add('opcionTitulacion', 'Symfony\Component\Form\Extension\Core\Type\ChoiceType', array(
                 'choices' => array(
+
                     '' => '',
                     'Tésis' => 'Tésis',
                 ),
-                'choices_as_values' => true,
+                'required' => false,
             ))
             ->add('tituloTesis')
             ->add('semestres')

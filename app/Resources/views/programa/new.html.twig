@@ -17,131 +17,140 @@
             <h1>Nuevo Programa: {{ programa.programa }} <span class="text-muted">{{ programa.alumno.nombre}} {{ programa.alumno.paterno}} {{ programa.alumno.materno}}</span></h1>
         </section>
         <div class="content">
-            {% for flash_message in app.session.flashBag.get('notice') %}
-                <div class="alert alert-success">
-                    {{ flash_message }}
-                </div>
-            {% endfor %}
-            <div class="box box-primary">
-                <div class="box-body">
-                    <div class="row">
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <label>Programa</label>
-                                {{ form_widget(form.programa, {'attr': {'class': 'form-control'}}) }}
-                                <span class="text-danger">{{ form_errors(form.programa) }}</span>
-                            </div>
+            <div class="row">
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                    <div class="box box-primary">
+                        <div class="box-header">
+                            <h4><a href="{{ path('alumno_show', { 'slug': programa.alumno.slug }) }}">{{ programa.alumno.nombre }} {{ programa.alumno.paterno }} {{ programa.alumno.materno }}</a></h4>
                         </div>
-                        <div class="col-md-2">
-                            <div class="form-group">
-                                <label>Semestre de ingreso</label>
-                                {{ form_widget(form.ingreso, {'attr': {'class': 'form-control'}}) }}
-                                <span class="text-danger">{{ form_errors(form.ingreso) }}</span>
-                            </div>
-                        </div>
-                        <div class="col-md-2">
-                            <div class="form-group">
-                                <label>Semestre de Término</label>
-                                {{ form_widget(form.termino, {'attr': {'class': 'form-control'}}) }}
-                                <span class="text-danger">{{ form_errors(form.termino) }}</span>
-                            </div>
-                        </div>
-                        <div class="col-md-2">
-                            <div class="form-group">
-                                <label>Fecha exámen de Candidatura</label>
-                                <div class="input-group date">
-                                    {{ form_widget(form.fechaCandidatura, {'attr': {'class': 'form-control js-datepickerCandidatura'}})  }}
-                                    <div class="input-group-addon">
-                                        <i class="fa fa-calendar" aria-hidden="true"></i>
+                        <div class="box-body">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label>Programa</label>
+                                        {{ form_widget(form.programa, {'attr': {'class': 'form-control'}}) }}
+                                        <span class="text-danger">{{ form_errors(form.programa) }}</span>
                                     </div>
                                 </div>
-                                <span class="text-danger">{{ form_errors(form.fechaCandidatura) }}</span>
                             </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-2">
-                            <div class="form-group">
-                                <label>Fecha grado UMSNH</label>
-                                <div class="input-group date">
-                                    {{ form_widget(form.fechaGradoUMSNH, {'attr': {'class': 'form-control js-datepicker'}}) }}
-                                    <div class="input-group-addon">
-                                        <i class="fa fa-calendar" aria-hidden="true"></i>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Semestre de ingreso</label>
+                                        {{ form_widget(form.ingreso, {'attr': {'class': 'form-control'}}) }}
+                                        <span class="text-danger">{{ form_errors(form.ingreso) }}</span>
                                     </div>
                                 </div>
-                                <span class="text-danger">{{ form_errors(form.fechaGradoUMSNH) }}</span>
-                            </div>
-                        </div>
-                        <div class="col-md-2">
-                            <div class="form-group">
-                                <label>Fecha grado UNAM</label>
-                                <div class="input-group date">
-                                    {{ form_widget(form.fechaGradoUNAM, {'attr': {'class': 'form-control js-datepickerUNAM'}})  }}
-                                    <div class="input-group-addon">
-                                        <i class="fa fa-calendar" aria-hidden="true"></i>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="text-muted">Semestre de término</label>
+                                        {{ form_widget(form.termino, {'attr': {'class': 'form-control'}}) }}
+                                        <span class="text-danger">{{ form_errors(form.termino) }}</span>
                                     </div>
                                 </div>
-                                <span class="text-danger">{{ form_errors(form.fechaGradoUNAM) }}</span>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Fecha Examen de Candidatura</label>
+                                        <div class="input-group date">
+                                            {{ form_widget(form.fechaCandidatura, {'attr': {'class': 'form-control js-datepicker'}}) }}
+                                            <div class="input-group-addon">
+                                                <i class="fa fa-calendar" aria-hidden="true"></i>
+                                            </div>
+                                        </div>
+                                        <span class="text-danger">{{ form_errors(form.fechaCandidatura) }}</span>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Fecha grado UMSNH</label>
+                                        <div class="input-group date">
+                                            {{ form_widget(form.fechaGradoUMSNH, {'attr': {'class': 'form-control js-datepicker'}}) }}
+                                            <div class="input-group-addon">
+                                                <i class="fa fa-calendar" aria-hidden="true"></i>
+                                            </div>
+                                        </div>
+                                        <span class="text-danger">{{ form_errors(form.fechaGradoUMSNH) }}</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Fecha grado UNAM</label>
+                                        <div class="input-group date">
+                                            {{ form_widget(form.fechaGradoUNAM, {'attr': {'class': 'form-control js-datepickerUNAM'}})  }}
+                                            <div class="input-group-addon">
+                                                <i class="fa fa-calendar" aria-hidden="true"></i>
+                                            </div>
+                                        </div>
+                                        <span class="text-danger">{{ form_errors(form.fechaGradoUNAM) }}</span>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Opción de Titulación</label>
+                                        {{ form_widget(form.opcionTitulacion, {'attr': {'class': 'form-control'}}) }}
+                                        <span class="text-danger">{{ form_errors(form.opcionTitulacion) }}</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label>Tutor</label>
+                                        {{ form_widget(form.tutor, {'attr': {'class': 'form-control'}}) }}
+                                        <span class="text-danger">{{ form_errors(form.tutor) }}</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label>Título Tesis</label>
+                                        {{ form_widget(form.tituloTesis, {'attr': {'class': 'form-control'}}) }}
+                                        <span class="text-danger">{{ form_errors(form.tituloTesis) }}</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label>Semestres</label>
+                                        {{ form_widget(form.semestres, {'attr': {'class': 'form-control semestres-multiple select2-bootstrap-append', 'multiple': '',  'style': 'width=100%', 'tabindex': '-1', 'aria-hidden': 'true'}}) }}
+                                        <span class="text-danger">{{ form_errors(form.semestres) }}</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label>Cursos</label>
+                                        {{ form_widget(form.cursos, {'attr': {'class': 'form-control cursos-multiple', 'multiple': '',  'style': 'width=100%', 'tabindex': '-1', 'aria-hidden': 'true'}}) }}
+                                        <span class="text-danger">{{ form_errors(form.cursos) }}</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label>Comité tutorial</label>
+                                        {{ form_widget(form.comite_tutorial, {'attr': {'class': 'form-control comite-multiple', 'multiple': 'multiple'}}) }}
+                                        <span class="text-danger">{{ form_errors(form.comite_tutorial) }}</span>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <label>Opción de Titulación</label>
-                                {{ form_widget(form.opcionTitulacion, {'attr': {'class': 'form-control'}}) }}
-                                <span class="text-danger">{{ form_errors(form.opcionTitulacion) }}</span>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <label>Tutor</label>
-                                {{ form_widget(form.tutor, {'attr': {'class': 'form-control'}}) }}
-                                <span class="text-danger">{{ form_errors(form.tutor) }}</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="form-group">
-                                <label>Título Tesis</label>
-                                {{ form_widget(form.tituloTesis, {'attr': {'class': 'form-control'}}) }}
-                                <span class="text-danger">{{ form_errors(form.tituloTesis) }}</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-8">
-                            <div class="form-group">
-                                <label>Semestres</label>
-                                {{ form_widget(form.semestres, {'attr': {'class': 'form-control semestres-multiple select2-bootstrap-append', 'multiple': '',  'style': 'width=100%', 'tabindex': '-1', 'aria-hidden': 'true'}}) }}
-                                <span class="text-danger">{{ form_errors(form.semestres) }}</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-8">
-                            <div class="form-group">
-                                <label>Cursos</label>
-                                {{ form_widget(form.cursos, {'attr': {'class': 'form-control cursos-multiple', 'multiple': '',  'style': 'width=100%', 'tabindex': '-1', 'aria-hidden': 'true'}}) }}
-                                <span class="text-danger">{{ form_errors(form.cursos) }}</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-8">
-                            <div class="form-group">
-                                <label>Comité tutorial</label>
-                                {{ form_widget(form.comite_tutorial, {'attr': {'class': 'form-control comite-multiple', 'multiple': 'multiple'}}) }}
-                                <span class="text-danger">{{ form_errors(form.comite_tutorial) }}</span>
-                            </div>
+                        <div class="box-footer">
+                            {{ form_widget(form) }}
+                            <input  class="btn btn-success btn-sm" type="submit" value="Guardar cambios">
                         </div>
                     </div>
                 </div>
-                <div class="box-footer">
-                    {{ form_widget(form) }}
-                    <input class="btn btn-success" type="submit" value="Guardar" />
-                </div>
-                {{ form_end(form) }}
             </div>
+
+            {{ form_end(form) }}
         </div>
     </div>
 
