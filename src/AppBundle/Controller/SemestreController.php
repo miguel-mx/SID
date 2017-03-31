@@ -50,7 +50,7 @@ class SemestreController extends Controller
             $em->persist($semestre);
             $em->flush($semestre);
 
-            return $this->redirectToRoute('semestre_show', array('id' => $semestre->getId()));
+            return $this->redirectToRoute('semestre_show', array('slug' => $semestre->getSlug()));
         }
 
         return $this->render('semestre/new.html.twig', array(

@@ -536,7 +536,7 @@ class Curso
     }
 
     public function __toString() {
-        return $this->curso;
+        return $this->getSemestre() . ' | ' .  $this->curso;
     }
 
     /**

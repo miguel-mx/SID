@@ -26,75 +26,21 @@ class CursoType extends AbstractType
             ),
             'choices_as_values' => true,
         ))
-        ;
-
-        $formModifier = function (FormInterface $form, $tipo) {
-
-            if($tipo == 'Básico') {
-                $form->add('curso', 'Symfony\Component\Form\Extension\Core\Type\ChoiceType', array(
-                    'choices' => array(
-                        'Curso Básico' => 'Curso Básico',
-                    ),
-                ));
-            }
-            elseif($tipo == 'Avanzado') {
-                $form->add('curso', 'Symfony\Component\Form\Extension\Core\Type\ChoiceType', array(
+                ->add('curso', 'Symfony\Component\Form\Extension\Core\Type\ChoiceType', array(
                     'choices' => array(
                         'Introducción a los medios continuos' => 'Introducción a los medios continuos',
                         'Modelación matemática de sistemas continuos' => 'Modelación matemática de sistemas continuos',
                         'Modelos lineales' => 'Modelos lineales',
                         'Probabilidad I' => 'Probabilidad I',
-                    ),
-                ));
-            }
-            elseif($tipo == 'Seminario') {
-                $form->add('curso', 'Symfony\Component\Form\Extension\Core\Type\ChoiceType', array(
-                    'choices' => array(
                         'Topología algebraica' => 'Topología algebraica',
                         'Topología diferencial' => 'Topología diferencial',
                         'Topología general' => 'Topología general',
                     ),
-                ));
-            }
-            else {
-                $form->add('curso', 'Symfony\Component\Form\Extension\Core\Type\ChoiceType', array(
-                    'choices' => array(
-                        'Nada' => 'Nada',
-                    ),
-                ));
-            }
-        };
+                ))
+               ;
 
-        $builder->addEventListener(
-            FormEvents::PRE_SET_DATA,
-            function (FormEvent $event) {
+        }
 
-                // Regresa el objeto asociado al formulario, en éste caso AppBundle:Curso
-                $curso = $event->getData();
-                $form = $event->getForm();
-                // $formModifier($event->getForm(), $curso->getTipo());
-
-                if($curso->gettipo() == 'Básico') {
-                    $form->add('curso', 'Symfony\Component\Form\Extension\Core\Type\ChoiceType', array(
-                        'choices' => array(
-                        'Curso Básico' => 'Curso Básico',
-                        'Curso Básico2' => 'Curso Básico2',
-                        ),
-                    ));
-                }
-            }
-        );
-
-        $builder->get('tipo')->addEventListener(
-            FormEvents::POST_SUBMIT,
-            function (FormEvent $event) use ($formModifier) {
-
-                // $form = $event->getForm()->getParent();
-                $curso = $event->getForm()->getData();
-
-                $formModifier($event->getForm()->getParent(), $curso);
-            }
-        );
           /*      if($curso->getTipo() == 'Básico') {
                     $form->add('curso', 'Symfony\Component\Form\Extension\Core\Type\ChoiceType', array(
                         'choices' => array(
@@ -148,7 +94,7 @@ class CursoType extends AbstractType
             ->add('comentarios', 'Ivory\CKEditorBundle\Form\Type\CKEditorType', array(
                 'config_name' => 'sid_config',
             ))*/
-    }
+
     
     /**
      * {@inheritdoc}
