@@ -8,85 +8,83 @@
 {% block body %}
     <div class="content-wrapper" xmlns="http://www.w3.org/1999/html">
         <section class="content-header">
-            <h1>{{ semestre.semestre }}</h1>
-            <p>Fecha de inicio: {{ semestre.fechaInicio|localizeddate('long', 'none', 'es') }}</p>
-            <p>Fecha de término: {{ semestre.fechaFin|localizeddate('long', 'none', 'es') }}</p>
+            <h1>Semestre {{ semestre.semestre }} <small>Del {{ semestre.fechaInicio|localizeddate('none', 'none', 'es', null, "d 'de' MMMM") }} {{ semestre.fechaFin|localizeddate('none', 'none', 'es', null, "' al 'd 'de' MMMM Y") }}</small></h1>
         </section>
-
-        <div class="box-body">
-            <div class="box box-primary">
-                <section class="content">
-                    <div class="row">
-
-                        {% if programas_egresan %}
-                        <div class="col-md-4 col-sm-6 col-xs-12">
-                            <div class="box box-success">
-
-                                <div class="box-header">
-                                    <h3>Alumnos que egresarán</h3>
-                                </div>
-                                <div class="box-body">
-                                    {% for programa in programas_egresan %}
-                                        <p>{{ programa.alumno.nombre }} {{ programa.programa }}</p>
-                                    {% endfor %}
-                                </div>
+        <section class="content">
+            {% if programas_egresan %}
+                <div class="row">
+                    <div class="col-md-4 col-sm-6 col-xs-12">
+                        <div class="box box-success">
+                            <div class="box-header">
+                                <h3>Alumnos que egresarán</h3>
+                            </div>
+                            <div class="box-body">
+                                {% for programa in programas_egresan %}
+                                    <p>{{ programa.alumno.nombre }} {{ programa.programa }}</p>
+                                {% endfor %}
                             </div>
                         </div>
+<<<<<<< HEAD
                         {% endif %}
-
-
                         <div class="col-md-4 col-sm-6 col-xs-12">
                             <div class="box box-success">
-
-                                <div class="box-header">
-                                    <h3>Alumnos que harán examen de candidatura</h3>
-                                </div>
-                                <div class="box-body">
-                                    {% for alumno in examenes_candidatura %}
-                                        <p>{{ alumno.nombre }}</p>
-                                    {% endfor %}
-                                </div>
-                            </div>
-                        </div>
-
                     </div>
-                    <div class="row">
-                        <div class="col-md-6 col-sm-6 col-xs-12">
-                            <div class="box-header">
-                                <h3>Doctorado<span class="badge bg-aqua-active">{{ alumnos_doctorado|length  }}</span></h3>
-                            </div>
-                            <div class="box-body">
-                                <table class="table table-condensed table-hover" id="programa_alumno_doctorado_table">
-                                    <tbody>
-                                    {% for alumno in alumnos_doctorado %}
-                                        <tr>
-                                            <td><a href="{{ path('alumno_show', { 'slug': alumno.slug }) }}">{{ alumno.paterno }} {{ alumno.materno }} {{ alumno.nombre }}</a></td>
-                                            <td>{{ alumno.correoPersonal }}</td>
-                                        </tr>
-                                    {% endfor %}
-                                    </tbody>
-                                </table>
-                            </div>
+                </div>
+            {% endif %}
+            <div class="row">
+                <div class="col-md-4 col-sm-6 col-xs-12">
+                    <div class="box box-success">
+>>>>>>> 720d8dde860e66853e9b089d97921ae6be8f5e57
+                        <div class="box-header">
+                            <h3 class="text-muted">Examenes de Candidatura</h3>
                         </div>
-                        <div class="col-md-6 col-sm-6 col-xs-12">
-                            <div class="box-header">
-                                <h3>Maestría <span class="badge bg-aqua-active">{{ alumnos_maestria|length  }}</span></h3>
-                            </div>
-                            <div class="box-body">
-                                <table class="table table-condensed table-hover" id="programa_alumno_maestria_table">
-                                    <tbody>
-                                    {% for alumno in alumnos_maestria %}
-                                        <tr>
-                                            <td><a href="{{ path('alumno_show', { 'slug': alumno.slug }) }}">{{ alumno.paterno }} {{ alumno.materno }} {{ alumno.nombre }}</a></td>
-                                            <td>{{ alumno.correoPersonal }}</td>
-                                        </tr>
-                                    {% endfor %}
-                                    </tbody>
-                                </table>
-                            </div>
+                        <div class="box-body">
+                            {% for alumno in examenes_candidatura %}
+                                <p>{{ alumno.nombre }}</p>
+                            {% endfor %}
                         </div>
                     </div>
-                </section>
+                </div>
+            </div>
+            <div class="box box-primary">
+                <div class="row">
+
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                        <div class="box-header">
+                            <h3>Doctorado<span class="badge bg-aqua-active">{{ alumnos_doctorado|length  }}</span></h3>
+                        </div>
+                        <div class="box-body">
+                            <table class="table table-condensed table-hover" id="programa_alumno_doctorado_table">
+                                <tbody>
+                                {% for alumno in alumnos_doctorado %}
+                                    <tr>
+                                        <td><a href="{{ path('alumno_show', { 'slug': alumno.slug }) }}">{{ alumno.paterno }} {{ alumno.materno }} {{ alumno.nombre }}</a></td>
+                                        <td>{{ alumno.correoPersonal }}</td>
+                                    </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                        <div class="box-header">
+                            <h3>Maestría <span class="badge bg-aqua-active">{{ alumnos_maestria|length  }}</span></h3>
+                        </div>
+                        <div class="box-body">
+                            <table class="table table-condensed table-hover" id="programa_alumno_maestria_table">
+                                <tbody>
+                                {% for alumno in alumnos_maestria %}
+                                    <tr>
+                                        <td><a href="{{ path('alumno_show', { 'slug': alumno.slug }) }}">{{ alumno.paterno }} {{ alumno.materno }} {{ alumno.nombre }}</a></td>
+                                        <td>{{ alumno.correoPersonal }}</td>
+                                    </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                </div>
             </div>
             <div class="box box-primary">
                 <div class="box-header">
@@ -94,7 +92,7 @@
                 </div>
                 <div class="row">
                     <div class="col-md-12">
-                        <table class="table table-bordered">
+                        <table class="table table-condensed table-hover">
                             <thead>
                             <tr>
                                 <th>Tipo</th>
@@ -125,22 +123,21 @@
                     </div>
                 </div>
             </div>
-        </div>
-
-        {#
-                <input  class="btn btn-primary btn-sm" type="submit" value="Editar" href="{{ path('semestre_edit', { 'slug': semestre.slug }) }}" />
-                <a href="{{ path('semestre_edit', { 'slug': semestre.slug }) }}">Editar</a>#}
-
-        {#  <ul>
-              <li>
-                  <a href="{{ path('semestre_index') }}">Back to the list</a>
-              </li>
-
-                          <li>
-                              {{ form_start(delete_form) }}
-                              <input type="submit" value="Delete">
-                              {{ form_end(delete_form) }}
-              </li>
-          </ul>#}
+        </section>
     </div>
+    {#
+            <input  class="btn btn-primary btn-sm" type="submit" value="Editar" href="{{ path('semestre_edit', { 'slug': semestre.slug }) }}" />
+            <a href="{{ path('semestre_edit', { 'slug': semestre.slug }) }}">Editar</a>#}
+
+    {#  <ul>
+          <li>
+              <a href="{{ path('semestre_index') }}">Back to the list</a>
+          </li>
+
+                      <li>
+                          {{ form_start(delete_form) }}
+                          <input type="submit" value="Delete">
+                          {{ form_end(delete_form) }}
+          </li>
+      </ul>#}
 {% endblock %}
