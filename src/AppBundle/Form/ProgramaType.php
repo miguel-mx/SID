@@ -6,6 +6,8 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
+use Doctrine\ORM\EntityRepository;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 
 class ProgramaType extends AbstractType
 {
@@ -42,8 +44,23 @@ class ProgramaType extends AbstractType
             ))
             ->add('tituloTesis')
             ->add('semestres')
-            ->add('cursos')
-            ->add('tutor')
+            ->add('cursos', 'Symfony\Bridge\Doctrine\Form\Type\EntityType', array(
+                'class' => 'AppBundle:Curso',
+                'query_builder' => function (EntityRepository $er) {
+                    return $er->createQueryBuilder('c')
+                        ->join('c.semestre', 's')
+                        ->where('s.semestre = :semestre')
+                        ->orderBy('c.curso', 'ASC')
+                        ->setParameter('semestre', '2016-2');
+                },
+            ))
+            ->add('tutor', 'Symfony\Bridge\Doctrine\Form\Type\EntityType', array(
+                'class' => 'AppBundle:Academico',
+                'query_builder' => function (EntityRepository $er) {
+                    return $er->createQueryBuilder('a')
+                        ->orderBy('a.paterno', 'ASC');
+                },
+            ))
             ->add('comite_tutorial')
             ->add('fechaCandidatura', 'Symfony\Component\Form\Extension\Core\Type\DateType', array(
                 'widget' => 'single_text',
