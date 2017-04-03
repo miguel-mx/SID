@@ -4,7 +4,7 @@
     {{ form_start(edit_form) }}
     <div class="content-wrapper">
         <section class="content-header">
-            <h2>Curso</h2>
+            <h2>Curso {{ curso.curso }}</h2>
         </section>
         <div class="content">
             <div class="alert-danger">{{ form_errors(edit_form) }}</div>
@@ -27,6 +27,8 @@
                                         <span class="text-danger">{{ form_errors(edit_form.tipo) }}</span>
                                     </div>
                                 </div>
+                            </div>
+                            <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Profesor</label>
@@ -36,14 +38,14 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-md-8">
+                                <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Curso</label>
                                         {{ form_widget(edit_form.curso, {'attr': {'class': 'form-control'}}) }}
                                         <span>{{ form_errors(edit_form.curso) }}</span>
                                     </div>
                                 </div>
-                                <div class="col-md-4">
+                                <div class="col-md-2">
                                     <div class="form-group">
                                         <label>Creditos</label>
                                         {{ form_widget(edit_form.creditos, {'attr': {'class': 'form-control'}}) }}
@@ -53,24 +55,30 @@
                             </div>
 
                             <div class="row">
-                                <div class="col-md-4">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Tema</label>
+                                        {{ form_widget(edit_form.tema, {'attr': {'class': 'form-control'}}) }}
+                                        <span>{{ form_errors(edit_form.tema) }}</span>
+                                    </div>
+                                </div>
+                                <div class="col-md-2">
                                     <div class="form-group">
                                         <label>Semestre</label>
                                         {{ form_widget(edit_form.semestre, {'attr': {'class': 'form-control'}}) }}
                                         <span>{{ form_errors(edit_form.semestre) }}</span>
                                     </div>
                                 </div>
-                                <div class="col-md-6">
+                            </div>
+                            <div class="row">
+                                <div class="col-md-2">
                                     <div class="form-group">
                                         <label>clave de grupo</label>
                                         {{ form_widget(edit_form.claveGrupo, {'attr': {'class': 'form-control'}}) }}
                                         <span class="text-danger">{{ form_errors(edit_form.claveGrupo) }}</span>
                                     </div>
                                 </div>
-
-                            </div>
-                            <div class="row">
-                                <div class="col-md-4">
+                                <div class="col-md-2">
                                     <div class="form-group">
                                         <label>Horas por semana</label>
                                         {{ form_widget(edit_form.horasSemana, {'attr': {'class': 'form-control'}}) }}
@@ -84,7 +92,7 @@
                                         <span>{{ form_errors(edit_form.lugar) }}</span>
                                     </div>
                                 </div>
-                                <div class="col-md-6">
+                                <div class="col-md-2">
                                     <div class="form-group">
                                         <label>Asignatura</label>
                                         {{ form_widget(edit_form.asignatura, {'attr': {'class': 'form-control'}}) }}
@@ -92,6 +100,7 @@
                                     </div>
                                 </div>
                             </div>
+                            {#
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="form-group">
@@ -149,6 +158,7 @@
                                     </div>
                                 </div>
                             </div>
+                            #}
                         </div>
                     </div>
                     <div class="box-footer">

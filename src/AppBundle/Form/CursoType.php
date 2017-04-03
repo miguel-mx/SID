@@ -19,27 +19,18 @@ class CursoType extends AbstractType
         $builder
             ->add('profesor')
             ->add('tipo', 'Symfony\Component\Form\Extension\Core\Type\ChoiceType', array(
-            'choices'  => array(
-                'Básico' => 'Básico',
-                'Avanzado' => 'Avanzado',
-                'Seminario' => 'Seminario',
-            ),
-            'choices_as_values' => true,
-        ))
-                ->add('curso', 'Symfony\Component\Form\Extension\Core\Type\ChoiceType', array(
-                    'choices' => array(
-                        'Introducción a los medios continuos' => 'Introducción a los medios continuos',
-                        'Modelación matemática de sistemas continuos' => 'Modelación matemática de sistemas continuos',
-                        'Modelos lineales' => 'Modelos lineales',
-                        'Probabilidad I' => 'Probabilidad I',
-                        'Topología algebraica' => 'Topología algebraica',
-                        'Topología diferencial' => 'Topología diferencial',
-                        'Topología general' => 'Topología general',
-                    ),
-                ))
-               ;
+                'choices'  => array(
+                    'Básico' => 'Básico',
+                    'Avanzado' => 'Avanzado',
+                    'Seminario' => 'Seminario',
+                ),
+                'choices_as_values' => true,
+            ))
+            ->add('curso')
+            ->add('tema')
+        ;
 
-        }
+    }
 
           /*      if($curso->getTipo() == 'Básico') {
                     $form->add('curso', 'Symfony\Component\Form\Extension\Core\Type\ChoiceType', array(

@@ -42,7 +42,7 @@ class Curso
     /**
      * @var string
      *
-     * @ORM\Column(name="tema", type="string", length=120, nullable=true)
+     * @ORM\Column(name="tema", type="string", length=180, nullable=true)
      */
     private $tema;
 
@@ -70,42 +70,42 @@ class Curso
     /**
      * @var string
      *
-     * @ORM\Column(name="objetivo", type="string", length=100)
+     * @ORM\Column(name="objetivo", type="string", length=100, nullable=true)
      */
     private $objetivo;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="temario", type="string", length=1000)
+     * @ORM\Column(name="temario", type="string", length=1000, nullable=true)
      */
     private $temario;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="bibliografia", type="string", length=1000)
+     * @ORM\Column(name="bibliografia", type="string", length=1000, nullable=true)
      */
     private $bibliografia;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="requisitos", type="string", length=1000)
+     * @ORM\Column(name="requisitos", type="string", length=1000, nullable=true)
      */
     private $requisitos;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="comentarios", type="string", length=100)
+     * @ORM\Column(name="comentarios", type="string", length=100, nullable=true)
      */
     private $comentarios;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="status", type="string", length=30)
+     * @ORM\Column(name="status", type="string", length=30, nullable=true)
      */
     private $status;
 
@@ -536,7 +536,7 @@ class Curso
     }
 
     public function __toString() {
-        return $this->getSemestre() . ' | ' .  $this->curso;
+        return $this->getSemestre() . ' | ' .  $this->curso . ' | ' . $this->getProfesor();
     }
 
     /**

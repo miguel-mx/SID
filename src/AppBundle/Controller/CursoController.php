@@ -92,10 +92,8 @@ class CursoController extends Controller
             ->add('lugar')
             ->add('semestre')
         ;
+
         $editForm->handleRequest($request);
-
-
-
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();

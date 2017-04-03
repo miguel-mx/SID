@@ -16,14 +16,12 @@
                     <div class="col-md-4 col-sm-6 col-xs-12">
                         <div class="box box-success">
                             <div class="box-header">
-                                <h3>Alumnos que egresarán</h3>
+                                <h3>Alumnos que egresan</h3>
                             </div>
                             <div class="box-body">
-                                <ul class="list-group">
                                 {% for programa in programas_egresan %}
-                                    <li class="list-group-item"><a href="{{ path('alumno_show', { 'slug': programa.alumno.slug }) }}">{{ programa.alumno.paterno }} {{ programa.alumno.materno }} {{ programa.alumno.nombre }}</a></li>
+                                   <p><i class="fa fa-caret-right text-success" aria-hidden="true"></i> <a href="{{ path('alumno_show', { 'slug': programa.alumno.slug }) }}">{{ programa.alumno.paterno }} {{ programa.alumno.materno }} {{ programa.alumno.nombre }}</a></p>
                                 {% endfor %}
-                                </ul>
                             </div>
                         </div>
 
@@ -36,11 +34,9 @@
                                 <h3 class="text-muted">Examenes de Candidatura</h3>
                             </div>
                             <div class="box-body">
-                                <ul class="list-group">
                                 {% for alumno in examenes_candidatura %}
-                                    <li class="list-group-item"><a href="{{ path('alumno_show', { 'slug': alumno.slug }) }}">{{ alumno.paterno }} {{ alumno.materno }} {{ alumno.nombre }}</a></li>
+                                    <p><i class="fa fa-caret-right text-success" aria-hidden="true"></i> <a href="{{ path('alumno_show', { 'slug': alumno.slug }) }}">{{ alumno.paterno }} {{ alumno.materno }} {{ alumno.nombre }}</a></p>
                                 {% endfor %}
-                                </ul>
                             </div>
                         </div>
                     </div>
