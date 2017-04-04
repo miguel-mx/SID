@@ -536,7 +536,7 @@ class Curso
     }
 
     public function __toString() {
-        return $this->getSemestre() . ' | ' .  $this->curso . ' | ' . $this->getProfesor();
+        return $this->getSemestre() . ' | ' .  $this->claveGrupo . ' | ' .  $this->curso .  ' | ' . $this->getProfesor();
     }
 
     /**

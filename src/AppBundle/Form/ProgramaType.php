@@ -36,25 +36,28 @@ class ProgramaType extends AbstractType
                 'required' => false,))
             ->add('opcionTitulacion', 'Symfony\Component\Form\Extension\Core\Type\ChoiceType', array(
                 'choices' => array(
-
                     '' => '',
                     'Tésis' => 'Tésis',
                 ),
                 'required' => false,
             ))
             ->add('tituloTesis')
-            ->add('semestres')
-            ->add('cursos', 'Symfony\Bridge\Doctrine\Form\Type\EntityType', array(
+            ->add('semestres', null, array(
+                'class' => 'AppBundle:Semestre',
+                'query_builder' => function (EntityRepository $er) {
+                    return $er->createQueryBuilder('s')
+                        ->orderBy('s.semestre');
+                },
+            ))
+            ->add('cursos', null, array(
                 'class' => 'AppBundle:Curso',
                 'query_builder' => function (EntityRepository $er) {
                     return $er->createQueryBuilder('c')
                         ->join('c.semestre', 's')
-                        ->where('s.semestre = :semestre')
-                        ->orderBy('c.curso', 'ASC')
-                        ->setParameter('semestre', '2016-2');
+                        ->orderBy('s.semestre');
                 },
             ))
-            ->add('tutor', 'Symfony\Bridge\Doctrine\Form\Type\EntityType', array(
+            ->add('tutor', null, array(
                 'class' => 'AppBundle:Academico',
                 'query_builder' => function (EntityRepository $er) {
                     return $er->createQueryBuilder('a')

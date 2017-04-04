@@ -12,12 +12,17 @@ use Doctrine\ORM\EntityRepository;
  */
 class CursoRepository extends EntityRepository
 {
-    public function findAllOrderByCurso()
+    public function findAllOrderByCurso($semestre)
     {
         return $this->getEntityManager()
             ->createQuery(
-                "SELECT c FROM AppBundle:Curso c ORDER BY c.curso ASC"
+                "SELECT c FROM AppBundle:Curso c
+                  JOIN c.semestre s
+                  WHERE s.semestre = :semestre
+                  ORDER BY c.curso ASC"
             )
+            ->setParameter('semestre', $semestre)
             ->getResult();
     }
+
 }
