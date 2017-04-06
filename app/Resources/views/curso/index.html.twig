@@ -63,3 +63,15 @@
     </section>
 </section>
 {% endblock %}
+{% block semestre %}
+    <li class="treeview active">
+        <a href="#">
+            <span> {{ _semestre }}</span>
+        </a>
+        <ul class="treeview-menu menu-open" style="display: none;">
+            {% for semestre_li in semestres_lista %}
+                <li class=""><a href="{{ path('curso_index', { 'semestre': semestre_li.semestre }) }}">{{ semestre_li.semestre }}</a></li>
+            {% endfor %}
+        </ul>
+    </li>
+{% endblock %}

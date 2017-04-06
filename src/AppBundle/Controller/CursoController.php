@@ -28,10 +28,12 @@ class CursoController extends Controller
         //$cursos = $em->getRepository('AppBundle:Curso')->findAll();
         //$semestre_actual = $this->getParameter('semestre');
         $cursos = $em->getRepository('AppBundle:Curso')->findAllOrderByCurso($semestre);
+        $semestre_lista = $em->getRepository('AppBundle:Semestre')->findAllSemestre();
 
         return $this->render('curso/index.html.twig', array(
             '_semestre' => $semestre,
             'cursos' => $cursos,
+            'semestres_lista' => $semestre_lista,
         ));
     }
 
