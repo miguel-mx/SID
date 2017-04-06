@@ -98,3 +98,8 @@ vich_uploader:
             uri_prefix:         /documentos
             upload_destination: '%kernel.root_dir%/../web/documentos/'
             namer: vich_uploader.namer_uniqid
+
+fos_user:
+    db_driver: orm
+    firewall_name: main
+    user_class: AppBundle\Entity\User

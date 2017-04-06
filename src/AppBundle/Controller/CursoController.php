@@ -18,18 +18,19 @@ class CursoController extends Controller
     /**
      * Lists all curso entities.
      *
-     * @Route("/", name="curso_index")
+     * @Route("/{semestre}", requirements={"semestre" = "20\d\d-[1|2]"}, name="curso_index")
      * @Method("GET")
      */
-    public function indexAction()
+    public function indexAction($semestre = '2017-2')
     {
         $em = $this->getDoctrine()->getManager();
 
         //$cursos = $em->getRepository('AppBundle:Curso')->findAll();
-        $semestre_actual = $this->getParameter('semestre');
-        $cursos = $em->getRepository('AppBundle:Curso')->findAllOrderByCurso($semestre_actual);
+        //$semestre_actual = $this->getParameter('semestre');
+        $cursos = $em->getRepository('AppBundle:Curso')->findAllOrderByCurso($semestre);
 
         return $this->render('curso/index.html.twig', array(
+            '_semestre' => $semestre,
             'cursos' => $cursos,
         ));
     }

@@ -1,23 +1,25 @@
 # To get started with security, check out the documentation:
 # http://symfony.com/doc/current/security.html
 security:
-
-    # http://symfony.com/doc/current/security.html#b-configuring-how-users-are-loaded
     providers:
-        in_memory:
-            memory:
-                users:
-                    cesar:
-                        password: $2a$06$6C88P4aeTaIhoOtV8PXrTenYzcz17ONN.sKabcpb9dsTzJby9JGsu
-                        roles: 'ROLE_ADMIN'
-                    admin:
-                        password: $2a$06$EG2lEBKMNk4Q2Q2KPi4mzureBCherxOzT1gapZ6fONtGqUrx9Zuci
-                        roles: 'ROLE_ADMIN'
-
+            fos_userbundle:
+                id: fos_user.user_provider.username
+    # http://symfony.com/doc/current/security.html#b-configuring-how-users-are-loaded
+#    providers:
+#        in_memory:
+#            memory:
+#                users:
+#                    cesar:
+#                        password: $2a$06$6C88P4aeTaIhoOtV8PXrTenYzcz17ONN.sKabcpb9dsTzJby9JGsu
+#                        roles: 'ROLE_ADMIN'
+#                    admin:
+#                        password: $2a$06$EG2lEBKMNk4Q2Q2KPi4mzureBCherxOzT1gapZ6fONtGqUrx9Zuci
+#                        roles: 'ROLE_ADMIN'
     encoders:
-            Symfony\Component\Security\Core\User\User:
-                algorithm: bcrypt
-                cost: 12
+            FOS\UserBundle\Model\UserInterface: bcrypt
+#            Symfony\Component\Security\Core\User\User:
+#                algorithm: bcrypt
+#                cost: 12
 
     firewalls:
         # disables authentication for assets and the profiler, adapt it according to your needs
@@ -26,14 +28,19 @@ security:
             security: false
 
         main:
-                    anonymous: ~
-                    form_login:
-                        login_path: login
-                        check_path: login
-        #                csrf_token_generator: security.csrf.token_manager
-                    logout:
-                        path:   /logout
-                        target: /login
+            pattern: ^/
+#            anonymous: ~
+            form_login:
+                provider: fos_userbundle
+                csrf_provider: security.csrf.token_manager
+#                login_path: login
+#                check_path: login
+#                csrf_token_generator: security.csrf.token_manager
+            logout:       true
+            anonymous:    true
+            logout:
+                path:   /logout
+                target: /login
 
             # activate different ways to authenticate
 
@@ -45,3 +52,9 @@ security:
 
     role_hierarchy:
         ROLE_ADMIN: ROLE_USER
+        ROLE_SUPER_ADMIN: ROLE_ADMIN
+
+    access_control:
+        - { path: ^/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/register, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }

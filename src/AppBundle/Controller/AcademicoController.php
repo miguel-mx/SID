@@ -60,18 +60,18 @@ class AcademicoController extends Controller
     /**
      * Finds and displays a academico entity.
      *
-     * @Route("/{slug}", name="academico_show")
+     * @Route("/{slug}/{semestre}", requirements={"semestre" = "20\d\d-[1|2]"}, name="academico_show")
      * @Method("GET")
      */
-    public function showAction(Academico $academico)
+    public function showAction(Academico $academico, $semestre = '2017-2')
     {
         $deleteForm = $this->createDeleteForm($academico);
-        $semestre_actual = $this->getParameter('semestre');
+        // $semestre_actual = $this->getParameter('semestre');
 
         $em = $this->getDoctrine()->getManager();
 
-        $cursos = $em->getRepository('AppBundle:Academico')->findAllCursos($semestre_actual, $academico->getId());
-        $alumnos = $em->getRepository('AppBundle:Academico')->findAllAlumnos($semestre_actual, $academico->getId());
+        $cursos = $em->getRepository('AppBundle:Academico')->findAllCursos($semestre, $academico->getId());
+        $alumnos = $em->getRepository('AppBundle:Academico')->findAllAlumnos($semestre, $academico->getId());
 
         return $this->render('academico/show.html.twig', array(
             'academico' => $academico,
