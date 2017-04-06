@@ -25,8 +25,10 @@
                                 <h2>{{ alumnos_maestria|length + alumnos_doctorado|length }}</h2>
                             </span>
                         </div>
+
                     </div>
                 </div>
+
             </div>
             <div class="row">
                 <div class="col-md-6 col-sm-6 col-xs-12">
@@ -83,6 +85,27 @@
                         </ul>#}
         </section>
     </div>
+{% endblock %}
+
+{% block semestre %}
+
+
+    <div class="sonata-bundle-versions">
+        <div class="btn-group">
+            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                semestre.
+                <span class="caret"></span>
+            </button>
+            {% for semestres in semestre_lista %}
+                <ul class="dropdown-menu">
+                    <li><a href="">semestres.semestre</a></li>
+                </ul>
+            {% endfor %}
+        </div>
+    </div>
+
+
+
 {% endblock %}
 
 {% block javascripts %}

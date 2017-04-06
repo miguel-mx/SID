@@ -18,8 +18,7 @@ class AlumnoController extends Controller
 {
     /**
      * Lists all alumno entities.
-     *
-     * @Route("/", name="alumno_index")
+     * @Route("/", name="alumno_index" )
      * @Method("GET")
      */
     public function indexAction()
@@ -29,10 +28,12 @@ class AlumnoController extends Controller
         $semestre_actual = $this->getParameter('semestre');
         $alumnos_maestria = $em->getRepository('AppBundle:Alumno')->findAllBySemestre($semestre_actual, 'Maestría');
         $alumnos_doctorado = $em->getRepository('AppBundle:Alumno')->findAllBySemestre($semestre_actual, 'Doctorado');
+        $semestre = $em->getRepository('AppBundle:Alumno')->findAllSemestre($semestre_actual);
 
         return $this->render('alumno/index.html.twig', array(
             'alumnos_maestria' => $alumnos_maestria,
             'alumnos_doctorado' => $alumnos_doctorado,
+            'semestre_lista' => $semestre,
         ));
     }
 

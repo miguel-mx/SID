@@ -69,9 +69,8 @@
                     </div>
                 </div>
             </div>
-
-            {% for programa in alumno.programas %}
                 <div class="row">
+                    {% for programa in alumno.programas %}
                     <div class="col-md-6 col-sm-12 col-xs-12">
                         <div class="box box-success">
                             <div class="box-header">
@@ -97,8 +96,8 @@
                             </div>
                         </div>
                     </div>
+                    {% endfor %}
                 </div>
-            {% endfor %}
         </section>
     </section>
 {% endblock %}
