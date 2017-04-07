@@ -60,12 +60,14 @@
                                 </div>
                             </div>
                         </div>
+                        {% if is_granted('ROLE_ADMIN') %}
                         <div class="box-footer">
                             <a class="btn btn-primary btn-sm" href="{{ path('alumno_edit', { 'slug': alumno.slug }) }}" role="button">
                                 <i class="fa fa-pencil" aria-hidden="true"></i> Editar</a>
                             <a class="btn btn-warning btn-sm" href="{{ path('programa_new', { 'slug': alumno.slug }) }}" role="button">
                                 <i class="fa fa-plus" aria-hidden="true"></i> Crear programa</a>
                         </div>
+                        {% endif %}
                     </div>
                 </div>
             </div>
@@ -74,8 +76,12 @@
                     <div class="col-md-6 col-sm-12 col-xs-12">
                         <div class="box box-success">
                             <div class="box-header">
-                                <h2>{{ programa.programa }} <small><a href="{{ path('programa_edit', { 'id': programa.id }) }}">
-                                            <i class="fa fa-pencil-square-o" aria-hidden="true"></i></a></small></h2>
+                                <h2>{{ programa.programa }}
+                                    {% if is_granted('ROLE_ADMIN') %}
+                                        <small><a href="{{ path('programa_edit', { 'id': programa.id }) }}">
+                                                <i class="fa fa-pencil-square-o" aria-hidden="true"></i></a></small>
+                                    {% endif %}
+                                </h2>
                             </div>
                             <div class="box-body">
                                 <p>Periodo: {{ programa.ingreso }} - {{ programa.termino }}</p>

@@ -64,6 +64,8 @@ class AlumnoController extends Controller
      */
     public function newAction(Request $request)
     {
+        $this->denyAccessUnlessGranted('ROLE_ADMIN', null, 'Unable to access this page!');
+
         $alumno = new Alumno();
         $form = $this->createForm('AppBundle\Form\AlumnoType', $alumno);
         $form->handleRequest($request);
@@ -106,6 +108,8 @@ class AlumnoController extends Controller
      */
     public function editAction(Request $request, Alumno $alumno)
     {
+        $this->denyAccessUnlessGranted('ROLE_ADMIN', null, 'Unable to access this page!');
+
         $deleteForm = $this->createDeleteForm($alumno);
         $editForm = $this->createForm('AppBundle\Form\AlumnoType', $alumno);
         $editForm->handleRequest($request);
