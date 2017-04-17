@@ -28,10 +28,12 @@
                 </div>
             </div>
             <div class="box box-primary">
-                <div class="box-header text-right">
-                    <a class="btn btn-primary btn-sm" href="{{ path('academico_new') }}" role="button">
-                        <i class="fa fa-plus" aria-hidden="true"></i> Nuevo académico</a>
-                </div>
+                {% if is_granted('ROLE_ADMIN') %}
+                    <div class="box-header text-right">
+                        <a class="btn btn-primary btn-sm" href="{{ path('academico_new') }}" role="button">
+                            <i class="fa fa-plus" aria-hidden="true"></i> Nuevo académico</a>
+                    </div>
+                {% endif %}
                 <div class="box-body">
                     <table class="table table-condensed table-hover" id="academico_table">
                         <thead>
@@ -58,7 +60,7 @@
                 </div>
             </div>
         </section>
-    </div>
+    </section>
 {% endblock %}
 
 {% block javascripts %}

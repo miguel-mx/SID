@@ -39,6 +39,8 @@ class AcademicoController extends Controller
      */
     public function newAction(Request $request)
     {
+        $this->denyAccessUnlessGranted('ROLE_ADMIN', null, 'Unable to access this page!');
+
         $academico = new Academico();
         $form = $this->createForm('AppBundle\Form\AcademicoType', $academico);
         $form->handleRequest($request);
@@ -89,6 +91,8 @@ class AcademicoController extends Controller
      */
     public function editAction(Request $request, Academico $academico)
     {
+        $this->denyAccessUnlessGranted('ROLE_ADMIN', null, 'Unable to access this page!');
+
         $deleteForm = $this->createDeleteForm($academico);
         $editForm = $this->createForm('AppBundle\Form\AcademicoType', $academico);
         $editForm->handleRequest($request);
@@ -119,6 +123,7 @@ class AcademicoController extends Controller
      */
     public function deleteAction(Request $request, Academico $academico)
     {
+        $this->denyAccessUnlessGranted('ROLE_ADMIN', null, 'Unable to access this page!');
         $form = $this->createDeleteForm($academico);
         $form->handleRequest($request);
 

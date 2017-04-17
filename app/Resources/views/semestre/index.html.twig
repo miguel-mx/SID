@@ -34,7 +34,9 @@
                             <th>Semestre</th>
                             <th>Fecha de inicio</th>
                             <th>Fecha fin</th>
-                            <th>Operaciones</th>
+                            {% if is_granted('ROLE_ADMIN') %}
+                                <th>Operaciones</th>
+                            {% endif %}
                         </tr>
                         </thead>
                         <tbody>
@@ -43,19 +45,22 @@
                                 <td><a href="{{ path('semestre_show', { 'slug': semestre.slug }) }}">{{ semestre.semestre }}</td>
                                 <td>{% if semestre.fechaInicio %}{{ semestre.fechaInicio|localizeddate('long', 'none', 'es') }}{% endif %}</td>
                                 <td>{% if semestre.fechaFin %}{{ semestre.fechaFin|localizeddate('long', 'none', 'es') }}{% endif %}</td>
-                                <td>
-                                <a href="{{ path('semestre_edit', { 'slug': semestre.slug }) }}"><i class="fa fa-pencil-square-o" aria-hidden="true" ></i></a>
-                                </td>
+                                {% if is_granted('ROLE_ADMIN') %}
+                                    <td>
+                                        <a href="{{ path('semestre_edit', { 'slug': semestre.slug }) }}"><i class="fa fa-pencil-square-o" aria-hidden="true" ></i></a>
+                                    </td>
+                                {% endif %}
                             </tr>
                         {% endfor %}
                         </tbody>
                     </table>
                 </div>
             </div>
-            <div class="box-footer">
-                <a href="{{ path('semestre_new') }}" class="btn btn-primary">Crear un nuevo semestre</a>
-            </div>
-
+            {% if is_granted('ROLE_ADMIN') %}
+                <div class="box-footer">
+                    <a href="{{ path('semestre_new') }}" class="btn btn-primary">Crear un nuevo semestre</a>
+                </div>
+            {% endif %}
         </section>
 
     </div>

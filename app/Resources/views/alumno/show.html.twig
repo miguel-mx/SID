@@ -47,32 +47,36 @@
                                         <tr>
                                             <td><strong>Universidad de procedencia</strong></td><td>{{ alumno.escuelaProcedencia }}</td>
                                         </tr>
-                                        <tr>
-                                            <td><strong>Acta de nacimiento</strong></td>
-                                        </tr>
-                                        <tr>
-                                            <td><strong>Certificado de calificaciones</strong></td>
-                                        </tr>
-                                        <tr>
-                                            <td><strong>Tésis de licenciatura</strong></td><td><a href="{{ vich_uploader_asset(alumno, 'tesisLicenciaturaFile') }}">{{ alumno.tesisLicenciaturaName}}</a></td>
-                                        </tr>
+                                        {% if is_granted('ROLE_ADMIN') %}
+                                            <tr>
+                                                <td><strong>Acta de nacimiento</strong></td>
+                                            </tr>
+                                            <tr>
+                                                <td><strong>Certificado de calificaciones</strong></td>
+                                            </tr>
+                                            <tr>
+                                                <td><strong>Tésis de licenciatura</strong></td><td><a href="{{ vich_uploader_asset(alumno, 'tesisLicenciaturaFile') }}">{{ alumno.tesisLicenciaturaName}}</a></td>
+                                            </tr>
+                                        {% endif %}
                                     </table>
                                 </div>
                             </div>
                         </div>
                         {% if is_granted('ROLE_ADMIN') %}
-                        <div class="box-footer">
-                            <a class="btn btn-primary btn-sm" href="{{ path('alumno_edit', { 'slug': alumno.slug }) }}" role="button">
-                                <i class="fa fa-pencil" aria-hidden="true"></i> Editar</a>
-                            <a class="btn btn-warning btn-sm" href="{{ path('programa_new', { 'slug': alumno.slug }) }}" role="button">
-                                <i class="fa fa-plus" aria-hidden="true"></i> Crear programa</a>
-                        </div>
+                            <div class="box-footer">
+                                <a class="btn btn-primary btn-sm" href="{{ path('alumno_edit', { 'slug': alumno.slug }) }}" role="button">
+                                    <i class="fa fa-pencil" aria-hidden="true"></i> Editar</a>
+                                {% if alumno.programas|length <= 1 %}
+                                <a class="btn btn-warning btn-sm" href="{{ path('programa_new', { 'slug': alumno.slug }) }}" role="button">
+                                    <i class="fa fa-plus" aria-hidden="true"></i> Crear programa</a>
+                                {% endif %}
+                            </div>
                         {% endif %}
                     </div>
                 </div>
             </div>
-                <div class="row">
-                    {% for programa in alumno.programas %}
+            <div class="row">
+                {% for programa in alumno.programas %}
                     <div class="col-md-6 col-sm-12 col-xs-12">
                         <div class="box box-success">
                             <div class="box-header">
@@ -102,8 +106,8 @@
                             </div>
                         </div>
                     </div>
-                    {% endfor %}
-                </div>
+                {% endfor %}
+            </div>
         </section>
     </section>
 {% endblock %}

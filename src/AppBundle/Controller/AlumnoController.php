@@ -142,6 +142,8 @@ class AlumnoController extends Controller
      */
     public function deleteAction(Request $request, Alumno $alumno)
     {
+
+        $this->denyAccessUnlessGranted('ROLE_ADMIN', null, 'Unable to access this page!');
         $form = $this->createDeleteForm($alumno);
         $form->handleRequest($request);
 

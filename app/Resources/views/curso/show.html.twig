@@ -43,10 +43,12 @@
                                 </table>
                             </div>
                         </div>
-                        <div class="box-footer">
-                        <a class="btn btn-primary btn-sm" href="{{ path('curso_edit', { 'id': curso.id }) }}" role="button">
-                            <i class="fa fa-pencil" aria-hidden="true"></i> Editar</a>
-                        </div>
+                        {% if is_granted('ROLE_ADMIN') %}
+                            <div class="box-footer">
+                                <a class="btn btn-primary btn-sm" href="{{ path('curso_edit', { 'id': curso.id }) }}" role="button">
+                                    <i class="fa fa-pencil" aria-hidden="true"></i> Editar</a>
+                            </div>
+                        {% endif %}
                     </div>
                 </div>
             </div>

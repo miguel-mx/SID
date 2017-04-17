@@ -32,7 +32,7 @@ class CursoType extends AbstractType
 
     }
 
-          /*      if($curso->getTipo() == 'Básico') {
+          /*    if($curso->getTipo() == 'Básico') {
                     $form->add('curso', 'Symfony\Component\Form\Extension\Core\Type\ChoiceType', array(
                         'choices' => array(
                             'Curso Básico' => 'Curso Básico',

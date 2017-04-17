@@ -87,6 +87,7 @@ class AlumnoType extends AbstractType
                     'Egresado' => 'Egresado',
                     'Graduado' => 'Graduado',
                 ),
+                'required' => false,
             ))
             ->add('tesisLicenciaturaFile', 'Symfony\Component\Form\Extension\Core\Type\FileType', array(
                 'required' => false,

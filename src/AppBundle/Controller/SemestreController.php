@@ -41,6 +41,8 @@ class SemestreController extends Controller
      */
     public function newAction(Request $request)
     {
+        $this->denyAccessUnlessGranted('ROLE_ADMIN', null, 'Unable to access this page!');
+
         $semestre = new Semestre();
         $form = $this->createForm('AppBundle\Form\SemestreType', $semestre);
         $form->handleRequest($request);
@@ -92,6 +94,7 @@ class SemestreController extends Controller
      */
     public function editAction(Request $request, Semestre $semestre)
     {
+        $this->denyAccessUnlessGranted('ROLE_ADMIN', null, 'Unable to access this page!');
         $deleteForm = $this->createDeleteForm($semestre);
         $editForm = $this->createForm('AppBundle\Form\SemestreType', $semestre);
         $editForm->handleRequest($request);
@@ -122,6 +125,7 @@ class SemestreController extends Controller
      */
     public function deleteAction(Request $request, Semestre $semestre)
     {
+        $this->denyAccessUnlessGranted('ROLE_ADMIN', null, 'Unable to access this page!');
         $form = $this->createDeleteForm($semestre);
         $form->handleRequest($request);
 

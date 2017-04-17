@@ -40,6 +40,8 @@ class ProgramaController extends Controller
      */
     public function newAction(Request $request, Alumno $alumno)
     {
+        $this->denyAccessUnlessGranted('ROLE_ADMIN', null, 'Unable to access this page!');
+
         $programa = new Programa();
         $form = $this->createForm('AppBundle\Form\ProgramaType', $programa);
         $form->handleRequest($request);
@@ -85,6 +87,8 @@ class ProgramaController extends Controller
      */
     public function editAction(Request $request, Programa $programa)
     {
+        $this->denyAccessUnlessGranted('ROLE_ADMIN', null, 'Unable to access this page!');
+
         $deleteForm = $this->createDeleteForm($programa);
         $editForm = $this->createForm('AppBundle\Form\ProgramaType', $programa);
         $editForm->handleRequest($request);
@@ -115,6 +119,7 @@ class ProgramaController extends Controller
      */
     public function deleteAction(Request $request, Programa $programa)
     {
+        $this->denyAccessUnlessGranted('ROLE_ADMIN', null, 'Unable to access this page!');
         $form = $this->createDeleteForm($programa);
         $form->handleRequest($request);
 
