@@ -133,11 +133,18 @@
                                         <span class="text-danger">{{ form_errors(edit_form.extension) }}</span>
                                     </div>
                                 </div>
-                                <div class="col-md-8">
+                                <div class="col-md-6">
                                     <div class="form-group">
                                         <label>Ubicación</label>
                                         {{ form_widget(edit_form.ubicacion, {'attr': {'class': 'form-control'}}) }}
                                         <span class="text-danger">{{ form_errors(edit_form.ubicacion) }}</span>
+                                    </div>
+                                </div>
+                                <div class="col-md-2">
+                                    <div class="form-group">
+                                        <label>Núcleo básico</label>
+                                        {{ form_widget(edit_form.basico)}}
+                                        <span class="text-danger">{{ form_errors(edit_form.basico) }}</span>
                                     </div>
                                 </div>
 

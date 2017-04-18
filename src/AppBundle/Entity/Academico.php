@@ -97,6 +97,13 @@ class Academico
     /**
      * @var string
      *
+     * @ORM\Column(name="basico", type="boolean", nullable=true)
+     */
+    private $basico;
+
+    /**
+     * @var string
+     *
      * @ORM\Column(name="acreditacion", type="string", length=40)
      */
     private $acreditacion;
@@ -399,6 +406,24 @@ class Academico
     {
         return $this->cvu;
     }
+
+    /**
+     * @return string
+     */
+    public function getBasico()
+    {
+        return $this->basico;
+    }
+
+    /**
+     * @param string $basico
+     */
+    public function setBasico($basico)
+    {
+        $this->basico = $basico;
+    }
+
+
 
     /**
      * Set acreditacion

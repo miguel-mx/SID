@@ -114,7 +114,7 @@
                                         <span class="text-danger">{{ form_errors(form.cvu) }}</span>
                                     </div>
                                 </div>
-                                <div class="col-md-3">
+                                <div class="col-md-2">
                                     <div class="form-group">
                                         <label>Teléfono</label>
                                         {{ form_widget(form.telefono, {'attr': {'class': 'form-control'}}) }}
@@ -128,11 +128,18 @@
                                         <span class="text-danger">{{ form_errors(form.extension) }}</span>
                                     </div>
                                 </div>
-                                <div class="col-md-5">
+                                <div class="col-md-4">
                                     <div class="form-group">
                                         <label>Ubicación</label>
                                         {{ form_widget(form.ubicacion, {'attr': {'class': 'form-control'}}) }}
                                         <span class="text-danger">{{ form_errors(form.ubicacion) }}</span>
+                                    </div>
+                                </div>
+                                <div class="col-md-2">
+                                    <div class="form-group">
+                                        <label>Núcleo básico</label>
+                                        {{ form_widget(form.basico)}}
+                                        <span class="text-danger">{{ form_errors(form.basico) }}</span>
                                     </div>
                                 </div>
 

@@ -28,6 +28,7 @@ class AcademicoType extends AbstractType
             ->add('resumen')
             ->add('ubicacion')
             ->add('pagina')
+            ->add('basico')
         ;
     }
     

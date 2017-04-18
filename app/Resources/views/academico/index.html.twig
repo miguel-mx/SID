@@ -28,6 +28,10 @@
                 </div>
             </div>
             <div class="box box-primary">
+                <ul class="nav nav-tabs">
+                    <li class="active"><a data-toggle="tab" href="#basico">Núcleo académico básico</a></li>
+                    <li><a data-toggle="tab" href="#externos">Externos</a></li>
+                </ul>
                 {% if is_granted('ROLE_ADMIN') %}
                     <div class="box-header text-right">
                         <a class="btn btn-primary btn-sm" href="{{ path('academico_new') }}" role="button">
@@ -35,28 +39,62 @@
                     </div>
                 {% endif %}
                 <div class="box-body">
-                    <table class="table table-condensed table-hover" id="academico_table">
-                        <thead>
-                        <tr>
-                            <th>Nombre</th>
-                            <th>Adscripcion</th>
-                            <th>Correo</th>
-                            <th>Telefono</th>
-                            <th>Extension</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        {% for academico in academicos %}
-                            <tr>
-                                <td><a href="{{ path('academico_show', { 'slug': academico.slug }) }}">{{ academico.paterno }} {{ academico.materno }} {{ academico.nombre }}</a></td>
-                                <td>{{ academico.adscripcion }}</td>
-                                <td>{{ academico.correo }}</td>
-                                <td>{{ academico.telefono }}</td>
-                                <td>{{ academico.extension }}</td>
-                            </tr>
-                        {% endfor %}
-                        </tbody>
-                    </table>
+                    <div class="tab-content">
+                        <div id="basico" class="tab-pane fade in active">
+                            <table class="table table-condensed table-hover" id="academico_table">
+                                <thead>
+                                <tr>
+                                    <th>Nombre</th>
+                                    <th>Adscripcion</th>
+                                    <th>Correo</th>
+                                    <th>Telefono</th>
+                                    <th>Extension</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {% for academico in academicos %}
+                                    {% if academico.basico == 'true' %}
+                                        <tr>
+                                            <td><a href="{{ path('academico_show', { 'slug': academico.slug }) }}">{{ academico.paterno }} {{ academico.materno }} {{ academico.nombre }}</a></td>
+                                            <td>{{ academico.adscripcion }}</td>
+                                            <td>{{ academico.correo }}</td>
+                                            <td>{{ academico.telefono }}</td>
+                                            <td>{{ academico.extension }}</td>
+                                        </tr>
+                                    {% endif %}
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <div id="externos" class="tab-pane fade">
+
+                            <table class="table table-condensed table-hover" id="academico_externo_table">
+                                <thead>
+                                <tr>
+                                    <th>Nombre</th>
+                                    <th>Adscripcion</th>
+                                    <th>Correo</th>
+                                    <th>Telefono</th>
+                                    <th>Extension</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {% for academico in academicos %}
+                                   {% if academico.basico != 'true' %}
+                                        <tr>
+                                            <td><a href="{{ path('academico_show', { 'slug': academico.slug }) }}">{{ academico.paterno }} {{ academico.materno }} {{ academico.nombre }}</a></td>
+                                            <td>{{ academico.adscripcion }}</td>
+                                            <td>{{ academico.correo }}</td>
+                                            <td>{{ academico.telefono }}</td>
+                                            <td>{{ academico.extension }}</td>
+                                        </tr>
+                                  {% endif %}
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
