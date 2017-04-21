@@ -55,7 +55,16 @@
                                                 <td><strong>Certificado de calificaciones</strong></td>
                                             </tr>
                                             <tr>
-                                                <td><strong>Tésis de licenciatura</strong></td><td><a href="{{ vich_uploader_asset(alumno, 'tesisLicenciaturaFile') }}">{{ alumno.tesisLicenciaturaName}}</a></td>
+                                                <td><strong>Examen de grado/Título</strong></td><td><a href="{{ vich_uploader_asset(alumno, 'tesisLicenciaturaFile') }}">{{ alumno.tesisLicenciaturaName}}</a></td>
+                                            </tr>
+                                            <tr>
+                                                <td><strong>Curriculum</strong></td><td><a href="{{ vich_uploader_asset(alumno, 'curriculumFile') }}">{{ alumno.curriculumName}}</a></td>
+                                            </tr>
+                                            <tr>
+                                                <td><strong>Foto</strong></td><td><a href="{{ vich_uploader_asset(alumno, 'fotoFile') }}">{{ alumno.fotoName}}</a></td>
+                                            </tr>
+                                            <tr>
+                                                <td><strong>Cédula</strong></td><td><a href="{{ vich_uploader_asset(alumno, 'cedulaFile') }}">{{ alumno.cedulaName}}</a></td>
                                             </tr>
                                         {% endif %}
                                     </table>

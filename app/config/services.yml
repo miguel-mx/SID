@@ -16,3 +16,8 @@ services:
     alumno.directory_namer:
             class: 'AppBundle\Service\DirectoryNamer'
             arguments: ['%kernel.root_dir%']
+
+    namer.media_file:
+        class: 'AppBundle\Namer\Namer'
+        tags:
+            - { name: namer }

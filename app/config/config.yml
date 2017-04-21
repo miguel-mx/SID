@@ -97,7 +97,40 @@ vich_uploader:
         alumno_documento:
             uri_prefix:         /documentos
             upload_destination: '%kernel.root_dir%/../web/documentos/'
-            namer: vich_uploader.namer_uniqid
+            directory_namer:
+                service: vich_uploader.directory_namer_subdir
+                options: {chars_per_dir: 9}
+            namer:
+                  service: namer.media_file
+                  options: { property: 'numeroCuenta'}
+
+        curriculum_documento:
+                    uri_prefix:         /documentos
+                    upload_destination: '%kernel.root_dir%/../web/documentos/'
+                    directory_namer:
+                        service: vich_uploader.directory_namer_subdir
+                    namer:
+                          service: namer.media_file
+                          options: { property: 'numeroCuenta'}
+
+        foto_documento:
+                    uri_prefix:         /documentos
+                    upload_destination: '%kernel.root_dir%/../web/documentos/'
+                    directory_namer:
+                        service: vich_uploader.directory_namer_subdir
+                    namer:
+                          service: namer.media_file
+                          options: { property: 'numeroCuenta'}
+
+        cedula_documento:
+                    uri_prefix:         /documentos
+                    upload_destination: '%kernel.root_dir%/../web/documentos/'
+                    directory_namer:
+                        service: vich_uploader.directory_namer_subdir
+                    namer:
+                          service: namer.media_file
+                          options: { property: 'numeroCuenta'}
+
 
 fos_user:
     db_driver: orm

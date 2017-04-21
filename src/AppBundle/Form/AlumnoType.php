@@ -92,6 +92,15 @@ class AlumnoType extends AbstractType
             ->add('tesisLicenciaturaFile', 'Symfony\Component\Form\Extension\Core\Type\FileType', array(
                 'required' => false,
             ))
+            ->add('curriculumFile', 'Symfony\Component\Form\Extension\Core\Type\FileType', array(
+                'required' => false,
+            ))
+            ->add('fotoFile', 'Symfony\Component\Form\Extension\Core\Type\FileType', array(
+                'required' => false,
+            ))
+            ->add('cedulaFile', 'Symfony\Component\Form\Extension\Core\Type\FileType', array(
+                'required' => false,
+            ))
         ;
     }
     

@@ -134,10 +134,6 @@ class Alumno
      */
     private $estatus;
 
-    /*
-    *
-    */
-
     /**
      * @Vich\UploadableField(mapping="alumno_documento", fileNameProperty="tesisLicenciaturaName")
      *
@@ -157,6 +153,66 @@ class Alumno
      * @var string
      */
     private $tesisLicenciaturaName;
+
+    /**
+     * @Vich\UploadableField(mapping="curriculum_documento", fileNameProperty="curriculumName")
+     *
+     * @Assert\File(
+     *     maxSize = "2048k",
+     *     mimeTypes = {"application/pdf", "application/x-pdf"},
+     *     mimeTypesMessage = "Favor de subir el archivo en formato PDF"
+     * )
+     *
+     * @var File
+     */
+    private $curriculumFile;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     *
+     * @var string
+     */
+    private $curriculumName;
+
+    /**
+     * @Vich\UploadableField(mapping="foto_documento", fileNameProperty="fotoName")
+     *
+     * @Assert\File(
+     *     maxSize = "2048k",
+     *     mimeTypes={"image/png", "image/jpeg", "image/pjpeg"},
+     *     mimeTypesMessage = "Favor de subir el archivo en formato PNG, JPEG o PJPEG"
+     * )
+     *
+     * @var File
+     */
+    private $fotoFile;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     *
+     * @var string
+     */
+    private $fotoName;
+
+    /**
+     * @Vich\UploadableField(mapping="cedula_documento", fileNameProperty="cedulaName")
+     *
+     * @Assert\File(
+     *     maxSize = "2048k",
+     *     mimeTypes = {"application/pdf", "application/x-pdf"},
+     *     mimeTypesMessage = "Favor de subir el archivo en formato PNG, JPEG o PJPEG"
+     * )
+     *
+     * @var File
+     */
+    private $cedulaFile;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     *
+     * @var string
+     */
+    private $cedulaName;
 
     /**
      * One Alumno has Many Programas.
@@ -657,6 +713,137 @@ class Alumno
 
         return $this;
     }
+
+    /**
+     * @return File|null
+     */
+    public function getCurriculumFile()
+    {
+        return $this->curriculumFile;
+    }
+
+    /**
+     *
+     * @param File|\Symfony\Component\HttpFoundation\File\UploadedFile $file
+     * @return Alumno
+     */
+    public function setCurriculumFile(File $file = null)
+    {
+        $this->curriculumFile = $file;
+
+        if ($file) {
+            // It is required that at least one field changes if you are using doctrine
+            // otherwise the event listeners won't be called and the file is lost
+            $this->modifiedAt = new \DateTimeImmutable();
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getCurriculumName()
+    {
+        return $this->curriculumName;
+    }
+
+    /**
+     * @param string $curriculumName
+     * @return Alumno
+     */
+    public function setCurriculumName($curriculumName)
+    {
+        $this->curriculumName = $curriculumName;
+    }
+
+    /**
+     * @return File|null
+     */
+    public function getFotoFile()
+    {
+        return $this->fotoFile;
+    }
+
+    /**
+     *
+     * @param File|\Symfony\Component\HttpFoundation\File\UploadedFile $file
+     * @return Alumno
+     */
+    public function setFotoFile(File $file = null)
+    {
+
+        $this->fotoFile = $file;
+
+        if ($file) {
+            // It is required that at least one field changes if you are using doctrine
+            // otherwise the event listeners won't be called and the file is lost
+            $this->modifiedAt = new \DateTimeImmutable();
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getFotoName()
+    {
+        return $this->fotoName;
+    }
+
+    /**
+     * @param string $fotoName
+     * @return Alumno
+     */
+    public function setFotoName($fotoName)
+    {
+        $this->fotoName = $fotoName;
+    }
+
+    /**
+     * @return File|null
+     */
+    public function getCedulaFile()
+    {
+        return $this->cedulaFile;
+    }
+
+    /**
+     * @param File|\Symfony\Component\HttpFoundation\File\UploadedFile $file
+     * @return Alumno
+     */
+    public function setCedulaFile(File $file = null)
+    {
+
+        $this->cedulaFile = $file;
+
+        if ($file) {
+            // It is required that at least one field changes if you are using doctrine
+            // otherwise the event listeners won't be called and the file is lost
+            $this->modifiedAt = new \DateTimeImmutable();
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getCedulaName()
+    {
+        return $this->cedulaName;
+    }
+
+    /**
+     * @param string $cedulaName
+     * @return Alumno
+     */
+    public function setCedulaName($cedulaName)
+    {
+        $this->cedulaName = $cedulaName;
+    }
+
 
 
 }

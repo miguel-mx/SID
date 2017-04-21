@@ -69,25 +69,48 @@
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-md-3">
+                                    <div class="col-md-4">
                                         <div class="form-group">
                                             <label>País</label>
                                             {{ form_widget(edit_form.pais, {'attr': {'class': 'form-control'}}) }}
                                             <span class="text-danger">{{ form_errors(edit_form.pais) }}</span>
                                         </div>
                                     </div>
-                                    <div class="col-md-3">
+                                    <div class="col-md-4">
                                         <div class="form-group">
                                             <label>Estado</label>
                                             {{ form_widget(edit_form.estado, {'attr': {'class': 'form-control'}}) }}
                                             <span class="text-danger">{{ form_errors(edit_form.estado) }}</span>
                                         </div>
                                     </div>
-                                    <div class="col-md-6">
+                                    <div class="col-md-4">
                                         <div class="form-group">
-                                            <label>tésis de licenciatura</label>
+                                            <label>Examen de grado/Título</label>
                                             {{ form_widget(edit_form.tesisLicenciaturaFile) }}
                                             <span class="text-danger">{{ form_errors(edit_form.tesisLicenciaturaFile) }}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label>Curriculum</label>
+                                            {{ form_widget(edit_form.curriculumFile) }}
+                                            <span class="text-danger">{{ form_errors(edit_form.curriculumFile) }}</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label>Foto</label>
+                                            {{ form_widget(edit_form.fotoFile) }}
+                                            <span class="text-danger">{{ form_errors(edit_form.fotoFile) }}</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label>Cédula</label>
+                                            {{ form_widget(edit_form.cedulaFile) }}
+                                            <span class="text-danger">{{ form_errors(edit_form.cedulaFile) }}</span>
                                         </div>
                                     </div>
                                 </div>
@@ -104,7 +127,7 @@
                         </div>
                         <div class="box-body">
                             <div class="row">
-                                <div class="col-md-8">
+                                <div class="col-md-12">
                                     <div class="form-group">
                                         <label>Escuela de procedencia</label>
                                         {{ form_widget(edit_form.escuelaProcedencia, {'attr': {'class': 'form-control'}}) }}
