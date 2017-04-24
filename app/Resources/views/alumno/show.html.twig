@@ -7,9 +7,6 @@
 
 {% block body %}
     <section class="content-wrapper">
-        <section class="content-header">
-            <h1>{{ alumno.nombre}} {{ alumno.paterno}} {{ alumno.materno}} <small>- {{ alumno.correoInstitucional }}</small></h1>
-        </section>
         <section class="content">
             <div class="row">
                 <div class="col-md-12 col-sm-12 col-xs-12">
@@ -20,20 +17,44 @@
                         <div class="box-body">
                             <div class="row">
                                 <div class="col-md-6 col-sm-6 col-xs-6">
-                                    <table class="table table-condensed table-hover text-muted">
-                                        <tr>
-                                            <td><strong>Número de cuenta</strong></td><td>{{ alumno.numeroCuenta }}</td>
-                                        </tr>
-                                        <tr>
-                                            <td><strong>CVU CONACyT</strong></td><td>{{ alumno.cvu }}</td>
-                                        </tr>
-                                        <tr>
-                                            <td><strong>Correo personal</strong></td><td>{{ alumno.correoPersonal }}</td>
-                                        </tr>
-                                        <tr>
-                                            <td><strong>Correo institucional</strong></td><td>{{ alumno.correoInstitucional }}</td>
-                                        </tr>
-                                    </table>
+
+                                    <div class="box box-widget widget-user-2">
+                                        <div class="widget-user-header ">
+
+                                            <div class="widget-user-image ">
+                                                {% if alumno.fotoName %}
+                                                    <td>
+                                                        <img src="{{ vich_uploader_asset(alumno, 'fotoFile') | imagine_filter('img_thumb') }}" />
+                                                    </td>
+                                                {% endif %}
+                                            </div>
+
+                                                <div class="widget-user-username">
+                                                    <h3>{{ alumno.nombre }} {{ alumno.paterno }} {{ alumno.materno }}</h3>
+                                                </div>
+                                            {% if alumno.correoInstitucional %}
+                                                <div class="widget-user-desc">
+                                                    <h5> {{ alumno.correoInstitucional }}</h5>
+                                                </div>
+                                            {% endif %}
+                                        </div>
+                                        <table class="table table-condensed table-hover text-muted">
+
+                                            <tr>
+                                                <td><strong>Número de cuenta</strong></td><td>{{ alumno.numeroCuenta }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td><strong>CVU CONACyT</strong></td><td>{{ alumno.cvu }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td><strong>Correo personal</strong></td><td>{{ alumno.correoPersonal }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td><strong>Correo institucional</strong></td><td>{{ alumno.correoInstitucional }}</td>
+                                            </tr>
+
+                                        </table>
+                                    </div>
                                 </div>
                                 <div class="col-md-6 col-sm-6 col-xs-6">
 
@@ -48,13 +69,6 @@
                                             <td><strong>Universidad de procedencia</strong></td><td>{{ alumno.escuelaProcedencia }}</td>
                                         </tr>
                                         {% if is_granted('ROLE_ADMIN') %}
-                                            <tr>
-                                                <td><strong>Acta de nacimiento</strong></td>
-                                            </tr>
-                                            <tr>
-                                                <td><strong>Certificado de calificaciones</strong></td>
-                                            </tr>
-                                            <tr>
                                                 <td><strong>Examen de grado/Título</strong></td><td><a href="{{ vich_uploader_asset(alumno, 'tesisLicenciaturaFile') }}">{{ alumno.tesisLicenciaturaName}}</a></td>
                                             </tr>
                                             <tr>
@@ -66,6 +80,7 @@
                                             <tr>
                                                 <td><strong>Cédula</strong></td><td><a href="{{ vich_uploader_asset(alumno, 'cedulaFile') }}">{{ alumno.cedulaName}}</a></td>
                                             </tr>
+
                                         {% endif %}
                                     </table>
                                 </div>

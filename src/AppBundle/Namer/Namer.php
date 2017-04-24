@@ -72,10 +72,10 @@ class Namer implements NamerInterface, ConfigurableInterface
 
         // append the file extension if there is one
         if ($extension = $this->getExtension($file)) {
-            $name = sprintf('%s.%s', $name, $extension);
+            $name = sprintf('%s.%s', $name.'_'.uniqid(), $extension);
         }
 
-        return $name.'_'.uniqid();
+        return $name;
     }
 
     private function getPropertyValue($object, $propertyPath)
