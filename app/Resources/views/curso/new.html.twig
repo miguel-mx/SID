@@ -47,22 +47,34 @@
                         </div>
                     </div>
                 </div>
-                {% if form.tema is defined %}
-                <div class="box-body">
 
-                    <div class="box-header">
-                        <h3>La siguiente información es solo para cursos avanzados (* campos obligatorios) </h3>
-                    </div>
+                <h4>La siguiente información es solo para cursos avanzados (* campos obligatorios) </h4>
+                {% if form.tema is defined %}
                     <div class="row">
                         <div class="col-md-12">
                             <div class="form-group">
                                 <label>Tema*</label>
-                                {{ form_widget(form.tema, {'attr': {'class': 'form-control'}}) }}
+                                {{ form_widget(form.tema) }}
                                 <span class="text-danger">{{ form_errors(form.tema) }}</span>
                             </div>
                         </div>
                     </div>
-                   {# <div class="row">
+                {% endif %}
+                {% if form.objetivo is defined %}
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label>Objetivo</label>
+                                {{ form_widget(form.objetivo) }}
+                                <span class="text-danger">{{ form_errors(form.objetivo) }}</span>
+                            </div>
+                        </div>
+                    </div>
+                {% endif %}
+
+
+                {#
+                    <div class="row">
                         <div class="col-md-12">
                             <div class="form-group">
                                 <label>Objetivo*</label>
@@ -107,10 +119,13 @@
                             </div>
                         </div>
                     </div>#}
-                </div>
-                {% endif %}
+
                 <div class="box-footer">
-                    <input class="btn btn-primary btn-sm" type="submit" value="Crear">
+                    {% if form.curso is defined %}
+                        <input class="btn btn-primary btn-sm" type="submit" value="Crear">
+                    {% else %}
+                        <input class="btn btn-primary btn-sm" type="submit" value="Continuar...">
+                    {% endif %}
                 </div>
             </div>
         </div>
@@ -128,8 +143,9 @@
         $tipo.change(function() {
             // ... retrieve the corresponding form.
             var $form = $(this).closest('form');
+            $form.submit();
             // Simulate form data, but only include the selected sport value.
-            var data = {};
+/*            var data = {};
             data[$tipo.attr('name')] = $tipo.val();
             // Submit data via AJAX to the form's action path.
             $.ajax({
@@ -143,7 +159,7 @@
                     );
                     // Position field now displays the appropriate positions.
                 }
-            });
+            });*/
         });
     </script>
 {% endblock %}

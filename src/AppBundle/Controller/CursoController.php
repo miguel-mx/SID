@@ -49,10 +49,10 @@ class CursoController extends Controller
         $form = $this->createForm('AppBundle\Form\CursoType', $curso);
         $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
+        if ($form->isSubmitted() && $form->isValid() && $curso->getCurso()) {
             $em = $this->getDoctrine()->getManager();
-            $em->persist($curso);
-            $em->flush($curso);
+            // $em->persist($curso);
+            // $em->flush($curso);
 
             return $this->redirectToRoute('curso_show', array('id' => $curso->getId()));
         }
