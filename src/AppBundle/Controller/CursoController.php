@@ -45,20 +45,19 @@ class CursoController extends Controller
      */
     public function newAction(Request $request)
     {
-        $curso = new Curso();
-        $form = $this->createForm('AppBundle\Form\CursoType', $curso);
+
+        $form = $this->createForm('AppBundle\Form\CursoType' ,$curso = new Curso());
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid() && $curso->getCurso()) {
             $em = $this->getDoctrine()->getManager();
-            // $em->persist($curso);
-            // $em->flush($curso);
+            $em->persist($curso);
+            $em->flush();
 
             return $this->redirectToRoute('curso_show', array('id' => $curso->getId()));
         }
 
         return $this->render('curso/new.html.twig', array(
-            'curso' => $curso,
             'form' => $form->createView(),
         ));
     }
@@ -87,6 +86,9 @@ class CursoController extends Controller
      */
     public function editAction(Request $request, Curso $curso)
     {
+        $this->denyAccessUnlessGranted('ROLE_ADMIN', null, 'Unable to access this page!');
+
+
         $deleteForm = $this->createDeleteForm($curso);
         $editForm = $this->createForm('AppBundle\Form\CursoType', $curso)
             ->add('horasSemana')
@@ -96,12 +98,12 @@ class CursoController extends Controller
             ->add('lugar')
             ->add('semestre')
         ;
-
         $editForm->handleRequest($request);
 
-        if ($editForm->isSubmitted() && $editForm->isValid()) {
-            $this->getDoctrine()->getManager()->flush();
-
+        if ($editForm->isSubmitted() && $editForm->isValid() && $curso->getCurso()) {
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($curso);
+            $em->flush();
             $this->addFlash(
                 'notice',
                 'Editado correctamente'

@@ -26,71 +26,12 @@ class CursoType extends AbstractType
                 ),
                 'choices_as_values' => true,
             ))
-            ->add('curso', 'Symfony\Component\Form\Extension\Core\Type\ChoiceType', array(
-                'choices' => array(
-                    'Curso Básico' => 'Curso Básico',
-                ),
-            ))
-            // ->add('curso')
-            // ->add('tema')
+            ->add('curso')
         ;
-
-/*        $formModifier = function (FormInterface $form, $tipo = null) {
-            //$positions = null === $sport ? array() : $sport->getAvailablePositions();
-            if($tipo == 'Básico') {
-                $form->add('curso', 'Symfony\Component\Form\Extension\Core\Type\ChoiceType', array(
-                    'choices' => array(
-                        'Curso Básico' => 'Curso Básico',
-                    ),
-                ));
-            }
-            elseif($tipo == 'Avanzado') {
-                $form->add('curso', 'Symfony\Component\Form\Extension\Core\Type\ChoiceType', array(
-                    'choices' => array(
-                        'Introducción a los medios continuos' => 'Introducción a los medios continuos',
-                        'Modelación matemática de sistemas continuos' => 'Modelación matemática de sistemas continuos',
-                        'Modelos lineales' => 'Modelos lineales',
-                        'Probabilidad I' => 'Probabilidad I',
-                    ),
-                ));
-            }
-            elseif($tipo == 'Seminario') {
-                $form->add('curso', 'Symfony\Component\Form\Extension\Core\Type\ChoiceType', array(
-                    'choices' => array(
-                        'Topología algebraica' => 'Topología algebraica',
-                        'Topología diferencial' => 'Topología diferencial',
-                        'Topología general' => 'Topología general',
-                    ),
-                ));
-            }
-        };
-
-        $builder->addEventListener(
-            FormEvents::PRE_SET_DATA,
-            function (FormEvent $event) use ($formModifier) {
-                // this would be your entity, i.e. Curso
-                $curso = $event->getData();
-                // $formModifier($event->getForm(), $curso->getTipo());
-                $form = $event->getForm();
-
-                $form->add('curso', 'Symfony\Component\Form\Extension\Core\Type\ChoiceType', array(
-                    'choices' => array(
-                        'Curso Básico' => 'Curso Básico',
-                    ),
-                ));
-            }
-        );*/
 
         $builder->get('tipo')->addEventListener(
             FormEvents::PRE_SUBMIT,
             function (FormEvent $event) {
-                // It's important here to fetch $event->getForm()->getData(), as
-                // $event->getData() will get you the client data (that is, the ID)
-                //$tipo = $event->getForm()->getData();
-
-                // since we've added the listener to the child, we'll have to pass on
-                // the parent to the callback functions!
-                // $formModifier($event->getForm()->getParent(), $tipo);
 
                 $form = $event->getForm()->getParent();
                 $tipo = $event->getData();
@@ -112,21 +53,122 @@ class CursoType extends AbstractType
                         ),
                     ))
                         ->add('tema')
-                        ->add('objetivo')
+                        ->add('objetivo', 'ckeditor', array(
+                                'required' => true,
+                                'config_name' => 'my_config'
+                            )
+                        )
+                        ->add('temario', 'ckeditor', array(
+                                'required' => true,
+                                'config_name' => 'my_config'
+
+                              ))
+                        ->add('bibliografia', 'ckeditor', array(
+                            'required' => true,
+                            'config_name' => 'my_config'
+
+                        ))
+                        ->add('requisitos', 'ckeditor', array(
+                            'required' => false,
+                            'config_name' => 'my_config'
+                        ))
+                        ->add('comentarios', 'ckeditor', array(
+                            'required' => false,
+                            'config_name' => 'my_config'
+                        ))
                     ;
                 }
                 elseif($tipo === 'Seminario') {
                     $form->add('curso', 'Symfony\Component\Form\Extension\Core\Type\ChoiceType', array(
                         'choices' => array(
-                            'Modelos lineales' => 'Modelos lineales',
-                            'Probabilidad I' => 'Probabilidad I',
+                            'Topología algebraica' => 'Topología algebraica',
+                            'Topología diferencial' => 'Topología diferencial',
+                            'Topología general' => 'Topología general',
                         ),
                     ));
                 }
+
+
             }
         );
 
+        $builder->addEventListener(FormEvents::PRE_SET_DATA, function(FormEvent $event){
+            $tipo = $event->getData();
+            $form = $event->getForm();
+
+
+            if($tipo and $tipo->getTipo()){
+                // obtenemos el country por medio del objeto state:
+
+
+                if($tipo->getTipo()=== "Avanzado"){
+                    $form
+                        ->add('tema')
+                        ->add('objetivo', 'ckeditor', array(
+                            'required' => true,
+                            'config_name' => 'my_config'
+                            )
+                        )
+                        ->add('temario', 'ckeditor', array(
+                            'required' => true,
+                            'config_name' => 'my_config'
+                            )
+                        )
+                        ->add('bibliografia', 'ckeditor', array(
+                            'required' => true,
+                            'config_name' => 'my_config'
+                        ))
+                        ->add('requisitos', 'ckeditor', array(
+                            'required' => false,
+                            'config_name' => 'my_config'
+                        ))
+                        ->add('comentarios', 'ckeditor', array(
+                            'required' => false,
+                            'config_name' => 'my_config'
+                        ))
+                        ->add('curso', 'Symfony\Component\Form\Extension\Core\Type\ChoiceType', array(
+                            'choices' => array(
+                                'Introducción a los medios continuos' => 'Introducción a los medios continuos',
+                                'Modelación matemática de sistemas continuos' => 'Modelación matemática de sistemas continuos',
+                                'Modelos lineales' => 'Modelos lineales',
+                                'Probabilidad I' => 'Probabilidad I',
+                            ),
+                        ))
+                    ;
+
+                }
+                elseif($tipo->getTipo() === 'Básico') {
+                    $form->add('curso', 'Symfony\Component\Form\Extension\Core\Type\ChoiceType', array(
+                        'choices' => array(
+                            'Curso Básico' => 'Curso Básico',
+                        ),
+                    ));
+
+                }
+                elseif($tipo->getTipo() === 'Seminario') {
+                    $form->add('curso', 'Symfony\Component\Form\Extension\Core\Type\ChoiceType', array(
+                        'choices' => array(
+                            'Topología algebraica' => 'Topología algebraica',
+                            'Topología diferencial' => 'Topología diferencial',
+                            'Topología general' => 'Topología general',
+                        ),
+                    ));
+
+            }}
+
+        });
+
+        $builder->addEventListener(FormEvents::POST_SUBMIT, function (FormEvent $event) {
+            $event->stopPropagation();
+        }, 900); // Always set a higher priority than ValidationListener
+
+
+
+
+
     }
+
+
           /*    if($curso->getTipo() == 'Básico') {
                     $form->add('curso', 'Symfony\Component\Form\Extension\Core\Type\ChoiceType', array(
                         'choices' => array(

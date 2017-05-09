@@ -86,9 +86,13 @@ services:
 
 ivory_ck_editor:
     configs:
-        sid_config:
-            toolbar: standard
+        my_config:
+            toolbar:  [["Bold", "Italic", "Underline", "Strike",  "NumberedList", "BulletedList",  "Outdent", "Indent",  "Blockquote" , "Link", "Unlink"]]
+            uiColor:  "#F2F2F2"
+            forcePasteAsPlainText: true
             language: es
+
+
 
 vich_uploader:
     db_driver: orm

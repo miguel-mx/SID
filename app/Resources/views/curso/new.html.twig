@@ -48,8 +48,9 @@
                     </div>
                 </div>
 
-                <h4>La siguiente información es solo para cursos avanzados (* campos obligatorios) </h4>
+
                 {% if form.tema is defined %}
+                    <h4>* campos obligatorios </h4>
                     <div class="row">
                         <div class="col-md-12">
                             <div class="form-group">
@@ -64,61 +65,62 @@
                     <div class="row">
                         <div class="col-md-12">
                             <div class="form-group">
-                                <label>Objetivo</label>
-                                {{ form_widget(form.objetivo) }}
-                                <span class="text-danger">{{ form_errors(form.objetivo) }}</span>
+                                <label>Objetivo*</label>
+                                    {{ form_widget(form.objetivo) }}
+                                    <span class="text-danger">{{ form_errors(form.objetivo) }}</span>
                             </div>
                         </div>
                     </div>
                 {% endif %}
 
 
-                {#
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="form-group">
-                                <label>Objetivo*</label>
-                                {{ form_widget(form.objetivo, {'attr': {'class': 'form-control'}}) }}
-                                <span class="text-danger">{{ form_errors(form.objetivo) }}</span>
-                            </div>
-                        </div>
-                    </div>
+                {% if form.temario is defined %}
                     <div class="row">
                         <div class="col-md-12">
                             <div class="form-group">
                                 <label>Temario*</label>
-                                {{ form_widget(form.temario, {'attr': {'class': 'form-control'}}) }}
+                                {{ form_widget(form.temario) }}
                                 <span class="text-danger">{{ form_errors(form.temario) }}</span>
                             </div>
                         </div>
                     </div>
+                {% endif %}
+
+                {% if form.bibliografia is defined %}
                     <div class="row">
                         <div class="col-md-12">
                             <div class="form-group">
                                 <label>Bibliografía*</label>
-                                {{ form_widget(form.bibliografia, {'attr': {'class': 'form-control'}}) }}
+                                {{ form_widget(form.bibliografia) }}
                                 <span class="text-danger">{{ form_errors(form.bibliografia) }}</span>
                             </div>
                         </div>
                     </div>
+                {% endif %}
+
+                {% if form.requisitos is defined %}
                     <div class="row">
                         <div class="col-md-12">
                             <div class="form-group">
                                 <label>Requisitos</label>
-                                {{ form_widget(form.requisitos, {'attr': {'class': 'form-control'}}) }}
+                                {{ form_widget(form.requisitos) }}
                                 <span class="text-danger">{{ form_errors(form.requisitos) }}</span>
                             </div>
                         </div>
                     </div>
+                {% endif %}
+
+                {% if form.comentarios is defined %}
                     <div class="row">
                         <div class="col-md-12">
                             <div class="form-group">
                                 <label>Comentarios</label>
-                                {{ form_widget(form.comentarios, {'attr': {'class': 'form-control'}}) }}
+                                {{ form_widget(form.comentarios) }}
                                 <span class="text-danger">{{ form_errors(form.comentarios) }}</span>
                             </div>
                         </div>
-                    </div>#}
+                    </div>
+                {% endif %}
 
                 <div class="box-footer">
                     {% if form.curso is defined %}
@@ -136,7 +138,10 @@
 
 {% block javascripts %}
     {{ parent() }}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ckeditor/4.6.2/lang/es.js"></script>
 
+    <script src="//cdn.ckeditor.com/4.4.3/basic/ckeditor.js"></script>
+    <script src="//cdn.ckeditor.com/4.4.3/basic/adapters/jquery.js"></script>
     <script>
         var $tipo = $('#appbundle_curso_tipo');
 
@@ -144,22 +149,8 @@
             // ... retrieve the corresponding form.
             var $form = $(this).closest('form');
             $form.submit();
-            // Simulate form data, but only include the selected sport value.
-/*            var data = {};
-            data[$tipo.attr('name')] = $tipo.val();
-            // Submit data via AJAX to the form's action path.
-            $.ajax({
-                url : $form.attr('action'),
-                type: $form.attr('method'),
-                data : data,
-                success: function(html) {
-                    // Replace la lista de cursos
-                    $('#appbundle_curso_curso').replaceWith(
-                        $(html).find('#appbundle_curso_curso')
-                    );
-                    // Position field now displays the appropriate positions.
-                }
-            });*/
         });
     </script>
+
+
 {% endblock %}

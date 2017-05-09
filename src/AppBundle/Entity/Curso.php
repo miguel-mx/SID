@@ -49,56 +49,56 @@ class Curso
     /**
      * @var string
      *
-     * @ORM\Column(name="horas_semana", type="string", length=10)
+     * @ORM\Column(name="horas_semana", type="string", length=10, nullable=true)
      */
     private $horasSemana;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="creditos", type="integer")
+     * @ORM\Column(name="creditos", type="integer", nullable=true)
      */
     private $creditos;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="asignatura", type="string", length=60)
+     * @ORM\Column(name="asignatura", type="string", length=60, nullable=true)
      */
     private $asignatura;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="objetivo", type="string", length=100, nullable=true)
+     * @ORM\Column(name="objetivo", type="text", nullable=true)
      */
     private $objetivo;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="temario", type="string", length=1000, nullable=true)
+     * @ORM\Column(name="temario", type="text", nullable=true)
      */
     private $temario;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="bibliografia", type="string", length=1000, nullable=true)
+     * @ORM\Column(name="bibliografia", type="text", nullable=true)
      */
     private $bibliografia;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="requisitos", type="string", length=1000, nullable=true)
+     * @ORM\Column(name="requisitos", type="text", nullable=true)
      */
     private $requisitos;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="comentarios", type="string", length=100, nullable=true)
+     * @ORM\Column(name="comentarios", type="text", nullable=true)
      */
     private $comentarios;
 
@@ -112,7 +112,7 @@ class Curso
     /**
      * @var string
      *
-     * @ORM\Column(name="clave_grupo", type="string", length=25)
+     * @ORM\Column(name="clave_grupo", type="string", length=25, nullable=true)
      */
     private $claveGrupo;
 

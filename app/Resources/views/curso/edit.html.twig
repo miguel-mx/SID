@@ -55,13 +55,6 @@
                             </div>
 
                             <div class="row">
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label>Tema</label>
-                                        {{ form_widget(edit_form.tema, {'attr': {'class': 'form-control'}}) }}
-                                        <span>{{ form_errors(edit_form.tema) }}</span>
-                                    </div>
-                                </div>
                                 <div class="col-md-2">
                                     <div class="form-group">
                                         <label>Semestre</label>
@@ -100,6 +93,78 @@
                                     </div>
                                 </div>
                             </div>
+                                {% if edit_form.tema is defined %}
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label>Tema*</label>
+                                                {{ form_widget(edit_form.tema) }}
+                                                <span class="text-danger">{{ form_errors(edit_form.tema) }}</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                {% endif %}
+                                {% if edit_form.objetivo is defined %}
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label>Objetivo*</label>
+                                                    {{ form_widget(edit_form.objetivo) }}
+                                                    <span class="text-danger">{{ form_errors(edit_form.objetivo) }}</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                {% endif %}
+
+
+                                {% if edit_form.temario is defined %}
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label>Temario*</label>
+                                                {{ form_widget(edit_form.temario) }}
+                                                <span class="text-danger">{{ form_errors(edit_form.temario) }}</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                {% endif %}
+
+                                {% if edit_form.bibliografia is defined %}
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label>Bibliografía*</label>
+                                                {{ form_widget(edit_form.bibliografia) }}
+                                                <span class="text-danger">{{ form_errors(edit_form.bibliografia) }}</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                {% endif %}
+
+                                {% if edit_form.requisitos is defined %}
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label>Requisitos</label>
+                                                {{ form_widget(edit_form.requisitos) }}
+                                                <span class="text-danger">{{ form_errors(edit_form.requisitos) }}</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                {% endif %}
+
+                                {% if edit_form.comentarios is defined %}
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label>Comentarios</label>
+                                                {{ form_widget(edit_form.comentarios) }}
+                                                <span class="text-danger">{{ form_errors(edit_form.comentarios) }}</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                {% endif %}
+
                             {#
                             <div class="row">
                                 <div class="col-md-12">
@@ -162,7 +227,7 @@
                         </div>
                     </div>
                     <div class="box-footer">
-                        <input class="btn btn-primary btn-sm" type="submit" value="Editar">
+                        <input class="btn btn-primary btn-sm" name="editar" type="submit" value="Editar">
                     </div>
                 </div>
         </div>
@@ -170,4 +235,19 @@
     {{ form_end(edit_form) }}
 
     </div>
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+
+     <script>
+        var $tipo = $('#appbundle_curso_tipo');
+
+        $tipo.change(function() {
+            // ... retrieve the corresponding form.
+            var $form = $(this).closest('form');
+            $form.submit();
+        });
+    </script>
+
+
 {% endblock %}
