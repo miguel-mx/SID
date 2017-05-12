@@ -62,6 +62,14 @@
                                         <span>{{ form_errors(edit_form.semestre) }}</span>
                                     </div>
                                 </div>
+
+                                <div class="col-md-2">
+                                    <div class="form-group">
+                                        <label>Aprobado</label>
+                                        {{ form_widget(edit_form.aceptado) }}
+                                        <span>{{ form_errors(edit_form.aceptado) }}</span>
+                                    </div>
+                                </div>
                             </div>
                             <div class="row">
                                 <div class="col-md-2">
@@ -93,137 +101,79 @@
                                     </div>
                                 </div>
                             </div>
-                                {% if edit_form.tema is defined %}
-                                    <div class="row">
-                                        <div class="col-md-12">
-                                            <div class="form-group">
-                                                <label>Tema*</label>
-                                                {{ form_widget(edit_form.tema) }}
-                                                <span class="text-danger">{{ form_errors(edit_form.tema) }}</span>
-                                            </div>
+                            {% if edit_form.tema is defined %}
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label>Tema*</label>
+                                            {{ form_widget(edit_form.tema) }}
+                                            <span class="text-danger">{{ form_errors(edit_form.tema) }}</span>
                                         </div>
                                     </div>
-                                {% endif %}
-                                {% if edit_form.objetivo is defined %}
-                                    <div class="row">
-                                        <div class="col-md-12">
-                                            <div class="form-group">
-                                                <label>Objetivo*</label>
-                                                    {{ form_widget(edit_form.objetivo) }}
-                                                    <span class="text-danger">{{ form_errors(edit_form.objetivo) }}</span>
-                                            </div>
+                                </div>
+                            {% endif %}
+                            {% if edit_form.objetivo is defined %}
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label>Objetivo*</label>
+                                            {{ form_widget(edit_form.objetivo) }}
+                                            <span class="text-danger">{{ form_errors(edit_form.objetivo) }}</span>
                                         </div>
                                     </div>
-                                {% endif %}
+                                </div>
+                            {% endif %}
 
 
-                                {% if edit_form.temario is defined %}
-                                    <div class="row">
-                                        <div class="col-md-12">
-                                            <div class="form-group">
-                                                <label>Temario*</label>
-                                                {{ form_widget(edit_form.temario) }}
-                                                <span class="text-danger">{{ form_errors(edit_form.temario) }}</span>
-                                            </div>
+                            {% if edit_form.temario is defined %}
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label>Temario*</label>
+                                            {{ form_widget(edit_form.temario) }}
+                                            <span class="text-danger">{{ form_errors(edit_form.temario) }}</span>
                                         </div>
                                     </div>
-                                {% endif %}
+                                </div>
+                            {% endif %}
 
-                                {% if edit_form.bibliografia is defined %}
-                                    <div class="row">
-                                        <div class="col-md-12">
-                                            <div class="form-group">
-                                                <label>Bibliografía*</label>
-                                                {{ form_widget(edit_form.bibliografia) }}
-                                                <span class="text-danger">{{ form_errors(edit_form.bibliografia) }}</span>
-                                            </div>
+                            {% if edit_form.bibliografia is defined %}
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label>Bibliografía*</label>
+                                            {{ form_widget(edit_form.bibliografia) }}
+                                            <span class="text-danger">{{ form_errors(edit_form.bibliografia) }}</span>
                                         </div>
                                     </div>
-                                {% endif %}
+                                </div>
+                            {% endif %}
 
-                                {% if edit_form.requisitos is defined %}
-                                    <div class="row">
-                                        <div class="col-md-12">
-                                            <div class="form-group">
-                                                <label>Requisitos</label>
-                                                {{ form_widget(edit_form.requisitos) }}
-                                                <span class="text-danger">{{ form_errors(edit_form.requisitos) }}</span>
-                                            </div>
+                            {% if edit_form.requisitos is defined %}
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label>Requisitos</label>
+                                            {{ form_widget(edit_form.requisitos) }}
+                                            <span class="text-danger">{{ form_errors(edit_form.requisitos) }}</span>
                                         </div>
                                     </div>
-                                {% endif %}
+                                </div>
+                            {% endif %}
 
-                                {% if edit_form.comentarios is defined %}
-                                    <div class="row">
-                                        <div class="col-md-12">
-                                            <div class="form-group">
-                                                <label>Comentarios</label>
-                                                {{ form_widget(edit_form.comentarios) }}
-                                                <span class="text-danger">{{ form_errors(edit_form.comentarios) }}</span>
-                                            </div>
+                            {% if edit_form.comentarios is defined %}
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label>Comentarios</label>
+                                            {{ form_widget(edit_form.comentarios) }}
+                                            <span class="text-danger">{{ form_errors(edit_form.comentarios) }}</span>
                                         </div>
                                     </div>
-                                {% endif %}
+                                </div>
+                            {% endif %}
 
-                            {#
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <label>Tema</label>
-                                        {{ form_widget(edit_form.tema, {'attr': {'class': 'form-control'}}) }}
-                                        <span class="text-danger">{{ form_errors(edit_form.tema) }}</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <label>Objetivo</label>
-                                        {{ form_widget(edit_form.objetivo, {'attr': {'class': 'form-control'}}) }}
-                                        <span>{{ form_errors(edit_form.objetivo) }}</span>
-                                    </div>
-                                </div>
 
-                            </div>
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <label>Temario</label>
-                                        {{ form_widget(edit_form.temario, {'attr': {'class': 'form-control'}}) }}
-                                        <span>{{ form_errors(edit_form.temario) }}</span>
-                                    </div>
-                                </div>
-
-                            </div>
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <label>Bibliografía</label>
-                                        {{ form_widget(edit_form.bibliografia, {'attr': {'class': 'form-control'}}) }}
-                                        <span>{{ form_errors(edit_form.bibliografia) }}</span>
-                                    </div>
-                                </div>
-
-                            </div>
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <label>Requisitos</label>
-                                        {{ form_widget(edit_form.requisitos, {'attr': {'class': 'form-control'}}) }}
-                                        <span>{{ form_errors(edit_form.bibliografia) }}</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <label>Comentarios</label>
-                                        {{ form_widget(edit_form.comentarios, {'attr': {'class': 'form-control'}}) }}
-                                        <span>{{ form_errors(edit_form.comentarios) }}</span>
-                                    </div>
-                                </div>
-                            </div>
-                            #}
                         </div>
                     </div>
                     <div class="box-footer">
@@ -239,12 +189,13 @@
 {% block javascripts %}
     {{ parent() }}
 
-     <script>
+    <script>
         var $tipo = $('#appbundle_curso_tipo');
 
         $tipo.change(function() {
             // ... retrieve the corresponding form.
             var $form = $(this).closest('form');
+
             $form.submit();
         });
     </script>

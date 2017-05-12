@@ -98,6 +98,12 @@ class Alumno
      */
     private $estado;
 
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="genero", type="string", length=60)
+     */
+    private $genero;
 
     /**
      * @var string
@@ -452,6 +458,23 @@ class Alumno
     {
         $this->estado = $estado;
     }
+
+    /**
+     * @return string
+     */
+    public function getGenero()
+    {
+        return $this->genero;
+    }
+
+    /**
+     * @param string $genero
+     */
+    public function setGenero($genero)
+    {
+        $this->genero = $genero;
+    }
+
 
     /**
      * Set numeroCuenta

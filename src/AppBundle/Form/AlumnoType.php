@@ -35,6 +35,13 @@ class AlumnoType extends AbstractType
                 ),
                 'choices_as_values' => true,
                 ))
+            ->add('genero', 'Symfony\Component\Form\Extension\Core\Type\ChoiceType', array(
+                'choices'  => array(
+                    'Masculino' => 'Masculino',
+                    'Femenino' => 'Femenino',
+                ),
+                'choices_as_values' => true,
+            ))
             ->add('numeroCuenta')
             ->add('cvu')
             ->add('estado', 'Symfony\Component\Form\Extension\Core\Type\ChoiceType', array(

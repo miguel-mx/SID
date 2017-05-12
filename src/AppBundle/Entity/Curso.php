@@ -63,6 +63,13 @@ class Curso
     /**
      * @var string
      *
+     * @ORM\Column(name="basico", type="boolean", nullable=true)
+     */
+    private $aceptado;
+
+    /**
+     * @var string
+     *
      * @ORM\Column(name="asignatura", type="string", length=60, nullable=true)
      */
     private $asignatura;
@@ -294,6 +301,24 @@ class Curso
     {
         return $this->creditos;
     }
+
+    /**
+     * @return string
+     */
+    public function getAceptado()
+    {
+        return $this->aceptado;
+    }
+
+    /**
+     * @param string $aceptado
+     */
+    public function setAceptado($aceptado)
+    {
+        $this->aceptado = $aceptado;
+    }
+
+
 
     /**
      * Set asignatura

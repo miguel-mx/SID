@@ -79,11 +79,12 @@
                                     </div>
                                     <div class="col-md-4">
                                         <div class="form-group">
-                                            <label>Examen de grado/Título</label>
-                                            {{ form_widget(form.tesisLicenciaturaFile) }}
-                                            <span class="text-danger">{{ form_errors(form.tesisLicenciaturaFile) }}</span>
+                                            <label>Género</label>
+                                            {{ form_widget(form.genero, {'attr': {'class': 'form-control'}}) }}
+                                            <span class="text-danger">{{ form_errors(form.genero) }}</span>
                                         </div>
                                     </div>
+
                                 </div>
                                 <div class="row">
                                     <div class="col-md-4">
@@ -105,6 +106,15 @@
                                             <label>Cédula</label>
                                             {{ form_widget(form.cedulaFile) }}
                                             <span class="text-danger">{{ form_errors(form.cedulaFile) }}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label>Examen de grado/Título</label>
+                                            {{ form_widget(form.tesisLicenciaturaFile) }}
+                                            <span class="text-danger">{{ form_errors(form.tesisLicenciaturaFile) }}</span>
                                         </div>
                                     </div>
                                 </div>

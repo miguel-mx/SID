@@ -27,37 +27,79 @@
             </div>
         </div>
         <div class="box box-primary">
+            <ul class="nav nav-tabs">
+                <li class="active"><a data-toggle="tab" href="#aceptados">Aceptados</a></li>
+                <li><a data-toggle="tab" href="#rechazados">Rechazados</a></li>
+            </ul>
             <div class="box-header text-right">
                 <a class="btn btn-primary btn-sm" href="{{ path('curso_new') }}" role="button">
                     <i class="fa fa-plus" aria-hidden="true"></i> Agregar curso</a>
             </div>
             <div class="box-body">
-                <table class="table table-condensed table-hover">
-                    <thead>
-                    <tr>
-                        <th>Curso</th>
-                        <th>Tema</th>
-                        <th>Tipo</th>
-                        <th>Horas</th>
-                        <th>Creditos</th>
-                        <th>Asignatura</th>
-                        <th>Clave</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    {% for curso in cursos %}
-                        <tr>
-                            <td><a href="{{ path('curso_show', { 'id': curso.id }) }}">{{ curso.curso }}</a></td>
-                            <td>{{ curso.tema }}</td>
-                            <td>{{ curso.tipo }}</td>
-                            <td class="text-center">{{ curso.horasSemana }}</td>
-                            <td class="text-center">{{ curso.creditos }}</td>
-                            <td class="text-center">{{ curso.asignatura }}</td>
-                            <td class="text-center">{{ curso.claveGrupo }}</td>
-                        </tr>
-                    {% endfor %}
-                    </tbody>
-                </table>
+                <div class="tab-content">
+
+                    <div id="aceptados" class="tab-pane fade in active">
+                        <table class="table table-condensed table-hover" id="aceptados_table">
+                            <thead>
+                            <tr>
+                                <th>Curso</th>
+                                <th>Tema</th>
+                                <th>Tipo</th>
+                                <th>Horas</th>
+                                <th>Creditos</th>
+                                <th>Asignatura</th>
+                                <th>Clave</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for curso in cursos %}
+                                {% if curso.aceptado == 'true' %}
+                                    <tr>
+                                        <td><a href="{{ path('curso_show', { 'id': curso.id }) }}">{{ curso.curso }}</a></td>
+                                        <td>{{ curso.tema }}</td>
+                                        <td>{{ curso.tipo }}</td>
+                                        <td class="text-center">{{ curso.horasSemana }}</td>
+                                        <td class="text-center">{{ curso.creditos }}</td>
+                                        <td class="text-center">{{ curso.asignatura }}</td>
+                                        <td class="text-center">{{ curso.claveGrupo }}</td>
+                                    </tr>
+                                {% endif %}
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                    <div id="rechazados" class="tab-pane fade">
+
+                        <table class="table table-condensed table-hover" id="academico_externo_table">
+                            <thead>
+                            <tr>
+                                <th>Curso</th>
+                                <th>Tema</th>
+                                <th>Tipo</th>
+                                <th>Horas</th>
+                                <th>Creditos</th>
+                                <th>Asignatura</th>
+                                <th>Clave</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for curso in cursos %}
+                                {% if curso.aceptado  != 'true' %}
+                                    <tr>
+                                        <td><a href="{{ path('curso_show', { 'id': curso.id }) }}">{{ curso.curso }}</a></td>
+                                        <td>{{ curso.tema }}</td>
+                                        <td>{{ curso.tipo }}</td>
+                                        <td class="text-center">{{ curso.horasSemana }}</td>
+                                        <td class="text-center">{{ curso.creditos }}</td>
+                                        <td class="text-center">{{ curso.asignatura }}</td>
+                                        <td class="text-center">{{ curso.claveGrupo }}</td>
+                                    </tr>
+                                {% endif %}
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
             </div>
         </div>
     </section>

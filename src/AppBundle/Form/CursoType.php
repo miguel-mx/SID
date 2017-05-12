@@ -19,14 +19,15 @@ class CursoType extends AbstractType
         $builder
             ->add('profesor')
             ->add('tipo', 'Symfony\Component\Form\Extension\Core\Type\ChoiceType', array(
-                'choices'  => array(
-                    'Básico' => 'Básico',
-                    'Avanzado' => 'Avanzado',
-                    'Seminario' => 'Seminario',
-                ),
-                'choices_as_values' => true,
-            ))
-            ->add('curso')
+                    'choices'  => array(
+                        'placeholder' => '',
+                        'Básico' => 'Básico',
+                        'Avanzado' => 'Avanzado',
+                        'Seminario' => 'Seminario',
+                    ),
+                )
+            )
+
         ;
 
         $builder->get('tipo')->addEventListener(
@@ -38,57 +39,86 @@ class CursoType extends AbstractType
 
                 if($tipo === 'Básico') {
                     $form->add('curso', 'Symfony\Component\Form\Extension\Core\Type\ChoiceType', array(
-                        'choices' => array(
-                            'Curso Básico' => 'Curso Básico',
-                        ),
-                    ));
+                            'choices' => array(
+                                'Algebra Conmutativa' => 'Algebra Conmutativa',
+                                'Algebra Moderna' => 'Algebra Moderna',
+                                'Análisis Asintótico' => 'Análisis Asintótico',
+                                'Análisis Complejo' => 'Análisis Complejo',
+                                'Análisis Funcional' => 'Análisis Funcional',
+                                'Análisis Real' => 'Análisis Real',
+                                'Ecuaciones Diferenciales Ordinarias' => 'Ecuaciones Diferenciales Ordinarias',
+                                'Ecuaciones Diferenciales Parciales' => 'Ecuaciones Diferenciales Parciales',
+                                'Geometría Algebraica' => 'Geometría Algebraica',
+                                'Geometría Diferencial' => 'Geometría Diferencial',
+                                'Inferencia Estadistica' => 'Inferencia Estadistica',
+                                'Probabilidad' => 'Probabilidad',
+                                'Probabilidad I' => 'Probabilidad I',
+                                'Teoría de Gráficas' => 'Teoría de Gráficas',
+                                'Topología Algebráica' => 'Topología Algebráica',
+                                'Topología Diferencial' => 'Topología Diferencial',
+                                'Topología General' => 'Topología General',
+                            ),
+                        )
+                    );
                 }
                 elseif($tipo === 'Avanzado') {
                     $form->add('curso', 'Symfony\Component\Form\Extension\Core\Type\ChoiceType', array(
-                        'choices' => array(
-                            'Introducción a los medios continuos' => 'Introducción a los medios continuos',
-                            'Modelación matemática de sistemas continuos' => 'Modelación matemática de sistemas continuos',
-                            'Modelos lineales' => 'Modelos lineales',
-                            'Probabilidad I' => 'Probabilidad I',
-                        ),
-                    ))
+                            'choices' => array(
+                                'Curso Avanzado de Algebra' => 'Curso Avanzado de Algebra',
+                                'Curso Avanzado de Análisis' => 'Curso avanzado de Análisis',
+                                'Curso Avanzado de Ecuaciones diferenciales ordinarias y parciales' => 'Curso avanzado de Ecuaciones diferenciales ordinarias y parciales',
+                                'Curso Avanzado de Geometría' => 'Curso avanzado de Geometría',
+                                'Curso Avanzado de Matemáticas discretas' => 'Curso avanzado de Matemáticas discretas',
+                                'Curso Avanzado de Topología' => 'Curso avanzado de Topología',
+
+                            ),
+                        )
+                    )
                         ->add('tema')
                         ->add('objetivo', 'ckeditor', array(
                                 'required' => true,
                                 'config_name' => 'my_config'
                             )
                         )
+
                         ->add('temario', 'ckeditor', array(
                                 'required' => true,
                                 'config_name' => 'my_config'
+                            )
+                        )
 
-                              ))
                         ->add('bibliografia', 'ckeditor', array(
-                            'required' => true,
-                            'config_name' => 'my_config'
+                                'required' => true,
+                                'config_name' => 'my_config'
+                            )
+                        )
 
-                        ))
                         ->add('requisitos', 'ckeditor', array(
-                            'required' => false,
-                            'config_name' => 'my_config'
-                        ))
+                                'required' => false,
+                                'config_name' => 'my_config'
+                            )
+                        )
+
                         ->add('comentarios', 'ckeditor', array(
-                            'required' => false,
-                            'config_name' => 'my_config'
-                        ))
-                    ;
+                                'required' => false,
+                                'config_name' => 'my_config'
+                            )
+                        );
                 }
                 elseif($tipo === 'Seminario') {
                     $form->add('curso', 'Symfony\Component\Form\Extension\Core\Type\ChoiceType', array(
                         'choices' => array(
-                            'Topología algebraica' => 'Topología algebraica',
-                            'Topología diferencial' => 'Topología diferencial',
-                            'Topología general' => 'Topología general',
+                            'Seminario de Análisis' => 'Seminario de Análisis',
+                            'Seminario de Ecuaciones diferenciales ordinarias y parciales' => 'Seminario de Ecuaciones diferenciales ordinarias y parciales',
+                            'Seminario de Geometría' => 'SSeminario de Geometría',
+                            'Seminario de Matemáticas Discretas' => 'Seminario de Matemáticas Discretas',
+                            'Seminario de Probabilidad' => 'Seminario de Probabilidad',
+                            'Seminario de Topología' => 'Seminario de Topología',
                         ),
-                    ));
+                    ))
+                        ->add('tema')
+                    ;
                 }
-
-
             }
         );
 
@@ -96,22 +126,19 @@ class CursoType extends AbstractType
             $tipo = $event->getData();
             $form = $event->getForm();
 
-
             if($tipo and $tipo->getTipo()){
                 // obtenemos el country por medio del objeto state:
-
-
                 if($tipo->getTipo()=== "Avanzado"){
                     $form
                         ->add('tema')
                         ->add('objetivo', 'ckeditor', array(
-                            'required' => true,
-                            'config_name' => 'my_config'
+                                'required' => true,
+                                'config_name' => 'my_config'
                             )
                         )
                         ->add('temario', 'ckeditor', array(
-                            'required' => true,
-                            'config_name' => 'my_config'
+                                'required' => true,
+                                'config_name' => 'my_config'
                             )
                         )
                         ->add('bibliografia', 'ckeditor', array(
@@ -128,19 +155,38 @@ class CursoType extends AbstractType
                         ))
                         ->add('curso', 'Symfony\Component\Form\Extension\Core\Type\ChoiceType', array(
                             'choices' => array(
-                                'Introducción a los medios continuos' => 'Introducción a los medios continuos',
-                                'Modelación matemática de sistemas continuos' => 'Modelación matemática de sistemas continuos',
-                                'Modelos lineales' => 'Modelos lineales',
-                                'Probabilidad I' => 'Probabilidad I',
-                            ),
-                        ))
-                    ;
+                                'Curso Avanzado de Algebra' => 'Curso Avanzado de Algebra',
+                                'Curso Avanzado de Análisis' => 'Curso avanzado de Análisis',
+                                'Curso Avanzado de Ecuaciones diferenciales ordinarias y parciales' => 'Curso avanzado de Ecuaciones diferenciales ordinarias y parciales',
+                                'Curso Avanzado de Geometría' => 'Curso avanzado de Geometría',
+                                'Curso Avanzado de Matemáticas discretas' => 'Curso avanzado de Matemáticas discretas',
+                                'Curso Avanzado de Topología' => 'Curso avanzado de Topología',
 
+
+
+                            ),
+                        ));
                 }
                 elseif($tipo->getTipo() === 'Básico') {
                     $form->add('curso', 'Symfony\Component\Form\Extension\Core\Type\ChoiceType', array(
                         'choices' => array(
-                            'Curso Básico' => 'Curso Básico',
+                            'Algebra Conmutativa' => 'Algebra Conmutativa',
+                            'Algebra Moderna' => 'Algebra Moderna',
+                            'Análisis Asintótico' => 'Análisis Asintótico',
+                            'Análisis Complejo' => 'Análisis Complejo',
+                            'Análisis Funcional' => 'Análisis Funcional',
+                            'Análisis Real' => 'Análisis Real',
+                            'Ecuaciones Diferenciales Ordinarias' => 'Ecuaciones Diferenciales Ordinarias',
+                            'Ecuaciones Diferenciales Parciales' => 'Ecuaciones Diferenciales Parciales',
+                            'Geometría Algebraica' => 'Geometría Algebraica',
+                            'Geometría Diferencial' => 'Geometría Diferencial',
+                            'Inferencia Estadistica' => 'Inferencia Estadistica',
+                            'Probabilidad' => 'Probabilidad',
+                            'Probabilidad I' => 'Probabilidad I',
+                            'Teoría de Gráficas' => 'Teoría de Gráficas',
+                            'Topología Algebráica' => 'Topología Algebráica',
+                            'Topología Diferencial' => 'Topología Diferencial',
+                            'Topología General' => 'Topología General',
                         ),
                     ));
 
@@ -148,79 +194,23 @@ class CursoType extends AbstractType
                 elseif($tipo->getTipo() === 'Seminario') {
                     $form->add('curso', 'Symfony\Component\Form\Extension\Core\Type\ChoiceType', array(
                         'choices' => array(
-                            'Topología algebraica' => 'Topología algebraica',
-                            'Topología diferencial' => 'Topología diferencial',
-                            'Topología general' => 'Topología general',
+                            'Seminario de Análisis' => 'Seminario de Análisis',
+                            'Seminario de Ecuaciones diferenciales ordinarias y parciales' => 'Seminario de Ecuaciones diferenciales ordinarias y parciales',
+                            'Seminario de Geometría' => 'SSeminario de Geometría',
+                            'Seminario de Matemáticas Discretas' => 'Seminario de Matemáticas Discretas',
+                            'Seminario de Probabilidad' => 'Seminario de Probabilidad',
+                            'Seminario de Topología' => 'Seminario de Topología',
                         ),
                     ));
-
-            }}
-
+                }}
         });
 
         $builder->addEventListener(FormEvents::POST_SUBMIT, function (FormEvent $event) {
             $event->stopPropagation();
         }, 900); // Always set a higher priority than ValidationListener
 
-
-
-
-
     }
 
-
-          /*    if($curso->getTipo() == 'Básico') {
-                    $form->add('curso', 'Symfony\Component\Form\Extension\Core\Type\ChoiceType', array(
-                        'choices' => array(
-                            'Curso Básico' => 'Curso Básico',
-                        ),
-                    ));
-                }
-                elseif($curso->getTipo() == 'Avanzado') {
-                    $form->add('curso', 'Symfony\Component\Form\Extension\Core\Type\ChoiceType', array(
-                        'choices' => array(
-                            'Introducción a los medios continuos' => 'Introducción a los medios continuos',
-                            'Modelación matemática de sistemas continuos' => 'Modelación matemática de sistemas continuos',
-                            'Modelos lineales' => 'Modelos lineales',
-                            'Probabilidad I' => 'Probabilidad I',
-                        ),
-                    ));
-                }
-                elseif($curso->getTipo() == 'Seminario') {
-                    $form->add('curso', 'Symfony\Component\Form\Extension\Core\Type\ChoiceType', array(
-                        'choices' => array(
-                            'Topología algebraica' => 'Topología algebraica',
-                            'Topología diferencial' => 'Topología diferencial',
-                            'Topología general' => 'Topología general',
-                        ),
-                    ));
-                }getForm()->getParent()
-                else {
-                    $form->add('curso', 'Symfony\Component\Form\Extension\Core\Type\ChoiceType', array(
-                        'choices' => array(
-                            'Nada' => 'Nada',
-                        ),
-                    ));
-                }*/
-
-           /* ->add('curso')
-            ->add('tema')
-
-            ->add('objetivo', 'Ivory\CKEditorBundle\Form\Type\CKEditorType', array(
-                'config_name' => 'sid_config',
-            ))
-            ->add('temario', 'Ivory\CKEditorBundle\Form\Type\CKEditorType', array(
-                'config_name' => 'sid_config',
-            ))
-            ->add('bibliografia', 'Ivory\CKEditorBundle\Form\Type\CKEditorType', array(
-                'config_name' => 'sid_config',
-            ))
-            ->add('requisitos', 'Ivory\CKEditorBundle\Form\Type\CKEditorType', array(
-                'config_name' => 'sid_config',
-            ))
-            ->add('comentarios', 'Ivory\CKEditorBundle\Form\Type\CKEditorType', array(
-                'config_name' => 'sid_config',
-            ))*/
 
     /**
      * {@inheritdoc}

@@ -18,7 +18,6 @@ class ProgramaType extends AbstractType
     {
         $builder
             ->add('programa', 'Symfony\Component\Form\Extension\Core\Type\ChoiceType', array(
-                'class' => 'AppBundle:Alumno',
                 'choices' => array(
 
                     'Maestría' => 'Maestría',

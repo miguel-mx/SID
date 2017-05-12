@@ -34,6 +34,7 @@ class CursoController extends Controller
             '_semestre' => $semestre,
             'cursos' => $cursos,
             'semestres_lista' => $semestre_lista,
+
         ));
     }
 
@@ -45,8 +46,14 @@ class CursoController extends Controller
      */
     public function newAction(Request $request)
     {
+        $em = $this->getDoctrine()->getManager();
+        $semestre_lista = $em->getRepository('AppBundle:Semestre')->findAllSemestre();
+        $semestre_final = end($semestre_lista);
 
-        $form = $this->createForm('AppBundle\Form\CursoType' ,$curso = new Curso());
+        $form = $this->createForm('AppBundle\Form\CursoType' ,$curso = new Curso())
+//           ->add('semestre', 'hidden')->setData($semestre_final)
+        ;
+
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid() && $curso->getCurso()) {
@@ -59,6 +66,8 @@ class CursoController extends Controller
 
         return $this->render('curso/new.html.twig', array(
             'form' => $form->createView(),
+
+
         ));
     }
 
@@ -89,6 +98,7 @@ class CursoController extends Controller
         $this->denyAccessUnlessGranted('ROLE_ADMIN', null, 'Unable to access this page!');
 
 
+
         $deleteForm = $this->createDeleteForm($curso);
         $editForm = $this->createForm('AppBundle\Form\CursoType', $curso)
             ->add('horasSemana')
@@ -97,10 +107,11 @@ class CursoController extends Controller
             ->add('claveGrupo')
             ->add('lugar')
             ->add('semestre')
+            ->add('aceptado')
         ;
         $editForm->handleRequest($request);
 
-        if ($editForm->isSubmitted() && $editForm->isValid() && $curso->getCurso()) {
+        if ($editForm->isSubmitted() && $editForm->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $em->persist($curso);
             $em->flush();
