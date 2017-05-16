@@ -1,0 +1,52 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Programamaestriaexterno</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ programaMaestriaExterno.id }}</td>
+            </tr>
+            <tr>
+                <th>Escuelaprocedencia</th>
+                <td>{{ programaMaestriaExterno.escuelaProcedencia }}</td>
+            </tr>
+            <tr>
+                <th>Pais</th>
+                <td>{{ programaMaestriaExterno.pais }}</td>
+            </tr>
+            <tr>
+                <th>Ciudad</th>
+                <td>{{ programaMaestriaExterno.ciudad }}</td>
+            </tr>
+            <tr>
+                <th>Fechagrado</th>
+                <td>{% if programaMaestriaExterno.fechaGrado %}{{ programaMaestriaExterno.fechaGrado|date('Y-m-d') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Opciontitulacion</th>
+                <td>{{ programaMaestriaExterno.opcionTitulacion }}</td>
+            </tr>
+            <tr>
+                <th>Titulotesis</th>
+                <td>{{ programaMaestriaExterno.tituloTesis }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('programamaestriaexterno_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('programamaestriaexterno_edit', { 'id': programaMaestriaExterno.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

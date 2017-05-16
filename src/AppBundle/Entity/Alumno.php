@@ -226,6 +226,15 @@ class Alumno
      */
     private $programas;
 
+
+    /**
+     * One Alumno has One ProgramaMaestriaExterno.
+     * @ORM\OneToOne(targetEntity="ProgramaMaestriaExterno")
+     * @ORM\JoinColumn(name="shipping_id", referencedColumnName="id")
+     */
+    private $ProgramaMaestriaExterno;
+
+
     /**
      * @Gedmo\Slug(fields={"paterno", "materno", "nombre"})
      * @ORM\Column(length=50, unique=true )
@@ -865,6 +874,22 @@ class Alumno
     public function setCedulaName($cedulaName)
     {
         $this->cedulaName = $cedulaName;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getProgramaMaestriaExterno()
+    {
+        return $this->ProgramaMaestriaExterno;
+    }
+
+    /**
+     * @param mixed $ProgramaMaestriaExterno
+     */
+    public function setProgramaMaestriaExterno($ProgramaMaestriaExterno)
+    {
+        $this->ProgramaMaestriaExterno = $ProgramaMaestriaExterno;
     }
 
 

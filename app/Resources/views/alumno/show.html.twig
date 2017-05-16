@@ -90,9 +90,15 @@
                             <div class="box-footer">
                                 <a class="btn btn-primary btn-sm" href="{{ path('alumno_edit', { 'slug': alumno.slug }) }}" role="button">
                                     <i class="fa fa-pencil" aria-hidden="true"></i> Editar</a>
+
                                 {% if alumno.programas|length <= 1 %}
                                 <a class="btn btn-warning btn-sm" href="{{ path('programa_new', { 'slug': alumno.slug }) }}" role="button">
                                     <i class="fa fa-plus" aria-hidden="true"></i> Crear programa</a>
+                                {% endif %}
+
+                                {% if alumno.programas | length != "Maestría" %}
+                                <a class="btn btn-warning btn-sm" href="{{ path('programamaestriaexterno_new', { 'slug': alumno.slug }) }}" role="button">
+                                    <i class="fa fa-plus" aria-hidden="true"></i> Crear programa externo</a>
                                 {% endif %}
                             </div>
                         {% endif %}
@@ -130,6 +136,22 @@
                             </div>
                         </div>
                     </div>
+                {% endfor %}
+
+                {% for programaexterno in alumno.programaMaestriaExterno %}
+                <div class="col-md-6 col-sm-12 col-xs-12">
+                    <div class="box box-success">
+                        <div class="box-header">
+                            <h2>Maestría Externa
+                                {% if is_granted('ROLE_ADMIN') %}
+                                    <small><a href="{{ path('programamaestriaexterno_edit', { 'id': programa.id }) }}">
+                                            <i class="fa fa-pencil-square-o" aria-hidden="true"></i></a></small>
+                                {% endif %}
+                            </h2>
+                        </div>
+
+                    </div>
+                </div>
                 {% endfor %}
             </div>
         </section>

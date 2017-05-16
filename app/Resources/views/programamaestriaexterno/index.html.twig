@@ -1,0 +1,60 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs/jqc-1.12.4/dt-1.10.13/b-1.2.4/datatables.min.css"/>
+{% endblock %}
+
+{% block body %}
+    <div class="content-wrapper">
+        <div class="panel-body">
+            <div class="page-header">
+                <h1> Lista de Programas </h1>
+            </div>
+
+            <table>
+                <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Escuelaprocedencia</th>
+                    <th>Pais</th>
+                    <th>Ciudad</th>
+                    <th>Fechagrado</th>
+                    <th>Opciontitulacion</th>
+                    <th>Titulotesis</th>
+                    <th>Actions</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for programaMaestriaExterno in programaMaestriaExternos %}
+                    <tr>
+                        <td><a href="{{ path('programamaestriaexterno_show', { 'id': programaMaestriaExterno.id }) }}">{{ programaMaestriaExterno.id }}</a></td>
+                        <td>{{ programaMaestriaExterno.escuelaProcedencia }}</td>
+                        <td>{{ programaMaestriaExterno.pais }}</td>
+                        <td>{{ programaMaestriaExterno.ciudad }}</td>
+                        <td>{% if programaMaestriaExterno.fechaGrado %}{{ programaMaestriaExterno.fechaGrado|date('Y-m-d') }}{% endif %}</td>
+                        <td>{{ programaMaestriaExterno.opcionTitulacion }}</td>
+                        <td>{{ programaMaestriaExterno.tituloTesis }}</td>
+                        <td>
+                            <ul>
+                                <li>
+                                    <a href="{{ path('programamaestriaexterno_show', { 'id': programaMaestriaExterno.id }) }}">show</a>
+                                </li>
+                                <li>
+                                    <a href="{{ path('programamaestriaexterno_edit', { 'id': programaMaestriaExterno.id }) }}">edit</a>
+                                </li>
+                            </ul>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+    <ul>
+        <li>
+            <a href="{{ path('programamaestriaexterno_new') }}">Create a new programaMaestriaExterno</a>
+        </li>
+    </ul>
+{% endblock %}

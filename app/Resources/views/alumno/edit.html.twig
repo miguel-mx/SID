@@ -85,11 +85,12 @@
                                     </div>
                                     <div class="col-md-4">
                                         <div class="form-group">
-                                            <label>Examen de grado/Título</label>
-                                            {{ form_widget(edit_form.tesisLicenciaturaFile) }}
-                                            <span class="text-danger">{{ form_errors(edit_form.tesisLicenciaturaFile) }}</span>
+                                            <label>Género</label>
+                                            {{ form_widget(edit_form.genero, {'attr': {'class': 'form-control'}}) }}
+                                            <span class="text-danger">{{ form_errors(edit_form.genero) }}</span>
                                         </div>
                                     </div>
+
                                 </div>
                                 <div class="row">
                                     <div class="col-md-4">
@@ -111,6 +112,15 @@
                                             <label>Cédula</label>
                                             {{ form_widget(edit_form.cedulaFile) }}
                                             <span class="text-danger">{{ form_errors(edit_form.cedulaFile) }}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label>Examen de grado/Título</label>
+                                            {{ form_widget(edit_form.tesisLicenciaturaFile) }}
+                                            <span class="text-danger">{{ form_errors(edit_form.tesisLicenciaturaFile) }}</span>
                                         </div>
                                     </div>
                                 </div>
