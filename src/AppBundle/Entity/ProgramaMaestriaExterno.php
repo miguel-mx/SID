@@ -2,13 +2,16 @@
 
 namespace AppBundle\Entity;
 
+use Gedmo\Mapping\Annotation as Gedmo;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * ProgramaMaestriaExterno
  *
  * @ORM\Table(name="programa_maestria_externo")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\ProgramaMaestriaExternoRepository")
+ * * @ORM\HasLifecycleCallbacks()
  */
 class ProgramaMaestriaExterno
 {
@@ -63,6 +66,26 @@ class ProgramaMaestriaExterno
      */
     private $tituloTesis;
 
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="createdAt", type="datetime")
+     */
+    private $createdAt;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="modifiedAt", type="datetime")
+     */
+    private $modifiedAt;
+
+    /**
+     * One ProgramaMaestriaExterno has One Alumno.
+     * @ORM\OneToOne(targetEntity="AppBundle\Entity\Alumno", inversedBy="programaMaestriaExterno")
+     * @ORM\JoinColumn(name="alumno_id", referencedColumnName="id")
+     */
+    private $alumno;
 
 
     /**
@@ -193,6 +216,64 @@ class ProgramaMaestriaExterno
     public function setTituloTesis($tituloTesis)
     {
         $this->tituloTesis = $tituloTesis;
+    }
+
+    /**
+     * @return \DateTime
+     */
+    public function getCreatedAt()
+    {
+        return $this->createdAt;
+    }
+
+    /**
+     * @param \DateTime $createdAt
+     */
+    public function setCreatedAt($createdAt)
+    {
+        $this->createdAt = $createdAt;
+    }
+
+    /**
+     * @return \DateTime
+     */
+    public function getModifiedAt()
+    {
+        return $this->modifiedAt;
+    }
+
+    /**
+     * @param \DateTime $modifiedAt
+     */
+    public function setModifiedAt($modifiedAt)
+    {
+        $this->modifiedAt = $modifiedAt;
+    }
+
+    /**
+     * @ORM\PrePersist
+     */
+    public function setCreatedAtValue()
+    {
+        $this->createdAt = new \DateTime();
+        $this->modifiedAt = new \DateTime();
+    }
+
+
+    /**
+     * @return mixed
+     */
+    public function getAlumno()
+    {
+        return $this->alumno;
+    }
+
+    /**
+     * @param mixed $alumno
+     */
+    public function setAlumno($alumno)
+    {
+        $this->alumno = $alumno;
     }
 
 

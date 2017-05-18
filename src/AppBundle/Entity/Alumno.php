@@ -229,10 +229,9 @@ class Alumno
 
     /**
      * One Alumno has One ProgramaMaestriaExterno.
-     * @ORM\OneToOne(targetEntity="ProgramaMaestriaExterno")
-     * @ORM\JoinColumn(name="shipping_id", referencedColumnName="id")
+     * @ORM\OneToOne(targetEntity="AppBundle\Entity\ProgramaMaestriaExterno", mappedBy="alumno")
      */
-    private $ProgramaMaestriaExterno;
+    private $programaMaestriaExterno;
 
 
     /**
@@ -261,6 +260,7 @@ class Alumno
     public function __construct()
     {
         $this->programas = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->programaMaestriaExterno = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**
@@ -881,17 +881,38 @@ class Alumno
      */
     public function getProgramaMaestriaExterno()
     {
-        return $this->ProgramaMaestriaExterno;
+        return $this->programaMaestriaExterno;
     }
 
     /**
-     * @param mixed $ProgramaMaestriaExterno
+     * @param mixed $programaMaestriaExterno
      */
-    public function setProgramaMaestriaExterno($ProgramaMaestriaExterno)
+    public function setProgramaMaestriaExterno($programaMaestriaExterno)
     {
-        $this->ProgramaMaestriaExterno = $ProgramaMaestriaExterno;
+        $this->programaMaestriaExterno = $programaMaestriaExterno;
     }
 
+    /**
+     * Add programaMaestriaExterno
+     *
+     * @param \AppBundle\Entity\ProgramaMaestriaExterno $programaMaestriaExterno
+     * @return Alumno
+     */
+    public function addProgramaMaestriaExterno(\AppBundle\Entity\ProgramaMaestriaExterno $programaMaestriaExterno)
+    {
+        $this->programaMaestriaExterno[] = $programaMaestriaExterno;
 
+        return $this;
+    }
+
+    /**
+     * Remove programaMaestriaExterno
+     *
+     * @param \AppBundle\Entity\ProgramaMaestriaExterno $programaMaestriaExterno
+     */
+    public function removeProgramaMaestriaExterno(\AppBundle\Entity\ProgramaMaestriaExterno $programaMaestriaExterno)
+    {
+        $this->programaMaestriaExterno->removeElement($programaMaestriaExterno);
+    }
 
 }

@@ -14,12 +14,15 @@
 
     <div class="content-wrapper">
         <section class="content-header">
-            <h1>Nuevo Programa Externo: </h1>
+            <h1>Nuevo Programa Externo: <span class="text-muted">{{ programaMaestriaExterno.alumno.nombre}} {{ programaMaestriaExterno.alumno.paterno}} {{ programaMaestriaExterno.alumno.materno}}</span></h1>
         </section>
         <div class="content">
             <div class="row">
                 <div class="col-md-6 col-sm-6 col-xs-12">
                     <div class="box box-primary">
+                        <div class="box-header">
+                            <h4><a href="{{ path('alumno_show', { 'slug':programaMaestriaExterno.alumno.slug }) }}">{{ programaMaestriaExterno.alumno.nombre }} {{ programaMaestriaExterno.alumno.paterno }} {{ programaMaestriaExterno.alumno.materno }}</a></h4>
+                        </div>
                         <div class="box-body">
                             <div class="row">
                                 <div class="col-md-12">
@@ -86,7 +89,7 @@
                 {{ form_widget(form) }}
                 <input  class="btn btn-success btn-sm" type="submit" value="Guardar cambios">
             </div>
-
+            {{ form_end(form) }}
         </div>
     </div>
 {% endblock %}

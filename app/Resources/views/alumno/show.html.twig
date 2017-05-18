@@ -91,15 +91,31 @@
                                 <a class="btn btn-primary btn-sm" href="{{ path('alumno_edit', { 'slug': alumno.slug }) }}" role="button">
                                     <i class="fa fa-pencil" aria-hidden="true"></i> Editar</a>
 
-                                {% if alumno.programas|length <= 1 %}
-                                <a class="btn btn-warning btn-sm" href="{{ path('programa_new', { 'slug': alumno.slug }) }}" role="button">
-                                    <i class="fa fa-plus" aria-hidden="true"></i> Crear programa</a>
+
+                                {% if alumno.programas|length <= 0 and alumno.programaMaestriaExterno %}
+                                    <a class="btn btn-warning btn-sm" href="{{ path('programa_new', { 'slug': alumno.slug }) }}" role="button">
+                                        <i class="fa fa-plus" aria-hidden="true"></i> Crear programa</a>
+
+                                {% elseif alumno.programas|length <=1 and alumno.programaMaestriaExterno is empty %}
+                                    <a class="btn btn-warning btn-sm" href="{{ path('programa_new', { 'slug': alumno.slug }) }}" role="button">
+                                        <i class="fa fa-plus" aria-hidden="true"></i> Crear programa</a>
                                 {% endif %}
 
-                                {% if alumno.programas | length != "Maestría" %}
-                                <a class="btn btn-warning btn-sm" href="{{ path('programamaestriaexterno_new', { 'slug': alumno.slug }) }}" role="button">
-                                    <i class="fa fa-plus" aria-hidden="true"></i> Crear programa externo</a>
+                                {% if alumno.programas is empty and alumno.programaMaestriaExterno | length <=0 %}
+                                    <a class="btn btn-warning btn-sm" href="{{ path('programamaestriaexterno_new', { 'slug': alumno.slug }) }}" role="button">
+                                        <i class="fa fa-plus" aria-hidden="true"></i> Crear programa externo</a>
+
+                                {% else%}
+                                    {% for programa in alumno.programas %}
+                                        {% if programa.programa =="Doctorado" and alumno.programaMaestriaExterno | length <=0 %}
+                                            <a class="btn btn-warning btn-sm" href="{{ path('programamaestriaexterno_new', { 'slug': alumno.slug }) }}" role="button">
+                                                <i class="fa fa-plus" aria-hidden="true"></i> Crear programa externo</a>
+
+                                        {% endif %}
+                                    {% endfor %}
                                 {% endif %}
+
+
                             </div>
                         {% endif %}
                     </div>
@@ -138,21 +154,25 @@
                     </div>
                 {% endfor %}
 
-                {% for programaexterno in alumno.programaMaestriaExterno %}
+                {% if alumno.programaMaestriaExterno %}
                 <div class="col-md-6 col-sm-12 col-xs-12">
                     <div class="box box-success">
                         <div class="box-header">
                             <h2>Maestría Externa
                                 {% if is_granted('ROLE_ADMIN') %}
-                                    <small><a href="{{ path('programamaestriaexterno_edit', { 'id': programa.id }) }}">
+                                    <small><a href="{{ path('programamaestriaexterno_edit', { 'id': alumno.programaMaestriaExterno.id }) }}">
                                             <i class="fa fa-pencil-square-o" aria-hidden="true"></i></a></small>
                                 {% endif %}
                             </h2>
                         </div>
+                        <div class="box-body">
+                            <p><span class="lead text-muted">Escuela de procedencia: {{alumno.programaMaestriaExterno.escuelaProcedencia }} </span> </p>
+
+                        </div>
 
                     </div>
                 </div>
-                {% endfor %}
+                {% endif %}
             </div>
         </section>
     </section>

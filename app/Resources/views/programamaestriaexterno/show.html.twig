@@ -6,10 +6,6 @@
     <table>
         <tbody>
             <tr>
-                <th>Id</th>
-                <td>{{ programaMaestriaExterno.id }}</td>
-            </tr>
-            <tr>
                 <th>Escuelaprocedencia</th>
                 <td>{{ programaMaestriaExterno.escuelaProcedencia }}</td>
             </tr>
@@ -37,12 +33,6 @@
     </table>
 
     <ul>
-        <li>
-            <a href="{{ path('programamaestriaexterno_index') }}">Back to the list</a>
-        </li>
-        <li>
-            <a href="{{ path('programamaestriaexterno_edit', { 'id': programaMaestriaExterno.id }) }}">Edit</a>
-        </li>
         <li>
             {{ form_start(delete_form) }}
                 <input type="submit" value="Delete">

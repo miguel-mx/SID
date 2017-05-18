@@ -3,6 +3,7 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\ProgramaMaestriaExterno;
+use AppBundle\Entity\Alumno;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component\HttpFoundation\Request;
@@ -34,21 +35,23 @@ class ProgramaMaestriaExternoController extends Controller
     /**
      * Creates a new programaMaestriaExterno entity.
      *
-     * @Route("/new", name="programamaestriaexterno_new")
+     * @Route("/{slug}/new", name="programamaestriaexterno_new")
      * @Method({"GET", "POST"})
      */
-    public function newAction(Request $request)
+    public function newAction(Request $request, Alumno $alumno)
     {
         $programaMaestriaExterno = new Programamaestriaexterno();
         $form = $this->createForm('AppBundle\Form\ProgramaMaestriaExternoType', $programaMaestriaExterno);
         $form->handleRequest($request);
+
+        $programaMaestriaExterno->setAlumno($alumno);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $em->persist($programaMaestriaExterno);
             $em->flush();
 
-            return $this->redirectToRoute('programamaestriaexterno_show', array('id' => $programaMaestriaExterno->getId()));
+            return $this->redirectToRoute('programamaestriaexterno_show', array('slug' => $programaMaestriaExterno->getAlumno()->getSlug()));
         }
 
         return $this->render('programamaestriaexterno/new.html.twig', array(
@@ -87,6 +90,11 @@ class ProgramaMaestriaExternoController extends Controller
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
+
+            $this->addFlash(
+                'notice',
+                'Editado correctamente'
+            );
 
             return $this->redirectToRoute('programamaestriaexterno_edit', array('id' => $programaMaestriaExterno->getId()));
         }
