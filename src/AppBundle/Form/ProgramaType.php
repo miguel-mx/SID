@@ -24,6 +24,7 @@ class ProgramaType extends AbstractType
                     'Doctorado' => 'Doctorado',
                 ),
                 'choices_as_values' => true,
+                'placeholder' => ''
             ))
             ->add('ingreso')
             ->add('termino')

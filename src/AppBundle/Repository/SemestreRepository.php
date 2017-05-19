@@ -17,7 +17,7 @@ class SemestreRepository extends EntityRepository
         return $this->getEntityManager()
             ->createQuery(
                 "SELECT s FROM AppBundle:semestre s
-                  ORDER BY s.semestre ASC
+                  ORDER BY s.semestre DESC
                     "
             )
 

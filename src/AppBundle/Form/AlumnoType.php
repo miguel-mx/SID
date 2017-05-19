@@ -41,13 +41,13 @@ class AlumnoType extends AbstractType
                     'Femenino' => 'Femenino',
                 ),
                 'choices_as_values' => true,
+                'placeholder' => ''
             ))
             ->add('numeroCuenta')
             ->add('cvu')
             ->add('estado', 'Symfony\Component\Form\Extension\Core\Type\ChoiceType', array(
                 'choices'  => array(
-                    'required'    => false,
-                    '' => '',
+
                     'Aguascalientes' => 'Aguascalientes',
                     'Baja California' => 'Baja California',
                     'Baja California Sur' => 'Baja California Sur',
@@ -82,11 +82,12 @@ class AlumnoType extends AbstractType
                     'Zacatecas' => 'Zacatecas',
 
                 ),
+                'required'    => false,
+                'placeholder' => ''
             ))
             ->add('comentarios')
             ->add('estatus', 'Symfony\Component\Form\Extension\Core\Type\ChoiceType', array(
                 'choices'  => array(
-                    '' => '',
                     'Inscrito' => 'Inscrito',
                     'Baja temporal' => 'Baja temporal',
                     'Baja definitiva' => 'Baja definitiva',
@@ -95,6 +96,7 @@ class AlumnoType extends AbstractType
                     'Graduado' => 'Graduado',
                 ),
                 'required' => false,
+                'placeholder' => ''
             ))
             ->add('tesisLicenciaturaFile', 'Symfony\Component\Form\Extension\Core\Type\FileType', array(
                 'required' => false,

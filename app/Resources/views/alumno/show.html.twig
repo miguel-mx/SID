@@ -107,15 +107,13 @@
 
                                 {% else%}
                                     {% for programa in alumno.programas %}
-                                        {% if programa.programa =="Doctorado" and alumno.programaMaestriaExterno | length <=0 %}
+                                        {% if programa.programa =="Doctorado" and alumno.programaMaestriaExterno | length <=0 and alumno.programas|length <=1%}
                                             <a class="btn btn-warning btn-sm" href="{{ path('programamaestriaexterno_new', { 'slug': alumno.slug }) }}" role="button">
                                                 <i class="fa fa-plus" aria-hidden="true"></i> Crear programa externo</a>
 
                                         {% endif %}
                                     {% endfor %}
                                 {% endif %}
-
-
                             </div>
                         {% endif %}
                     </div>
@@ -135,6 +133,10 @@
                             </div>
                             <div class="box-body">
                                 <p>Periodo: {{ programa.ingreso }} - {{ programa.termino }}</p>
+                                {% if programa.fechaGradoUMSNH is not empty %}
+                                    <p> <span class="lead text-muted">Titulado </span></p>
+                                {% endif %}
+
                                 {% if programa.tutor %}
                                     <p><span class="lead text-muted">Tutor: <a href="{{ path('academico_show', { 'slug': programa.tutor.slug }) }}">{{ programa.tutor.paterno }} {{ programa.tutor.materno }} {{ programa.tutor.nombre }}</a></span></p>
                                 {% endif %}
@@ -166,9 +168,18 @@
                             </h2>
                         </div>
                         <div class="box-body">
-                            <p><span class="lead text-muted">Escuela de procedencia: {{alumno.programaMaestriaExterno.escuelaProcedencia }} </span> </p>
+                            <p><span class="lead text-muted">Universidad:  </span>{{alumno.programaMaestriaExterno.escuelaProcedencia }} </p>
+                            <p><span class="lead text-muted">País:  </span> {{alumno.programaMaestriaExterno.pais }}</p>
+                            {% if alumno.programaMaestriaExterno.tituloTesis %}
+                                <p>{{alumno.programaMaestriaExterno.tituloTesis }}  </p>
+                            {% endif %}
+
+                            {% if alumno.programaMaestriaExterno.fechaGrado is not empty %}
+                                <p><span class="lead text-muted"> Titulado</span></p>
+                            {% endif %}
 
                         </div>
+
 
                     </div>
                 </div>

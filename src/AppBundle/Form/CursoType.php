@@ -17,14 +17,17 @@ class CursoType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('profesor')
+            ->add('profesor', null, array(
+                'required'   => true,
+                'placeholder' => ''
+            ))
             ->add('tipo', 'Symfony\Component\Form\Extension\Core\Type\ChoiceType', array(
                     'choices'  => array(
-                        'placeholder' => '',
                         'Básico' => 'Básico',
                         'Avanzado' => 'Avanzado',
                         'Seminario' => 'Seminario',
                     ),
+                    'placeholder' => ''
                 )
             )
 
@@ -58,6 +61,7 @@ class CursoType extends AbstractType
                                 'Topología Diferencial' => 'Topología Diferencial',
                                 'Topología General' => 'Topología General',
                             ),
+
                         )
                     );
                 }
@@ -72,6 +76,7 @@ class CursoType extends AbstractType
                                 'Curso Avanzado de Topología' => 'Curso avanzado de Topología',
 
                             ),
+                            'placeholder' => ''
                         )
                     )
                         ->add('tema')
@@ -115,6 +120,7 @@ class CursoType extends AbstractType
                             'Seminario de Probabilidad' => 'Seminario de Probabilidad',
                             'Seminario de Topología' => 'Seminario de Topología',
                         ),
+                        'placeholder' => ''
                     ))
                         ->add('tema')
                     ;

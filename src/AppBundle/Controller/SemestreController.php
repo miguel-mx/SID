@@ -24,7 +24,7 @@ class SemestreController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $semestres = $em->getRepository('AppBundle:Semestre')->findAll();
+        $semestres = $em->getRepository('AppBundle:Semestre')->findAllSemestre();
 
 
 

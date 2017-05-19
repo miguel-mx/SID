@@ -20,7 +20,7 @@
                             </div>
                             <div class="box-body">
                                 {% for programa in programas_egresan %}
-                                   <p><i class="fa fa-caret-right text-success" aria-hidden="true"></i> <a href="{{ path('alumno_show', { 'slug': programa.alumno.slug }) }}">{{ programa.alumno.paterno }} {{ programa.alumno.materno }} {{ programa.alumno.nombre }}</a></p>
+                                   <p><i class="fa fa-caret-right text-success" aria-hidden="true"></i> <a href="{{ path('alumno_show', { 'slug': programa.alumno.slug }) }}">{{ programa.alumno.paterno }} {{ programa.alumno.materno }} {{ programa.alumno.nombre }} </a> - {{ programa.programa }}</p>
                                 {% endfor %}
                             </div>
                         </div>
@@ -101,6 +101,7 @@
                             </thead>
                             {% for curso in semestre.cursos %}
                                 <tbody>
+                                {% if curso.aceptado == 'true' %}
                                 <tr>
                                     <td>{{ curso.tipo }}</td>
                                     <td><a href="{{ path('curso_show', { 'id': curso.id }) }}">{{ curso.curso }}</td>
@@ -111,6 +112,7 @@
                                     <td>{{ curso.claveGrupo }}</td>
                                     <td>{{ curso.lugar }}</td>
                                 </tr>
+                                {% endif %}
                                 </tbody>
                             {% endfor %}
                         </table>

@@ -26,6 +26,7 @@ class ProgramaMaestriaExternoType extends AbstractType
                     'Tésis' => 'Tésis',
                 ),
                 'required' => false,
+                'placeholder' => ''
             ))
             ->add('tituloTesis');
     }
