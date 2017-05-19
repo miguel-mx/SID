@@ -1,0 +1,112 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Aspirante</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ aspirante.id }}</td>
+            </tr>
+            <tr>
+                <th>Paterno</th>
+                <td>{{ aspirante.paterno }}</td>
+            </tr>
+            <tr>
+                <th>Materno</th>
+                <td>{{ aspirante.materno }}</td>
+            </tr>
+            <tr>
+                <th>Nombre</th>
+                <td>{{ aspirante.nombre }}</td>
+            </tr>
+            <tr>
+                <th>Telefono</th>
+                <td>{{ aspirante.telefono }}</td>
+            </tr>
+            <tr>
+                <th>Correopersonal</th>
+                <td>{{ aspirante.correoPersonal }}</td>
+            </tr>
+            <tr>
+                <th>Pais</th>
+                <td>{{ aspirante.pais }}</td>
+            </tr>
+            <tr>
+                <th>Estado</th>
+                <td>{{ aspirante.estado }}</td>
+            </tr>
+            <tr>
+                <th>Genero</th>
+                <td>{{ aspirante.genero }}</td>
+            </tr>
+            <tr>
+                <th>Estatus</th>
+                <td>{{ aspirante.estatus }}</td>
+            </tr>
+            <tr>
+                <th>Curp</th>
+                <td>{{ aspirante.curp }}</td>
+            </tr>
+            <tr>
+                <th>Fechanacimiento</th>
+                <td>{% if aspirante.fechaNacimiento %}{{ aspirante.fechaNacimiento|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Programa</th>
+                <td>{{ aspirante.programa }}</td>
+            </tr>
+            <tr>
+                <th>Carrera</th>
+                <td>{{ aspirante.carrera }}</td>
+            </tr>
+            <tr>
+                <th>Promedio</th>
+                <td>{{ aspirante.promedio }}</td>
+            </tr>
+            <tr>
+                <th>Fechainicioestudios</th>
+                <td>{% if aspirante.fechaInicioEstudios %}{{ aspirante.fechaInicioEstudios|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Fechaterminocreditos</th>
+                <td>{% if aspirante.fechaTerminoCreditos %}{{ aspirante.fechaTerminoCreditos|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Fechatitulacion</th>
+                <td>{% if aspirante.fechaTitulacion %}{{ aspirante.fechaTitulacion|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Escuelaprocedencia</th>
+                <td>{{ aspirante.escuelaProcedencia }}</td>
+            </tr>
+            <tr>
+                <th>Slug</th>
+                <td>{{ aspirante.slug }}</td>
+            </tr>
+            <tr>
+                <th>Createdat</th>
+                <td>{% if aspirante.createdAt %}{{ aspirante.createdAt|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Modifiedat</th>
+                <td>{% if aspirante.modifiedAt %}{{ aspirante.modifiedAt|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('aspirante_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('aspirante_edit', { 'id': aspirante.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

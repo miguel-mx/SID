@@ -1,0 +1,79 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Aspirantes list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Paterno</th>
+                <th>Materno</th>
+                <th>Nombre</th>
+                <th>Telefono</th>
+                <th>Correopersonal</th>
+                <th>Pais</th>
+                <th>Estado</th>
+                <th>Genero</th>
+                <th>Estatus</th>
+                <th>Curp</th>
+                <th>Fechanacimiento</th>
+                <th>Programa</th>
+                <th>Carrera</th>
+                <th>Promedio</th>
+                <th>Fechainicioestudios</th>
+                <th>Fechaterminocreditos</th>
+                <th>Fechatitulacion</th>
+                <th>Escuelaprocedencia</th>
+                <th>Slug</th>
+                <th>Createdat</th>
+                <th>Modifiedat</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for aspirante in aspirantes %}
+            <tr>
+                <td><a href="{{ path('aspirante_show', { 'id': aspirante.id }) }}">{{ aspirante.id }}</a></td>
+                <td>{{ aspirante.paterno }}</td>
+                <td>{{ aspirante.materno }}</td>
+                <td>{{ aspirante.nombre }}</td>
+                <td>{{ aspirante.telefono }}</td>
+                <td>{{ aspirante.correoPersonal }}</td>
+                <td>{{ aspirante.pais }}</td>
+                <td>{{ aspirante.estado }}</td>
+                <td>{{ aspirante.genero }}</td>
+                <td>{{ aspirante.estatus }}</td>
+                <td>{{ aspirante.curp }}</td>
+                <td>{% if aspirante.fechaNacimiento %}{{ aspirante.fechaNacimiento|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{{ aspirante.programa }}</td>
+                <td>{{ aspirante.carrera }}</td>
+                <td>{{ aspirante.promedio }}</td>
+                <td>{% if aspirante.fechaInicioEstudios %}{{ aspirante.fechaInicioEstudios|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{% if aspirante.fechaTerminoCreditos %}{{ aspirante.fechaTerminoCreditos|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{% if aspirante.fechaTitulacion %}{{ aspirante.fechaTitulacion|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{{ aspirante.escuelaProcedencia }}</td>
+                <td>{{ aspirante.slug }}</td>
+                <td>{% if aspirante.createdAt %}{{ aspirante.createdAt|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{% if aspirante.modifiedAt %}{{ aspirante.modifiedAt|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('aspirante_show', { 'id': aspirante.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('aspirante_edit', { 'id': aspirante.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('aspirante_new') }}">Create a new aspirante</a>
+        </li>
+    </ul>
+{% endblock %}
