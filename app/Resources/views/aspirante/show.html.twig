@@ -1,112 +1,141 @@
 {% extends 'base.html.twig' %}
 
+{% block css %}
+    {{ parent() }}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/2.8.0/css/flag-icon.css">
+{% endblock %}
+
+
 {% block body %}
-    <h1>Aspirante</h1>
+    <section class="content-wrapper">
+        <section class="content">
+            <div class="row">
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                    <div class="box box-primary">
+                        <div class="box-body">
+                            <div class="row">
+                                <div class="col-md-6 col-sm-6 col-xs-6">
+                                    <div class="box box-widget widget-user-2">
+                                        <div class="widget-user-header ">
 
-    <table>
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ aspirante.id }}</td>
-            </tr>
-            <tr>
-                <th>Paterno</th>
-                <td>{{ aspirante.paterno }}</td>
-            </tr>
-            <tr>
-                <th>Materno</th>
-                <td>{{ aspirante.materno }}</td>
-            </tr>
-            <tr>
-                <th>Nombre</th>
-                <td>{{ aspirante.nombre }}</td>
-            </tr>
-            <tr>
-                <th>Telefono</th>
-                <td>{{ aspirante.telefono }}</td>
-            </tr>
-            <tr>
-                <th>Correopersonal</th>
-                <td>{{ aspirante.correoPersonal }}</td>
-            </tr>
-            <tr>
-                <th>Pais</th>
-                <td>{{ aspirante.pais }}</td>
-            </tr>
-            <tr>
-                <th>Estado</th>
-                <td>{{ aspirante.estado }}</td>
-            </tr>
-            <tr>
-                <th>Genero</th>
-                <td>{{ aspirante.genero }}</td>
-            </tr>
-            <tr>
-                <th>Estatus</th>
-                <td>{{ aspirante.estatus }}</td>
-            </tr>
-            <tr>
-                <th>Curp</th>
-                <td>{{ aspirante.curp }}</td>
-            </tr>
-            <tr>
-                <th>Fechanacimiento</th>
-                <td>{% if aspirante.fechaNacimiento %}{{ aspirante.fechaNacimiento|date('Y-m-d H:i:s') }}{% endif %}</td>
-            </tr>
-            <tr>
-                <th>Programa</th>
-                <td>{{ aspirante.programa }}</td>
-            </tr>
-            <tr>
-                <th>Carrera</th>
-                <td>{{ aspirante.carrera }}</td>
-            </tr>
-            <tr>
-                <th>Promedio</th>
-                <td>{{ aspirante.promedio }}</td>
-            </tr>
-            <tr>
-                <th>Fechainicioestudios</th>
-                <td>{% if aspirante.fechaInicioEstudios %}{{ aspirante.fechaInicioEstudios|date('Y-m-d H:i:s') }}{% endif %}</td>
-            </tr>
-            <tr>
-                <th>Fechaterminocreditos</th>
-                <td>{% if aspirante.fechaTerminoCreditos %}{{ aspirante.fechaTerminoCreditos|date('Y-m-d H:i:s') }}{% endif %}</td>
-            </tr>
-            <tr>
-                <th>Fechatitulacion</th>
-                <td>{% if aspirante.fechaTitulacion %}{{ aspirante.fechaTitulacion|date('Y-m-d H:i:s') }}{% endif %}</td>
-            </tr>
-            <tr>
-                <th>Escuelaprocedencia</th>
-                <td>{{ aspirante.escuelaProcedencia }}</td>
-            </tr>
-            <tr>
-                <th>Slug</th>
-                <td>{{ aspirante.slug }}</td>
-            </tr>
-            <tr>
-                <th>Createdat</th>
-                <td>{% if aspirante.createdAt %}{{ aspirante.createdAt|date('Y-m-d H:i:s') }}{% endif %}</td>
-            </tr>
-            <tr>
-                <th>Modifiedat</th>
-                <td>{% if aspirante.modifiedAt %}{{ aspirante.modifiedAt|date('Y-m-d H:i:s') }}{% endif %}</td>
-            </tr>
-        </tbody>
-    </table>
+                                            <div class="widget-user-username">
+                                                <h3>{{ aspirante.nombre }} {{ aspirante.paterno }} {{ aspirante.materno }}</h3>
+                                            </div>
+                                            {% if aspirante.correoPersonal %}
+                                                <div class="widget-user-desc">
+                                                    <h5> {{ aspirante.correoPersonal }}</h5>
+                                                </div>
+                                            {% endif %}
 
-    <ul>
-        <li>
-            <a href="{{ path('aspirante_index') }}">Back to the list</a>
-        </li>
-        <li>
-            <a href="{{ path('aspirante_edit', { 'id': aspirante.id }) }}">Edit</a>
-        </li>
-        <li>
-            {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
-            {{ form_end(delete_form) }}
-        </li>
-    </ul>
+                                        </div>
+                                        <table class="table table-condensed table-hover text-muted">
+
+                                            <tr>
+                                                <td><strong>Programa</strong></td><td>{{ aspirante.programa }}</td>
+                                            </tr>
+
+                                            <tr>
+                                                <td><strong>CURP</strong></td><td>{{ aspirante.curp}}</td>
+                                            </tr>
+                                            {% if aspirante.rfc %}
+                                                <tr>
+                                                    <td><strong>RFC</strong></td><td>{{ aspirante.rfc }}</td>
+                                                </tr>
+                                            {% endif %}
+                                            <tr>
+                                                <td><strong>Fecha de nacimiento</strong></td><td>{{ aspirante.fechaNacimiento|date('Y-m-d H:i:s') }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td><strong>Teléfono</strong></td>
+                                                <td>{{ aspirante.telefono }}</td>
+                                            </tr>
+
+                                        </table>
+
+
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6 col-sm-6 col-xs-6">
+                                    <table class="table table-condensed table-hover text-muted">
+                                        <tr>
+                                            <td><strong>País</strong></td><td><span class="flag-icon flag-icon-{{ aspirante.pais|country }}"></span> {{ aspirante.pais }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Estado</th>
+                                            <td>{{ aspirante.estado }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Escuela de procedencia</th>
+                                            <td>{{ aspirante.escuelaProcedencia }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Carrera</th>
+                                            <td>{{ aspirante.carrera }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td><strong>Promedio</strong></td><td>{{ aspirante.promedio }}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Fecha de inicio de estudios</th>
+                                            <td>{% if aspirante.fechaInicioEstudios %}{{ aspirante.fechaInicioEstudios|localizeddate('long', 'none', 'es') }}{% endif %}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Fecha término de créditos</th>
+                                            <td>{% if aspirante.fechaTerminoCreditos %}{{ aspirante.fechaTerminoCreditos|localizeddate('long', 'none', 'es') }}{% endif %}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Fecha de titulación</th>
+                                            <td>{% if aspirante.fechaTitulacion %}{{ aspirante.fechaTitulacion|localizeddate('long', 'none', 'es') }}{% endif %}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Estatus</th>
+                                            {% if  aspirante.estatus == "true" %}
+                                                <td>
+                                                    Inscrito
+                                                </td>
+                                            {% else %}
+
+                                                <td>
+                                                    No inscrito
+                                                </td>
+                                            {% endif %}
+                                        </tr>
+
+                                    </table>
+                                </div>
+
+
+                                <table>
+                                    <tbody>
+
+
+
+
+
+
+
+
+
+                                    </tbody>
+                                </table>
+                            </div>
+                            {% if is_granted('ROLE_ADMIN') %}
+                                <div class="box-footer">
+                                    <a class="btn btn-primary btn-sm" href="{{ path('aspirante_edit', { 'slug': aspirante.slug }) }}" role="button">
+                                        <i class="fa fa-pencil" aria-hidden="true"></i> Editar</a>
+                                </div>
+
+                            {% endif %}
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+
+
+        </section>
+    </section>
 {% endblock %}

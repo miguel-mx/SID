@@ -1,21 +1,284 @@
 {% extends 'base.html.twig' %}
 
-{% block body %}
-    <h1>Aspirante edit</h1>
+{% block css %}
 
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('css/bootstrap-datepicker3.css') }}">
+
+
+{% endblock %}
+
+{% block body %}
     {{ form_start(edit_form) }}
-        {{ form_widget(edit_form) }}
-        <input type="submit" value="Edit" />
+    <div class="content-wrapper">
+        <section class="content-header">
+            <h1>Aspirante</h1>
+        </section>
+        <div class="content">
+            <div class="alert-danger">{{ form_errors(edit_form) }}</div>
+            <div class="row">
+                <div class="col-md-8 col-sm-6 col-xs-12">
+                    <div class="box box-primary">
+                        <div class="box-body">
+                            <div class="box-header">
+                                <h3>Datos personales</h3>
+                            </div>
+                            <div class="box-body">
+                                {% for flash_message in app.session.flashBag.get('notice') %}
+                                    <div class="alert alert-success">
+                                        {{ flash_message }}
+                                    </div>
+                                {% endfor %}
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label>Nombre(s)</label>
+                                            {{ form_widget(edit_form.nombre, {'attr': {'class': 'form-control'}}) }}
+                                            <span class="text-dange">{{ form_errors(edit_form.nombre) }}</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label>Apellido Paterno</label>
+                                            {{ form_widget(edit_form.paterno, {'attr': {'class': 'form-control'}}) }}
+                                            <span class="text-danger">{{ form_errors(edit_form.paterno) }}</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label>Apellido Materno</label>
+                                            {{ form_widget(edit_form.materno, {'attr': {'class': 'form-control'}}) }}
+                                            <span class="text-danger">{{ form_errors(edit_form.materno) }}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label>Fecha de Nacimiento</label>
+                                            <div class="input-group date">
+                                                {{ form_widget(edit_form.fechaNacimiento, {'attr': {'class': 'form-control js-datepickernacimiento'}}) }}
+                                                <div class="input-group-addon">
+                                                    <i class="fa fa-calendar" aria-hidden="true"></i>
+                                                </div>
+                                            </div>
+                                            <span class="text-danger">{{ form_errors(edit_form.fechaNacimiento) }}</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label>RFC</label>
+                                            {{ form_widget(edit_form.rfc, {'attr': {'class': 'form-control'}}) }}
+                                            <span class="text-danger">{{ form_errors(edit_form.rfc) }}</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label>CURP</label>
+                                            {{ form_widget(edit_form.curp, {'attr': {'class': 'form-control'}}) }}
+                                            <span class="text-danger">{{ form_errors(edit_form.curp) }}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label>País</label>
+                                            {{ form_widget(edit_form.pais, {'attr': {'class': 'form-control'}}) }}
+                                            <span class="text-danger">{{ form_errors(edit_form.pais) }}</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label>Estado</label>
+                                            {{ form_widget(edit_form.estado, {'attr': {'class': 'form-control'}}) }}
+                                            <span class="text-danger">{{ form_errors(edit_form.estado) }}</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label>Correo</label>
+                                            {{ form_widget(edit_form.correoPersonal, {'attr': {'class': 'form-control'}}) }}
+                                            <span class="text-danger">{{ form_errors(edit_form.correoPersonal) }}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label>Télefono</label>
+                                            {{ form_widget(edit_form.telefono, {'attr': {'class': 'form-control'}}) }}
+                                            <span class="text-danger">{{ form_errors(edit_form.telefono) }}</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label>Género</label>
+                                            {{ form_widget(edit_form.genero, {'attr': {'class': 'form-control'}}) }}
+                                            <span class="text-danger">{{ form_errors(edit_form.genero) }}</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label>Inscrito</label>
+                                            {{ form_widget(edit_form.estatus)}}
+                                            <span class="text-danger">{{ form_errors(edit_form.estatus) }}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-8 col-sm-6 col-xs-12">
+                    <div class="box box-primary">
+                        <div class="box-header">
+                            <h3> Datos académicos</h3>
+                        </div>
+                        <div class="box-body">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label>Programa</label>
+                                        {{ form_widget(edit_form.programa, {'attr': {'class': 'form-control'}}) }}
+                                        <span class="text-danger">{{ form_errors(edit_form.programa) }}</span>
+                                    </div>
+                                </div>
+                                <div class="col-md-8">
+                                    <div class="form-group">
+                                        <label>Escuela de procedencia</label>
+                                        {{ form_widget(edit_form.escuelaProcedencia, {'attr': {'class': 'form-control'}}) }}
+                                        <span class="text-danger">{{ form_errors(edit_form.escuelaProcedencia) }}</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Nombre de la Carrera/Maestría</label>
+                                        {{ form_widget(edit_form.carrera, {'attr': {'class': 'form-control'}}) }}
+                                        <span class="text-danger">{{ form_errors(edit_form.carrera) }}</span>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label>Promedio</label>
+                                        {{ form_widget(edit_form.promedio, {'attr': {'class': 'form-control'}}) }}
+                                        <span class="text-danger">{{ form_errors(edit_form.promedio) }}</span>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label>Semestre</label>
+                                        {{ form_widget(edit_form.semestre, {'attr': {'class': 'form-control'}}) }}
+                                        <span class="text-danger">{{ form_errors(edit_form.semestre) }}</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label>Fecha Inicio de Estudios</label>
+                                        <div class="input-group date">
+                                            {{ form_widget(edit_form.fechaInicioEstudios, {'attr': {'class': 'form-control js-datepickerinicioestudios'}}) }}
+                                            <div class="input-group-addon">
+                                                <i class="fa fa-calendar" aria-hidden="true"></i>
+                                            </div>
+                                        </div>
+                                        <span class="text-danger">{{ form_errors(edit_form.fechaInicioEstudios) }}</span>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label>Fecha Término Créditos</label>
+                                        <div class="input-group date">
+                                            {{ form_widget(edit_form.fechaTerminoCreditos, {'attr': {'class': 'form-control js-datepickerterminocreditos'}}) }}
+                                            <div class="input-group-addon">
+                                                <i class="fa fa-calendar" aria-hidden="true"></i>
+                                            </div>
+                                        </div>
+                                        <span class="text-danger">{{ form_errors(edit_form.fechaTerminoCreditos) }}</span>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label>Fecha Titulación</label>
+                                        <div class="input-group date">
+                                            {{ form_widget(edit_form.fechaTitulacion, {'attr': {'class': 'form-control js-datepickertitulacion'}}) }}
+                                            <div class="input-group-addon">
+                                                <i class="fa fa-calendar" aria-hidden="true"></i>
+                                            </div>
+                                        </div>
+                                        <span class="text-danger">{{ form_errors(edit_form.fechaTitulacion) }}</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="box-footer">
+                        <input class="btn btn-primary btn-sm" type="submit" value="Guardar cambios">
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+
+
     {{ form_end(edit_form) }}
 
-    <ul>
-        <li>
-            <a href="{{ path('aspirante_index') }}">Back to the list</a>
-        </li>
-        <li>
-            {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
-            {{ form_end(delete_form) }}
-        </li>
-    </ul>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('js/bootstrap-datepicker.js') }}"></script>
+    <script src="{{ asset('js/bootstrap-datepicker.es.min.js') }}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
+    <script src=""></script>
+
+    <script>
+        $(document).ready(function() {
+            $('.js-datepickernacimiento').datepicker({
+                format: 'yyyy-mm-dd',
+                language: 'es',
+                orientation: "auto bottom"
+            });
+        });
+    </script>
+    <script>
+        $(document).ready(function() {
+            $('.js-datepickerinicioestudios').datepicker({
+                format: 'yyyy-mm-dd',
+                orientation: 'auto bottom',
+                language: 'es'
+            });
+        });
+    </script>
+    <script>
+        $(document).ready(function() {
+            $('.js-datepickerterminocreditos').datepicker({
+                format: 'yyyy-mm-dd',
+                orientation: 'auto bottom',
+                language: 'es'
+            });
+        });
+    </script>
+    <script>
+        $(document).ready(function() {
+            $('.js-datepickertitulacion').datepicker({
+                format: 'yyyy-mm-dd',
+                orientation: 'auto bottom',
+                language: 'es'
+            });
+        });
+    </script>
+
+
+
 {% endblock %}

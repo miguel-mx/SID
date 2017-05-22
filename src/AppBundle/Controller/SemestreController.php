@@ -74,6 +74,7 @@ class SemestreController extends Controller
 
         $alumnos_maestria = $em->getRepository('AppBundle:Alumno')->findAllBySemestre($semestre->getSemestre(), 'Maestría');
         $alumnos_doctorado = $em->getRepository('AppBundle:Alumno')->findAllBySemestre($semestre->getSemestre(), 'Doctorado');
+        $aspirantes_maestria = $em->getRepository('AppBundle:Aspirante')->findAllBySemestre($semestre->getSemestre(), 'Maestría');
         $programas_egresan = $em->getRepository('AppBundle:Programa')->findByTermino($semestre->getSemestre());
         $examenes_candidatura = $em->getRepository('AppBundle:Alumno')->findAllByExamenCandidatura($semestre->getSemestre());
 
@@ -81,6 +82,7 @@ class SemestreController extends Controller
             'semestre' => $semestre,
             'alumnos_maestria' => $alumnos_maestria,
             'alumnos_doctorado' => $alumnos_doctorado,
+            'aspirantes_maestria' => $aspirantes_maestria,
             'programas_egresan' => $programas_egresan,
             'examenes_candidatura' => $examenes_candidatura,
         ));

@@ -52,6 +52,12 @@ class Semestre
      */
     private $cursos;
 
+    /**
+     * One Semestre has Many Aspirantes.
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Aspirante", mappedBy="semestre")
+     */
+    private $aspirantes;
+
    /**
     * Many Semestres have Many Programas.
     * @ORM\ManyToMany(targetEntity="Programa", mappedBy="semestres")
@@ -81,6 +87,7 @@ class Semestre
     public function __construct() {
         $this->cursos = new \Doctrine\Common\Collections\ArrayCollection();
         $this->programas = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->aspirantes = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**
@@ -240,6 +247,22 @@ class Semestre
     public function setCursos(Curso $cursos)
     {
         $this->cursos = $cursos;
+    }
+
+    /**
+     * @return Aspirante
+     */
+    public function getAspirantes()
+    {
+        return $this->aspirantes;
+    }
+
+    /**
+     * @param mixed $aspirantes
+     */
+    public function setAspirantes(Aspirante $aspirantes)
+    {
+        $this->aspirantes = $aspirantes;
     }
 
 

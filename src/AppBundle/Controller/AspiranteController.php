@@ -6,6 +6,7 @@ use AppBundle\Entity\Aspirante;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component\HttpFoundation\Request;
+use Doctrine\ORM\Mapping as ORM;
 
 /**
  * Aspirante controller.
@@ -17,17 +18,24 @@ class AspiranteController extends Controller
     /**
      * Lists all aspirante entities.
      *
-     * @Route("/", name="aspirante_index")
+     * @Route("/{semestre}", requirements={"semestre" = "20\d\d-[1|2]"}, name="aspirante_index")
      * @Method("GET")
      */
-    public function indexAction()
+    public function indexAction($semestre = '2017-2')
     {
         $em = $this->getDoctrine()->getManager();
 
         $aspirantes = $em->getRepository('AppBundle:Aspirante')->findAll();
+        $aspirantes_maestria = $em->getRepository('AppBundle:Aspirante')->findAllBySemestre($semestre, 'Maestría');
+        $aspirantes_doctorado = $em->getRepository('AppBundle:Aspirante')->findAllBySemestre($semestre, 'Doctorado');
+        $semestre_lista = $em->getRepository('AppBundle:Semestre')->findAllSemestre();
 
         return $this->render('aspirante/index.html.twig', array(
+            '_semestre' => $semestre,
             'aspirantes' => $aspirantes,
+            'semestres_lista' => $semestre_lista,
+            'aspirantes_maestria' => $aspirantes_maestria,
+            'aspirantes_doctorado' => $aspirantes_doctorado,
         ));
     }
 
@@ -39,6 +47,8 @@ class AspiranteController extends Controller
      */
     public function newAction(Request $request)
     {
+        $this->denyAccessUnlessGranted('ROLE_ADMIN', null, 'Unable to access this page!');
+
         $aspirante = new Aspirante();
         $form = $this->createForm('AppBundle\Form\AspiranteType', $aspirante);
         $form->handleRequest($request);
@@ -48,7 +58,7 @@ class AspiranteController extends Controller
             $em->persist($aspirante);
             $em->flush();
 
-            return $this->redirectToRoute('aspirante_show', array('id' => $aspirante->getId()));
+            return $this->redirectToRoute('aspirante_show', array('slug' => $aspirante->getSlug()));
         }
 
         return $this->render('aspirante/new.html.twig', array(
@@ -60,7 +70,7 @@ class AspiranteController extends Controller
     /**
      * Finds and displays a aspirante entity.
      *
-     * @Route("/{id}", name="aspirante_show")
+     * @Route("/{slug}", name="aspirante_show")
      * @Method("GET")
      */
     public function showAction(Aspirante $aspirante)
@@ -76,11 +86,13 @@ class AspiranteController extends Controller
     /**
      * Displays a form to edit an existing aspirante entity.
      *
-     * @Route("/{id}/edit", name="aspirante_edit")
+     * @Route("/{slug}/edit", name="aspirante_edit")
      * @Method({"GET", "POST"})
      */
     public function editAction(Request $request, Aspirante $aspirante)
     {
+        $this->denyAccessUnlessGranted('ROLE_ADMIN', null, 'Unable to access this page!');
+
         $deleteForm = $this->createDeleteForm($aspirante);
         $editForm = $this->createForm('AppBundle\Form\AspiranteType', $aspirante);
         $editForm->handleRequest($request);
@@ -88,7 +100,12 @@ class AspiranteController extends Controller
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('aspirante_edit', array('id' => $aspirante->getId()));
+            $this->addFlash(
+                'notice',
+                'Editado correctamente'
+            );
+
+            return $this->redirectToRoute('aspirante_edit', array('slug' => $aspirante->getSlug()));
         }
 
         return $this->render('aspirante/edit.html.twig', array(

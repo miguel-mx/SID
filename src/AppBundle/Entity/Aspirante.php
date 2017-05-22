@@ -55,6 +55,13 @@ class Aspirante
     /**
      * @var string
      *
+     * @ORM\Column(name="rfc", type="string", length=30, nullable=true)
+     */
+    private $rfc;
+
+    /**
+     * @var string
+     *
      * @ORM\Column(name="correo_personal", type="string", length=40, nullable=true)
      */
     private $correoPersonal;
@@ -83,7 +90,7 @@ class Aspirante
     /**
      * @var string
      *
-     * @ORM\Column(name="estatus", type="string", length=25, nullable=true)
+     * @ORM\Column(name="estatus", type="boolean", nullable=true)
      */
     private $estatus;
 
@@ -170,6 +177,13 @@ class Aspirante
      * @ORM\Column(name="modifiedAt", type="datetime")
      */
     private $modifiedAt;
+
+    /**
+     * Many Aspirantes have One Semestre.
+     * @ORM\ManyToOne(targetEntity="Semestre", inversedBy="aspirantes")
+     * @ORM\JoinColumn(name="semestre_aspirante_id", referencedColumnName="id")
+     */
+    private $semestre;
 
 
     /**
@@ -277,6 +291,24 @@ class Aspirante
     {
         return $this->telefono;
     }
+
+    /**
+     * @return string
+     */
+    public function getRfc()
+    {
+        return $this->rfc;
+    }
+
+    /**
+     * @param string $rfc
+     */
+    public function setRfc($rfc)
+    {
+        $this->rfc = $rfc;
+    }
+
+
 
     /**
      * Set correoPersonal
@@ -614,6 +646,9 @@ class Aspirante
         return $this->modifiedAt;
     }
 
+    /**
+     * @ORM\PrePersist
+     */
     public function setCreatedAtValue()
     {
         $this->createdAt = new \DateTime();
@@ -623,5 +658,23 @@ class Aspirante
     public function __toString() {
         return $this->slug;
     }
+
+    /**
+     * @return Semestre
+     */
+    public function getSemestre()
+    {
+        return $this->semestre;
+    }
+
+    /**
+     * @param Semestre $semestre
+     */
+    public function setSemestre(Semestre $semestre)
+    {
+        $this->semestre = $semestre;
+    }
+
+
 }
 

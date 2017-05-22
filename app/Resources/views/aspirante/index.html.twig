@@ -1,79 +1,104 @@
 {% extends 'base.html.twig' %}
 
+{% block css %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('css/bootstrap-datepicker3.css') }}">
+
+{% endblock %}
+
 {% block body %}
-    <h1>Aspirantes list</h1>
+<div class="content-wrapper">
+    <section class="content-header">
+        <h1>Aspirantes </h1>
+    </section>
+    <section class="content">
+        <div class="row">
+            <div class="col-md-3 col-sm-6 col-xs-12">
+                <div class="info-box">
+                    <span class="info-box-icon bg-aqua-active">
+                        <i class="fa fa-users" aria-hidden="true"></i>
+                    </span>
+                    <div class="info-box-content">
+                        <span class="info-box-text">Aspirantes</span>
+                        <span class="info-box-number">
+                                <h2>{{ aspirantes|length  }}</h2>
+                            </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6 col-sm-6 col-xs-12">
+                <div class="box box-primary">
+                    <div class="box-header">
+                        <h3>Aspirantes a Doctorado <span class="badge bg-aqua-active"> {{ aspirantes_doctorado|length  }}</span></h3>
+                    </div>
+                    <div class="box-body">
+                        <table class="table table-bordered" id="doctorado_table">
+                            <tbody>
+                            {% for aspirante in aspirantes_doctorado %}
+                                <tr>
+                                    <td><a href="{{ path('aspirante_show', { 'slug': aspirante.slug }) }}">{{ aspirante.paterno }} {{ aspirante.materno }} {{ aspirante.nombre }}</a></td>
+                                    <td>{{ aspirante.correoPersonal }}</td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                    {% if is_granted('ROLE_ADMIN') %}
+                        <div class="box-footer">
+                            <a class="btn btn-primary btn-sm" href="{{ path('aspirante_new') }}"><i class="fa fa-plus" aria-hidden="true"></i> Agregar aspirante</a>
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
 
-    <table>
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Paterno</th>
-                <th>Materno</th>
-                <th>Nombre</th>
-                <th>Telefono</th>
-                <th>Correopersonal</th>
-                <th>Pais</th>
-                <th>Estado</th>
-                <th>Genero</th>
-                <th>Estatus</th>
-                <th>Curp</th>
-                <th>Fechanacimiento</th>
-                <th>Programa</th>
-                <th>Carrera</th>
-                <th>Promedio</th>
-                <th>Fechainicioestudios</th>
-                <th>Fechaterminocreditos</th>
-                <th>Fechatitulacion</th>
-                <th>Escuelaprocedencia</th>
-                <th>Slug</th>
-                <th>Createdat</th>
-                <th>Modifiedat</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for aspirante in aspirantes %}
-            <tr>
-                <td><a href="{{ path('aspirante_show', { 'id': aspirante.id }) }}">{{ aspirante.id }}</a></td>
-                <td>{{ aspirante.paterno }}</td>
-                <td>{{ aspirante.materno }}</td>
-                <td>{{ aspirante.nombre }}</td>
-                <td>{{ aspirante.telefono }}</td>
-                <td>{{ aspirante.correoPersonal }}</td>
-                <td>{{ aspirante.pais }}</td>
-                <td>{{ aspirante.estado }}</td>
-                <td>{{ aspirante.genero }}</td>
-                <td>{{ aspirante.estatus }}</td>
-                <td>{{ aspirante.curp }}</td>
-                <td>{% if aspirante.fechaNacimiento %}{{ aspirante.fechaNacimiento|date('Y-m-d H:i:s') }}{% endif %}</td>
-                <td>{{ aspirante.programa }}</td>
-                <td>{{ aspirante.carrera }}</td>
-                <td>{{ aspirante.promedio }}</td>
-                <td>{% if aspirante.fechaInicioEstudios %}{{ aspirante.fechaInicioEstudios|date('Y-m-d H:i:s') }}{% endif %}</td>
-                <td>{% if aspirante.fechaTerminoCreditos %}{{ aspirante.fechaTerminoCreditos|date('Y-m-d H:i:s') }}{% endif %}</td>
-                <td>{% if aspirante.fechaTitulacion %}{{ aspirante.fechaTitulacion|date('Y-m-d H:i:s') }}{% endif %}</td>
-                <td>{{ aspirante.escuelaProcedencia }}</td>
-                <td>{{ aspirante.slug }}</td>
-                <td>{% if aspirante.createdAt %}{{ aspirante.createdAt|date('Y-m-d H:i:s') }}{% endif %}</td>
-                <td>{% if aspirante.modifiedAt %}{{ aspirante.modifiedAt|date('Y-m-d H:i:s') }}{% endif %}</td>
-                <td>
-                    <ul>
-                        <li>
-                            <a href="{{ path('aspirante_show', { 'id': aspirante.id }) }}">show</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('aspirante_edit', { 'id': aspirante.id }) }}">edit</a>
-                        </li>
-                    </ul>
-                </td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+            <div class="col-md-6 col-sm-6 col-xs-12">
+                <div class="box box-primary">
+                    <div class="box-header">
+                        <h3>Aspirantes a Maestría <span class="badge bg-aqua-active"> {{ aspirantes_maestria|length  }}</span></h3>
+                    </div>
+                    <div class="box-body">
+                        <table class="table table-bordered" id="doctorado_table">
+                            <tbody>
+                            {% for aspirante in aspirantes_maestria %}
+                                <tr>
+                                    <td><a href="{{ path('aspirante_show', { 'slug': aspirante.slug }) }}">{{ aspirante.paterno }} {{ aspirante.materno }} {{ aspirante.nombre }}</a></td>
+                                    <td>{{ aspirante.correoPersonal }}</td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
 
-    <ul>
-        <li>
-            <a href="{{ path('aspirante_new') }}">Create a new aspirante</a>
-        </li>
-    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+</div>
+{% endblock %}
+
+{% block semestre %}
+    <li class="treeview active">
+        <a href="#">
+            <span> {{ _semestre }}</span>
+        </a>
+        <ul class="treeview-menu menu-open" style="display: none;">
+            {% for semestre_li in semestres_lista %}
+                <li class=""><a href="{{ path('aspirante_index', { 'semestre': semestre_li.semestre }) }}">{{ semestre_li.semestre }}</a></li>
+            {% endfor %}
+        </ul>
+    </li>
+{% endblock %}
+
+{% block javascripts %}
+
+    {{ parent() }}
+
+
+
+
 {% endblock %}
