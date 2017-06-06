@@ -1,0 +1,76 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs/jqc-1.12.4/dt-1.10.13/b-1.2.4/datatables.min.css"/>
+{% endblock %}
+
+{% block body %}
+    <section class="content-wrapper">
+        <section class="content-header">
+            <h1>Exámenes Generales <small>Semestre  {{ _semestre }}</small></h1>
+        </section>
+        <section class="content">
+            <div class="row">
+                <div class="col-md-3 col-sm-6 col-xs-12">
+                    <div class="info-box">
+                    <span class="info-box-icon bg-aqua-active">
+                        </i><i class="fa fa-book" aria-hidden="true"></i>
+                    </span>
+                        <div class="info-box-content">
+                            <span class="info-box-text">Exámenes generales</span>
+                            <span class="info-box-number">
+                                <h2>{{ examenGenerales |length }}</h2>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="box box-primary">
+                <div class="box-header text-right">
+                    <a class="btn btn-primary btn-sm" href="{{ path('examengeneral_new') }}" role="button">
+                        <i class="fa fa-plus" aria-hidden="true"></i> Agregar Examen General</a>
+                </div>
+                <div class="box-body">
+                    <div class="tab-content">
+                        <table class="table table-condensed table-hover" id="examen_general_table">
+                        <thead>
+                        <tr>
+                            <th>Examen</th>
+                            <th>Fecha</th>
+                            <th>Lugar</th>
+                            <th>Hora</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for examenGeneral in examenGenerales %}
+                            <tr>
+                                <td><a href="{{ path('examengeneral_show', { 'id': examenGeneral.id }) }}">{{ examenGeneral.nombre }}</a></td>
+                                <td>{% if examenGeneral.fecha %}{{ examenGeneral.fecha|date('Y-m-d H:i:s') }}{% endif %}</td>
+                                <td>{{ examenGeneral.lugar }}</td>
+                                <td>{{ examenGeneral.hora }}</td>
+
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </section>
+{% endblock %}
+
+{% block semestre %}
+    <li class="treeview active">
+        <a href="#">
+            <span> {{ _semestre }}</span>
+        </a>
+        <ul class="treeview-menu menu-open" style="display: none;">
+            {% for semestre_li in semestres_lista %}
+                <li class=""><a href="{{ path('examengeneral_index', { 'semestre': semestre_li.semestre }) }}">{{ semestre_li.semestre }}</a></li>
+            {% endfor %}
+        </ul>
+    </li>
+{% endblock %}
+

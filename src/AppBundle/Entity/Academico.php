@@ -143,6 +143,12 @@ class Academico
     private $tutorias;
 
     /**
+     * Many Academicos have Many comitees.
+     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\ExamenGeneral", mappedBy="comite")
+     */
+    private $examenGeneralComite;
+
+    /**
      * @var string
      * @Gedmo\Slug(fields={"paterno", "materno", "nombre"})
      * @ORM\Column(name="slug", type="string", length=60, unique=true)
@@ -165,6 +171,7 @@ class Academico
 
     public function __construct() {
         $this->tutorias = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->examenGeneralComite = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**
@@ -609,4 +616,21 @@ class Academico
     {
         $this->tutorias[] = $tutor;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getExamenGeneralComite()
+    {
+        return $this->examenGeneralComite;
+    }
+
+    /**
+     * @param Academico $tutor
+     */
+    public function addExamenGeneralComite($tutor)
+    {
+        $this->examenGeneralComite[] = $tutor;
+    }
+
 }

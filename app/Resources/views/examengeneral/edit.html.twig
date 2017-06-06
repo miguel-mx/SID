@@ -1,0 +1,101 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    {{ form_start(edit_form) }}
+    <div class="content-wrapper">
+        <section class="content-header">
+            <h2>Editar examen general</h2>
+        </section>
+        <div class="content">
+            <div class="alert-danger">{{ form_errors(edit_form) }}</div>
+            <div class="row">
+                <div class="col-md-8 col-sm-6 col-xs-12">
+                    <div class="box box-primary">
+                        {% for flash_message in app.session.flashBag.get('notice') %}
+                            <div class="alert alert-success">
+                                {{ flash_message }}
+                            </div>
+                        {% endfor %}
+                        <div class="box-body">
+                            <div class="row">
+                                <div class="col-md-8">
+                                    <div class="form-group">
+                                        <label>Examen</label>
+                                        {{ form_widget(edit_form.nombre, {'attr': {'class': 'form-control'}}) }}
+                                        <span class="text-danger">{{ form_errors(edit_form.nombre) }}</span>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label>Lugar</label>
+                                        {{ form_widget(edit_form.lugar, {'attr': {'class': 'form-control'}}) }}
+                                        <span class="text-danger">{{ form_errors(edit_form.lugar) }}</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label>Fecha</label>
+                                        <div class="input-group date">
+                                            {{ form_widget(edit_form.fecha, {'attr': {'class': 'form-control js-datepicker'}}) }}
+                                            <div class="input-group-addon">
+                                                <i class="fa fa-calendar" aria-hidden="true"></i>
+                                            </div>
+                                        </div>
+                                        <span class="text-danger">{{ form_errors(edit_form.fecha) }}</span>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label>Hora</label>
+                                        <div class="input-group date">
+                                            {{ form_widget(edit_form.hora) }}
+                                        </div>
+                                        <span class="text-danger">{{ form_errors(edit_form.hora) }}</span>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label>Semestre</label>
+                                        {{ form_widget(edit_form.semestre, {'attr': {'class': 'form-control'}}) }}
+                                        <span class="text-danger">{{ form_errors(edit_form.semestre) }}</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label>Coordinador</label>
+                                        {{ form_widget(edit_form.coordinador, {'attr': {'class': 'form-control'}}) }}
+                                        <span class="text-danger">{{ form_errors(edit_form.coordinador) }}</span>
+                                    </div>
+                                </div>
+                                <div class="col-md-8">
+                                    <div class="form-group">
+                                        <label>Comité </label>
+                                        {{ form_widget(edit_form.comite, {'attr': {'class': 'form-control comite-multiple', 'multiple': 'multiple'}}) }}
+                                        <span class="text-danger">{{ form_errors(edit_form.comite) }}</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+
+                            </div>
+
+                            {{ form_widget(edit_form) }}
+
+
+
+                            {{ form_end(edit_form) }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="box-footer">
+                <input class="btn btn-primary btn-sm" type="submit" value="Guardar Cambios">
+            </div>
+        </div>
+    </div>
+{% endblock %}

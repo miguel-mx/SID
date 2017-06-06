@@ -141,6 +141,8 @@ class ProgramaController extends Controller
      */
     private function createDeleteForm(Programa $programa)
     {
+        $this->denyAccessUnlessGranted('ROLE_ADMIN', null, 'Unable to access this page!');
+
         return $this->createFormBuilder()
             ->setAction($this->generateUrl('programa_delete', array('id' => $programa->getId())))
             ->setMethod('DELETE')

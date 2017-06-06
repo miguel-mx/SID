@@ -29,9 +29,9 @@
                                                 {% endif %}
                                             </div>
 
-                                                <div class="widget-user-username">
-                                                    <h3>{{ alumno.nombre }} {{ alumno.paterno }} {{ alumno.materno }}</h3>
-                                                </div>
+                                            <div class="widget-user-username">
+                                                <h3>{{ alumno.nombre }} {{ alumno.paterno }} {{ alumno.materno }}</h3>
+                                            </div>
                                             {% if alumno.correoInstitucional %}
                                                 <div class="widget-user-desc">
                                                     <h5> {{ alumno.correoInstitucional }}</h5>
@@ -69,7 +69,7 @@
                                             <td><strong>Universidad de procedencia</strong></td><td>{{ alumno.escuelaProcedencia }}</td>
                                         </tr>
                                         {% if is_granted('ROLE_ADMIN') %}
-                                                <td><strong>Examen de grado/Título</strong></td><td><a href="{{ vich_uploader_asset(alumno, 'tesisLicenciaturaFile') }}">{{ alumno.tesisLicenciaturaName}}</a></td>
+                                            <td><strong>Examen de grado/Título</strong></td><td><a href="{{ vich_uploader_asset(alumno, 'tesisLicenciaturaFile') }}">{{ alumno.tesisLicenciaturaName}}</a></td>
                                             </tr>
                                             <tr>
                                                 <td><strong>Curriculum</strong></td><td><a href="{{ vich_uploader_asset(alumno, 'curriculumFile') }}">{{ alumno.curriculumName}}</a></td>
@@ -120,6 +120,7 @@
                 </div>
             </div>
             <div class="row">
+
                 {% for programa in alumno.programas %}
                     <div class="col-md-6 col-sm-12 col-xs-12">
                         <div class="box box-success">
@@ -128,6 +129,12 @@
                                     {% if is_granted('ROLE_ADMIN') %}
                                         <small><a href="{{ path('programa_edit', { 'id': programa.id }) }}">
                                                 <i class="fa fa-pencil-square-o" aria-hidden="true"></i></a></small>
+
+                                        {% if programa.termino >= semestre_final %}
+                                            <a class="btn btn-warning btn-sm" href="{{ path('estatusexamengeneral_new', { 'id': programa.id }) }}" role="button">
+                                                <i class="fa fa-plus" aria-hidden="true"></i> Agregar Examen General</a>
+                                        {% endif %}
+
                                     {% endif %}
                                 </h2>
                             </div>
@@ -157,33 +164,57 @@
                 {% endfor %}
 
                 {% if alumno.programaMaestriaExterno %}
-                <div class="col-md-6 col-sm-12 col-xs-12">
-                    <div class="box box-success">
-                        <div class="box-header">
-                            <h2>Maestría Externa
-                                {% if is_granted('ROLE_ADMIN') %}
-                                    <small><a href="{{ path('programamaestriaexterno_edit', { 'id': alumno.programaMaestriaExterno.id }) }}">
-                                            <i class="fa fa-pencil-square-o" aria-hidden="true"></i></a></small>
+                    <div class="col-md-6 col-sm-12 col-xs-12">
+                        <div class="box box-success">
+                            <div class="box-header">
+                                <h2>Maestría Externa
+                                    {% if is_granted('ROLE_ADMIN') %}
+                                        <small><a href="{{ path('programamaestriaexterno_edit', { 'id': alumno.programaMaestriaExterno.id }) }}">
+                                                <i class="fa fa-pencil-square-o" aria-hidden="true"></i></a></small>
+                                    {% endif %}
+                                </h2>
+                            </div>
+                            <div class="box-body">
+                                <p><span class="lead text-muted">Universidad:  </span>{{alumno.programaMaestriaExterno.escuelaProcedencia }} </p>
+                                <p><span class="lead text-muted">País:  </span> {{alumno.programaMaestriaExterno.pais }}</p>
+                                {% if alumno.programaMaestriaExterno.tituloTesis %}
+                                    <p>{{alumno.programaMaestriaExterno.tituloTesis }}  </p>
                                 {% endif %}
-                            </h2>
+
+                                {% if alumno.programaMaestriaExterno.fechaGrado is not empty %}
+                                    <p><span class="lead text-muted"> Titulado</span></p>
+                                {% endif %}
+                            </div>
                         </div>
-                        <div class="box-body">
-                            <p><span class="lead text-muted">Universidad:  </span>{{alumno.programaMaestriaExterno.escuelaProcedencia }} </p>
-                            <p><span class="lead text-muted">País:  </span> {{alumno.programaMaestriaExterno.pais }}</p>
-                            {% if alumno.programaMaestriaExterno.tituloTesis %}
-                                <p>{{alumno.programaMaestriaExterno.tituloTesis }}  </p>
-                            {% endif %}
-
-                            {% if alumno.programaMaestriaExterno.fechaGrado is not empty %}
-                                <p><span class="lead text-muted"> Titulado</span></p>
-                            {% endif %}
-
-                        </div>
-
-
                     </div>
-                </div>
                 {% endif %}
+
+
+                {% for programa in alumno.programas %}
+                    {% if programa.estatusExamenesGenerales %}
+                        {% for status in programa.estatusExamenesGenerales %}
+                            <div class="col-md-6 col-sm-12 col-xs-12">
+                                <div class="box box-success">
+                                    <div class="box-body">
+                                        <div class="page-header text-muted"><h3>Exámenes Generales</h3></div>
+                                        <table class="table table-condensed table-hover">
+                                            <tr>
+                                                <td><strong><a href="{{ path('examengeneral_show', { 'id': status.examenGeneral.id }) }}">{{ status.examenGeneral }}</a></strong></td>
+                                                <td class="text-muted">{{ status.examenGeneral.semestre }}</td>
+                                                <td><a href="{{ path('academico_show', { 'slug': status.examenGeneral.coordinador.slug }) }}">{{ status.examenGeneral.coordinador.paterno }} {{ status.examenGeneral.coordinador.materno }} {{ status.examenGeneral.coordinador.nombre }}</a></td>
+                                                <td>{{ status.estatus }}</td>
+                                                <td><small><a href="{{ path('estatusexamengeneral_edit', { 'id': status.id }) }}">
+                                                        <i class="fa fa-pencil-square-o" aria-hidden="true"></i></a></small></td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+
+                        {% endfor %}
+                    {% endif %}
+                {% endfor %}
+
             </div>
         </section>
     </section>

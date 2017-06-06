@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    {{ form_start(form) }}
+    <div class="content-wrapper">
+        <section class="content-header">
+            <h1>Nuevo Examen General: <span class="text-muted">{{ estatusExamenGeneral.programa.alumno.paterno }} {{ estatusExamenGeneral.programa.alumno.materno }} {{ estatusExamenGeneral.programa.alumno.nombre }} </span><span class="text-muted"></span></h1>
+        </section>
+        <div class="row">
+            <div class="col-md-6 col-sm-6 col-xs-12">
+                <div class="box box-primary">
+                    <div class="box-body">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Examen General</label>
+                                    {{ form_widget(form.examenGeneral, {'attr': {'class': 'form-control'}}) }}
+                                    <span class="text-danger">{{ form_errors(form.examenGeneral) }}</span>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Estatus</label>
+                                    {{ form_widget(form.estatus, {'attr': {'class': 'form-control'}}) }}
+                                    <span class="text-danger">{{ form_errors(form.estatus) }}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="box-footer">
+                        {{ form_widget(form) }}
+                        <input  class="btn btn-success btn-sm" type="submit" value="Guardar cambios">
+                    </div>
+                </div>
+                {{ form_end(form) }}
+            </div>
+        </div>
+    </div>
+{% endblock %}

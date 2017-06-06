@@ -1,0 +1,34 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<div class="content-wrapper">
+    <h1>Estatusexamengeneral</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ estatusExamenGeneral.id }}</td>
+            </tr>
+            <tr>
+                <th>Estatus</th>
+                <td>{{ estatusExamenGeneral.estatus }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('estatusexamengeneral_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('estatusexamengeneral_edit', { 'id': estatusExamenGeneral.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+</div>
+{% endblock %}

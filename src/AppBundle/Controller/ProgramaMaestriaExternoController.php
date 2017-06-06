@@ -114,6 +114,8 @@ class ProgramaMaestriaExternoController extends Controller
      */
     public function deleteAction(Request $request, ProgramaMaestriaExterno $programaMaestriaExterno)
     {
+        $this->denyAccessUnlessGranted('ROLE_ADMIN', null, 'Unable to access this page!');
+
         $form = $this->createDeleteForm($programaMaestriaExterno);
         $form->handleRequest($request);
 

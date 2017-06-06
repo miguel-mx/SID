@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Estatusexamengenerals list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Estatus</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for estatusExamenGeneral in estatusExamenGeneral %}
+            <tr>
+                <td><a href="{{ path('estatusexamengeneral_show', { 'id': estatusExamenGeneral.id }) }}">{{ estatusExamenGeneral.id }}</a></td>
+                <td>{{ estatusExamenGeneral.estatus }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('estatusexamengeneral_show', { 'id': estatusExamenGeneral.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('estatusexamengeneral_edit', { 'id': estatusExamenGeneral.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('estatusexamengeneral_new') }}">Create a new estatusExamenGeneral</a>
+        </li>
+    </ul>
+{% endblock %}

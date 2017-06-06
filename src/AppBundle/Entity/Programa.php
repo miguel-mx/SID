@@ -127,6 +127,9 @@ class Programa
     */
     private $comite_tutorial;
 
+    /** @ORM\OneToMany(targetEntity="AppBundle\Entity\EstatusExamenGeneral", mappedBy="programa") */
+    protected $estatusExamenesGenerales;
+
 
     public function __construct() {
         $this->semestres = new \Doctrine\Common\Collections\ArrayCollection();
@@ -378,6 +381,9 @@ class Programa
         $this->alumno = $alumno;
     }
 
+    public function __toString() {
+        return $this->getPrograma(). ' | ' .  $this->getAlumno() ;
+    }
     /**
      * @return mixed
      */
@@ -438,6 +444,24 @@ class Programa
         $tutor->addTutoria($this);
         $this->comite_tutorial[] = $tutor;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getEstatusExamenesGenerales()
+    {
+        return $this->estatusExamenesGenerales;
+    }
+
+    /**
+     * @param mixed $estatusExamenesGenerales
+     */
+    public function setEstatusExamenesGenerales($estatusExamenesGenerales)
+    {
+        $this->estatusExamenesGenerales = $estatusExamenesGenerales;
+    }
+
+
 
 
 }

@@ -137,6 +137,8 @@ class CursoController extends Controller
      */
     public function deleteAction(Request $request, Curso $curso)
     {
+        $this->denyAccessUnlessGranted('ROLE_ADMIN', null, 'Unable to access this page!');
+
         $form = $this->createDeleteForm($curso);
         $form->handleRequest($request);
 

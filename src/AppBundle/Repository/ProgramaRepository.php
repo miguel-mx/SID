@@ -12,4 +12,18 @@ use Doctrine\ORM\EntityRepository;
  */
 class ProgramaRepository extends EntityRepository
 {
+    public function findAllBySemestreInscrito($slug, $semestre_actual)
+    {
+        return $this->getEntityManager()
+            ->createQuery(
+                "SELECT p FROM AppBundle:Programa p
+                    JOIN p.alumno a
+                    JOIN p.semestres s
+                    WHERE a.slug = :slug
+                    AND s.semestre = :semestre_actual"
+            )
+            ->setParameter('slug', $slug)
+            ->setParameter('semestre_actual', $semestre_actual)
+            ->getResult();
+    }
 }

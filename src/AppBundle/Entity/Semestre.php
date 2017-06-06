@@ -65,6 +65,12 @@ class Semestre
     private $programas;
 
     /**
+     * One Semestre has Many ExamenesGenerales.
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\ExamenGeneral", mappedBy="semestre")
+     */
+    private $examenesGenerales;
+
+    /**
      * @Gedmo\Slug(fields={"semestre"})
      * @ORM\Column(length=10, unique=true)
      */
@@ -86,6 +92,7 @@ class Semestre
 
     public function __construct() {
         $this->cursos = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->examenesGenerales = new \Doctrine\Common\Collections\ArrayCollection();
         $this->programas = new \Doctrine\Common\Collections\ArrayCollection();
         $this->aspirantes = new \Doctrine\Common\Collections\ArrayCollection();
     }
@@ -285,4 +292,22 @@ class Semestre
     {
         $this->programas[] = $programa;
     }
+
+    /**
+     * @return ExamenGeneral
+     */
+    public function getExamenesGenerales()
+    {
+        return $this->examenesGenerales;
+    }
+
+    /**
+     * @param ExamenGeneral $examenesGenerales
+     */
+    public function setExamenesGenerales(ExamenGeneral $examenesGenerales)
+    {
+        $this->examenesGenerales = $examenesGenerales;
+    }
+
+
 }

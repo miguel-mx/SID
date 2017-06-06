@@ -7,6 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 use Symfony\Component\HttpFoundation\File\File;
+use Doctrine\Common\Collections\ArrayCollection;
 
 
 /**
@@ -259,8 +260,8 @@ class Alumno
      */
     public function __construct()
     {
-        $this->programas = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->programaMaestriaExterno = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->programas = new ArrayCollection();
+        $this->programaMaestriaExterno = new ArrayCollection();
     }
 
     /**

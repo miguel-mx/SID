@@ -66,6 +66,8 @@ class AlumnoController extends Controller
     {
         $this->denyAccessUnlessGranted('ROLE_ADMIN', null, 'Unable to access this page!');
 
+        $semestre_actual = $this->getParameter('semestre');
+
         $alumno = new Alumno();
         $form = $this->createForm('AppBundle\Form\AlumnoType', $alumno);
         $form->handleRequest($request);
@@ -79,6 +81,7 @@ class AlumnoController extends Controller
         }
 
         return $this->render('alumno/new.html.twig', array(
+            '_semestre' => $semestre_actual,
             'alumno' => $alumno,
             'form' => $form->createView(),
         ));
@@ -93,10 +96,15 @@ class AlumnoController extends Controller
     public function showAction(Alumno $alumno)
     {
         $deleteForm = $this->createDeleteForm($alumno);
+        $em = $this->getDoctrine()->getManager();
+        $semestre_lista = $em->getRepository('AppBundle:Semestre')->findAllSemestre();
+        $semestre_final = reset($semestre_lista);
+
 
         return $this->render('alumno/show.html.twig', array(
             'alumno' => $alumno,
             'delete_form' => $deleteForm->createView(),
+            'semestre_final'=>  $semestre_final,
         ));
     }
 

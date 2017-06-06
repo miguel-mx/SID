@@ -123,6 +123,8 @@ class AspiranteController extends Controller
      */
     public function deleteAction(Request $request, Aspirante $aspirante)
     {
+        $this->denyAccessUnlessGranted('ROLE_ADMIN', null, 'Unable to access this page!');
+
         $form = $this->createDeleteForm($aspirante);
         $form->handleRequest($request);
 
