@@ -97,7 +97,7 @@ class Aspirante
     /**
      * @var string
      *
-     * @ORM\Column(name="curp", type="string", length=20)
+     * @ORM\Column(name="curp", type="string", length=20, nullable=true)
      */
     private $curp;
 
@@ -146,7 +146,7 @@ class Aspirante
     /**
      * @var string
      *
-     * @ORM\Column(name="fecha_titulacion", type="datetime")
+     * @ORM\Column(name="fecha_titulacion", type="datetime", nullable=true)
      */
     private $fechaTitulacion;
 

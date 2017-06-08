@@ -23,7 +23,10 @@
                                         <span>{{ form_errors(form.profesor) }}</span>
                                     </div>
                                 </div>
-                                        {#{{ form_widget(form.semestre, {'class': 'form-control'}) }}#}
+                                 <div class="hidden">
+                                        {{ form_widget(form.semestre) }}
+                                 </div>
+
 
                             </div>
                             <div class="row">

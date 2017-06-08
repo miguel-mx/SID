@@ -25,9 +25,9 @@ class ExamenGeneralType extends AbstractType
                     'Análisis Real' => 'Análisis Real',
                     'Ecuaciones Diferenciales Ordinarias' => 'Ecuaciones Diferenciales Ordinarias',
                     'Ecuaciones Diferenciales Parciales' => 'Ecuaciones Diferenciales Parciales',
-                    'Geometría Algebraica' => 'Geometría Algebraica',
+                    'Geometría Algebráica' => 'Geometría Algebráica',
                     'Geometría Diferencial' => 'Geometría Diferencial',
-                    'Inferencia Estadistica' => 'Inferencia Estadistica',
+                    'Inferencia Estadística' => 'Inferencia Estadística',
                     'Probabilidad' => 'Probabilidad',
                     'Probabilidad I' => 'Probabilidad I',
                     'Teoría de Gráficas' => 'Teoría de Gráficas',
@@ -46,7 +46,10 @@ class ExamenGeneralType extends AbstractType
                 'input'  => 'timestamp',
                 'widget' => 'choice',
             ))
-            ->add('semestre')
+            ->add('semestre', null, array(
+                'required'   => true,
+                'placeholder' => ''
+            ))
             ->add('coordinador')
             ->add('comite');
     }

@@ -37,18 +37,18 @@
                         <thead>
                         <tr>
                             <th>Examen</th>
+                            <th>Coordinador</th>
                             <th>Fecha</th>
-                            <th>Lugar</th>
-                            <th>Hora</th>
+
                         </tr>
                         </thead>
                         <tbody>
                         {% for examenGeneral in examenGenerales %}
                             <tr>
                                 <td><a href="{{ path('examengeneral_show', { 'id': examenGeneral.id }) }}">{{ examenGeneral.nombre }}</a></td>
-                                <td>{% if examenGeneral.fecha %}{{ examenGeneral.fecha|date('Y-m-d H:i:s') }}{% endif %}</td>
-                                <td>{{ examenGeneral.lugar }}</td>
-                                <td>{{ examenGeneral.hora }}</td>
+                                <td><a href="{{ path('academico_show', {'slug': examenGeneral.coordinador.slug }) }}">{{ examenGeneral.coordinador }}</a></td>
+                                <td>{% if examenGeneral.fecha %}{{ examenGeneral.fecha|localizeddate('long', 'none', 'es') }}{% endif %}</td>
+
 
                             </tr>
                         {% endfor %}

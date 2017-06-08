@@ -62,7 +62,7 @@ class Academico
     /**
      * @var string
      *
-     * @ORM\Column(name="adscripcion", type="string", length=80)
+     * @ORM\Column(name="adscripcion", type="string", length=80, nullable=true)
      */
     private $adscripcion;
 
@@ -76,14 +76,14 @@ class Academico
     /**
      * @var string
      *
-     * @ORM\Column(name="telefono", type="string", length=15)
+     * @ORM\Column(name="telefono", type="string", length=15, nullable=true)
      */
     private $telefono;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="extension", type="string", length=10)
+     * @ORM\Column(name="extension", type="string", length=10, nullable=true)
      */
     private $extension;
 

@@ -25,6 +25,7 @@ class AspiranteType extends AbstractType
             ->add('pais', 'Symfony\Component\Form\Extension\Core\Type\ChoiceType', array(
                 'choices'  => array(
                     'México' => 'México',
+                    'Bolivia' => 'Bolivia',
                     'Colombia' => 'Colombia',
                     'Venezuela' => 'Venezuela',
                     'Alemania' => 'Alemania',

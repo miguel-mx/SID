@@ -48,10 +48,14 @@ class CursoController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
         $semestre_lista = $em->getRepository('AppBundle:Semestre')->findAllSemestre();
-        $semestre_final = end($semestre_lista);
+        $semestre_final = reset($semestre_lista);
 
         $form = $this->createForm('AppBundle\Form\CursoType' ,$curso = new Curso())
-//           ->add('semestre', 'hidden')->setData($semestre_final)
+         ->add('semestre', null, array(
+             'required'   => true,
+             'data' =>$semestre_final,
+
+         ))
         ;
 
         $form->handleRequest($request);
@@ -66,7 +70,7 @@ class CursoController extends Controller
 
         return $this->render('curso/new.html.twig', array(
             'form' => $form->createView(),
-
+            'semestre_final' =>$semestre_final,
 
         ));
     }

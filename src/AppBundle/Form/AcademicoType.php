@@ -20,7 +20,9 @@ class AcademicoType extends AbstractType
             ->add('curp')
             ->add('adscripcion')
             ->add('correo')
-            ->add('telefono')
+            ->add('telefono', 'Symfony\Component\Form\Extension\Core\Type\TextType', array(
+                'required'    => false,
+            ))
             ->add('extension')
             ->add('cvu')
             ->add('acreditacion')

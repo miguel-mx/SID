@@ -54,12 +54,16 @@ class CursoType extends AbstractType
                                 'Geometría Algebraica' => 'Geometría Algebraica',
                                 'Geometría Diferencial' => 'Geometría Diferencial',
                                 'Inferencia Estadistica' => 'Inferencia Estadistica',
+                                'Modelos lineales' => 'Modelos lineales',
                                 'Probabilidad' => 'Probabilidad',
                                 'Probabilidad I' => 'Probabilidad I',
+                                'Probabilidad II' => 'Probabilidad II',
+                                'Procesos estocasticos' => 'Procesos estocasticos',
                                 'Teoría de Gráficas' => 'Teoría de Gráficas',
                                 'Topología Algebráica' => 'Topología Algebráica',
                                 'Topología Diferencial' => 'Topología Diferencial',
                                 'Topología General' => 'Topología General',
+
                             ),
 
                         )
@@ -85,34 +89,28 @@ class CursoType extends AbstractType
                                 'config_name' => 'my_config'
                             )
                         )
-
                         ->add('temario', 'ckeditor', array(
                                 'required' => true,
                                 'config_name' => 'my_config'
                             )
                         )
-
                         ->add('bibliografia', 'ckeditor', array(
-                                'required' => true,
-                                'config_name' => 'my_config'
-                            )
-                        )
-
+                            'required' => true,
+                            'config_name' => 'my_config'
+                        ))
                         ->add('requisitos', 'ckeditor', array(
-                                'required' => false,
-                                'config_name' => 'my_config'
-                            )
-                        )
-
+                            'required' => false,
+                            'config_name' => 'my_config'
+                        ))
                         ->add('comentarios', 'ckeditor', array(
-                                'required' => false,
-                                'config_name' => 'my_config'
-                            )
-                        );
+                            'required' => false,
+                            'config_name' => 'my_config'
+                        ));
                 }
                 elseif($tipo === 'Seminario') {
                     $form->add('curso', 'Symfony\Component\Form\Extension\Core\Type\ChoiceType', array(
                         'choices' => array(
+                            'Seminario de Algebra' => 'Seminario de Algebra',
                             'Seminario de Análisis' => 'Seminario de Análisis',
                             'Seminario de Ecuaciones diferenciales ordinarias y parciales' => 'Seminario de Ecuaciones diferenciales ordinarias y parciales',
                             'Seminario de Geometría' => 'SSeminario de Geometría',
@@ -123,7 +121,28 @@ class CursoType extends AbstractType
                         'placeholder' => ''
                     ))
                         ->add('tema')
-                    ;
+                        ->add('objetivo', 'ckeditor', array(
+                                'required' => true,
+                                'config_name' => 'my_config'
+                            )
+                        )
+                        ->add('temario', 'ckeditor', array(
+                                'required' => true,
+                                'config_name' => 'my_config'
+                            )
+                        )
+                        ->add('bibliografia', 'ckeditor', array(
+                            'required' => true,
+                            'config_name' => 'my_config'
+                        ))
+                        ->add('requisitos', 'ckeditor', array(
+                            'required' => false,
+                            'config_name' => 'my_config'
+                        ))
+                        ->add('comentarios', 'ckeditor', array(
+                            'required' => false,
+                            'config_name' => 'my_config'
+                        ));
                 }
             }
         );
@@ -187,8 +206,11 @@ class CursoType extends AbstractType
                             'Geometría Algebraica' => 'Geometría Algebraica',
                             'Geometría Diferencial' => 'Geometría Diferencial',
                             'Inferencia Estadistica' => 'Inferencia Estadistica',
+                            'Modelos lineales' => 'Modelos lineales',
                             'Probabilidad' => 'Probabilidad',
                             'Probabilidad I' => 'Probabilidad I',
+                            'Probabilidad II' => 'Probabilidad II',
+                            'Procesos estocasticos' => 'Procesos estocasticos',
                             'Teoría de Gráficas' => 'Teoría de Gráficas',
                             'Topología Algebráica' => 'Topología Algebráica',
                             'Topología Diferencial' => 'Topología Diferencial',
@@ -200,6 +222,7 @@ class CursoType extends AbstractType
                 elseif($tipo->getTipo() === 'Seminario') {
                     $form->add('curso', 'Symfony\Component\Form\Extension\Core\Type\ChoiceType', array(
                         'choices' => array(
+                            'Seminario de Algebra' => 'Seminario de Algebra',
                             'Seminario de Análisis' => 'Seminario de Análisis',
                             'Seminario de Ecuaciones diferenciales ordinarias y parciales' => 'Seminario de Ecuaciones diferenciales ordinarias y parciales',
                             'Seminario de Geometría' => 'SSeminario de Geometría',
@@ -207,7 +230,31 @@ class CursoType extends AbstractType
                             'Seminario de Probabilidad' => 'Seminario de Probabilidad',
                             'Seminario de Topología' => 'Seminario de Topología',
                         ),
-                    ));
+                    ))
+                        ->add('tema')
+                        ->add('objetivo', 'ckeditor', array(
+                                'required' => true,
+                                'config_name' => 'my_config'
+                            )
+                        )
+                        ->add('temario', 'ckeditor', array(
+                                'required' => true,
+                                'config_name' => 'my_config'
+                            )
+                        )
+                        ->add('bibliografia', 'ckeditor', array(
+                            'required' => true,
+                            'config_name' => 'my_config'
+                        ))
+                        ->add('requisitos', 'ckeditor', array(
+                            'required' => false,
+                            'config_name' => 'my_config'
+                        ))
+                        ->add('comentarios', 'ckeditor', array(
+                            'required' => false,
+                            'config_name' => 'my_config'
+                        ))
+                    ;
                 }}
         });
 
