@@ -27,6 +27,7 @@ class AspiranteType extends AbstractType
                     'México' => 'México',
                     'Bolivia' => 'Bolivia',
                     'Colombia' => 'Colombia',
+                    'Perú' => 'Perú',
                     'Venezuela' => 'Venezuela',
                     'Alemania' => 'Alemania',
                 ),
