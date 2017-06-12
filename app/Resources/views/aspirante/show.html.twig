@@ -43,7 +43,7 @@
                                                 </tr>
                                             {% endif %}
                                             <tr>
-                                                <td><strong>Fecha de nacimiento</strong></td><td>{{ aspirante.fechaNacimiento|date('Y-m-d H:i:s') }}</td>
+                                                <td><strong>Fecha de nacimiento</strong></td><td>{{ aspirante.fechaNacimiento|localizeddate('long', 'none', 'es') }}</td>
                                             </tr>
                                             <tr>
                                                 <td><strong>Teléfono</strong></td>
@@ -57,9 +57,11 @@
 
                                 <div class="col-md-6 col-sm-6 col-xs-6">
                                     <table class="table table-condensed table-hover text-muted">
+                                        {% if aspirante.pais|country %}
                                         <tr>
                                             <td><strong>País</strong></td><td><span class="flag-icon flag-icon-{{ aspirante.pais|country }}"></span> {{ aspirante.pais }}</td>
                                         </tr>
+                                        {% endif %}
                                         <tr>
                                             <th>Estado</th>
                                             <td>{{ aspirante.estado }}</td>
@@ -109,12 +111,16 @@
                                     </tbody>
                                 </table>
                             </div>
+
                             {% if is_granted('ROLE_ADMIN') %}
                                 <div class="box-footer">
                                     <a class="btn btn-primary btn-sm" href="{{ path('aspirante_edit', { 'slug': aspirante.slug }) }}" role="button">
                                         <i class="fa fa-pencil" aria-hidden="true"></i> Editar</a>
                                 </div>
 
+                            {#    {{ form_start(delete_form) }}
+                                <input type="submit" value="Delete">
+                                {{ form_end(delete_form) }}#}
                             {% endif %}
 
                         </div>

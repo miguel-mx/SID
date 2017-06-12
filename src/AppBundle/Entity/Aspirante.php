@@ -118,28 +118,28 @@ class Aspirante
     /**
      * @var string
      *
-     * @ORM\Column(name="carrera", type="string", length=60)
+     * @ORM\Column(name="carrera", type="string", length=60, nullable=true)
      */
     private $carrera;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="promedio", type="string", length=10)
+     * @ORM\Column(name="promedio", type="string", length=10, nullable=true)
      */
     private $promedio;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="fecha_inicio_estudios", type="datetime")
+     * @ORM\Column(name="fecha_inicio_estudios", type="datetime", nullable=true)
      */
     private $fechaInicioEstudios;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="fecha_termino_creditos", type="datetime")
+     * @ORM\Column(name="fecha_termino_creditos", type="datetime", nullable=true)
      */
     private $fechaTerminoCreditos;
 

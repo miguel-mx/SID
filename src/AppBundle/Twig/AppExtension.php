@@ -19,6 +19,7 @@ class AppExtension extends \Twig_Extension
             'Venezuela' => 've',
             'Bolivia' => 'bo',
             'Alemania' => 'de',
+            'Perú' => 'pe',
         );
 
         return $country_codes[$country_name];
