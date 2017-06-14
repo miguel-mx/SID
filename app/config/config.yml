@@ -146,6 +146,9 @@ vich_uploader:
 #                          options: { property: 'numeroCuenta'}
 #
 liip_imagine:
+    resolvers:
+        default:
+            web_path: ~
     filter_sets:
         img_thumb:
             quality: 75
