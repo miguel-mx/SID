@@ -16,7 +16,9 @@
          </a>
      {% else %}
          {% if error %}
-             <p class="text-danger"><span class="glyphicon glyphicon-remove"></span> {{ error.messageKey|trans(error.messageData, 'security') }}</p>
+             <div class="alert alert-danger">
+                 <p class="text-danger"><span class="glyphicon glyphicon-remove"></span> {{ error|trans({}, 'FOSUserBundle') }}</p>
+             </div>
          {% endif %}
 
 
