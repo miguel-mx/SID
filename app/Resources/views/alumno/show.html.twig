@@ -24,7 +24,7 @@
                                             <div class="widget-user-image ">
                                                 {% if alumno.fotoName %}
                                                     <td>
-                                                        <img src="{{ vich_uploader_asset(alumno, 'fotoFile') | imagine_filter('img_thumb') }}" />
+                                                        <img src="{{ asset('web/documentos/' . alumno.fotoFile) | imagine_filter('img_thumb') }}" />
                                                     </td>
                                                 {% endif %}
                                             </div>

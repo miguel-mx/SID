@@ -65,6 +65,8 @@ swiftmailer:
     host:      "%mailer_host%"
     username:  "%mailer_user%"
     password:  "%mailer_password%"
+    encryption: "%mailer_encryption%"
+    port: "%mailer_port%"
     spool:     { type: memory }
 
 stof_doctrine_extensions:
@@ -96,7 +98,7 @@ vich_uploader:
     db_driver: orm
     mappings:
         alumno_documento:
-            uri_prefix:         /documentos
+            uri_prefix:         /sid/documentos
             upload_destination: '%kernel.root_dir%/../web/documentos/'
             namer: vich_uploader.namer_uniqid
 #            directory_namer:
@@ -108,9 +110,9 @@ vich_uploader:
 #                  options: { property: 'numeroCuenta'}
 
         curriculum_documento:
-                    uri_prefix:         /documentos
-                    upload_destination: '%kernel.root_dir%/../web/documentos/'
-                    namer: vich_uploader.namer_uniqid
+            uri_prefix:         /sid/documentos
+            upload_destination: '%kernel.root_dir%/../web/documentos/'
+            namer: vich_uploader.namer_uniqid
 ##                    directory_namer:
 ##                        service: vich_uploader.directory_namer_subdir
 ##                        options: {chars_per_dir: 9}
@@ -120,9 +122,9 @@ vich_uploader:
 #                          options: { property: 'numeroCuenta'}
 #
         foto_documento:
-                    uri_prefix:         /documentos
-                    upload_destination: '%kernel.root_dir%/../web/documentos/'
-                    namer: vich_uploader.namer_uniqid
+            uri_prefix:         /sid/documentos
+            upload_destination: '%kernel.root_dir%/../web/documentos/'
+            namer: vich_uploader.namer_uniqid
 ##                    directory_namer:
 ##                        service: vich_uploader.directory_namer_subdir
 ##                        options: {chars_per_dir: 9}
@@ -132,9 +134,9 @@ vich_uploader:
 #                          options: { property: 'numeroCuenta'}
 #
         cedula_documento:
-                    uri_prefix:         /documentos
-                    upload_destination: '%kernel.root_dir%/../web/documentos/'
-                    namer: vich_uploader.namer_uniqid
+            uri_prefix:         /sid/documentos
+            upload_destination: '%kernel.root_dir%/../web/documentos/'
+            namer: vich_uploader.namer_uniqid
 ##                    directory_namer:
 ##                        service: vich_uploader.directory_namer_subdir
 ##                        options: {chars_per_dir: 9}
@@ -144,6 +146,9 @@ vich_uploader:
 #                          options: { property: 'numeroCuenta'}
 #
 liip_imagine:
+    resolvers:
+        default:
+            web_path: ~
     filter_sets:
         img_thumb:
             quality: 75

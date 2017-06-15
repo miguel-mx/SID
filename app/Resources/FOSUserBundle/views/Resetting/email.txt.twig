@@ -6,20 +6,13 @@
 {% block body_text %}
     {% autoescape false %}
 
-Centro de Ciencias Matemáticas
+Centro de Ciencias Matemáticas, Sistema de Información de Docencia.
 
-Este correo ha sido enviado para crear una nueva contraseña en el Sistema de Captura de Informe y Plan de trabajo
+Usuario: {{ user.username }}
 
-Nombre de usuario: {{ user.username }}
-
-Para realizar esta acción es necesario abrir el siguiente enlace.
+Para cambiar su contraseña, por favor utilice el siguiente enlace:
 
 {{ confirmationUrl }}
-
-Favor de hacernos saber tus dudas y/o comentarios.
-
-Luis Gerardo Tejero: gerardo@matmor.unam.mx, ext. 42597
-Miguel Angel Magaña: miguel@matmor.unam.mx,  ext. 32739
 
 
 Centro de Ciencias Matemáticas
