@@ -15,7 +15,16 @@ class ProgramaMaestriaExternoType extends AbstractType
     {
         $builder
             ->add('escuelaProcedencia')
-            ->add('pais')
+            ->add('pais', 'Symfony\Component\Form\Extension\Core\Type\ChoiceType', array(
+                'choices'  => array(
+                    'México' => 'México',
+                    'Colombia' => 'Colombia',
+                    'Venezuela' => 'Venezuela',
+                    'Alemania' => 'Alemania',
+                    'Perú' => 'Perú'
+                ),
+                'choices_as_values' => true,
+            ))
             ->add('ciudad')
             ->add('fechaGrado', 'Symfony\Component\Form\Extension\Core\Type\DateType', array(
                 'widget' => 'single_text',
@@ -24,6 +33,7 @@ class ProgramaMaestriaExternoType extends AbstractType
             ->add('opcionTitulacion', 'Symfony\Component\Form\Extension\Core\Type\ChoiceType', array(
                 'choices' => array(
                     'Tésis' => 'Tésis',
+                    'Tesina' => 'Tesina',
                 ),
                 'required' => false,
                 'placeholder' => ''

@@ -40,6 +40,7 @@ class ProgramaType extends AbstractType
                 'choices' => array(
                     '' => '',
                     'Tésis' => 'Tésis',
+                    'Tesina' => 'Tesina',
                 ),
                 'required' => false,
             ))
