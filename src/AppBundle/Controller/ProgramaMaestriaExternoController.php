@@ -51,7 +51,7 @@ class ProgramaMaestriaExternoController extends Controller
             $em->persist($programaMaestriaExterno);
             $em->flush();
 
-            return $this->redirectToRoute('programamaestriaexterno_show', array('slug' => $programaMaestriaExterno->getAlumno()->getSlug()));
+            return $this->redirectToRoute('alumno_show', array('slug' => $programaMaestriaExterno->getAlumno()->getSlug()));
         }
 
         return $this->render('programamaestriaexterno/new.html.twig', array(
