@@ -11,7 +11,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  *
  * @ORM\Table(name="programa_maestria_externo")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\ProgramaMaestriaExternoRepository")
- * * @ORM\HasLifecycleCallbacks()
+ * @ORM\HasLifecycleCallbacks()
  */
 class ProgramaMaestriaExterno
 {
