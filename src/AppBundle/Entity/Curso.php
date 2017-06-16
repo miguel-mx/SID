@@ -63,7 +63,7 @@ class Curso
     /**
      * @var string
      *
-     * @ORM\Column(name="basico", type="boolean", nullable=true)
+     * @ORM\Column(name="aceptado", type="boolean", nullable=true)
      */
     private $aceptado;
 
