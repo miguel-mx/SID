@@ -22,9 +22,12 @@
                                         <div class="widget-user-header ">
 
                                             <div class="widget-user-image ">
+
+{# {{ vich_uploader_asset(enity, 'iconFile')|imagine_filter('thumb') }} #}
+
                                                 {% if alumno.fotoName %}
                                                     <td>
-                                                        <img src="{{ asset('web/documentos/' . alumno.fotoFile) | imagine_filter('img_thumb') }}" />
+                                                        <img src="{{ asset('documentos/59400a6d8a9dc.jpg')| imagine_filter('img_thumb') }}" />
                                                     </td>
                                                 {% endif %}
                                             </div>
