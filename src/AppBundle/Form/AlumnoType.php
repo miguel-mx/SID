@@ -56,7 +56,7 @@ class AlumnoType extends AbstractType
                     'Chihuahua' => 'Chihuahua',
                     'Coahuila' => 'Coahuila',
                     'Colima' => 'Colima',
-                    'Distrito Federal' => 'Distrito Federal',
+                    'Ciudad de México' => 'Ciudad de México',
                     'Durango' => 'Durango',
                     'Estado de México' => 'Estado de México',
                     'Guanajuato' => 'Guanajuato',

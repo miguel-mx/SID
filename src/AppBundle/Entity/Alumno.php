@@ -109,14 +109,14 @@ class Alumno
     /**
      * @var string
      *
-     * @ORM\Column(name="numero_cuenta", type="string", length=20)
+     * @ORM\Column(name="numero_cuenta", type="string", length=20, nullable=true)
      */
     private $numeroCuenta;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="cvu", type="string", length=20)
+     * @ORM\Column(name="cvu", type="string", length=20, nullable=true)
      */
     private $cvu;
 
@@ -142,12 +142,12 @@ class Alumno
     private $estatus;
 
     /**
-     * @Vich\UploadableField(mapping="alumno_documento", fileNameProperty="tesisLicenciaturaName")
+     * @Vich\UploadableField(mapping="alumno_documento", fileNameProperty="tesisLicenciaturaName", nullable=true)
      *
      * @Assert\File(
      *     maxSize = "2048k",
-     *     mimeTypes = {"application/pdf", "application/x-pdf"},
-     *     mimeTypesMessage = "Favor de subir el archivo en formato PDF"
+     *     mimeTypes = {"application/pdf", "application/x-pdf", "image/png", "image/jpeg",},
+     *     mimeTypesMessage = "Favor de subir el archivo en formato PDF/JPG"
      * )
      *
      * @var File
@@ -162,12 +162,12 @@ class Alumno
     private $tesisLicenciaturaName;
 
     /**
-     * @Vich\UploadableField(mapping="curriculum_documento", fileNameProperty="curriculumName")
+     * @Vich\UploadableField(mapping="curriculum_documento", fileNameProperty="curriculumName", nullable=true)
      *
      * @Assert\File(
      *     maxSize = "2048k",
-     *     mimeTypes = {"application/pdf", "application/x-pdf"},
-     *     mimeTypesMessage = "Favor de subir el archivo en formato PDF"
+     *     mimeTypes = {"application/pdf", "application/x-pdf", "image/png", "image/jpeg",},
+     *     mimeTypesMessage = "Favor de subir el archivo en formato PDF/JPG"
      * )
      *
      * @var File
@@ -182,7 +182,7 @@ class Alumno
     private $curriculumName;
 
     /**
-     * @Vich\UploadableField(mapping="foto_documento", fileNameProperty="fotoName")
+     * @Vich\UploadableField(mapping="foto_documento", fileNameProperty="fotoName", nullable=true)
      *
      * @Assert\File(
      *     maxSize = "2048k",
@@ -202,11 +202,11 @@ class Alumno
     private $fotoName;
 
     /**
-     * @Vich\UploadableField(mapping="cedula_documento", fileNameProperty="cedulaName")
+     * @Vich\UploadableField(mapping="cedula_documento", fileNameProperty="cedulaName", nullable=true)
      *
      * @Assert\File(
      *     maxSize = "2048k",
-     *     mimeTypes = {"application/pdf", "application/x-pdf"},
+     *     mimeTypes = {"application/pdf", "application/x-pdf", "image/png", "image/jpeg",},
      *     mimeTypesMessage = "Favor de subir el archivo en formato PNG, JPEG o PJPEG"
      * )
      *
