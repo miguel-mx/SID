@@ -149,10 +149,10 @@ liip_imagine:
     resolvers:
         default:
             web_path: ~
-    loaders:
-            default:
-              filesystem:
-                data_root: '%kernel.root_dir%/../web/documentos'
+#    loaders:
+#            default:
+#              filesystem:
+#                data_root: '%kernel.root_dir%/../documentos'
     filter_sets:
         cache: ~
         img_thumb:

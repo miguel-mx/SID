@@ -27,7 +27,9 @@
 
                                                 {% if alumno.fotoName %}
                                                     <td>
-                                                        <img src="{{ asset('documentos/59400a6d8a9dc.jpg')| imagine_filter('img_thumb') }}" />
+                                                       {# <img src="{{ asset('documentos/59400a6d8a9dc.jpg')| imagine_filter('img_thumb') }}" /> #}
+                                                        <img src="{{ vich_uploader_asset(alumno, 'fotoFile') }}" height='150px' />
+{#  <img src="{{  alumno.fotoName | imagine_filter('img_thumb') }}" /> #}
                                                     </td>
                                                 {% endif %}
                                             </div>
