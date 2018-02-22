@@ -57,7 +57,11 @@
                                 <li class="dropdown user user-menu" aria-expanded="true">
                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                     <span class="hidden-xs"><i class="fa fa-user-o" aria-hidden="true"></i>
-                                        {% if is_granted('IS_AUTHENTICATED_FULLY') %}{{ app.user }}{% else %} Anonimo{% endif %}</span>
+                                        {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                                            {{ app.user.username }}
+                                        {% else %} Anonimo
+                                        {% endif %}
+                                    </span>
                                     </a>
                                     <ul class="dropdown-menu">
                                         <li class="user-footer">
