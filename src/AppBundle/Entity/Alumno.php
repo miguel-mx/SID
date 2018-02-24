@@ -146,7 +146,7 @@ class Alumno
      *
      * @Assert\File(
      *     maxSize = "2048k",
-     *     mimeTypes = {"application/pdf", "application/x-pdf", "image/png", "image/jpeg",},
+     *     mimeTypes = {"application/pdf", "application/x-pdf", "image/png", "image/jpeg"},
      *     mimeTypesMessage = "Favor de subir el archivo en formato PDF/JPG"
      * )
      *
@@ -155,7 +155,7 @@ class Alumno
     private $tesisLicenciaturaFile;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      *
      * @var string
      */
@@ -175,7 +175,7 @@ class Alumno
     private $curriculumFile;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      *
      * @var string
      */
@@ -195,7 +195,7 @@ class Alumno
     private $fotoFile;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      *
      * @var string
      */
@@ -215,7 +215,7 @@ class Alumno
     private $cedulaFile;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      *
      * @var string
      */
@@ -261,7 +261,6 @@ class Alumno
     public function __construct()
     {
         $this->programas = new ArrayCollection();
-        $this->programaMaestriaExterno = new ArrayCollection();
     }
 
     /**
