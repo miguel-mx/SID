@@ -20,9 +20,13 @@ class ExamenGeneralController extends Controller
      * @Route("/{semestre}", requirements={"semestre" = "20\d\d-[1|2]"}, name="examengeneral_index")
      * @Method("GET")
      */
-    public function indexAction($semestre = '2017-2')
+    public function indexAction($semestre = '')
     {
         $em = $this->getDoctrine()->getManager();
+
+        if($semestre == '') {
+            $semestre = $this->getParameter('semestre');
+        }
 
         $examenGenerales = $em->getRepository('AppBundle:ExamenGeneral')->findAllOrderByExamenGeneral($semestre);
         $semestre_lista = $em->getRepository('AppBundle:Semestre')->findAllSemestre();
@@ -105,7 +109,7 @@ class ExamenGeneralController extends Controller
                 'Editado correctamente'
             );
 
-            return $this->redirectToRoute('examengeneral_edit', array('id' => $examenGeneral->getId()));
+            return $this->redirectToRoute('examengeneral_show', array('id' => $examenGeneral->getId()));
         }
 
         return $this->render('examengeneral/edit.html.twig', array(

@@ -21,11 +21,14 @@ class AlumnoController extends Controller
      * @Route("/{semestre}", requirements={"semestre" = "20\d\d-[1|2]"}, name="alumno_index")
      * @Method("GET")
      */
-    public function indexAction($semestre = '2017-2')
+    public function indexAction($semestre = '')
     {
         $em = $this->getDoctrine()->getManager();
 
-        //$semestre_actual = $this->getParameter('semestre');
+        if($semestre == '') {
+            $semestre = $this->getParameter('semestre');
+        }
+
         $alumnos_maestria = $em->getRepository('AppBundle:Alumno')->findAllBySemestre($semestre, 'Maestría');
         $alumnos_doctorado = $em->getRepository('AppBundle:Alumno')->findAllBySemestre($semestre, 'Doctorado');
         $semestre_lista = $em->getRepository('AppBundle:Semestre')->findAllSemestre();
@@ -130,7 +133,7 @@ class AlumnoController extends Controller
                 'Editado correctamente'
             );
 
-            return $this->redirectToRoute('alumno_edit', array('slug' => $alumno->getSlug()));
+            return $this->redirectToRoute('alumno_show', array('slug' => $alumno->getSlug()));
         }
 
         return $this->render('alumno/edit.html.twig', array(

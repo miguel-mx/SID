@@ -101,7 +101,8 @@ class ProgramaController extends Controller
                 'Editado correctamente'
             );
 
-            return $this->redirectToRoute('programa_edit', array('id' => $programa->getId()));
+            // return $this->redirectToRoute('programa_edit', array('id' => $programa->getId()));
+            return $this->redirectToRoute('alumno_show', array('slug' => $programa->getAlumno()->getSlug()));
         }
 
         return $this->render('programa/edit.html.twig', array(

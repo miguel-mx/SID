@@ -21,9 +21,13 @@ class AspiranteController extends Controller
      * @Route("/{semestre}", requirements={"semestre" = "20\d\d-[1|2]"}, name="aspirante_index")
      * @Method("GET")
      */
-    public function indexAction($semestre = '2017-2')
+    public function indexAction($semestre = '')
     {
         $em = $this->getDoctrine()->getManager();
+
+        if($semestre == '') {
+            $semestre = $this->getParameter('semestre');
+        }
 
         $aspirantes = $em->getRepository('AppBundle:Aspirante')->findAll();
         $aspirantes_maestria = $em->getRepository('AppBundle:Aspirante')->findAllBySemestre($semestre, 'Maestría');
@@ -105,7 +109,7 @@ class AspiranteController extends Controller
                 'Editado correctamente'
             );
 
-            return $this->redirectToRoute('aspirante_edit', array('slug' => $aspirante->getSlug()));
+            return $this->redirectToRoute('aspirante_show', array('slug' => $aspirante->getSlug()));
         }
 
         return $this->render('aspirante/edit.html.twig', array(

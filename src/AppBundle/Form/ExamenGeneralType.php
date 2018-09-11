@@ -30,6 +30,7 @@ class ExamenGeneralType extends AbstractType
                     'Inferencia Estadística' => 'Inferencia Estadística',
                     'Probabilidad' => 'Probabilidad',
                     'Probabilidad I' => 'Probabilidad I',
+                    'Procesos Estocásticos' => 'Procesos Estocásticos',
                     'Teoría de Gráficas' => 'Teoría de Gráficas',
                     'Topología Algebráica' => 'Topología Algebráica',
                     'Topología Diferencial' => 'Topología Diferencial',

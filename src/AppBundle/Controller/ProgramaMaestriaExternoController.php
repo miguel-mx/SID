@@ -96,7 +96,8 @@ class ProgramaMaestriaExternoController extends Controller
                 'Editado correctamente'
             );
 
-            return $this->redirectToRoute('programamaestriaexterno_edit', array('id' => $programaMaestriaExterno->getId()));
+            //return $this->redirectToRoute('programamaestriaexterno_edit', array('id' => $programaMaestriaExterno->getId()));
+            return $this->redirectToRoute('alumno_show', array('slug' => $programaMaestriaExterno->getAlumno()->getSlug()));
         }
 
         return $this->render('programamaestriaexterno/edit.html.twig', array(

@@ -21,12 +21,14 @@ class CursoController extends Controller
      * @Route("/{semestre}", requirements={"semestre" = "20\d\d-[1|2]"}, name="curso_index")
      * @Method("GET")
      */
-    public function indexAction($semestre = '2017-2')
+    public function indexAction($semestre = '')
     {
         $em = $this->getDoctrine()->getManager();
 
-        //$cursos = $em->getRepository('AppBundle:Curso')->findAll();
-        //$semestre_actual = $this->getParameter('semestre');
+        if($semestre == '') {
+            $semestre = $this->getParameter('semestre');
+        }
+
         $cursos = $em->getRepository('AppBundle:Curso')->findAllOrderByCurso($semestre);
         $semestre_lista = $em->getRepository('AppBundle:Semestre')->findAllSemestre();
 
@@ -124,7 +126,7 @@ class CursoController extends Controller
                 'Editado correctamente'
             );
 
-            return $this->redirectToRoute('curso_edit', array('id' => $curso->getId()));
+            return $this->redirectToRoute('curso_show', array('id' => $curso->getId()));
         }
         return $this->render('curso/edit.html.twig', array(
             'curso' => $curso,
