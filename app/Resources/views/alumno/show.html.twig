@@ -197,26 +197,26 @@
 
                 {% for programa in alumno.programas %}
                     {% if programa.estatusExamenesGenerales %}
-                        {% for status in programa.estatusExamenesGenerales %}
-                            <div class="col-md-6 col-sm-12 col-xs-12">
-                                <div class="box box-success">
-                                    <div class="box-body">
-                                        <div class="page-header text-muted"><h3>Exámenes Generales</h3></div>
-                                        <table class="table table-condensed table-hover">
+                        <div class="col-md-6 col-sm-12 col-xs-12">
+                            <div class="box box-success">
+                                <div class="box-body">
+                                    <div class="page-header text-muted"><h3>Exámenes Generales</h3></div>
+                                    <table class="table table-condensed table-hover">
+                                        {% for status in programa.estatusExamenesGenerales %}
+
                                             <tr>
                                                 <td><strong><a href="{{ path('examengeneral_show', { 'id': status.examenGeneral.id }) }}">{{ status.examenGeneral }}</a></strong></td>
                                                 <td class="text-muted">{{ status.examenGeneral.semestre }}</td>
                                                 <td><a href="{{ path('academico_show', { 'slug': status.examenGeneral.coordinador.slug }) }}">{{ status.examenGeneral.coordinador.paterno }} {{ status.examenGeneral.coordinador.materno }} {{ status.examenGeneral.coordinador.nombre }}</a></td>
                                                 <td>{{ status.estatus }}</td>
                                                 <td><small><a href="{{ path('estatusexamengeneral_edit', { 'id': status.id }) }}">
-                                                        <i class="fa fa-pencil-square-o" aria-hidden="true"></i></a></small></td>
+                                                            <i class="fa fa-pencil-square-o" aria-hidden="true"></i></a></small></td>
                                             </tr>
-                                        </table>
-                                    </div>
+                                        {% endfor %}
+                                    </table>
                                 </div>
                             </div>
-
-                        {% endfor %}
+                        </div>
                     {% endif %}
                 {% endfor %}
 

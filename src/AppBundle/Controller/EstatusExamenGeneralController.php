@@ -52,7 +52,8 @@ class EstatusExamenGeneralController extends Controller
             $em->persist($estatusExamenGeneral);
             $em->flush();
 
-            return $this->redirectToRoute('estatusexamengeneral_show', array('id' => $estatusExamenGeneral->getId()));
+            //return $this->redirectToRoute('estatusexamengeneral_show', array('id' => $estatusExamenGeneral->getId()));
+            return $this->redirectToRoute('alumno_show', array('slug' => $programa->getAlumno()->getSlug()));
         }
 
         return $this->render('estatusexamengeneral/new.html.twig', array(

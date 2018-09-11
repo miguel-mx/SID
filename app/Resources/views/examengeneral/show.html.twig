@@ -40,37 +40,37 @@
                             <a class="btn btn-primary btn-sm" href="{{ path('examengeneral_edit', { 'id': examenGeneral.id }) }}" role="button">
                                 <i class="fa fa-pencil" aria-hidden="true"></i> Editar</a>
                         </div>
-                        <div class="col-md-6 " >
-                            <div class="box box-primary min-width: 150px">
-                                <div class="box-header">
-                                    <h4>Coordinador</h4>
-                                </div>
-                                <div class="box-body">
-                                    <p><a href="{{ path('academico_show', {'slug': examenGeneral.coordinador.slug }) }}">{{ examenGeneral.coordinador }}</a></p>
-                                </div>
-                                <div class="box-header">
-                                    <h4>Comité</h4>
-                                </div>
-                                <div class="box-body">
-                                    {% for comite in examenGeneral.comite %}
-                                        <p><a href="{{ path('academico_show', {'slug': comite.slug }) }}">{{ comite.paterno }} {{ comite.materno  }} {{ comite.nombre }}</a></p>
-                                    {% endfor %}
-                                </div>
-                            </div>
+                    </div>
+                </div>
+                <div class="col-md-6" >
+                    <div class="box box-primary min-width: 150px">
+                        <div class="box-header">
+                            <h4>Coordinador</h4>
                         </div>
-                        <div class="col-md-6 " >
-                            <div class="box box-primary min-width: 150px">
-                                <div class="box-header">
-                                    <h4>Alumnos</h4>
-                                </div>
-                                <div class="box-body">
-                                    {% for programa in examenGeneral.estatusExamenesGenerales %}
-                                            <p><a href="{{ path('alumno_show', {'slug': programa.programa.alumno.slug }) }}">{{ programa.programa.alumno.nombre }} {{ programa.programa.alumno.paterno }} {{ programa.programa.alumno.materno}}</a></p>
-                                    {% endfor %}
-                                </div>
+                        <div class="box-body">
+                            <p><a href="{{ path('academico_show', {'slug': examenGeneral.coordinador.slug }) }}">{{ examenGeneral.coordinador }}</a></p>
+                        </div>
+                        <div class="box-header">
+                            <h4>Comité</h4>
+                        </div>
+                        <div class="box-body">
+                            {% for comite in examenGeneral.comite %}
+                                <p><a href="{{ path('academico_show', {'slug': comite.slug }) }}">{{ comite.paterno }} {{ comite.materno  }} {{ comite.nombre }}</a></p>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 " >
+                    <div class="box box-primary min-width: 150px">
+                        <div class="box-header">
+                            <h4>Alumnos</h4>
+                        </div>
+                        <div class="box-body">
+                            {% for programa in examenGeneral.estatusExamenesGenerales %}
+                                    <p><a href="{{ path('alumno_show', {'slug': programa.programa.alumno.slug }) }}">{{ programa.programa.alumno.nombre }} {{ programa.programa.alumno.paterno }} {{ programa.programa.alumno.materno}}</a></p>
+                            {% endfor %}
+                        </div>
 
-                            </div>
-                        </div>
                     </div>
                 </div>
             </div>
