@@ -103,7 +103,6 @@ class AlumnoController extends Controller
         $semestre_lista = $em->getRepository('AppBundle:Semestre')->findAllSemestre();
         $semestre_final = reset($semestre_lista);
 
-
         return $this->render('alumno/show.html.twig', array(
             'alumno' => $alumno,
             'delete_form' => $deleteForm->createView(),

@@ -135,10 +135,10 @@
                                         <small><a href="{{ path('programa_edit', { 'id': programa.id }) }}">
                                                 <i class="fa fa-pencil-square-o" aria-hidden="true"></i></a></small>
 
-                                        {% if programa.termino >= semestre_final %}
-                                            <a class="btn btn-warning btn-sm" href="{{ path('estatusexamengeneral_new', { 'id': programa.id }) }}" role="button">
-                                                <i class="fa fa-plus" aria-hidden="true"></i> Agregar Examen General</a>
-                                        {% endif %}
+                                        {#{% if programa.termino >= semestre_final %}#}
+                                        <a class="btn btn-warning btn-sm" href="{{ path('estatusexamengeneral_new', { 'id': programa.id }) }}" role="button">
+                                            <i class="fa fa-plus" aria-hidden="true"></i> Agregar Examen General</a>
+                                        {#{% endif %}#}
 
                                     {% endif %}
                                 </h2>
