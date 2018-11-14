@@ -43,5 +43,4 @@ class AcademicoRepository extends EntityRepository
             ->setParameter('profesor_id', $profesor_id)
             ->getResult();
     }
-
 }

@@ -77,6 +77,7 @@ class SemestreController extends Controller
         $aspirantes_maestria = $em->getRepository('AppBundle:Aspirante')->findAllBySemestre($semestre->getSemestre(), 'Maestría');
         $programas_egresan = $em->getRepository('AppBundle:Programa')->findByTermino($semestre->getSemestre());
         $examenes_candidatura = $em->getRepository('AppBundle:Alumno')->findAllByExamenCandidatura($semestre->getSemestre());
+//        $tutores = $em->getRepository('Programa')->findAllByTutor($semestre->getSemestre());
 
         return $this->render('semestre/show.html.twig', array(
             'semestre' => $semestre,

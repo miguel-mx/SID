@@ -119,6 +119,53 @@
                     </div>
                 </div>
             </div>
+            <div class="box box-primary">
+                <div class="box-header">
+                    <h3>Tutores </h3>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <h2>Doctorado</h2>
+                        <table class="table table-condensed table-hover" id="tutor_doctorado_table">
+                            <tbody>
+                            {% for alumno in alumnos_doctorado %}
+                                <tr>
+                                    <td><a href="{{ path('alumno_show', { 'slug': alumno.slug }) }}">{{ alumno.paterno }} {{ alumno.materno }} {{ alumno.nombre }}</a></td>
+                                    {% for programa in alumno.programas %}
+                                        {% if programa.programa == 'Doctorado' %}
+                                            <td>{{ programa.programa }} </td>
+                                            <td>{{ programa.tituloTesis }} </td>
+                                            <td>{{ programa.tutor }}</td>
+                                        {% endif %}
+                                    {% endfor %}
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <h2>Maestria</h2>
+                        <table class="table table-condensed table-hover" id="tutor_maestria_table">
+                            <tbody>
+                            {% for alumno in alumnos_maestria %}
+                                <tr>
+                                    <td><a href="{{ path('alumno_show', { 'slug': alumno.slug }) }}">{{ alumno.paterno }} {{ alumno.materno }} {{ alumno.nombre }}</a></td>
+                                    {% for programa in alumno.programas %}
+                                        {% if programa.programa == 'Maestria' %}
+                                            <td>{{ programa.programa }} </td>
+                                            <td>{{ programa.tituloTesis }} </td>
+                                            <td>{{ programa.tutor }}</td>
+                                        {% endif %}
+                                    {% endfor %}
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
         </section>
     </div>
     {#
