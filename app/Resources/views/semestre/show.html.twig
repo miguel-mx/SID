@@ -153,7 +153,7 @@
                                 <tr>
                                     <td><a href="{{ path('alumno_show', { 'slug': alumno.slug }) }}">{{ alumno.paterno }} {{ alumno.materno }} {{ alumno.nombre }}</a></td>
                                     {% for programa in alumno.programas %}
-                                        {% if programa.programa == 'Maestria' %}
+                                        {% if programa.programa == 'Maestría' %}
                                             <td>{{ programa.programa }} </td>
                                             <td>{{ programa.tituloTesis }} </td>
                                             <td>{{ programa.tutor }}</td>
